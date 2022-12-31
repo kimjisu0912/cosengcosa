@@ -13,7 +13,7 @@ import com.cosengcosa.room.service.ClassMainService;
 /**
  * 메인강의 컨트롤러
  * @author 김지수/박예준
- *
+ * 
  */
 
 @Controller
