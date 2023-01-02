@@ -3,10 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  <!-- header row는 최대수치가 12분할이다-->
  	<div class="row border-bottom border-primary" id="global-header">
- 		<div class="col-1">
- 			<p><img src="https://via.placeholder.com/140x65"></p>
+ 		<div class="col-2">
+ 			<p><img src="https://via.placeholder.com/200x65"></p>
  		</div>
- 		<div class="col-11">
+ 		<div class="col-10">
  			<div class="row">
  				<div class="col text-end">
  					<ul class="nav nav-pills justify-content-end">
@@ -48,10 +48,7 @@
  							</c:if>
  						</li>
  						<li class="nav-item">
- 							<a class="nav-link" href="#">주문/배송조회</a>
- 						</li>
- 						<li class="nav-item">
- 							<a class="nav-link" href="#">고객센터</a>
+ 							<a class="nav-link" href="studyTest">studyTest</a>
  						</li>
  					</ul>
  				</div>

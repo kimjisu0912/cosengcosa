@@ -32,6 +32,7 @@
 	<redirect-view-controller redirect-url="/index" path="/main"/>
 	<redirect-view-controller redirect-url="/default" path="/main"/>
 	
-	
+	<!-- controller을 통하지 않고 바로 뷰 페이지 이동 시 설정 -->
+	<view-controller path="/studyTest" view-name="studyTest" />
 	
 </beans:beans>
