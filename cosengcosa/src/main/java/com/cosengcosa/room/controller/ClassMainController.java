@@ -42,7 +42,7 @@ public class ClassMainController {
 		// 파라미터로 받은 모델 객체에 도메인 객체나 비지니스 로직을 처리한 결과를 모델을 저장.
 		model.addAllAttributes(modelMap);
 		
-		System.out.println("dd");
+		System.out.println("dd");  
 		return "classMainList";
 	}
 }
