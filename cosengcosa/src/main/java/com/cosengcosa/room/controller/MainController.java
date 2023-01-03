@@ -20,7 +20,7 @@ public class MainController {
 	 */
 	@RequestMapping(value={"/main", "/Main"}, method=RequestMethod.GET)
 	public String mainView() {
-		
+		System.out.println("메인호출");
 		return "main";
 	}
 }
