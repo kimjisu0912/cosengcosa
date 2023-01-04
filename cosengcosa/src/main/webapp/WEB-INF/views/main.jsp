@@ -6,5 +6,5 @@
  <div class="row" id="global-content">
 	<div class="col">
 		<h2 class="fs-3 fw-bold text-center">메인화면</h2>
-	</div>
+	</div> 
  </div><!-- end global content -->
