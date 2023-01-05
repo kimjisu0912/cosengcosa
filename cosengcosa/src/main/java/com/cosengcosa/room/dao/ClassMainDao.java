@@ -17,6 +17,6 @@ public interface ClassMainDao {
 	int getClassMainCount(String type, String keyword);
 	
 	// 메인강의리스트 요청 시 호출되는 메소드
-	public abstract List<ClassMain> classMainList(int startRow, int num, String type, String keyword);
+	public abstract List<ClassMain> classMainList(int startRow, int endRow, int num, String type, String keyword);
 	
 }

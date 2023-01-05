@@ -60,10 +60,11 @@ public class ClassMainDaoImpl implements ClassMainDao {
 	 * 메인강의의 리스트를 요청 시 호출되는 메소드
 	 */
 	@Override
-	public List<ClassMain> classMainList(int startRow, int num, String type, String keyword) {
+	public List<ClassMain> classMainList(int startRow, int endRow, int num, String type, String keyword) {
 		// 받는 파라미터가 다른 타입이므로 Object 사용함
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("startRow", startRow);
+		param.put("endRow", endRow);
 		param.put("num", num);
 		param.put("type", type);
 		param.put("keyword", keyword);

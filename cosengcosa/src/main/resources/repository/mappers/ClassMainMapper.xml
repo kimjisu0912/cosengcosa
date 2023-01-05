@@ -57,7 +57,7 @@
         ) classmain
         ORDER BY cmNo DESC
     )
-	WHERE num  <![CDATA[>=]]>#{startRow} AND num <![CDATA[<=]]>#{num}
+	WHERE num  <![CDATA[>=]]>#{startRow} AND num <![CDATA[<=]]>#{endRow}
 	</select>
 	<!-- 
 		전체 게시 글 수를 반환하는 매핑 구문(동적쿼리 적용- if태그가 true면 where절이 만들어진다)

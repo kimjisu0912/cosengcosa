@@ -42,14 +42,17 @@ public class ClassMainServiceImpl implements ClassMainService {
 		// currentPage 현재페이지
 		int currentPage = pageNum;
 		
-		// 시작페이지
-		int startRow = (currentPage-1) * PAGE_SIZE;
+		// 시작행
+		int startRow = (currentPage-1) * PAGE_SIZE +1;
+		
+		// 마지막행
+		int endRow = (startRow + PAGE_SIZE) -1;
 		
 		// 전체 게시 글 수
 		int listCount = classMainDao.getClassMainCount(type, keyword); // 동적쿼리 적용
 		
 		// 현재 페이지에 해당하는 강의 리스트데이트 가져오기(현재 시작페이지 시작위치와 페이지사이즈 필요)
-		List<ClassMain> classMainList = classMainDao.classMainList(startRow, PAGE_SIZE, type, keyword);
+		List<ClassMain> classMainList = classMainDao.classMainList(startRow, endRow, PAGE_SIZE, type, keyword);
 		
 		// 시작페이지
 		int startPage = (currentPage / PAGE_GROUP) * PAGE_GROUP + 1 
