@@ -1,0 +1,11 @@
+@charset "UTF-8";
+.mainBk {
+	background-color:#cc99ff;
+}
+.subBk{
+	background-color:#FFF0F5;
+}
+.fbk {
+	color: black;
+	font-weight: bolder;
+}

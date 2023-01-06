@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class MainController {
  
-	
-	 
 	/*
 	 * 메인화면 호출
 	 */
@@ -23,4 +21,6 @@ public class MainController {
 		System.out.println("메인호출");
 		return "main";
 	}
+	
+	
 }

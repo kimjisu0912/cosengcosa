@@ -10,6 +10,7 @@
     <title>cosengcosa</title>
     <link href="resources/bootstrap/bootstrap.min.css" rel="stylesheet">
     <link href="resources/css/member.css" rel="stylesheet">
+    <link href="resources/css/main.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"><!-- 부트스트랩 아이콘 -->
     <style type="text/css">
     </style>
