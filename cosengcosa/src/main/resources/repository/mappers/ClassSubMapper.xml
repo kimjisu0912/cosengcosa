@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.cosengcosa.room.mapper.ClassSubMapper" >
+
+	<!-- 서브강의 리스트 -->
+	<select id="classSubList" resultType="ClassSub" resultMap="classSubResultMap">
+		SELECT
+            cs_no,
+            cs_id,
+            cs_code,
+            cs_group,
+            cs_name,
+            cs_content,
+            cs_sdate,
+            cs_edate,
+            cs_count,
+            cs_recommend,
+            cs_star,
+            cs_video,
+            cs_runtime,
+            cs_yn
+        FROM
+           classsub
+		<where>
+           cs_yn = 'Y'
+           AND cs_group LIKE '%' || #{cmcode} || '%'
+           </where>
+        ORDER BY cs_no ASC
+	</select>
+
+	<resultMap id="classSubResultMap" type="ClassSub">
+		<id property="csNo" column="cs_no" />
+		<result property="csId" column="cs_id" />
+		<result property="csCode" column="cs_code" />
+		<result property="csGroup" column="cs_group" />
+		<result property="csName" column="cs_name" />
+		<result property="csContent" column="cs_content" />
+		<result property="csSdate" column="cs_sdate" />
+		<result property="csEdate" column="cs_edate" />
+		<result property="csCount" column="cs_count" />
+		<result property="csRecommend" column="cs_recommend" />
+		<result property="csStar" column="cs_star" />
+		<result property="csVideo" column="cs_video" />
+		<result property="csRuntime" column="cs_runtime" />
+		<result property="csYn" column="cs_yn" />
+	</resultMap>
+
+</mapper>	
+
+
+
