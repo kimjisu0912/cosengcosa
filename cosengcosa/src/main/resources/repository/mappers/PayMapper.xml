@@ -31,12 +31,7 @@
 	<where>
 		p_yn = 'Y'
 		AND p_mid LIKE '%' || #{userid,jdbcType=VARCHAR} || '%'
-		<if test="type == 'title'">
-		AND p_cname LIKE '%' || #{keyword} || '%'
-		</if>
-		<if test="type == 'date'">
-		AND TO_CHAR(p_cdate, 'YYYYMMDD') <![CDATA[>=]]> #{keyword}
-		</if>
+		AND TO_CHAR(p_cdate, 'YYYYMMDD') <![CDATA[>=]]> #{pcdate1} AND TO_CHAR(p_cdate, 'YYYYMMDD') <![CDATA[<=]]> #{pcdate2}
 	</where>
 	</select>
 	
@@ -64,12 +59,7 @@
 			<where>
 				p_yn = 'Y'
 				AND p_mid LIKE '%' || #{userid,jdbcType=VARCHAR} || '%'
-				<if test="type == 'title'">
-				AND p_cname LIKE '%' || #{keyword} || '%'
-				</if>
-				<if test="type == 'date'">
-				AND TO_CHAR(p_cdate, 'YYYYMMDD') <![CDATA[>=]]> #{keyword}
-				</if>
+				AND TO_CHAR(p_cdate, 'YYYYMMDD') <![CDATA[>=]]> #{pcdate1} AND TO_CHAR(p_cdate, 'YYYYMMDD') <![CDATA[<=]]> #{pcdate2}
 			</where>
         ) pay
         ORDER BY pNo DESC
