@@ -31,7 +31,7 @@
 	<where>
 		p_yn = 'Y'
 		AND p_mid LIKE '%' || #{userid,jdbcType=VARCHAR} || '%'
-		AND TO_CHAR(p_cdate, 'YYYYMMDD') <![CDATA[>=]]> #{pcdate1} AND TO_CHAR(p_cdate, 'YYYYMMDD') <![CDATA[<=]]> #{pcdate2}
+		AND p_cdate BETWEEN #{startDate} AND #{endDate}
 	</where>
 	</select>
 	
@@ -59,7 +59,7 @@
 			<where>
 				p_yn = 'Y'
 				AND p_mid LIKE '%' || #{userid,jdbcType=VARCHAR} || '%'
-				AND TO_CHAR(p_cdate, 'YYYYMMDD') <![CDATA[>=]]> #{pcdate1} AND TO_CHAR(p_cdate, 'YYYYMMDD') <![CDATA[<=]]> #{pcdate2}
+				AND p_cdate BETWEEN #{startDate} AND #{endDate}
 			</where>
         ) pay
         ORDER BY pNo DESC

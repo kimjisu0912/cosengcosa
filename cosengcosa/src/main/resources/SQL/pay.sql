@@ -127,8 +127,9 @@ SELECT
 			WHERE
             p_yn = 'Y'
             AND p_mid LIKE '%%'
-            AND p_cname LIKE '%%'
-            AND TO_CHAR(p_cdate, 'YYYYMMDD') >= '20190101'
+          --  AND p_cname LIKE '%%'
+          --  AND TO_CHAR(p_cdate, 'YYYYMMDD') >= '20190101'
+         	AND p_cdate BETWEEN '20190101' AND '20220101' 
         ) pay
         ORDER BY pNo DESC
     )
