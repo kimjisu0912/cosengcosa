@@ -38,7 +38,11 @@ public class PayDaoImpl implements PayDao {
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("type", type);
 		params.put("keyword", keyword);
-		
+
+		String pcdate1 = "20211201";
+		String pcdate2 = "20220203";
+		params.put("pcdate1", pcdate1);
+		params.put("pcdate2", pcdate2);
 		return sqlSession.selectOne(NAME_SPACE + ".getPayCount", params);
 	}
 
@@ -55,6 +59,10 @@ public class PayDaoImpl implements PayDao {
 		params.put("keyword", keyword);
 		params.put("userid", userid);
 		
+		String pcdate1 = "20211201";
+		String pcdate2 = "20220203";
+		params.put("pcdate1", pcdate1);
+		params.put("pcdate2", pcdate2);
 		return sqlSession.selectList(NAME_SPACE + ".payList", params);
 	}
 
