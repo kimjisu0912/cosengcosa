@@ -1,4 +1,4 @@
-package com.cosengcosa.room.dao;
+package com.cosengcosa.room.service;
 
 public interface MainService {
 	

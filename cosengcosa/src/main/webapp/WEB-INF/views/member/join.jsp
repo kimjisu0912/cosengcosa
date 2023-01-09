@@ -126,7 +126,7 @@
 					</div>			
 					<div class="row mb-3 mt-5">				
 						<div class="col-8 offset-2">
-							<input type="submit" value="가입하기" class="btn btn-primary">
+							<input type="submit" value="가입하기" class="btn btn-light">
 						</div>
 					</div>
 				</form>
