@@ -25,37 +25,36 @@
 <!-- 이번에 별칭을 사용해보자 동적쿼리에 부동호가 사용되게 되면 CDATA 기법 사용해야된다. -->
 	<select id="classMainList" resultType="ClassMain" parameterType="hashmap">
 	SELECT
-	    num, cmNo, cmId, cmCode, cmName, cmSdate, cmEdate, cmPrice, cmCount,
-	    cmRecommend, cmStar, file1, video, cmYn
+	    num, cmNo, cmId, cmCode,cmTitle, cmName, cmSdate, cmEdate, cmPrice, cmCount,
+	    cmRecommend, cmStar, cmYn
 	FROM    
 	    (SELECT
-	        ROWNUM num, cmNo, cmId, cmCode, cmName, cmSdate, cmEdate, cmPrice, cmCount,
-	        cmRecommend, cmStar, file1, video, cmYn
+	        ROWNUM num, cmNo, cmId, cmCode,cmTitle, cmName, cmSdate, cmEdate, cmPrice, cmCount,
+	        cmRecommend, cmStar, cmYn
 	    FROM 
 	        (SELECT
 	            cm_no AS cmNo,
 	            cm_id AS cmId,
 	            cm_code AS cmCode,
+	            cm_title AS cmTitle,
 	            cm_name AS cmName,
 	            cm_sdate AS cmSdate,
 	            cm_edate AS cmEdate,
 	            cm_price AS cmPrice,
 	            cm_count AS cmCount,
 	            cm_recommend AS cmRecommend,
-	            cm_star AS cmStar,
-	            file1 AS file1,
-	            video AS video,
+	            cm_star AS cmStar,	        
 	            cm_yn AS cmYn
 	        FROM
             classmain
        <where>
 			cm_yn = 'Y'
-	 		<if test="type=='cmname'">
-	 			AND cm_name LIKE '%' || #{keyword} || '%'
+	 		<if test="type=='cmtitle'">
+	 			AND cm_title LIKE '%' || #{keyword} || '%'
 	 		</if>
 	 	</where>
         ) classmain
-        ORDER BY cmNo DESC
+        ORDER BY cmNo 
     )
 	WHERE num  <![CDATA[>=]]>#{startRow} AND num <![CDATA[<=]]>#{endRow}
 	</select>
