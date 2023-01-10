@@ -23,6 +23,7 @@ CREATE TABLE classsub(
     cs_code VARCHAR2(8 CHAR) 
         CONSTRAINT CS_CODE_NN NOT NULL,			-- 강의코드
     cs_group VARCHAR2(8 CHAR)
+         CONSTRAINT CS_CODE_FK REFERENCES classmain(cm_code)
         CONSTRAINT CS_GROUP_NN NOT NULL,        -- 강의그룹코드
     cs_name VARCHAR2(100 CHAR) 
         CONSTRAINT CS_NAME_NN NOT NULL,			-- 강의명
