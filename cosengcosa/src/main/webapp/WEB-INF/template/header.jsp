@@ -28,46 +28,39 @@
  			</div>
  		<!-- nav 오른쪽 -->
 	 		<div class="col-6 container-fluid">
-	 				<div class="col text-end">
-	 					<ul class="nav nav-pills justify-content-end">
-		 					<li class="nav-item">
-		 						<form class="d-flex" role="search">
-						        	<input class="form-control-sm me-1 mt-1" type="search" placeholder="" aria-label="Search">
-						        	<button class="btn btn-light btn-xs" type="submit" ><i class="bi bi-search-heart-fill"></i></button>
-						        </form>
-						    </li>
-						    <!-- 
+	 			<div class="col text-end">
+ 					<ul class="nav nav-pills justify-content-end">
+	 					<li class="nav-item">
+	 						<form class="d-flex" role="search">
+					        	<input class="form-control-sm me-1 mt-1" type="search" placeholder="" aria-label="Search">
+					        	<button class="btn btn-light btn-xs" type="submit" ><i class="bi bi-search-heart-fill"></i></button>
+					        </form>
+					    </li>
+					    <!-- 
+ 						<li class="nav-item">
+ 							<a class="nav-link" href='${sessionScope.isLogin ? "logout" : "loginForm" }'>
+ 								${sessionScope.isLogin ? "로그아웃" : "로그인-폼" }
+ 							</a>
+ 						</li>
+					     -->
+ 						<li class="nav-item fbk"><!-- 클래스로 이용해서 사용 -->
+ 							<a class="nav-link fbk"  
+ 							${not sessionScope.isLogin ? "href='#' data-bs-toggle='modal' data-bs-target='#lgoinModal'" : "href='logout'"}><!-- 로그인상태값에 따라 모달창 출력유무 -->
+ 								${sessionScope.isLogin ? "로그아웃" : "로그인-모달" }
+ 							</a>
+ 						</li>
+	 					<c:if test="${sessionScope.isLogin }">	
 	 						<li class="nav-item">
-	 							<a class="nav-link" href='${sessionScope.isLogin ? "logout" : "loginForm" }'>
-	 								${sessionScope.isLogin ? "로그아웃" : "로그인-폼" }
-	 							</a>
+	 							<a class="nav-link fbk" href="#">내 강의실</a>
 	 						</li>
-						     -->
-	 						<li class="nav-item fbk"><!-- 클래스로 이용해서 사용 -->
-	 							<a class="nav-link fbk"  
-	 							${not sessionScope.isLogin ? "href='#' data-bs-toggle='modal' data-bs-target='#lgoinModal'" : "href='logout'"}><!-- 로그인상태값에 따라 모달창 출력유무 -->
-	 								${sessionScope.isLogin ? "로그아웃" : "로그인-모달" }
-	 							</a>
+	 					</c:if>	
+	 					<c:if test="${not sessionScope.isLogin }">
+	 						<li class="nav-item">
+	 							<a class="nav-link fbk" href="join">회원가입</a>
 	 						</li>
-		 					<c:if test="${sessionScope.isLogin }">	
-		 						<li class="nav-item">
-		 							<a class="nav-link fbk" href="#">내 강의실</a>
-		 						</li>
-		 					</c:if>	
-		 					<c:if test="${not sessionScope.isLogin }">
-		 						<li class="nav-item">
-		 							<a class="nav-link fbk" href="join">회원가입</a>
-		 						</li>
-		 					</c:if>
-	 					</ul>
-	 				</div>
+	 					</c:if>
+ 					</ul>
 	 			</div>
-			</nav>
- 			<div class="row">
- 				<div class="col text-end pe-4">
-				<c:if test="${sessionScope.isLogin }">
-					안녕하세요 ${sessionScope.member.name }님!
-				</c:if>
- 				</div>
- 			</div>
+	 		</div>
+		</nav>
  	</div>

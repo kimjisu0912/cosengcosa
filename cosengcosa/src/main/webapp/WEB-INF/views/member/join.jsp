@@ -56,6 +56,28 @@
 					</div>
 					<div class="row my-3">
 						<div class="col-8 offset-2">
+							<label for="birthY" class="form-label">* 생년월일 : </label>
+							<div class="row">
+								<div class="col-md-3">
+									<input type="text" class="form-control" name="birthY" id="birthY" maxlength="4">
+								</div>
+								<div class="col-md-4">
+									<input type="text" class="form-control" name="birthM" id="birthM" maxlength="4">
+								</div>
+								<div class="col-md-4">
+									<input type="text" class="form-control" name="birthD" id="birthD" maxlength="4">
+								</div>
+							</div>
+						</div>
+					</div>			
+					<div class="row mt-5 mb-3">
+						<div class="col-8 offset-2">				
+							<label for="nickname" class="form-label">* 닉 네 임 : </label>
+							<input type="text" class="form-control" name="nickname" id="nickname">
+						</div>				
+					</div>
+					<div class="row my-3">
+						<div class="col-8 offset-2">
 							<label for="zipcode" class="form-label">* 우편번호 : </label>
 							<div class="row">
 								<div class="col-4">

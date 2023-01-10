@@ -20,7 +20,7 @@
 	  - http://blog.mybatis.org/
 	  - http://www.mybatis.org/mybatis-3/ko/index.html
 -->
-<mapper namespace="com.springstudy.bbs." >
+<mapper namespace="com.cosengcosa.room.mapper.MainMapper" >
 
 </mapper>	
 

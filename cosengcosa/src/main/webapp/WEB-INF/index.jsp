@@ -9,7 +9,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>cosengcosa</title>
     <link href="resources/bootstrap/bootstrap.min.css" rel="stylesheet">
-    <link href="resources/css/member.css" rel="stylesheet">
     <link href="resources/css/main.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"><!-- 부트스트랩 아이콘 -->
     <style type="text/css">
@@ -30,7 +29,7 @@
 	<div class="modal fade" id="lgoinModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	  <div class="modal-dialog">
 	    <div class="modal-content">
-	    <form action="login" method="post">
+	    <form action="login" id="loginForm" method="post">
 	      <div class="modal-header bg-primary text-white">
 	        <h1 class="modal-title fs-5 fw-bold" id="exampleModalLabel">회원 로그인</h1>
 	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -42,7 +41,7 @@
 	          </div>
 	          <div class="mb-3">
 	            <label for="pass" class="col-form-label">비밀번호 :</label>
-	            <input type="password" class="form-control" id="pass" name="pass">
+	            <input type="password" class="form-control" id="userPass" name="userPass">
 	          </div>
 	      </div>
 	      <div class="modal-footer">

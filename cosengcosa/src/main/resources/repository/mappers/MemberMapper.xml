@@ -20,9 +20,73 @@
 	  - http://blog.mybatis.org/ 
 	  - http://www.mybatis.org/mybatis-3/ko/index.html
 -->
-<mapper namespace="com.springstudy.bbs." >
-
+<mapper namespace="com.cosengcosa.room.mapper.MemberMapper" >
+	
+	<select id="getMember" resultType="Member" resultMap="MemberResultMap">
+		SELECT * FROM member WHERE m_id = #{id}
+	</select>
+	
+		<!--
+		회원 정보를 추가하는 맵핑 구문  
+	-->
+	<insert id="addMember" parameterType="Member">
+		INSERT INTO member(m_no, m_id, m_pass, m_name, m_nickname, m_tel, m_birth,
+							m_email, m_zipcode, m_address1, m_address2
+						) 		
+		VALUES( 
+				(SELECT NVL(MAX(m_no) + 1, 100001)FROM member), 
+				#{id}, #{pass}, #{name}, #{nickname}, 
+				#{tel}, #{birth}, #{email}, #{zipcode}, #{address1}, #{address2}
+				)
+	</insert>
+	
+	<!--
+		회원 테이블에서 id에 해당하는 비밀번호를 가져오는 맵핑 구문
+	
+		아래는 DAO 클래스의 memberPassCheck(int no, String pass)
+		메서드에서 사용하는 맵핑 구문으로 DAO에서 회원 id에 해당하는 비밀번호를 
+		조회할 때 selectOne() 메서드의 두 번째 인수로 기본형인 id를 지정했기
+		때문에 parameterType은 생략할 수 있다.
+				
+		SQL문의 조건에 사용할 파라미터는 아래와 같이 #{} 로 감싸서 지정하면 된다. 
+	-->
+	<select id="memberPassCheck" resultType="String">
+		SELECT 
+			m_pass
+		FROM member
+		WHERE m_id = #{id}
+	</select>
+	
+	<!--
+		회원 정보를 수정하는 맵핑 구문  
+	-->
+	<update id="updateMember" parameterType="Member">
+		UPDATE member 
+			SET m_pass=#{pass}, m_nickname = #{nickname}, m_email=#{email}, m_tel=#{tel},		 
+				zipcode=#{zipcode}, m_address1=#{address1}, m_address2=#{address2}, 
+				
+		WHERE m_id=#{id}
+	</update>
+	
+	<resultMap id="MemberResultMap" type="Member">
+		<id property="mno" column="m_no" />
+		<result property="id" column="m_id" />
+		<result property="pass" column="m_pass" />
+		<result property="name" column="m_name" />
+		<result property="nickname" column="m_nickname" />
+		<result property="tel" column="m_tel" />
+		<result property="birth" column="m_birth" />
+		<result property="email" column="m_email" />
+		<result property="zipcode" column="m_zipcode" />
+		<result property="address1" column="m_address2" />
+		<result property="address2" column="m_address2" />
+		<result property="grant" column="m_grant" />
+		<result property="joindate" column="m_joindate" />
+		<result property="myn" column="m_yn" />
+	</resultMap>		
 </mapper>	
+	
+
 
 
 
