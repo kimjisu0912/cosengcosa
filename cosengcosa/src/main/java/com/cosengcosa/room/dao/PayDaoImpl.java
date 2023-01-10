@@ -34,15 +34,15 @@ public class PayDaoImpl implements PayDao {
 	 * 결재 총 건수 요청 시 호출되는 메소드
 	 */
 	@Override
-	public int getPayCount(String type, String keyword) {
+	public int getPayCount(String type, String keyword, String userid) {
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("type", type);
 		params.put("keyword", keyword);
 
-		String pcdate1 = "20211201";
-		String pcdate2 = "20220203";
-		params.put("pcdate1", pcdate1);
-		params.put("pcdate2", pcdate2);
+		String startDate = "20211201";
+		String endDate = "20220203";
+		params.put("startDate", startDate);
+		params.put("endDate", endDate);
 		return sqlSession.selectOne(NAME_SPACE + ".getPayCount", params);
 	}
 
@@ -59,10 +59,10 @@ public class PayDaoImpl implements PayDao {
 		params.put("keyword", keyword);
 		params.put("userid", userid);
 		
-		String pcdate1 = "20211201";
-		String pcdate2 = "20220203";
-		params.put("pcdate1", pcdate1);
-		params.put("pcdate2", pcdate2);
+		String startDate = "20211201";
+		String endDate = "20220203";
+		params.put("startDate", startDate);
+		params.put("endDate", endDate);
 		return sqlSession.selectList(NAME_SPACE + ".payList", params);
 	}
 

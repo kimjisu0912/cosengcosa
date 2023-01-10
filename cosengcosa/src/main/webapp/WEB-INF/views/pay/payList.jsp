@@ -2,6 +2,14 @@
     pageEncoding="UTF-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+ 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" >
+<link rel="stylesheet" href="resources/css/bootstrap-datepicker.css">
+<script src="resources/js/bootstrap-datepicker.js"></script>
+<!--한국어  달력 쓰려면 추가 로드-->
+<script src="resources/js/bootstrap-datepicker.ko.min.js"></script>
+<script src="resources/js/calendar.js"></script>
+
  	<!-- content -->
  <div class="row" id="global-content">
  	<div class="row my-5 text-center">
@@ -9,22 +17,19 @@
  			<h2 class="fs-3 fw-bold">결재 리스트</h2>
  		</div>
  	</div>
- 	
+ 		<div class="row">
 	 		<form name="searchForm" id="searchForm" class="row justify-content-center"><!-- text-center 않되서 수직정렬로 가운데 정렬함 -->
-	 			<div class="col-auto">
-					<select name="type" class="form-select">
-						<option value="title">강의제목</option>
-						<option value="date">과목</option>
-						<!-- <option value="content">내용</option> -->
-					</select>
+				<div class="col-2">
+					<input type="text" id="datePicker1" class="form-control" value="">
 				</div>
-				<div class="col-4">
-					<input type="text" name="keyword" class="form-control" />
+				<div class="col-2">
+					<input type="text" id="datePicker2" class="form-control" value="">
 				</div>
 				<div class="col-auto">
 					<input type="submit" value="검색" class="btn btn-primary" />
 				</div>
 			</form>
+		</div>
 			<!-- 검색 요청일때만 출력 -->
 			<c:if test="${searchOption}">
 				<div class="row my-3">
@@ -180,3 +185,19 @@
  		</div>
  	</div>
  </div><!-- end global content -->
+ 
+<script>
+$(document).ready(function(){
+    $("#datepicker_start").on("click",function(){
+    });
+    $("#datepicker_start").on("change",function(e){
+         var end = $( "#datepicker_end" ).datepicker( "option", "minDate", getDate( e.target ) );
+    });
+    $("#datepicker_end").on("change",function(e){   
+    });
+     $("#date_search").on("click",function(){
+         var start = $("#datepicker_start").val();
+         var end = $("#datepicker_end").val();
+     });    
+});
+</script>

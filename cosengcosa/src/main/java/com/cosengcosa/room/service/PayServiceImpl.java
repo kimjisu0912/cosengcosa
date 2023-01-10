@@ -49,7 +49,7 @@ public class PayServiceImpl implements PayService{
 		int endRow = (startRow + PAGE_SIZE) -1;
 		
 		// 전체 결재 글 수
-		int listCount = payDao.getPayCount(type, keyword); // 동적쿼리 적용
+		int listCount = payDao.getPayCount(type, keyword, userid); // 동적쿼리 적용
 		
 		// 현재 페이지에 해당하는 결재 리스트데이터 가져오기
 		List<Pay> payList = payDao.payList(startRow, endRow, PAGE_SIZE, type, keyword, userid);
