@@ -14,8 +14,7 @@ public class ClassMain {
 	private String cmCode;
 	private String cmTitle;
 	private String cmName;
-	private Timestamp cmSdate;
-	private Timestamp cmEdate;
+	private int cmPeriod;
 	private int cmPrice;
 	private int cmCount;
 	private int cmRecommend;
@@ -32,8 +31,7 @@ public class ClassMain {
 		this.cmCode = cmCode;
 		this.cmTitle = cmTitle;
 		this.cmName = cmName;
-		this.cmSdate = cmSdate;
-		this.cmEdate = cmEdate;
+		this.cmPeriod = cmPeriod;
 		this.cmPrice = cmPrice;
 		this.cmCount = cmCount;
 		this.cmRecommend = cmRecommend;
@@ -60,18 +58,7 @@ public class ClassMain {
 	public void setCmName(String cmName) {
 		this.cmName = cmName;
 	}
-	public Timestamp getCmSdate() {
-		return cmSdate;
-	}
-	public void setCmSdate(Timestamp cmSdate) {
-		this.cmSdate = cmSdate;
-	}
-	public Timestamp getCmEdate() {
-		return cmEdate;
-	}
-	public void setCmEdate(Timestamp cmEdate) {
-		this.cmEdate = cmEdate;
-	}
+
 	public int getCmPrice() {
 		return cmPrice;
 	}
@@ -119,6 +106,12 @@ public class ClassMain {
 	}
 	public void setCmTitle(String cmTitle) {
 		this.cmTitle = cmTitle;
+	}
+	public int getCmPeriod() {
+		return cmPeriod;
+	}
+	public void setCmPeriod(int cmPeriod) {
+		this.cmPeriod = cmPeriod;
 	}
 	
 }

@@ -18,5 +18,14 @@ public interface ClassMainDao {
 	
 	// 메인강의리스트 요청 시 호출되는 메소드
 	public abstract List<ClassMain> classMainList(int startRow, int endRow, int num, String type, String keyword);
+
+	ClassMain getDetail(int cmNo, boolean b);
+
+	
+
+	
+	
+	
+	
 	
 }

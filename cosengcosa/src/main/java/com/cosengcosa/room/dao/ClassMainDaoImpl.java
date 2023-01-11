@@ -69,7 +69,18 @@ public class ClassMainDaoImpl implements ClassMainDao {
 		param.put("type", type);
 		param.put("keyword", keyword);
 		
+		
 		return sqlSession.selectList(NAME_SPACE + ".classMainList", param);
 	}
+
+	@Override
+	public ClassMain getDetail(int cmNo, boolean b) {
+		
+		return null;
+	}
+
+	
+	
+
 
 }
