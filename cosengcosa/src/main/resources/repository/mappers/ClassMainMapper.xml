@@ -25,11 +25,11 @@
 <!-- 이번에 별칭을 사용해보자 동적쿼리에 부동호가 사용되게 되면 CDATA 기법 사용해야된다. -->
 	<select id="classMainList" resultType="ClassMain" parameterType="hashmap">
 	SELECT
-	    num, cmNo, cmCode,cmTitle, cmName, cmSdate, cmEdate, cmPrice, cmCount,
+	    num, cmNo, cmCode,cmTitle, cmName, cmPeriod, cmPrice, cmCount,
 	    cmRecommend, cmStar, cmYn
 	FROM    
 	    (SELECT
-	        ROWNUM num, cmNo, cmCode,cmTitle, cmName, cmSdate, cmEdate, cmPrice, cmCount,
+	        ROWNUM num, cmNo, cmCode, cmTitle, cmName, cmPeriod, cmPrice, cmCount,
 	        cmRecommend, cmStar, cmYn
 	    FROM 
 	        (SELECT
@@ -37,8 +37,7 @@
 	            cm_code AS cmCode,
 	            cm_title AS cmTitle,
 	            cm_name AS cmName,
-	            cm_sdate AS cmSdate,
-	            cm_edate AS cmEdate,
+	            cm_period AS cmPeriod,
 	            cm_price AS cmPrice,
 	            cm_count AS cmCount,
 	            cm_recommend AS cmRecommend,

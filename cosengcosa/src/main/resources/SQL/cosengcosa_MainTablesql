@@ -13,9 +13,6 @@ DROP TABLE classmain;
 CREATE TABLE classmain(
 	cm_no NUMBER(5)
         CONSTRAINT CM_NO_PK PRIMARY KEY, 	    -- 관리번호
-    cm_id VARCHAR2(8 CHAR) 
-        CONSTRAINT CM_ID_UK UNIQUE
-        CONSTRAINT CM_ID_NN NOT NULL,			        -- 강의id cm_id VARCHAR(8) NOT NULL UNIQUE, 보류
     cm_code VARCHAR2(8 CHAR)
         CONSTRAINT CM_CODE_UK UNIQUE
         CONSTRAINT CM_CODE_NN NOT NULL,				    -- 강의코드
@@ -41,70 +38,70 @@ CREATE TABLE classmain(
 );
 
 
-INSERT INTO classmain (cm_no, cm_id, cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
-VALUES (classmain_seq.NEXTVAL,(select 'cm'||TO_CHAR(NVL(max(a.cm_no)+1 ,1)) from classmain a), 'JA01', 'java 입문수업','생활코딩', '2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 0, 0, 4,'Y');
-INSERT INTO classmain (cm_no, cm_id, cm_code, cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
-VALUES (classmain_seq.NEXTVAL,(select 'cm'||TO_CHAR(NVL(max(a.cm_no)+1 ,1)) from classmain a), 'JA02', '자바의 정석 기초편(2020최신)','남궁성의 정석코딩', '2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
-INSERT INTO classmain (cm_no, cm_id, cm_code, cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
-VALUES (classmain_seq.NEXTVAL,(select 'cm'||TO_CHAR(NVL(max(a.cm_no)+1 ,1)) from classmain a), 'JA03', '자바(JAVA)강의','홍드로이드' ,'2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
-INSERT INTO classmain (cm_no, cm_id, cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
-VALUES (classmain_seq.NEXTVAL,(select 'cm'||TO_CHAR(NVL(max(a.cm_no)+1 ,1)) from classmain a), 'DB01', '오라클(Oracle) SQL 강의 강좌','뉴렉처', '2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
-INSERT INTO classmain (cm_no, cm_id, cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
-VALUES (classmain_seq.NEXTVAL,(select 'cm'||TO_CHAR(NVL(max(a.cm_no)+1 ,1)) from classmain a), 'DB02', '[SQL 기초강의] 혼자 공부하는 SQL(MySQL 8.0)','한빛미디어', '2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
-INSERT INTO classmain (cm_no, cm_id, cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
-VALUES (classmain_seq.NEXTVAL,(select 'cm'||TO_CHAR(NVL(max(a.cm_no)+1 ,1)) from classmain a), 'DB03', '오라클(Oracle) 데이터 베이스(DataBase) 11g tutorials ','소프트캠퍼스', '2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
-INSERT INTO classmain (cm_no, cm_id, cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
-VALUES (classmain_seq.NEXTVAL,(select 'cm'||TO_CHAR(NVL(max(a.cm_no)+1 ,1)) from classmain a), 'DB04', '오라클 기초 강좌','최용진', '2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
-INSERT INTO classmain (cm_no, cm_id, cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
-VALUES (classmain_seq.NEXTVAL,(select 'cm'||TO_CHAR(NVL(max(a.cm_no)+1 ,1)) from classmain a), 'DB05', '오라클 PL/SQL','오라클 자바 커뮤니티', '2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
-INSERT INTO classmain (cm_no, cm_id, cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
-VALUES (classmain_seq.NEXTVAL,(select 'cm'||TO_CHAR(NVL(max(a.cm_no)+1 ,1)) from classmain a), 'JS01', '자바스크립트 기초 강좌 : 100분 완성 / 중급강좌 : 140분 완성','코딩앙마', '2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
-INSERT INTO classmain (cm_no, cm_id, cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
-VALUES (classmain_seq.NEXTVAL,(select 'cm'||TO_CHAR(NVL(max(a.cm_no)+1 ,1)) from classmain a), 'JS02', 'JavaScript 입문수업', '생활코딩','2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
-INSERT INTO classmain (cm_no, cm_id, cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
-VALUES (classmain_seq.NEXTVAL,(select 'cm'||TO_CHAR(NVL(max(a.cm_no)+1 ,1)) from classmain a), 'JS03', '혼자공부하는 자바스크립트','윤인성', '2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
-INSERT INTO classmain (cm_no, cm_id, cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
-VALUES (classmain_seq.NEXTVAL,(select 'cm'||TO_CHAR(NVL(max(a.cm_no)+1 ,1)) from classmain a), 'SP01', '스프링부트(Spring Boot) 강의','어라운드 허브 스튜디오', '2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
-INSERT INTO classmain (cm_no, cm_id, cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
-VALUES (classmain_seq.NEXTVAL,(select 'cm'||TO_CHAR(NVL(max(a.cm_no)+1 ,1)) from classmain a), 'SP02', 'Springboot 강좌 - 개념정리','메타코딩', '2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
-INSERT INTO classmain (cm_no, cm_id, cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
-VALUES (classmain_seq.NEXTVAL,(select 'cm'||TO_CHAR(NVL(max(a.cm_no)+1 ,1)) from classmain a), 'SP03', '스프링 부트 게시판 무작정 따라하기', '한코딩','2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
-INSERT INTO classmain (cm_no, cm_id, cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
-VALUES (classmain_seq.NEXTVAL,(select 'cm'||TO_CHAR(NVL(max(a.cm_no)+1 ,1)) from classmain a), 'SP04', 'Spring 5 for Beginner','나무소리', '2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
-INSERT INTO classmain (cm_no, cm_id, cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
-VALUES (classmain_seq.NEXTVAL,(select 'cm'||TO_CHAR(NVL(max(a.cm_no)+1 ,1)) from classmain a), 'BS01', '부트스트랩 실전강좌(Bootstrap tutoial)','온코딩빠찌', '2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
-INSERT INTO classmain (cm_no, cm_id, cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
-VALUES (classmain_seq.NEXTVAL,(select 'cm'||TO_CHAR(NVL(max(a.cm_no)+1 ,1)) from classmain a), 'BS02', 'bootstrap','생활코딩', '2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
-INSERT INTO classmain (cm_no, cm_id, cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
-VALUES (classmain_seq.NEXTVAL,(select 'cm'||TO_CHAR(NVL(max(a.cm_no)+1 ,1)) from classmain a), 'KT01', '디모의 Kotlin 강좌','테크과학!DiMo', '2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
-INSERT INTO classmain (cm_no, cm_id, cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
-VALUES (classmain_seq.NEXTVAL,(select 'cm'||TO_CHAR(NVL(max(a.cm_no)+1 ,1)) from classmain a), 'KT02', '안드로이드(Android Kotlin)','홍드로이드', '2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
-INSERT INTO classmain (cm_no, cm_id, cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
-VALUES (classmain_seq.NEXTVAL,(select 'cm'||TO_CHAR(NVL(max(a.cm_no)+1 ,1)) from classmain a), 'KT03', '[Do it! 깡샘의 안드로이드 앱 프로그래밍 with 코틀린] 동영상 강의','깡샘', '2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
-INSERT INTO classmain (cm_no, cm_id, cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
-VALUES (classmain_seq.NEXTVAL,(select 'cm'||TO_CHAR(NVL(max(a.cm_no)+1 ,1)) from classmain a), 'HL01', '입문자를 위한 HTML 기초강의','유노코딩', '2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
-INSERT INTO classmain (cm_no, cm_id, cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
-VALUES (classmain_seq.NEXTVAL,(select 'cm'||TO_CHAR(NVL(max(a.cm_no)+1 ,1)) from classmain a), 'HL02', 'HTML/CSS 기초강의','수코딩', '2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
-INSERT INTO classmain (cm_no, cm_id, cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
-VALUES (classmain_seq.NEXTVAL,(select 'cm'||TO_CHAR(NVL(max(a.cm_no)+1 ,1)) from classmain a), 'HL03', 'HTML/CSS강의','짐코딩의 CODING GYM', '2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
-INSERT INTO classmain (cm_no, cm_id, cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
-VALUES (classmain_seq.NEXTVAL,(select 'cm'||TO_CHAR(NVL(max(a.cm_no)+1 ,1)) from classmain a), 'HL04', 'HTML + CSS + JS 미니 프로젝트 실습(프론트엔드 개발자 입문편)','수코딩', '2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
-INSERT INTO classmain (cm_no, cm_id, cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
-VALUES (classmain_seq.NEXTVAL,(select 'cm'||TO_CHAR(NVL(max(a.cm_no)+1 ,1)) from classmain a), 'JQ01', 'jQuery','Rocks Easyweb', '2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
-INSERT INTO classmain (cm_no, cm_id, cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
-VALUES (classmain_seq.NEXTVAL,(select 'cm'||TO_CHAR(NVL(max(a.cm_no)+1 ,1)) from classmain a), 'JQ02', 'jQuery Plugin','리베하얀', '2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
-INSERT INTO classmain (cm_no, cm_id, cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
-VALUES (classmain_seq.NEXTVAL,(select 'cm'||TO_CHAR(NVL(max(a.cm_no)+1 ,1)) from classmain a), 'JQ03', '예제로 배우는 jQuery강의','소스놀이터', '2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
-INSERT INTO classmain (cm_no, cm_id, cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
-VALUES (classmain_seq.NEXTVAL,(select 'cm'||TO_CHAR(NVL(max(a.cm_no)+1 ,1)) from classmain a), 'JQ04', 'jQuery Turoials ( english ver)','Dani krossing', '2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
-INSERT INTO classmain (cm_no, cm_id, cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
-VALUES (classmain_seq.NEXTVAL,(select 'cm'||TO_CHAR(NVL(max(a.cm_no)+1 ,1)) from classmain a), 'JQ05', 'jQuery Tutorial for beginners(english ver)', 'kudvenkat','2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
-INSERT INTO classmain (cm_no, cm_id, cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
-VALUES (classmain_seq.NEXTVAL,(select 'cm'||TO_CHAR(NVL(max(a.cm_no)+1 ,1)) from classmain a), 'AJ01', 'WEB3-AJAX','생활코딩', '2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
-INSERT INTO classmain (cm_no, cm_id, cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
-VALUES (classmain_seq.NEXTVAL,(select 'cm'||TO_CHAR(NVL(max(a.cm_no)+1 ,1)) from classmain a), 'AJ02', 'AJAX 다뤄보기', '코딩레시피', '2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
-INSERT INTO classmain (cm_no, cm_id, cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
-VALUES (classmain_seq.NEXTVAL,(select 'cm'||TO_CHAR(NVL(max(a.cm_no)+1 ,1)) from classmain a), 'AJ03', 'AJAX 강좌','김종태', '2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
+INSERT INTO classmain (cm_no,  cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
+VALUES (classmain_seq.NEXTVAL, 'JA01', 'java 입문수업','생활코딩', '2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 0, 0, 4,'Y');
+INSERT INTO classmain (cm_no,  cm_code, cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
+VALUES (classmain_seq.NEXTVAL, 'JA02', '자바의 정석 기초편(2020최신)','남궁성의 정석코딩', '2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
+INSERT INTO classmain (cm_no,  cm_code, cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
+VALUES (classmain_seq.NEXTVAL, 'JA03', '자바(JAVA)강의','홍드로이드' ,'2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
+INSERT INTO classmain (cm_no, cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
+VALUES (classmain_seq.NEXTVAL, 'DB01', '오라클(Oracle) SQL 강의 강좌','뉴렉처', '2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
+INSERT INTO classmain (cm_no,  cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
+VALUES (classmain_seq.NEXTVAL, 'DB02', '[SQL 기초강의] 혼자 공부하는 SQL(MySQL 8.0)','한빛미디어', '2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
+INSERT INTO classmain (cm_no, cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
+VALUES (classmain_seq.NEXTVAL, 'DB03', '오라클(Oracle) 데이터 베이스(DataBase) 11g tutorials ','소프트캠퍼스', '2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
+INSERT INTO classmain (cm_no, cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
+VALUES (classmain_seq.NEXTVAL, 'DB04', '오라클 기초 강좌','최용진', '2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
+INSERT INTO classmain (cm_no, cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
+VALUES (classmain_seq.NEXTVAL, 'DB05', '오라클 PL/SQL','오라클 자바 커뮤니티', '2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
+INSERT INTO classmain (cm_no, cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
+VALUES (classmain_seq.NEXTVAL, 'JS01', '자바스크립트 기초 강좌 : 100분 완성 / 중급강좌 : 140분 완성','코딩앙마', '2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
+INSERT INTO classmain (cm_no, cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
+VALUES (classmain_seq.NEXTVAL, 'JS02', 'JavaScript 입문수업', '생활코딩','2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
+INSERT INTO classmain (cm_no,  cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
+VALUES (classmain_seq.NEXTVAL, 'JS03', '혼자공부하는 자바스크립트','윤인성', '2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
+INSERT INTO classmain (cm_no,  cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
+VALUES (classmain_seq.NEXTVAL, 'SP01', '스프링부트(Spring Boot) 강의','어라운드 허브 스튜디오', '2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
+INSERT INTO classmain (cm_no,  cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
+VALUES (classmain_seq.NEXTVAL, 'SP02', 'Springboot 강좌 - 개념정리','메타코딩', '2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
+INSERT INTO classmain (cm_no, cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
+VALUES (classmain_seq.NEXTVAL, 'SP03', '스프링 부트 게시판 무작정 따라하기', '한코딩','2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
+INSERT INTO classmain (cm_no, cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
+VALUES (classmain_seq.NEXTVAL, 'SP04', 'Spring 5 for Beginner','나무소리', '2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
+INSERT INTO classmain (cm_no, cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
+VALUES (classmain_seq.NEXTVAL, 'BS01', '부트스트랩 실전강좌(Bootstrap tutoial)','온코딩빠찌', '2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
+INSERT INTO classmain (cm_no, cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
+VALUES (classmain_seq.NEXTVAL, 'BS02', 'bootstrap','생활코딩', '2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
+INSERT INTO classmain (cm_no, cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
+VALUES (classmain_seq.NEXTVAL, 'KT01', '디모의 Kotlin 강좌','테크과학!DiMo', '2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
+INSERT INTO classmain (cm_no, cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
+VALUES (classmain_seq.NEXTVAL, 'KT02', '안드로이드(Android Kotlin)','홍드로이드', '2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
+INSERT INTO classmain (cm_no, cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
+VALUES (classmain_seq.NEXTVAL, 'KT03', '[Do it! 깡샘의 안드로이드 앱 프로그래밍 with 코틀린] 동영상 강의','깡샘', '2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
+INSERT INTO classmain (cm_no, cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
+VALUES (classmain_seq.NEXTVAL, 'HL01', '입문자를 위한 HTML 기초강의','유노코딩', '2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
+INSERT INTO classmain (cm_no, cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
+VALUES (classmain_seq.NEXTVAL, 'HL02', 'HTML/CSS 기초강의','수코딩', '2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
+INSERT INTO classmain (cm_no, cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
+VALUES (classmain_seq.NEXTVAL, 'HL03', 'HTML/CSS강의','짐코딩의 CODING GYM', '2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
+INSERT INTO classmain (cm_no , cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
+VALUES (classmain_seq.NEXTVAL, 'HL04', 'HTML + CSS + JS 미니 프로젝트 실습(프론트엔드 개발자 입문편)','수코딩', '2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
+INSERT INTO classmain (cm_no , cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
+VALUES (classmain_seq.NEXTVAL, 'JQ01', 'jQuery','Rocks Easyweb', '2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
+INSERT INTO classmain (cm_no , cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
+VALUES (classmain_seq.NEXTVAL, 'JQ02', 'jQuery Plugin','리베하얀', '2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
+INSERT INTO classmain (cm_no , cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
+VALUES (classmain_seq.NEXTVAL, 'JQ03', '예제로 배우는 jQuery강의','소스놀이터', '2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
+INSERT INTO classmain (cm_no , cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
+VALUES (classmain_seq.NEXTVAL, 'JQ04', 'jQuery Turoials ( english ver)','Dani krossing', '2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
+INSERT INTO classmain (cm_no , cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
+VALUES (classmain_seq.NEXTVAL, 'JQ05', 'jQuery Tutorial for beginners(english ver)', 'kudvenkat','2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
+INSERT INTO classmain (cm_no , cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
+VALUES (classmain_seq.NEXTVAL, 'AJ01', 'WEB3-AJAX','생활코딩', '2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
+INSERT INTO classmain (cm_no , cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
+VALUES (classmain_seq.NEXTVAL, 'AJ02', 'AJAX 다뤄보기', '코딩레시피', '2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
+INSERT INTO classmain (cm_no , cm_code,cm_title, cm_name, cm_sdate, cm_edate, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
+VALUES (classmain_seq.NEXTVAL, 'AJ03', 'AJAX 강좌','김종태', '2017-12-01 09:00:00', '2017-12-20 12:00:00', 35000, 1, 1, 4,'Y');
 
 commit;
 select *from classmain;
@@ -121,7 +118,7 @@ SELECT
 	    FROM 
 	        (SELECT
 	            cm_no AS cmNo,
-	            cm_id AS cmId,
+	             AS cmId,
 	            cm_code AS cmCode,
 	            cm_name AS cmName,
 	            cm_sdate AS cmSdate,
@@ -143,4 +140,4 @@ SELECT
     ;
 	
     
-SELECT      num, cmNo, cmId, cmCode, cmName, cmSdate, cmEdate, cmPrice, cmCount,      cmRecommend, cmStar, cmYn  FROM          (SELECT          ROWNUM num, cmNo, cmId, cmCode, cmName, cmSdate, cmEdate, cmPrice, cmCount,          cmRecommend, cmStar, cmYn      FROM           (SELECT              cm_no AS cmNo,              cm_id AS cmId,              cm_code AS cmCode,              cm_name AS cmName,              cm_sdate AS cmSdate,              cm_edate AS cmEdate,              cm_price AS cmPrice,              cm_count AS cmCount,              cm_recommend AS cmRecommend,              cm_star AS cmStar,                      cm_yn AS cmYn          FROM             classmain         WHERE cm_yn = 'Y'          ) classmain         ORDER BY cmNo DESC     )  WHERE num   >= 1 AND num  <= 2;
+SELECT      num, cmNo, cmId, cmCode, cmName, cmSdate, cmEdate, cmPrice, cmCount,      cmRecommend, cmStar, cmYn  FROM          (SELECT          ROWNUM num, cmNo, cmId, cmCode, cmName, cmSdate, cmEdate, cmPrice, cmCount,          cmRecommend, cmStar, cmYn      FROM           (SELECT              cm_no AS cmNo,               AS cmId,              cm_code AS cmCode,              cm_name AS cmName,              cm_sdate AS cmSdate,              cm_edate AS cmEdate,              cm_price AS cmPrice,              cm_count AS cmCount,              cm_recommend AS cmRecommend,              cm_star AS cmStar,                      cm_yn AS cmYn          FROM             classmain         WHERE cm_yn = 'Y'          ) classmain         ORDER BY cmNo DESC     )  WHERE num   >= 1 AND num  <= 2;
