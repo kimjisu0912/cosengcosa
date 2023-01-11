@@ -1,5 +1,7 @@
 package com.cosengcosa.room.service;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,7 +40,17 @@ public class PayServiceImpl implements PayService{
 	 * 결재 리스트 서비스
 	 */
 	@Override
-	public Map<String, Object> payList(int pageNum, String type, String keyword, String userid) {
+	public Map<String, Object> payList(int pageNum, String datePicker1, String datePicker2, String userid) {
+		// 첫 호출시 유무
+		if(datePicker1.equals("null") || datePicker2.equals("null")) {
+		 LocalDate now = LocalDate.now();
+		 LocalDate preNow = now.minusMonths(3);
+		 LocalDate nextNow = now.plusMonths(3);
+		 datePicker1 = preNow.format(DateTimeFormatter.ofPattern("yyyyMMdd"));
+		 datePicker2 = nextNow.format(DateTimeFormatter.ofPattern("yyyyMMdd"));
+		}
+		System.out.println("datePicker1>>"+datePicker1);
+		System.out.println("datePicker2>>"+datePicker2);
 		// currentPage 현재페이지
 		int currentPage = pageNum;
 		
@@ -49,10 +61,10 @@ public class PayServiceImpl implements PayService{
 		int endRow = (startRow + PAGE_SIZE) -1;
 		
 		// 전체 결재 글 수
-		int listCount = payDao.getPayCount(type, keyword, userid); // 동적쿼리 적용
+		int listCount = payDao.getPayCount(datePicker1, datePicker2, userid); // 동적쿼리 적용
 		
 		// 현재 페이지에 해당하는 결재 리스트데이터 가져오기
-		List<Pay> payList = payDao.payList(startRow, endRow, PAGE_SIZE, type, keyword, userid);
+		List<Pay> payList = payDao.payList(startRow, endRow, PAGE_SIZE, datePicker1, datePicker2, userid);
 		
 		// 시작페이지
 		int startPage = (currentPage / PAGE_GROUP) * PAGE_GROUP + 1 
@@ -70,7 +82,7 @@ public class PayServiceImpl implements PayService{
 		}
 		
 		// 현재 처리된 요청이 검색에 인지 아닌지 확인여부
-		boolean searchOption = (type.equals("null") || keyword.equals("null")) ? false : true;
+		boolean searchOption = (datePicker1.equals("null") || datePicker2.equals("null")) ? false : true;
 		
 		Map<String, Object> modelMap = new HashMap<String, Object>();
 		modelMap.put("payList", payList);
@@ -83,8 +95,8 @@ public class PayServiceImpl implements PayService{
 		modelMap.put("searchOption", searchOption);
 		
 		if(searchOption) {
-			modelMap.put("type", type);
-			modelMap.put("keyword", keyword);
+			modelMap.put("datePicker1", datePicker1);
+			modelMap.put("datePicker2", datePicker2);
 		}
 		
 		return modelMap;

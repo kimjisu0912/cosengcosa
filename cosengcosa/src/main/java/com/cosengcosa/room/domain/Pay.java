@@ -20,11 +20,12 @@ public class Pay {
 	private int pPrice;
 	private Timestamp pCdate;
 	private String pYn;
+	private int num;
 	
 	// 생성자
 	public Pay() {}
 	public Pay(int pNo, String pId, String pMid, int pCmno, String pCmcode, 
-			String pCname, String pChk, int pPrice, Timestamp pCdate, String pYn) {
+			String pCname, String pChk, int pPrice, Timestamp pCdate, String pYn, int num) {
 		this.pNo = pNo;
 		this.pId = pId;
 		this.pMid = pMid;
@@ -35,6 +36,7 @@ public class Pay {
 		this.pPrice = pPrice;
 		this.pCdate = pCdate;
 		this.pYn = pYn;
+		this.num = num;
 	}
 	public int getpNo() {
 		return pNo;
@@ -95,5 +97,11 @@ public class Pay {
 	}
 	public void setpYn(String pYn) {
 		this.pYn = pYn;
+	}
+	public int getNum() {
+		return num;
+	}
+	public void setNum(int num) {
+		this.num = num;
 	}
 }

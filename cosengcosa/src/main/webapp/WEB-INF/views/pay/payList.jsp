@@ -2,19 +2,17 @@
     pageEncoding="UTF-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+ <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
  
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" >
-<link rel="stylesheet" href="resources/css/bootstrap-datepicker.css">
-<script src="resources/js/bootstrap-datepicker.js"></script>
-<!--한국어  달력 쓰려면 추가 로드-->
-<script src="resources/js/bootstrap-datepicker.ko.min.js"></script>
 <script src="resources/js/calendar.js"></script>
+ <link rel="stylesheet" href="resources/plugin/jquery-ui.css">
+<script src="resources/plugin/jquery-ui.min.js"></script>
 
  	<!-- content -->
  <div class="row" id="global-content">
  	<div class="row my-5 text-center">
  		<div class="col">
- 			<h2 class="fs-3 fw-bold">결재 리스트</h2>
+ 			<h2 class="fs-3 fw-bold">결재 리스트${sessionScope.member.id }</h2>
  		</div>
  	</div>
  		<div class="row">
@@ -71,9 +69,10 @@
  				<tbody>
  					<!-- 검색 요청에서 게시 글이 있는 경우 -->
  					<c:if test="${searchOption and not empty payList }">
- 						<c:forEach var="p" items="${payList }">
+ 						<c:forEach var="p" items="${payList }" varStatus="status">
  							<tr class="table-light">
- 								<td>${p.pNo }</td>
+ 								<td>${listCount - ((currentPage-1) * 10 + status.index) }</td>
+ 								<%-- <td>${p.pNo }</td> --%>
  								<td>${p.pCname }</td>
  								<td>${p.pPrice }</td>
  								<td>${p.pCdate }</td>
@@ -83,9 +82,10 @@
  					
  					<!-- 일반 요청에서 게시 글이 있는 경우 -->
  					<c:if test="${not searchOption and not empty payList }">
- 						<c:forEach var="p" items="${payList }">
+ 						<c:forEach var="p" items="${payList }" varStatus="status">
  							<tr class="table-light">
- 								<td>${p.pNo }</td>
+ 								<td>${listCount - ((currentPage-1) * 10 + status.index) }</td>
+ 								<%-- <td>${p.pNo }</td> --%>
  								<td>${p.pCname }</td>
  								<td>${p.pPrice }</td>
  								<td>${p.pCdate }</td>

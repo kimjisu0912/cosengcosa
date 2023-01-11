@@ -46,58 +46,58 @@ select 'p'||TO_CHAR(NVL(max(a.p_no)+1 ,1)) from pay a;
 -- 결재 테이블 값 입력
 -- 적당히 한 70번만 컨트롤 시프트 엔터로 하자
 INSERT INTO pay (p_no, p_id, p_mid, p_cmno, p_cmcode, p_cname, p_chk, p_price, p_cdate, p_yn) 
-VALUES (pay_seq.NEXTVAL,(select 'p'||TO_CHAR(NVL(max(a.p_no)+1 ,1)) from pay a), 'test01', 1, 'JA01', 'java 입문수업', 'Y', 30000, '2021-12-02 11:00:00', 'Y');
+VALUES (pay_seq.NEXTVAL,(select 'p'||TO_CHAR(NVL(max(a.p_no)+1 ,1)) from pay a), 'test01', 1, 'JA01', 'java 입문수업', 'Y', 30000, '2022-12-02 11:00:00', 'Y');
 INSERT INTO pay (p_no, p_id, p_mid, p_cmno, p_cmcode, p_cname, p_chk, p_price, p_cdate, p_yn) 
-VALUES (pay_seq.NEXTVAL,(select 'p'||TO_CHAR(NVL(max(a.p_no)+1 ,1)) from pay a), 'test01', 1, 'JA02', '남궁성의 정석코딩', 'Y', 23000, '2022-01-02 11:00:00', 'Y');
+VALUES (pay_seq.NEXTVAL,(select 'p'||TO_CHAR(NVL(max(a.p_no)+1 ,1)) from pay a), 'test01', 1, 'JA02', '남궁성의 정석코딩', 'Y', 23000, '2022-12-07 11:00:00', 'Y');
 INSERT INTO pay (p_no, p_id, p_mid, p_cmno, p_cmcode, p_cname, p_chk, p_price, p_cdate, p_yn) 
-VALUES (pay_seq.NEXTVAL,(select 'p'||TO_CHAR(NVL(max(a.p_no)+1 ,1)) from pay a), 'test01', 1, 'BS01', '부트스트랩 실전강좌(Bootstrap tutoial)', 'Y', 15000, '2022-01-02 11:00:00', 'Y');
+VALUES (pay_seq.NEXTVAL,(select 'p'||TO_CHAR(NVL(max(a.p_no)+1 ,1)) from pay a), 'test01', 1, 'BS01', '부트스트랩 실전강좌(Bootstrap tutoial)', 'Y', 15000, '2022-12-12 11:00:00', 'Y');
 INSERT INTO pay (p_no, p_id, p_mid, p_cmno, p_cmcode, p_cname, p_chk, p_price, p_cdate, p_yn) 
-VALUES (pay_seq.NEXTVAL,(select 'p'||TO_CHAR(NVL(max(a.p_no)+1 ,1)) from pay a), 'test01', 1, 'BS02', 'bootstrap', 'Y', 18000, '2022-01-02 11:00:00', 'Y');
+VALUES (pay_seq.NEXTVAL,(select 'p'||TO_CHAR(NVL(max(a.p_no)+1 ,1)) from pay a), 'test01', 1, 'BS02', 'bootstrap', 'Y', 18000, '2022-12-15 11:00:00', 'Y');
 INSERT INTO pay (p_no, p_id, p_mid, p_cmno, p_cmcode, p_cname, p_chk, p_price, p_cdate, p_yn) 
-VALUES (pay_seq.NEXTVAL,(select 'p'||TO_CHAR(NVL(max(a.p_no)+1 ,1)) from pay a), 'test01', 1, 'HL01', '입문자를 위한 HTML 기초강의', 'Y', 16000, '2022-01-23 11:00:00', 'Y');
+VALUES (pay_seq.NEXTVAL,(select 'p'||TO_CHAR(NVL(max(a.p_no)+1 ,1)) from pay a), 'test01', 1, 'HL01', '입문자를 위한 HTML 기초강의', 'Y', 16000, '2022-12-17 11:00:00', 'Y');
 INSERT INTO pay (p_no, p_id, p_mid, p_cmno, p_cmcode, p_cname, p_chk, p_price, p_cdate, p_yn) 
-VALUES (pay_seq.NEXTVAL,(select 'p'||TO_CHAR(NVL(max(a.p_no)+1 ,1)) from pay a), 'test01', 1, 'HL02', 'html/css 기초강의 - 프론트엔드 개발자 입문편', 'Y', 17000, '2022-01-23 11:00:00', 'Y');
+VALUES (pay_seq.NEXTVAL,(select 'p'||TO_CHAR(NVL(max(a.p_no)+1 ,1)) from pay a), 'test01', 1, 'HL02', 'html/css 기초강의 - 프론트엔드 개발자 입문편', 'Y', 17000, '2022-12-22 11:00:00', 'Y');
 INSERT INTO pay (p_no, p_id, p_mid, p_cmno, p_cmcode, p_cname, p_chk, p_price, p_cdate, p_yn)
-VALUES (pay_seq.NEXTVAL,(select 'p'||TO_CHAR(NVL(max(a.p_no)+1 ,1)) from pay a), 'test01', 1, 'DB01', '오라클(Oracle) SQL 강의 강좌', 'Y', 43000, '2022-02-02 11:00:00', 'Y');
+VALUES (pay_seq.NEXTVAL,(select 'p'||TO_CHAR(NVL(max(a.p_no)+1 ,1)) from pay a), 'test01', 1, 'DB01', '오라클(Oracle) SQL 강의 강좌', 'Y', 43000, '2022-12-27 11:00:00', 'Y');
 INSERT INTO pay (p_no, p_id, p_mid, p_cmno, p_cmcode, p_cname, p_chk, p_price, p_cdate, p_yn) 
-VALUES (pay_seq.NEXTVAL,(select 'p'||TO_CHAR(NVL(max(a.p_no)+1 ,1)) from pay a), 'test01', 1, 'DB02', '[SQL 기초강의] 혼자 공부하는 SQL(MySQL 8.0)', 'Y', 33000, '2022-03-02 11:00:00', 'Y');
+VALUES (pay_seq.NEXTVAL,(select 'p'||TO_CHAR(NVL(max(a.p_no)+1 ,1)) from pay a), 'test01', 1, 'DB02', '[SQL 기초강의] 혼자 공부하는 SQL(MySQL 8.0)', 'Y', 33000, '2022-12-30 11:00:00', 'Y');
 INSERT INTO pay (p_no, p_id, p_mid, p_cmno, p_cmcode, p_cname, p_chk, p_price, p_cdate, p_yn) 
-VALUES (pay_seq.NEXTVAL,(select 'p'||TO_CHAR(NVL(max(a.p_no)+1 ,1)) from pay a), 'test01', 1, 'JS01', '자바스크립트 기초 강좌 : 100분 완성 / 중급강좌', 'Y', 13000, '2022-03-02 11:00:00', 'Y');
+VALUES (pay_seq.NEXTVAL,(select 'p'||TO_CHAR(NVL(max(a.p_no)+1 ,1)) from pay a), 'test01', 1, 'JS01', '자바스크립트 기초 강좌 : 100분 완성 / 중급강좌', 'Y', 13000, '2023-01-02 11:00:00', 'Y');
 INSERT INTO pay (p_no, p_id, p_mid, p_cmno, p_cmcode, p_cname, p_chk, p_price, p_cdate, p_yn) 
-VALUES (pay_seq.NEXTVAL,(select 'p'||TO_CHAR(NVL(max(a.p_no)+1 ,1)) from pay a), 'test01', 1, 'JS02', 'JavaScript 입문수업', 'Y', 22000, '2022-03-02 11:00:00', 'Y');
+VALUES (pay_seq.NEXTVAL,(select 'p'||TO_CHAR(NVL(max(a.p_no)+1 ,1)) from pay a), 'test01', 1, 'JS02', 'JavaScript 입문수업', 'Y', 22000, '2023-01-05 11:00:00', 'Y');
 INSERT INTO pay (p_no, p_id, p_mid, p_cmno, p_cmcode, p_cname, p_chk, p_price, p_cdate, p_yn) 
-VALUES (pay_seq.NEXTVAL,(select 'p'||TO_CHAR(NVL(max(a.p_no)+1 ,1)) from pay a), 'test01', 1, 'SP01', '스프링부트(Spring Boot) 강의', 'Y', 31000, '2022-04-02 11:00:00', 'Y');
+VALUES (pay_seq.NEXTVAL,(select 'p'||TO_CHAR(NVL(max(a.p_no)+1 ,1)) from pay a), 'test01', 1, 'SP01', '스프링부트(Spring Boot) 강의', 'Y', 31000, '2023-01-07 11:00:00', 'Y');
 INSERT INTO pay (p_no, p_id, p_mid, p_cmno, p_cmcode, p_cname, p_chk, p_price, p_cdate, p_yn) 
-VALUES (pay_seq.NEXTVAL,(select 'p'||TO_CHAR(NVL(max(a.p_no)+1 ,1)) from pay a), 'test01', 1, 'SP02', 'Springboot 강좌 - 개념정리', 'Y', 25000, '2022-04-02 11:00:00', 'Y');
+VALUES (pay_seq.NEXTVAL,(select 'p'||TO_CHAR(NVL(max(a.p_no)+1 ,1)) from pay a), 'test01', 1, 'SP02', 'Springboot 강좌 - 개념정리', 'Y', 25000, '2023-01-09 11:00:00', 'Y');
 
 INSERT INTO pay (p_no, p_id, p_mid, p_cmno, p_cmcode, p_cname, p_chk, p_price, p_cdate, p_yn) 
-VALUES (pay_seq.NEXTVAL,(select 'p'||TO_CHAR(NVL(max(a.p_no)+1 ,1)) from pay a), 'test02', 1, 'HL01', '입문자를 위한 HTML 기초강의', 'Y', 16000, '2021-11-23 11:00:00', 'Y');
+VALUES (pay_seq.NEXTVAL,(select 'p'||TO_CHAR(NVL(max(a.p_no)+1 ,1)) from pay a), 'test02', 1, 'HL01', '입문자를 위한 HTML 기초강의', 'Y', 16000, '2022-12-03 11:00:00', 'Y');
 INSERT INTO pay (p_no, p_id, p_mid, p_cmno, p_cmcode, p_cname, p_chk, p_price, p_cdate, p_yn) 
-VALUES (pay_seq.NEXTVAL,(select 'p'||TO_CHAR(NVL(max(a.p_no)+1 ,1)) from pay a), 'test02', 1, 'HL02', 'html/css 기초강의 - 프론트엔드 개발자 입문편', 'Y', 17000, '2021-11-23 11:00:00', 'Y');
+VALUES (pay_seq.NEXTVAL,(select 'p'||TO_CHAR(NVL(max(a.p_no)+1 ,1)) from pay a), 'test02', 1, 'HL02', 'html/css 기초강의 - 프론트엔드 개발자 입문편', 'Y', 17000, '2022-12-08 11:00:00', 'Y');
 INSERT INTO pay (p_no, p_id, p_mid, p_cmno, p_cmcode, p_cname, p_chk, p_price, p_cdate, p_yn) 
-VALUES (pay_seq.NEXTVAL,(select 'p'||TO_CHAR(NVL(max(a.p_no)+1 ,1)) from pay a), 'test02', 1, 'JA01', 'java 입문수업', 'Y', 30000, '2021-12-02 11:00:00', 'Y');
+VALUES (pay_seq.NEXTVAL,(select 'p'||TO_CHAR(NVL(max(a.p_no)+1 ,1)) from pay a), 'test02', 1, 'JA01', 'java 입문수업', 'Y', 30000, '2022-12-13 11:00:00', 'Y');
 INSERT INTO pay (p_no, p_id, p_mid, p_cmno, p_cmcode, p_cname, p_chk, p_price, p_cdate, p_yn) 
-VALUES (pay_seq.NEXTVAL,(select 'p'||TO_CHAR(NVL(max(a.p_no)+1 ,1)) from pay a), 'test02', 1, 'JA02', '남궁성의 정석코딩', 'Y', 23000, '2022-01-11 11:00:00', 'Y');
+VALUES (pay_seq.NEXTVAL,(select 'p'||TO_CHAR(NVL(max(a.p_no)+1 ,1)) from pay a), 'test02', 1, 'JA02', '남궁성의 정석코딩', 'Y', 23000, '2022-12-16 11:00:00', 'Y');
 INSERT INTO pay (p_no, p_id, p_mid, p_cmno, p_cmcode, p_cname, p_chk, p_price, p_cdate, p_yn) 
-VALUES (pay_seq.NEXTVAL,(select 'p'||TO_CHAR(NVL(max(a.p_no)+1 ,1)) from pay a), 'test02', 1, 'BS01', '부트스트랩 실전강좌(Bootstrap tutoial)', 'Y', 15000, '2022-01-11 11:00:00', 'Y');
+VALUES (pay_seq.NEXTVAL,(select 'p'||TO_CHAR(NVL(max(a.p_no)+1 ,1)) from pay a), 'test02', 1, 'BS01', '부트스트랩 실전강좌(Bootstrap tutoial)', 'Y', 15000, '2022-12-18 11:00:00', 'Y');
 INSERT INTO pay (p_no, p_id, p_mid, p_cmno, p_cmcode, p_cname, p_chk, p_price, p_cdate, p_yn) 
-VALUES (pay_seq.NEXTVAL,(select 'p'||TO_CHAR(NVL(max(a.p_no)+1 ,1)) from pay a), 'test02', 1, 'BS02', 'bootstrap', 'Y', 18000, '2022-01-13 11:00:00', 'Y');
+VALUES (pay_seq.NEXTVAL,(select 'p'||TO_CHAR(NVL(max(a.p_no)+1 ,1)) from pay a), 'test02', 1, 'BS02', 'bootstrap', 'Y', 18000, '2022-12-23 11:00:00', 'Y');
 INSERT INTO pay (p_no, p_id, p_mid, p_cmno, p_cmcode, p_cname, p_chk, p_price, p_cdate, p_yn)
-VALUES (pay_seq.NEXTVAL,(select 'p'||TO_CHAR(NVL(max(a.p_no)+1 ,1)) from pay a), 'test02', 1, 'DB01', '오라클(Oracle) SQL 강의 강좌', 'Y', 43000, '2022-02-02 11:00:00', 'Y');
+VALUES (pay_seq.NEXTVAL,(select 'p'||TO_CHAR(NVL(max(a.p_no)+1 ,1)) from pay a), 'test02', 1, 'DB01', '오라클(Oracle) SQL 강의 강좌', 'Y', 43000, '2022-12-28 11:00:00', 'Y');
 INSERT INTO pay (p_no, p_id, p_mid, p_cmno, p_cmcode, p_cname, p_chk, p_price, p_cdate, p_yn) 
-VALUES (pay_seq.NEXTVAL,(select 'p'||TO_CHAR(NVL(max(a.p_no)+1 ,1)) from pay a), 'test02', 1, 'DB02', '[SQL 기초강의] 혼자 공부하는 SQL(MySQL 8.0)', 'Y', 33000, '2022-03-02 11:00:00', 'Y');
+VALUES (pay_seq.NEXTVAL,(select 'p'||TO_CHAR(NVL(max(a.p_no)+1 ,1)) from pay a), 'test02', 1, 'DB02', '[SQL 기초강의] 혼자 공부하는 SQL(MySQL 8.0)', 'Y', 33000, '2022-12-29 11:00:00', 'Y');
 INSERT INTO pay (p_no, p_id, p_mid, p_cmno, p_cmcode, p_cname, p_chk, p_price, p_cdate, p_yn) 
-VALUES (pay_seq.NEXTVAL,(select 'p'||TO_CHAR(NVL(max(a.p_no)+1 ,1)) from pay a), 'test02', 1, 'JS01', '자바스크립트 기초 강좌 : 100분 완성 / 중급강좌', 'Y', 13000, '2022-03-02 11:00:00', 'Y');
+VALUES (pay_seq.NEXTVAL,(select 'p'||TO_CHAR(NVL(max(a.p_no)+1 ,1)) from pay a), 'test02', 1, 'JS01', '자바스크립트 기초 강좌 : 100분 완성 / 중급강좌', 'Y', 13000, '2023-01-03 11:00:00', 'Y');
 INSERT INTO pay (p_no, p_id, p_mid, p_cmno, p_cmcode, p_cname, p_chk, p_price, p_cdate, p_yn) 
-VALUES (pay_seq.NEXTVAL,(select 'p'||TO_CHAR(NVL(max(a.p_no)+1 ,1)) from pay a), 'test02', 1, 'JS02', 'JavaScript 입문수업', 'Y', 22000, '2022-03-02 11:00:00', 'Y');
+VALUES (pay_seq.NEXTVAL,(select 'p'||TO_CHAR(NVL(max(a.p_no)+1 ,1)) from pay a), 'test02', 1, 'JS02', 'JavaScript 입문수업', 'Y', 22000, '2023-01-07 11:00:00', 'Y');
 INSERT INTO pay (p_no, p_id, p_mid, p_cmno, p_cmcode, p_cname, p_chk, p_price, p_cdate, p_yn) 
-VALUES (pay_seq.NEXTVAL,(select 'p'||TO_CHAR(NVL(max(a.p_no)+1 ,1)) from pay a), 'test02', 1, 'SP01', '스프링부트(Spring Boot) 강의', 'Y', 31000, '2022-04-02 11:00:00', 'Y');
+VALUES (pay_seq.NEXTVAL,(select 'p'||TO_CHAR(NVL(max(a.p_no)+1 ,1)) from pay a), 'test02', 1, 'SP01', '스프링부트(Spring Boot) 강의', 'Y', 31000, '2023-01-09 11:00:00', 'Y');
 INSERT INTO pay (p_no, p_id, p_mid, p_cmno, p_cmcode, p_cname, p_chk, p_price, p_cdate, p_yn) 
-VALUES (pay_seq.NEXTVAL,(select 'p'||TO_CHAR(NVL(max(a.p_no)+1 ,1)) from pay a), 'test02', 1, 'SP02', 'Springboot 강좌 - 개념정리', 'Y', 25000, '2022-04-02 11:00:00', 'Y');
+VALUES (pay_seq.NEXTVAL,(select 'p'||TO_CHAR(NVL(max(a.p_no)+1 ,1)) from pay a), 'test02', 1, 'SP02', 'Springboot 강좌 - 개념정리', 'Y', 25000, '2023-01-10 11:00:00', 'Y');
 INSERT INTO pay (p_no, p_id, p_mid, p_cmno, p_cmcode, p_cname, p_chk, p_price, p_cdate, p_yn) 
-VALUES (pay_seq.NEXTVAL,(select 'p'||TO_CHAR(NVL(max(a.p_no)+1 ,1)) from pay a), 'test02', 1, 'JQ01', 'jQuery', 'Y', 21000, '2022-04-22 11:00:00', 'Y');
+VALUES (pay_seq.NEXTVAL,(select 'p'||TO_CHAR(NVL(max(a.p_no)+1 ,1)) from pay a), 'test02', 1, 'JQ01', 'jQuery', 'Y', 21000, '2023-01-11 11:00:00', 'Y');
 INSERT INTO pay (p_no, p_id, p_mid, p_cmno, p_cmcode, p_cname, p_chk, p_price, p_cdate, p_yn) 
-VALUES (pay_seq.NEXTVAL,(select 'p'||TO_CHAR(NVL(max(a.p_no)+1 ,1)) from pay a), 'test02', 1, 'JQ03', '예제로 배우는 jQuery강의', 'Y', 27000, '2022-04-22 11:00:00', 'Y');
+VALUES (pay_seq.NEXTVAL,(select 'p'||TO_CHAR(NVL(max(a.p_no)+1 ,1)) from pay a), 'test02', 1, 'JQ03', '예제로 배우는 jQuery강의', 'Y', 27000, '2023-01-12 11:00:00', 'Y');
 
 
 commit;
@@ -126,14 +126,23 @@ SELECT
             pay
 			WHERE
             p_yn = 'Y'
-            AND p_mid LIKE '%%'
+            AND p_mid LIKE '%test01%'
           --  AND p_cname LIKE '%%'
           --  AND TO_CHAR(p_cdate, 'YYYYMMDD') >= '20190101'
-         	AND p_cdate BETWEEN '20190101' AND '20220101' 
+         	AND p_cdate BETWEEN '20191201' AND '20220203' 
         ) pay
-        ORDER BY pNo DESC
+        ORDER BY pCdate DESC
     )
-	WHERE num>=1 AND num <= 10
+	WHERE num>=1 AND num <= 20
     ;
     
-    
+    	SELECT
+		COUNT(*)
+	FROM
+		pay
+    WHERE
+		p_yn = 'Y'
+		AND p_mid LIKE '%%'
+		AND p_cdate BETWEEN '20211201' AND '20220203' 
+        ;
+ 

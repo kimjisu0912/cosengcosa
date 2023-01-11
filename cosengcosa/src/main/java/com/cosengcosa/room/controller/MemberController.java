@@ -76,6 +76,7 @@ public class MemberController {
 		 * 추가하면 스프링이 세션 영역에 데이터를 저장해 준다.
 		 **/ 
 		model.addAttribute("member", member);
+		session.setAttribute("userid", member.getName());
 		System.out.println("member.name : " + member.getName());
 
 		/* 클라이언트 요청을 처리한 후 리다이렉트 해야할 경우 아래와 같이 redirect:

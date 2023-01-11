@@ -31,7 +31,7 @@
 	<where>
 		p_yn = 'Y'
 		AND p_mid LIKE '%' || #{userid,jdbcType=VARCHAR} || '%'
-		AND p_cdate BETWEEN #{startDate} AND #{endDate}
+		AND p_cdate BETWEEN #{datePicker1} AND #{datePicker2}
 	</where>
 	</select>
 	
@@ -59,10 +59,10 @@
 			<where>
 				p_yn = 'Y'
 				AND p_mid LIKE '%' || #{userid,jdbcType=VARCHAR} || '%'
-				AND p_cdate BETWEEN #{startDate} AND #{endDate}
+				AND p_cdate BETWEEN #{datePicker1} AND #{datePicker2}
 			</where>
         ) pay
-        ORDER BY pNo DESC
+        ORDER BY pCdate DESC
     )
 	WHERE num  <![CDATA[>=]]>#{startRow} AND num <![CDATA[<=]]>#{endRow}
 	</select>
