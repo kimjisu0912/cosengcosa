@@ -90,4 +90,12 @@ public class ClassMainServiceImpl implements ClassMainService {
 		return modelMap;
 	}
 
+	@Override
+	public ClassMain getDetail(int cmNo, boolean b) {
+		
+		return classMainDao.getDetail(cmNo, b);
+	}
+
+
+
 }

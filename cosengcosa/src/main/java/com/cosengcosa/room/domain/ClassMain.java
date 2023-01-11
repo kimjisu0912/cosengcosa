@@ -11,7 +11,6 @@ import java.sql.Timestamp;
 public class ClassMain {
 
 	private int cmNo;
-	private String cmId;
 	private String cmCode;
 	private String cmTitle;
 	private String cmName;
@@ -30,7 +29,6 @@ public class ClassMain {
 	public ClassMain(int cmNo, String cmId, String cmCode, String cmTitle, String cmName, Timestamp cmSdate, Timestamp cmEdate,
 			 int cmPrice, int cmCount, int cmRecommend, int cmStar, String file1, String video, String cmYn) {
 		this.cmNo = cmNo;
-		this.cmId = cmId;
 		this.cmCode = cmCode;
 		this.cmTitle = cmTitle;
 		this.cmName = cmName;
@@ -49,12 +47,6 @@ public class ClassMain {
 	}
 	public void setCmNo(int cmNo) {
 		this.cmNo = cmNo;
-	}
-	public String getCmId() {
-		return cmId;
-	}
-	public void setCmId(String cmId) {
-		this.cmId = cmId;
 	}
 	public String getCmCode() {
 		return cmCode;
