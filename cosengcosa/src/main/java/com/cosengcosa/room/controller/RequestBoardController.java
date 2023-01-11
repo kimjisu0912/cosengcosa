@@ -14,16 +14,16 @@ import org.springframework.web.bind.annotation.RequestParam;
  *
  */
 @Controller
-public class StudyController {
+public class RequestBoardController {
 	
-	@RequestMapping("/studyList")
+	@RequestMapping("/requestBoardList")
 	public String StudyList(Model model,
 			@RequestParam(value="pageNum", required=false, defaultValue="1") int pageNum,
 			@RequestParam(value="type", required=false, defaultValue="null") String type,
 			@RequestParam(value="keyword", required=false, defaultValue="null") String keyword) {
 		
 		
-		return "/study/studyList";
+		return "/request/requestBoardList";
 	}
 	
 }

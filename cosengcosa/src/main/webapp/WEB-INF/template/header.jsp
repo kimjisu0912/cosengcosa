@@ -15,13 +15,13 @@
  							<a class="nav-link fbk" href="classMainList">강의</a>
  						</li>
  						<li class="nav-item">
- 							<a class="nav-link fbk" href="#">지식공유</a>
+ 							<a class="nav-link fbk" href="studyList">지식공유</a>
  						</li>
  						<li class="nav-item">
- 							<a class="nav-link fbk" href="#">자유게시판</a>
+ 							<a class="nav-link fbk" href="freeBoardList">자유게시판</a>
  						</li>
  						<li class="nav-item">
- 							<a class="nav-link fbk" href="#">요청사항</a>
+ 							<a class="nav-link fbk" href="requestBoardList">요청사항</a>
  						</li>
  					</ul>
  				</div>
