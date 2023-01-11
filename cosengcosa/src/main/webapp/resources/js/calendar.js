@@ -65,15 +65,14 @@
 		//input을 datepicker로 선언
         $("#datePicker1").datepicker();                    
         $("#datePicker2").datepicker();
-        
-        //From의 초기값을 오늘 날짜로 설정
-        $('#datePicker1').datepicker('setDate', '-3M'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후) today : 오늘
-        //To의 초기값을 내일로 설정
-        $("#datePicker2").datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
-	
-	
-	
-	
+        console.log("datePicker1>>>>"+$('#datePicker1').val())
+        if($('#datePicker1').val()==""){
+	        //From의 초기값을 오늘 날짜로 설정
+	        $('#datePicker1').datepicker('setDate', '-3M'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후) today : 오늘
+	        //To의 초기값을 내일로 설정
+	        $("#datePicker2").datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
+		}
+		
 	
 	});//ready end
 	

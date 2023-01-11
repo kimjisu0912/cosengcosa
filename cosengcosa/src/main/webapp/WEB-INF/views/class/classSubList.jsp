@@ -24,7 +24,7 @@
 				<c:forEach var="c" items="${csList }">
 					<tr class="table-light">
 						<td>${c.csNo }</td>
-						<td><a href="#" data-bs-toggle="modal" data-bs-target="#myModal${c.csNo }">${c.csName }</a></td>
+						<td><a href="#" data-bs-toggle="modal" data-bs-target="#myModal${c.csNo }">${c.csTitle }</a></td>
 						<td>${c.csRuntime }</td>
 					</tr>
 				</c:forEach>
@@ -49,7 +49,7 @@
 	      
 	        <!-- Modal Header -->
 	        <div class="modal-header bg-dark text-white">
-	          <h4 class="modal-title">${c.csNo}강 ${c.csName }</h4>
+	          <h4 class="modal-title">${c.csNo}강 ${c.csTitle }</h4>
 	          <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
 	        </div>
 	        

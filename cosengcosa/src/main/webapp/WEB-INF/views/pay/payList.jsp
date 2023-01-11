@@ -18,10 +18,10 @@
  		<div class="row">
 	 		<form name="searchForm" id="searchForm" class="row justify-content-center"><!-- text-center 않되서 수직정렬로 가운데 정렬함 -->
 				<div class="col-2">
-					<input type="text" id="datePicker1" class="form-control" value="">
+					<input type="text" name="datePicker1" id="datePicker1" class="form-control" value="${datePicker1 }">
 				</div>
 				<div class="col-2">
-					<input type="text" id="datePicker2" class="form-control" value="">
+					<input type="text" name="datePicker2" id="datePicker2" class="form-control" value="${datePicker2 }">
 				</div>
 				<div class="col-auto">
 					<input type="submit" value="검색" class="btn btn-primary" />
@@ -185,19 +185,3 @@
  		</div>
  	</div>
  </div><!-- end global content -->
- 
-<script>
-$(document).ready(function(){
-    $("#datepicker_start").on("click",function(){
-    });
-    $("#datepicker_start").on("change",function(e){
-         var end = $( "#datepicker_end" ).datepicker( "option", "minDate", getDate( e.target ) );
-    });
-    $("#datepicker_end").on("change",function(e){   
-    });
-     $("#date_search").on("click",function(){
-         var start = $("#datepicker_start").val();
-         var end = $("#datepicker_end").val();
-     });    
-});
-</script>

@@ -45,12 +45,10 @@ public class PayServiceImpl implements PayService{
 		if(datePicker1.equals("null") || datePicker2.equals("null")) {
 		 LocalDate now = LocalDate.now();
 		 LocalDate preNow = now.minusMonths(3);
-		 LocalDate nextNow = now.plusMonths(3);
+		 LocalDate nextNow = now;
 		 datePicker1 = preNow.format(DateTimeFormatter.ofPattern("yyyyMMdd"));
 		 datePicker2 = nextNow.format(DateTimeFormatter.ofPattern("yyyyMMdd"));
 		}
-		System.out.println("datePicker1>>"+datePicker1);
-		System.out.println("datePicker2>>"+datePicker2);
 		// currentPage 현재페이지
 		int currentPage = pageNum;
 		
@@ -95,8 +93,16 @@ public class PayServiceImpl implements PayService{
 		modelMap.put("searchOption", searchOption);
 		
 		if(searchOption) {
-			modelMap.put("datePicker1", datePicker1);
-			modelMap.put("datePicker2", datePicker2);
+			if(datePicker1.length() > 8) {
+				modelMap.put("datePicker1", datePicker1);
+				modelMap.put("datePicker2", datePicker2);
+			}else {
+				LocalDate afterDatePicker1 = LocalDate.parse(datePicker1, DateTimeFormatter.ofPattern("yyyyMMdd"));
+				LocalDate afterDatePicker2 = LocalDate.parse(datePicker2, DateTimeFormatter.ofPattern("yyyyMMdd"));
+				modelMap.put("datePicker1", afterDatePicker1);
+				modelMap.put("datePicker2", afterDatePicker2);
+			}
+			
 		}
 		
 		return modelMap;

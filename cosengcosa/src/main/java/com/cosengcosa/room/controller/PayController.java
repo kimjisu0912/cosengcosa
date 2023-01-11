@@ -43,7 +43,9 @@ public class PayController {
 			HttpServletRequest request, HttpSession session) {
 		
 		System.out.println("userid====>"+session.getAttribute("userid"));
-		String userid = request.getSession().getId();
+		System.out.println("datePicker1====>"+datePicker1);
+		System.out.println("datePicker2====>"+datePicker2);
+		String userid = (String) session.getAttribute("userid");
 		
 		
 		// 결재 리스트 서비스 호출통해서 결재리스트 데이터를 가져온다.

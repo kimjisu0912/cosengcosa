@@ -38,16 +38,14 @@
 	<!-- 결재 리스트 조회 -->
 	<select id="payList" resultType="Pay" parameterType="hashmap">
 	SELECT
-	    num, pNo, pId, pMid, pCmno, pCmcode, pCname, pChk, pPrice, pCdate, pYn
+	    num, pNo,  pMid, pCmcode, pCname, pChk, pPrice, pCdate, pYn
 	FROM    
 	    (SELECT
-	        ROWNUM num, pNo, pId, pMid, pCmno, pCmcode, pCname, pChk, pPrice, pCdate, pYn
+	        ROWNUM num, pNo, pMid, pCmcode, pCname, pChk, pPrice, pCdate, pYn
 	    FROM 
 	        (SELECT
 	            p_no AS pNo,
-	            p_id AS pId,
 	            p_mid AS pMid,
-	            p_cmno AS pCmno,
 	            p_cmcode AS pCmcode,
                 p_cname AS pCname,
 	            p_chk AS pChk,
@@ -70,9 +68,7 @@
 	<!-- Pay 클래스의 프로퍼티와 테이블의 컬럼을 맵핑하는 ResultMap -->
 	<resultMap id="payResultMap" type="Pay" >
 		<id property="pNo" column="p_no" />
-		<result property="pId" column="p_id" />
 		<result property="pMid" column="p_mid" />
-		<result property="pCmno" column="p_cmno" />
 		<result property="pCmcode" column="p_cmcode" />
 		<result property="pCname" column="p_cname" />
 		<result property="pChk" column="p_chk" />

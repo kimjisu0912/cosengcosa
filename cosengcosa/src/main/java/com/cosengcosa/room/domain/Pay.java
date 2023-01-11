@@ -11,9 +11,7 @@ import java.sql.Timestamp;
 public class Pay {
 	
 	private int pNo;
-	private String pId;
 	private String pMid;
-	private int pCmno;
 	private String pCmcode;
 	private String pCname;
 	private String pChk;
@@ -24,12 +22,9 @@ public class Pay {
 	
 	// 생성자
 	public Pay() {}
-	public Pay(int pNo, String pId, String pMid, int pCmno, String pCmcode, 
-			String pCname, String pChk, int pPrice, Timestamp pCdate, String pYn, int num) {
+	public Pay(int pNo, String pMid, String pCmcode, String pCname, String pChk, int pPrice, Timestamp pCdate, String pYn, int num) {
 		this.pNo = pNo;
-		this.pId = pId;
 		this.pMid = pMid;
-		this.pCmno = pCmno;
 		this.pCmcode = pCmcode;
 		this.pCname = pCname;
 		this.pChk = pChk;
@@ -44,23 +39,11 @@ public class Pay {
 	public void setpNo(int pNo) {
 		this.pNo = pNo;
 	}
-	public String getpId() {
-		return pId;
-	}
-	public void setpId(String pId) {
-		this.pId = pId;
-	}
 	public String getpMid() {
 		return pMid;
 	}
 	public void setpMid(String pMid) {
 		this.pMid = pMid;
-	}
-	public int getpCmno() {
-		return pCmno;
-	}
-	public void setpCmno(int pCmno) {
-		this.pCmno = pCmno;
 	}
 	public String getpCmcode() {
 		return pCmcode;
