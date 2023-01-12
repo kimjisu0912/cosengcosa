@@ -14,10 +14,10 @@
 					</div>
 					
 					<div class="col p-3 d-flex flex-column position-static">
-						<h3 class="fs-bold text-start ">자바의 정석</h3>
+						<h3 class="fs-bold text-start ">${cmTitle }</h3>
 					
 						<div class="text-wrap">별점</div>
-						<div class="text-start">남궁성</div>
+						<div class="text-start">${cmName }</div>
 						<div class="text-start">#자바</div>
 					</div>
 				</div>
@@ -56,9 +56,22 @@
 						<div class="row">
 							<div class="col">
 								<div>
-									<small class="my-0">${cm_price }</small>
-									<p class="text-muted fs-4">${cm_price }/5</p>
+									<small class="my-0">${cmPrice }</small>
+									<p class="text-muted fs-4">${cmPrice }/5</p>
 								</div>
+								<!-- 구매가 되었을 경우 -->
+								<c:if test="${chk }">
+								<div class="d-grid gap-3">
+									<button name ="payList" id="payList" class="btn btn-outline-success bg-opacity-50" type="button" href="classSubList">수강하기</button>
+								</div>
+								<div class="button-group-center">
+									<button type="button" class="btn btn-link"><i class="bi bi-heart"></i> </button>
+									<button type="button" class="btn btn-default bi bi-share"><span class="glyphicon glyphicon-share-alt"></span></button>
+								</div>
+								</c:if>
+								
+								<!-- 구매가 되지 않았을경우 -->
+								<c:if test="${not chk }">
 								<div class="d-grid gap-3">
 									<button name ="payList" id="payList" class="btn btn-outline-success bg-opacity-50" type="button" href="./payList">수강신청 하기</button>
 									<button name = "pocketList" id="pocketList" class="btn btn-outline-secondary bg-opacity-50" type="button" href="pocketList">바구니에 담기</button>
@@ -67,15 +80,16 @@
 									<button type="button" class="btn btn-link"><i class="bi bi-heart"></i> </button>
 									<button type="button" class="btn btn-default bi bi-share"><span class="glyphicon glyphicon-share-alt"></span></button>
 								</div>
+								</c:if>
 							</div>
 						</div>
 					</li>
 					
 					<li class="list-group-item d-flex justify-content-between lh-sm bg-info bg-opacity-10">
 						<div>
-							<p>지식공유자 : <p>
-							<p>총~ 개 수업</p>
-							<p>수강기간: ${cm_sdate } ~ ${cm_edate }</p>
+							<p>지식공유자 : ${cmTitle }<p>
+							<p>총${csNo }개 수업</p>
+							<p>수강기간: ${cmPeriod}</p>
 							<p>난이도 : </p>
 						</div>
 					</li>
