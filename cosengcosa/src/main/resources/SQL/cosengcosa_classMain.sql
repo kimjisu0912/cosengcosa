@@ -16,15 +16,18 @@ CREATE TABLE classmain(
     cm_code VARCHAR2(8 CHAR)
         CONSTRAINT CM_CODE_UK UNIQUE
         CONSTRAINT CM_CODE_NN NOT NULL,				    -- 강의코드
+        
     cm_title VARCHAR2(100 CHAR) 
         CONSTRAINT CM_TITLE_NN NOT NULL,				    -- 강의명
+        
     cm_name VARCHAR2(100 CHAR) 
         CONSTRAINT CM_NAME_NN NOT NULL,				    -- 사람이름
     cm_period NUMBER(5) 
         CONSTRAINT CM_PERIOD_NN NOT NULL,				    -- 수강기간
     cm_price NUMBER(8) 
         CONSTRAINT CM_PRICE_NN NOT NULL,				    -- 가격
-    cm_count NUMBER(8) CONSTRAINT CM_COUNT_NN NOT NULL,  -- 조회수
+    cm_count NUMBER(8)
+        CONSTRAINT CM_COUNT_NN NOT NULL,                -- 조회수
     cm_recommend NUMBER(8) DEFAULT 0
          CONSTRAINT CM_RECOM_NN NOT NULL ,               -- 추천수
     cm_star NUMBER(1) DEFAULT 0
@@ -34,10 +37,12 @@ CREATE TABLE classmain(
     cm_yn CHAR(1) CHECK (cm_yn IN('Y', 'N'))
         CONSTRAINT CM_YN_NN NOT NULL                    -- 삭제유무
 );
+-- content 넣어두자,,, char 최대로 
+
 
 
 INSERT INTO classmain (cm_no,  cm_code,cm_title, cm_name,cm_period, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
-VALUES (classmain_seq.NEXTVAL, 'JA01', 'java 입문수업','생활코딩', 3, 35000, 0, 0, 4,'Y');
+VALUES (classmain_seq.NEXTVAL, 'JA01', '자바 기초 프로그래밍 강좌','동빈나', 3, 35000, 0, 0, 4,'Y');
 INSERT INTO classmain (cm_no,  cm_code, cm_title, cm_name,cm_period, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
 VALUES (classmain_seq.NEXTVAL, 'JA02', '자바의 정석 기초편(2020최신)','남궁성의 정석코딩', 3, 35000, 1, 1, 4,'Y');
 INSERT INTO classmain (cm_no,  cm_code, cm_title, cm_name,cm_period, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
