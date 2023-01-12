@@ -9,6 +9,13 @@
  			<h2 class="fs-3 fw-bold">강의보기 리스트</h2>
  		</div>
  	</div>
+ 	<%-- <c:if test="${not searchOption }" > --%>
+	 	<div class="row">
+	 		<div class="col text-end">
+	 			<a href="writeForm" class="btn btn-outline-success">강의등록</a>
+	 		</div>
+	 	</div>
+ 	<%-- </c:if> --%>
  	<div class="row">
  		<div class="col">
  			<table class="table my-3  table-hover">
@@ -21,9 +28,9 @@
  				</thead>
  				<tbody>
  				<c:if test="${not empty csList }">
-				<c:forEach var="c" items="${csList }">
+				<c:forEach var="c" items="${csList }" varStatus="status">
 					<tr class="table-light">
-						<td>${c.csNo }</td>
+						<td>${status.count }</td>
 						<td><a href="#" data-bs-toggle="modal" data-bs-target="#myModal${c.csNo }">${c.csTitle }</a></td>
 						<td>${c.csRuntime }</td>
 					</tr>
@@ -42,14 +49,14 @@
  </div><!-- end global content -->
  
  <!-- model -->
- <c:forEach var="c" items="${csList }">
+ <c:forEach var="c" items="${csList }" varStatus="status">
 	 <div class="modal fade" id="myModal${c.csNo}" data-bs-backdrop="static" data-bs-keyboard="false">
 	    <div class="modal-dialog modal-dialog-scrollable modal-lg modal-dialog-centered">
 	      <div class="modal-content">
 	      
 	        <!-- Modal Header -->
 	        <div class="modal-header bg-dark text-white">
-	          <h4 class="modal-title">${c.csNo}강 ${c.csTitle }</h4>
+	          <h4 class="modal-title">${status.count }강 ${c.csTitle }</h4>
 	          <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
 	        </div>
 	        

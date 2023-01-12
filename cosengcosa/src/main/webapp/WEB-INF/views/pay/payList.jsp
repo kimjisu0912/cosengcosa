@@ -21,7 +21,7 @@
 					<input type="text" name="datePicker1" id="datePicker1" class="form-control" value="${datePicker1 }">
 				</div>
 				<div class="col-2">
-					<input type="text" name="datePicker2" id="datePicker2" class="form-control" value="${datePicker2 }">
+					<input type="text" name="datePicker2" class="form-control" value="${datePicker2 }" readonly>
 				</div>
 				<div class="col-auto">
 					<input type="submit" value="검색" class="btn btn-primary" />
@@ -32,7 +32,6 @@
 			<c:if test="${searchOption}">
 				<div class="row my-3">
 					<div	class="col text-center">
-					" ${keyword } " 검색결과
 					</div>
 				</div>
 			</c:if>
@@ -41,7 +40,7 @@
  	<c:if test="${searchOption }" >
  	<div class="row">
  		<div class="col-6 text-start">
- 			<a href="payList" class="btn btn-outline-success">결재 리스트</a>
+ 			<!-- <a href="payList" class="btn btn-outline-success">결재 리스트</a> -->
  		</div>
  	</div>
  	</c:if>
@@ -74,8 +73,8 @@
  								<td>${listCount - ((currentPage-1) * 10 + status.index) }</td>
  								<%-- <td>${p.pNo }</td> --%>
  								<td>${p.pCname }</td>
- 								<td>${p.pPrice }</td>
- 								<td>${p.pCdate }</td>
+ 								<td><fmt:formatNumber type="number" maxFractionDigits="3" value="${p.pPrice }"/></td>
+ 								<td><fmt:formatDate value="${p.pCdate }" pattern="yyyy-MM-dd"/></td>
  							</tr>
  						</c:forEach>
  					</c:if>
@@ -87,8 +86,8 @@
  								<td>${listCount - ((currentPage-1) * 10 + status.index) }</td>
  								<%-- <td>${p.pNo }</td> --%>
  								<td>${p.pCname }</td>
- 								<td>${p.pPrice }</td>
- 								<td>${p.pCdate }</td>
+ 								<td><fmt:formatNumber type="number" maxFractionDigits="3" value="${p.pPrice }"/></td>
+ 								<td><fmt:formatDate value="${p.pCdate }" pattern="yyyy-MM-dd"/></td>
  							</tr>
  						</c:forEach>
  					</c:if>

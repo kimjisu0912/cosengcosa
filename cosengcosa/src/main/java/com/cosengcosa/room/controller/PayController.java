@@ -42,9 +42,6 @@ public class PayController {
 			@RequestParam(value="datePicker2", required=false, defaultValue="null") String datePicker2,
 			HttpServletRequest request, HttpSession session) {
 		
-		System.out.println("userid====>"+session.getAttribute("userid"));
-		System.out.println("datePicker1====>"+datePicker1);
-		System.out.println("datePicker2====>"+datePicker2);
 		String userid = (String) session.getAttribute("userid");
 		
 		

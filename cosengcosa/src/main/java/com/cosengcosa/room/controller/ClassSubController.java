@@ -43,4 +43,8 @@ public class ClassSubController {
 		
 		return "/class/classSubList";
 	}
+	
+	/*
+	 * 서브강의 등록페이지 이동
+	 */
 }

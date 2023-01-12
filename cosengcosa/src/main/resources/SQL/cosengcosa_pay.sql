@@ -41,58 +41,58 @@ select 'p'||TO_CHAR(NVL(max(a.p_no)+1 ,1)) from pay a;
 -- 결재 테이블 값 입력
 -- 적당히 한 70번만 컨트롤 시프트 엔터로 하자
 INSERT INTO pay (p_no, p_mid, p_cmcode, p_cname, p_chk, p_price, p_cdate, p_yn) 
-VALUES (pay_seq.NEXTVAL, 'test01', 'JA01', 'java 입문수업', 'Y', 30000, '2022-12-02 11:00:00', 'Y');
+VALUES (pay_seq.NEXTVAL, 'test01', 'JA01', '자바 기초 프로그래밍 강좌', 'Y', 200000, '2022-12-02 11:00:00', 'Y');
 INSERT INTO pay (p_no, p_mid, p_cmcode, p_cname, p_chk, p_price, p_cdate, p_yn) 
-VALUES (pay_seq.NEXTVAL, 'test01', 'JA02', '남궁성의 정석코딩', 'Y', 23000, '2022-12-07 11:00:00', 'Y');
+VALUES (pay_seq.NEXTVAL, 'test01', 'JA02', '자바의 정석 기초편(2020최신)', 'Y', 250000, '2022-12-07 11:00:00', 'Y');
 INSERT INTO pay (p_no, p_mid, p_cmcode, p_cname, p_chk, p_price, p_cdate, p_yn) 
-VALUES (pay_seq.NEXTVAL, 'test01', 'BS01', '부트스트랩 실전강좌(Bootstrap tutoial)', 'Y', 15000, '2022-12-12 11:00:00', 'Y');
+VALUES (pay_seq.NEXTVAL, 'test01', 'BS01', '부트스트랩 실전강좌(Bootstrap tutoial)', 'Y', 100000, '2022-12-12 11:00:00', 'Y');
 INSERT INTO pay (p_no, p_mid, p_cmcode, p_cname, p_chk, p_price, p_cdate, p_yn) 
-VALUES (pay_seq.NEXTVAL, 'test01', 'BS02', 'bootstrap', 'Y', 18000, '2022-12-15 11:00:00', 'Y');
+VALUES (pay_seq.NEXTVAL, 'test01', 'BS02', 'bootstrap', 'Y', 220000, '2022-12-15 11:00:00', 'Y');
 INSERT INTO pay (p_no, p_mid, p_cmcode, p_cname, p_chk, p_price, p_cdate, p_yn) 
-VALUES (pay_seq.NEXTVAL, 'test01', 'HL01', '입문자를 위한 HTML 기초강의', 'Y', 16000, '2022-12-17 11:00:00', 'Y');
+VALUES (pay_seq.NEXTVAL, 'test01', 'HL01', '입문자를 위한 HTML 기초강의', 'Y', 100000, '2022-12-17 11:00:00', 'Y');
 INSERT INTO pay (p_no, p_mid, p_cmcode, p_cname, p_chk, p_price, p_cdate, p_yn) 
-VALUES (pay_seq.NEXTVAL, 'test01', 'HL02', 'html/css 기초강의 - 프론트엔드 개발자 입문편', 'Y', 17000, '2022-12-22 11:00:00', 'Y');
+VALUES (pay_seq.NEXTVAL, 'test01', 'HL02', 'HTML/CSS 기초강의', 'Y', 100000, '2022-12-22 11:00:00', 'Y');
 INSERT INTO pay (p_no, p_mid, p_cmcode, p_cname, p_chk, p_price, p_cdate, p_yn)
-VALUES (pay_seq.NEXTVAL, 'test01', 'DB01', '오라클(Oracle) SQL 강의 강좌', 'Y', 43000, '2022-12-27 11:00:00', 'Y');
+VALUES (pay_seq.NEXTVAL, 'test01', 'DB01', '오라클(Oracle) SQL 강의 강좌', 'Y', 150000, '2022-12-27 11:00:00', 'Y');
 INSERT INTO pay (p_no, p_mid, p_cmcode, p_cname, p_chk, p_price, p_cdate, p_yn) 
-VALUES (pay_seq.NEXTVAL, 'test01', 'DB02', '[SQL 기초강의] 혼자 공부하는 SQL(MySQL 8.0)', 'Y', 33000, '2022-12-30 11:00:00', 'Y');
+VALUES (pay_seq.NEXTVAL, 'test01', 'DB02', '[SQL 기초강의] 혼자 공부하는 SQL(MySQL 8.0)', 'Y', 250000, '2022-12-30 11:00:00', 'Y');
 INSERT INTO pay (p_no, p_mid, p_cmcode, p_cname, p_chk, p_price, p_cdate, p_yn) 
-VALUES (pay_seq.NEXTVAL, 'test01', 'JS01', '자바스크립트 기초 강좌 : 100분 완성 / 중급강좌', 'Y', 13000, '2023-01-02 11:00:00', 'Y');
+VALUES (pay_seq.NEXTVAL, 'test01', 'JS01', '자바스크립트 기초 강좌 : 100분 완성 / 중급강좌', 'Y', 260000, '2023-01-02 11:00:00', 'Y');
 INSERT INTO pay (p_no, p_mid, p_cmcode, p_cname, p_chk, p_price, p_cdate, p_yn) 
-VALUES (pay_seq.NEXTVAL, 'test01', 'JS02', 'JavaScript 입문수업', 'Y', 22000, '2023-01-05 11:00:00', 'Y');
+VALUES (pay_seq.NEXTVAL, 'test01', 'JS02', 'JavaScript 입문수업', 'Y', 150000, '2023-01-05 11:00:00', 'Y');
 INSERT INTO pay (p_no, p_mid, p_cmcode, p_cname, p_chk, p_price, p_cdate, p_yn) 
-VALUES (pay_seq.NEXTVAL, 'test01', 'SP01', '스프링부트(Spring Boot) 강의', 'Y', 31000, '2023-01-07 11:00:00', 'Y');
+VALUES (pay_seq.NEXTVAL, 'test01', 'SP01', '스프링부트(Spring Boot) 강의', 'Y', 200000, '2023-01-07 11:00:00', 'Y');
 INSERT INTO pay (p_no, p_mid, p_cmcode, p_cname, p_chk, p_price, p_cdate, p_yn) 
-VALUES (pay_seq.NEXTVAL, 'test01', 'SP02', 'Springboot 강좌 - 개념정리', 'Y', 25000, '2023-01-09 11:00:00', 'Y');
+VALUES (pay_seq.NEXTVAL, 'test01', 'SP02', 'Springboot 강좌 - 개념정리', 'Y', 220000, '2023-01-09 11:00:00', 'Y');
 
 INSERT INTO pay (p_no, p_mid, p_cmcode, p_cname, p_chk, p_price, p_cdate, p_yn) 
-VALUES (pay_seq.NEXTVAL, 'test02', 'HL01', '입문자를 위한 HTML 기초강의', 'Y', 16000, '2022-12-03 11:00:00', 'Y');
+VALUES (pay_seq.NEXTVAL, 'test02', 'HL01', '입문자를 위한 HTML 기초강의', 'Y', 100000, '2022-12-03 11:00:00', 'Y');
 INSERT INTO pay (p_no, p_mid, p_cmcode, p_cname, p_chk, p_price, p_cdate, p_yn) 
-VALUES (pay_seq.NEXTVAL, 'test02', 'HL02', 'html/css 기초강의 - 프론트엔드 개발자 입문편', 'Y', 17000, '2022-12-08 11:00:00', 'Y');
+VALUES (pay_seq.NEXTVAL, 'test02', 'HL02', 'HTML/CSS 기초강의', 'Y', 100000, '2022-12-08 11:00:00', 'Y');
 INSERT INTO pay (p_no, p_mid, p_cmcode, p_cname, p_chk, p_price, p_cdate, p_yn) 
-VALUES (pay_seq.NEXTVAL, 'test02', 'JA01', 'java 입문수업', 'Y', 30000, '2022-12-13 11:00:00', 'Y');
+VALUES (pay_seq.NEXTVAL, 'test02', 'JA01', '자바 기초 프로그래밍 강좌', 'Y', 200000, '2022-12-13 11:00:00', 'Y');
 INSERT INTO pay (p_no, p_mid, p_cmcode, p_cname, p_chk, p_price, p_cdate, p_yn) 
-VALUES (pay_seq.NEXTVAL, 'test02', 'JA02', '남궁성의 정석코딩', 'Y', 23000, '2022-12-16 11:00:00', 'Y');
+VALUES (pay_seq.NEXTVAL, 'test02', 'JA02', '자바의 정석 기초편(2020최신)', 'Y', 250000, '2022-12-16 11:00:00', 'Y');
 INSERT INTO pay (p_no, p_mid, p_cmcode, p_cname, p_chk, p_price, p_cdate, p_yn) 
-VALUES (pay_seq.NEXTVAL, 'test02', 'BS01', '부트스트랩 실전강좌(Bootstrap tutoial)', 'Y', 15000, '2022-12-18 11:00:00', 'Y');
+VALUES (pay_seq.NEXTVAL, 'test02', 'BS01', '부트스트랩 실전강좌(Bootstrap tutoial)', 'Y', 100000, '2022-12-18 11:00:00', 'Y');
 INSERT INTO pay (p_no, p_mid, p_cmcode, p_cname, p_chk, p_price, p_cdate, p_yn) 
-VALUES (pay_seq.NEXTVAL, 'test02', 'BS02', 'bootstrap', 'Y', 18000, '2022-12-23 11:00:00', 'Y');
+VALUES (pay_seq.NEXTVAL, 'test02', 'BS02', 'bootstrap', 'Y', 220000, '2022-12-23 11:00:00', 'Y');
 INSERT INTO pay (p_no, p_mid, p_cmcode, p_cname, p_chk, p_price, p_cdate, p_yn)
-VALUES (pay_seq.NEXTVAL, 'test02', 'DB01', '오라클(Oracle) SQL 강의 강좌', 'Y', 43000, '2022-12-28 11:00:00', 'Y');
+VALUES (pay_seq.NEXTVAL, 'test02', 'DB01', '오라클(Oracle) SQL 강의 강좌', 'Y', 150000, '2022-12-28 11:00:00', 'Y');
 INSERT INTO pay (p_no, p_mid, p_cmcode, p_cname, p_chk, p_price, p_cdate, p_yn) 
-VALUES (pay_seq.NEXTVAL, 'test02', 'DB02', '[SQL 기초강의] 혼자 공부하는 SQL(MySQL 8.0)', 'Y', 33000, '2022-12-29 11:00:00', 'Y');
+VALUES (pay_seq.NEXTVAL, 'test02', 'DB02', '[SQL 기초강의] 혼자 공부하는 SQL(MySQL 8.0)', 'Y', 250000, '2022-12-29 11:00:00', 'Y');
 INSERT INTO pay (p_no, p_mid, p_cmcode, p_cname, p_chk, p_price, p_cdate, p_yn) 
-VALUES (pay_seq.NEXTVAL, 'test02', 'JS01', '자바스크립트 기초 강좌 : 100분 완성 / 중급강좌', 'Y', 13000, '2023-01-03 11:00:00', 'Y');
+VALUES (pay_seq.NEXTVAL, 'test02', 'JS01', '자바스크립트 기초 강좌 : 100분 완성 / 중급강좌', 'Y', 260000, '2023-01-03 11:00:00', 'Y');
 INSERT INTO pay (p_no, p_mid, p_cmcode, p_cname, p_chk, p_price, p_cdate, p_yn) 
-VALUES (pay_seq.NEXTVAL, 'test02', 'JS02', 'JavaScript 입문수업', 'Y', 22000, '2023-01-07 11:00:00', 'Y');
+VALUES (pay_seq.NEXTVAL, 'test02', 'JS02', 'JavaScript 입문수업', 'Y', 150000, '2023-01-07 11:00:00', 'Y');
 INSERT INTO pay (p_no, p_mid, p_cmcode, p_cname, p_chk, p_price, p_cdate, p_yn) 
-VALUES (pay_seq.NEXTVAL, 'test02', 'SP01', '스프링부트(Spring Boot) 강의', 'Y', 31000, '2023-01-09 11:00:00', 'Y');
+VALUES (pay_seq.NEXTVAL, 'test02', 'SP01', '스프링부트(Spring Boot) 강의', 'Y', 200000, '2023-01-09 11:00:00', 'Y');
 INSERT INTO pay (p_no, p_mid, p_cmcode, p_cname, p_chk, p_price, p_cdate, p_yn) 
-VALUES (pay_seq.NEXTVAL, 'test02', 'SP02', 'Springboot 강좌 - 개념정리', 'Y', 25000, '2023-01-10 11:00:00', 'Y');
+VALUES (pay_seq.NEXTVAL, 'test02', 'SP02', 'Springboot 강좌 - 개념정리', 'Y', 220000, '2023-01-10 11:00:00', 'Y');
 INSERT INTO pay (p_no, p_mid, p_cmcode, p_cname, p_chk, p_price, p_cdate, p_yn) 
-VALUES (pay_seq.NEXTVAL, 'test02', 'JQ01', 'jQuery', 'Y', 21000, '2023-01-11 11:00:00', 'Y');
+VALUES (pay_seq.NEXTVAL, 'test02', 'JQ01', 'jQuery', 'Y', 200000, '2023-01-11 11:00:00', 'Y');
 INSERT INTO pay (p_no, p_mid, p_cmcode, p_cname, p_chk, p_price, p_cdate, p_yn) 
-VALUES (pay_seq.NEXTVAL, 'test02', 'JQ03', '예제로 배우는 jQuery강의', 'Y', 27000, '2023-01-12 11:00:00', 'Y');
+VALUES (pay_seq.NEXTVAL, 'test02', 'JQ03', '예제로 배우는 jQuery강의', 'Y', 100000, '2023-01-12 11:00:00', 'Y');
 
 
 commit;
