@@ -99,8 +99,7 @@ INSERT INTO classmain (cm_no , cm_code,cm_title, cm_name,cm_period, cm_price, cm
 VALUES (classmain_seq.NEXTVAL, 'AJ01', 'WEB3-AJAX','생활코딩', 3, 35000, 1, 1, 4,'Y');
 INSERT INTO classmain (cm_no , cm_code,cm_title, cm_name,cm_period, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
 VALUES (classmain_seq.NEXTVAL, 'AJ02', 'AJAX 다뤄보기', '코딩레시피', 3, 35000, 1, 1, 4,'Y');
-INSERT INTO classmain (cm_no , cm_code,cm_title, cm_name,cm_period, cm_price, cm_count, cm_recommend, cm_star, cm_yn) 
-VALUES (classmain_seq.NEXTVAL, 'AJ03', 'AJAX 강좌','김종태', 3, 35000, 1, 1, 4,'Y');
+
 
 commit;
 select *from classmain;
