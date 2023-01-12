@@ -47,7 +47,7 @@
 		
 		<div class="row">
 			<div class="col-8">
-				<strong><span class="fs-3">${cs_content}</span></strong>
+				<strong><span class="fs-3">${csContent}</span></strong>
 			</div>
 
 			<div class="col-md-4 col-lg-3 order-md-last">
@@ -90,7 +90,6 @@
 							<p>지식공유자 : ${cmTitle }<p>
 							<p>총${csNo }개 수업</p>
 							<p>수강기간: ${cmPeriod}</p>
-							<p>난이도 : </p>
 						</div>
 					</li>
 
