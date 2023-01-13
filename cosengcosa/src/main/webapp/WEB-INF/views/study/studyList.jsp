@@ -16,7 +16,6 @@
 				<select name="type" class="form-select">
 					<option value="title">제목</option>
 					<option value="writer">작성자</option>
-					<option value="content">내용</option>
 				</select>
 			</div>
 			<div class="col-4">
@@ -38,7 +37,7 @@
 			<%-- 검색 요청일 경우 일반 게시 글 리스트로 이동할 수 있도록 링크를 설정했다. --%>
 			<div class="row my-3">
 				<div class="col-6">
-					<a href="boardList" class="btn btn-outline-success">리스트</a>
+					<a href="studyList" class="btn btn-outline-success">리스트</a>
 				</div>
 				<div class="col-6 text-end">
 					<a href="writeForm" class="btn btn-outline-success">글쓰기</a>
@@ -65,6 +64,8 @@
 					<th>작성자</th>
 					<th>작성일</th>
 					<th>조회수</th>
+					<th>해결</th>
+					<th>${ endRow }</th>
 				</tr>		
 					</thead>
 					<tbody class="text-secondary">
@@ -73,18 +74,19 @@
 						게시 글 상세보기로 링크를 적용할 때 type과 keyword 
 						파라미터를 적용해 링크를 설정한다. 
 					--%>	
-					<c:if test="${ searchOption and not empty boardList }">
-						<c:forEach var="b" items="${boardList}" varStatus="status">
+					<c:if test="${ searchOption and not empty studyList }">
+						<c:forEach var="s" items="${studyList}" varStatus="status">
 						<tr>
-							<td>${ b.no }</td>
+							<td>${ s.sNo }</td>
 							<td>
-								<a href="boardDetail?no=${b.no}&pageNum=${currentPage}
+								<a href="studyDetail?no=${s.sNo}&pageNum=${currentPage}
 								&type=${ type }&keyword=${ keyword }" 
-								class="text-decoration-none link-secondary">${ b.title }</a>
+								class="text-decoration-none link-secondary">${ s.sTitle }</a>
 							</td>
-							<td>${ b.writer }</td>
-							<td>${ b.regDate }</td>
-							<td>${ b.readCount }</td>
+							<td>${ s.sAskid }</td>
+							<td>${ s.sCdate }</td>
+							<td>${ s.sCount }</td>
+							<td>${ s.sClear }</td>
 						</tr>
 						</c:forEach>
 					</c:if>
@@ -94,20 +96,22 @@
 						게시 글 상세보기로 링크를 적용할 때 type과 keyword 
 						파라미터는 필요 없다. 
 					--%>
-					<c:if test="${ not searchOption and not empty boardList }">
-						<c:forEach var="b" items="${boardList}" varStatus="status">
+					<c:if test="${ not searchOption and not empty studyList }">
+						<c:forEach var="s" items="${studyList}" varStatus="status">
 						<tr>
-							<td>${ b.no }</td>
-							<td><a href="boardDetail?no=${b.no}&pageNum=${currentPage}" 
-								class="text-decoration-none link-secondary">${ b.title }</a></td>
-							<td>${ b.writer }</td>
-							<td>${ b.regDate }</td>
-							<td>${ b.readCount }</td>
+							<td>${ s.sNo }</td>
+							<td><a href="studyDetail?no=${s.sNo}&pageNum=${currentPage}" 
+								class="text-decoration-none link-secondary">${ s.sTitle }</a></td>
+							<td>${ s.sAskid }</td>
+							<td>${ s.sCdate }</td>
+							<td>${ s.sCount }</td>
+							<td>${ s.sClear }</td>
 						</tr>
 						</c:forEach>
 					</c:if>
+					
 					<%-- 검색 요청이면서 검색된 리스트가 존재하지 않을 경우 --%>
-					<c:if test="${ searchOption and empty boardList }">
+					<c:if test="${ searchOption and empty studyList }">
 						<tr>
 							<td colspan="5" class="text-center">
 								"${ keyword }"가 포함된 게시 글이 존재하지 않습니다.
@@ -116,7 +120,7 @@
 					</c:if>
 					
 					<%-- 일반 게시 글 리스트 요청이면서 게시 글 리스트가 존재하지 않을 경우 --%>
-					<c:if test="${ not searchOption and empty boardList }">
+					<c:if test="${ not searchOption and empty studyList }">
 						<tr>
 							<td colspan="5" class="text-center">게시 글이 존재하지 않습니다.</td>
 						</tr>
@@ -126,105 +130,85 @@
 			</div>			
 		</div>
 		
-		<!-- 검색 요청이면서 검색된 리스트가 존재할 경우 페이지네이션  -->
-		<c:if test="${ searchOption and not empty boardList }">
+		<!-- 검색 안했을 때 페이징 -->
+		<c:if test="${ not searchOption and not empty studyList }">
 			<div class="row">
 				<div class="col">
 					<nav aria-label="Page navigation">
-					  <ul class="pagination justify-content-center">
-					  	<%--
-						/* 현재 페이지 그룹의 시작 페이지가 pageGroup보다 크다는 것은
-						 * 이전 페이지 그룹이 존재한다는 것으로 현재 페이지 그룹의 시작 페이지에
-						 * pageGroup을 마이너스 하여 링크를 설정하면 이전 페이지 그룹의
-						 * startPage로 이동할 수 있다.
-					 	 **/
-					 	 --%>
-					  	<c:if test="${ startPage > pageGroup }">
-						    <li class="page-item">
-						      <a class="page-link" href="boardList?pageNum=${ startPage - pageGroup }
-						      &type=${ type }&keyword=${ keyword }">Pre</a>
-						    </li>
-					    </c:if>
-					    
-					    <c:forEach var="i" begin="${startPage}" end="${endPage}">
-					    	<c:if test="${i == currentPage }">
-					    	<li class="page-item active" aria-current="page">
-					    		<span class="page-link">${i}</span>
-					    	</li>
+						<ul class="pagination justify-content-center">
+						
+							<c:if test="${ startPage > pageGroup }">
+								<li class="page-item">
+									<a class="page-link" href="studyList?pageNum=${ startPage - pageGroup }" aria-label="Previous">
+										<span aria-hidden="true">&laquo;</span>
+									</a>
+								</li>
+							</c:if>
+							
+							
+					    <c:forEach var="i" begin="${ startPage }" end="${ endPage }">
+					    	<c:if test="${ i == currentPage }">
+								<li class="page-item"><a class="page-link active" aria-current="page" >${i}</a></li>
 					    	</c:if>
-					    	<c:if test="${i != currentPage }">
-						    	<li class="page-item">
-						    		<a class="page-link" href="boardList?pageNum=${ i }&type=${ type }&keyword=${ keyword }">${i}</a>
-						    	</li>
-						    </c:if>					    
+					    	<c:if test="${ i != currentPage }">
+								<li class="page-item"><a class="page-link" href="studyList?pageNum=${ i }">${i}</a></li>
+					    	</c:if>
 					    </c:forEach>
+					    	
+					    	<c:if test="${ endPage < pageCount }">
+								<li class="page-item">
+									<a class="page-link" href="studyList?pageNum=${ startPage + pageGroup }" aria-label="Next">
+										<span aria-hidden="true">&raquo;</span>
+									</a>
+								</li>
+					    	</c:if>
+					      
 					    
-					    <%-- 
-						/* 현재 페이지 그룹의 마지막 페이지가 전체 페이지 보다 작다는 것은
-						 * 다음 페이지 그룹이 존재한다는 것으로 현재 페이지 그룹의 시작 페이지에
-						 * pageGroup을 플러스 하여 링크를 설정하면 다음 페이지 그룹의
-						 * startPage로 이동할 수 있다.
-					 	 **/
-					 	 --%>
-						<c:if test="${ endPage < pageCount }">
-						    <li class="page-item">
-						      <a class="page-link" href="boardList?pageNum=${ startPage + pageGroup }
-						      &type=${ type }&keyword=${ keyword }">Next</a>
-						    </li>
-					  	</c:if>
-					  </ul>
-					</nav>
+						</ul>
+					</nav>				
 				</div>
 			</div>
 		</c:if>
 		
-		<!-- 일반 게시글 요청이면서 검색된 리스트가 존재할 경우 페이지네이션  -->
-		<c:if test="${ not searchOption and not empty boardList }">
+		<!-- 검색 했을 때 페이징 -->
+		<c:if test="${ searchOption and not empty studyList }">
 			<div class="row">
 				<div class="col">
 					<nav aria-label="Page navigation">
-					  <ul class="pagination justify-content-center">
-					  	<%--
-						/* 현재 페이지 그룹의 시작 페이지가 pageGroup보다 크다는 것은
-						 * 이전 페이지 그룹이 존재한다는 것으로 현재 페이지 그룹의 시작 페이지에
-						 * pageGroup을 마이너스 하여 링크를 설정하면 이전 페이지 그룹의
-						 * startPage로 이동할 수 있다.
-					 	 **/
-					 	 --%>
-					  	<c:if test="${ startPage > pageGroup }">
-						    <li class="page-item">
-						      <a class="page-link" href="boardList?pageNum=${ startPage - pageGroup }">Pre</a>
-						    </li>
-					    </c:if>
-					    
-					    <c:forEach var="i" begin="${startPage}" end="${endPage}">
-					    	<c:if test="${i == currentPage }">
-					    	<li class="page-item active" aria-current="page">
-					    		<span class="page-link">${i}</span>
-					    	</li>
+						<ul class="pagination justify-content-center">
+						
+							<c:if test="${ startPage > pageGroup }">
+								<li class="page-item">
+									<a class="page-link" href="studyList?pageNum=${ startPage - pageGroup }&type=${ type }&keyword=${ keyword }" aria-label="Previous">
+										<span aria-hidden="true">&laquo;</span>
+									</a>
+								</li>
+							</c:if>
+							
+					    <c:forEach var="i" begin="${ startPage }" end="${ endPage}">
+					    	<c:if test="${ i == currentPage }">
+								<li class="page-item"><a class="page-link active" aria-current="page" >${i}</a></li>
 					    	</c:if>
-					    	<c:if test="${i != currentPage }">
-						    	<li class="page-item"><a class="page-link" href="boardList?pageNum=${ i }">${i}</a></li>
-						    </c:if>					    
+					    	<c:if test="${ i != currentPage }">
+								<li class="page-item"><a class="page-link" href="studyList?pageNum=${ i }&type=${ type }&keyword=${ keyword }">${i}</a></li>
+					    	</c:if>
 					    </c:forEach>
+					    	
+					    	<c:if test="${ endPage < pageCount  }">
+								<li class="page-item">
+									<a class="page-link" href="studyList?pageNum=${ startPage + pageGroup }&type=${ type }&keyword=${ keyword }" aria-label="Next">
+										<span aria-hidden="true">&raquo;</span>
+									</a>
+								</li>
+					    	</c:if>
+					      
 					    
-					    <%-- 
-						/* 현재 페이지 그룹의 마지막 페이지가 전체 페이지 보다 작다는 것은
-						 * 다음 페이지 그룹이 존재한다는 것으로 현재 페이지 그룹의 시작 페이지에
-						 * pageGroup을 플러스 하여 링크를 설정하면 다음 페이지 그룹의
-						 * startPage로 이동할 수 있다.
-					 	 **/
-					 	 --%>
-						<c:if test="${ endPage < pageCount }">
-						    <li class="page-item">
-						      <a class="page-link" href="boardList?pageNum=${ startPage + pageGroup }">Next</a>
-						    </li>
-					  	</c:if>
-					  </ul>
-					</nav>
+						</ul>
+					</nav>				
 				</div>
 			</div>
 		</c:if>
 		
+			
 	</div>
 </div>
