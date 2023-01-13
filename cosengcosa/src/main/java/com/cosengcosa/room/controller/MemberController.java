@@ -118,9 +118,7 @@ public class MemberController {
 	public String joinResult(Model model, Member member,
 			String pass1, String birthY, String birthM, String birthD,
 			String emailId, String emailDomain,
-			String mobile1, String mobile2, String mobile3,
-			@RequestParam(value="emailGet", required=false, 
-				defaultValue="false")boolean emailGet) {		
+			String mobile1, String mobile2, String mobile3) {		
 		
 		member.setPass(pass1);
 		member.setBirth(birthY +"/" + birthD + "/" + birthD);
@@ -155,4 +153,12 @@ public class MemberController {
 			 **/
 			return "forward:WEB-INF/views/member/overlapIdCheck.jsp";
 		}	
+		
+		// 회원정보 보기 요청처리 함수
+		
+		@RequestMapping("/myInfo")
+		public String myInfo(Model model, HttpSession session) {		
+			
+			return "member/myInfo";
+		}
 }

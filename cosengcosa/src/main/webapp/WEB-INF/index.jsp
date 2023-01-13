@@ -10,12 +10,17 @@
     <title>cosengcosa</title>
     <link href="resources/bootstrap/bootstrap.min.css" rel="stylesheet">
     <link href="resources/css/main.css" rel="stylesheet">
+    <link href="resources/css/chart.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"><!-- 부트스트랩 아이콘 -->
     <style type="text/css">
     </style>
     <script src="resources/js/jquery-3.6.1.min.js"></script>
 	<script src="resources/js/formcheck.js"></script>
 	<script src="resources/js/member.js"></script>
+	<script src="resources/js/pieChart.js"></script>
+	<script src="resources/js/zingchart.min.js"></script><!-- zingchart  -->
+	<script src="https://cdn.zingchart.com/zingchart.min.js"></script><!-- zingchart  -->
+	
   </head>
   <body>
 	 <div class="container">
