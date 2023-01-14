@@ -6,13 +6,15 @@
  <div class="row" id="global-content">
  	<div class="row my-5 text-center">
  		<div class="col">
- 			<h2 class="fs-3 fw-bold">강의보기 리스트</h2>
+ 			<h2 class="fs-3 fw-bold">${sessionScope.member.id }님의 강의보기 리스트</h2>
  		</div>
  	</div>
  	<%-- <c:if test="${not searchOption }" > --%>
 	 	<div class="row">
 	 		<div class="col text-end">
-	 			<a href="writeForm" class="btn btn-outline-success">강의등록</a>
+	 			<c:if test="${sessionScope.member.id == 'admin' }">
+	 				<a href="classSubAddFrom?cmcode=${cmcode}" class="btn btn-outline-success">강의등록</a>
+	 			</c:if>
 	 		</div>
 	 	</div>
  	<%-- </c:if> --%>

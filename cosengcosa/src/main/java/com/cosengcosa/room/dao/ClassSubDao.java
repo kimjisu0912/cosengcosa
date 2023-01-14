@@ -14,4 +14,10 @@ public interface ClassSubDao {
 	
 	// 서브강의리스트 요청 시 호출되는 메소드
 	public abstract List<ClassSub> classSubList(String cmcode);
+	
+	// 서브강의코드 요청 시 호출되는 메소드
+	public abstract ClassSub getClassSubCode(String cmcode);
+	
+	// 서브강의 입력 요청 시 호출되는 메소드
+	public abstract void insertClassSub(ClassSub classSub);
 }

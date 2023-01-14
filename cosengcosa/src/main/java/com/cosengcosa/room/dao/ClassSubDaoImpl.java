@@ -36,4 +36,20 @@ public class ClassSubDaoImpl implements ClassSubDao {
 		return sqlSession.selectList(NAME_SPACE + ".classSubList", cmcode);
 	}
 	
+	/*
+	 * 서브강의코드 요청 시 호출되는 메소드
+	 */
+	@Override
+	public ClassSub getClassSubCode(String cmcode) {
+		return sqlSession.selectOne(NAME_SPACE + ".getClassSubCode", cmcode);
+	}
+
+	/*
+	 * 서브강의 입력 요청 시 호출되는 메소드
+	 */
+	@Override
+	public void insertClassSub(ClassSub classSub) {
+		sqlSession.insert(NAME_SPACE + ".insertClassSub", classSub);
+	}
+	
 }

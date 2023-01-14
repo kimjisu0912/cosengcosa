@@ -5,7 +5,6 @@
  	let key = "AIzaSyDFyNAy8OkLEMb4y5vNIG8LZubxW0IqAYA";
  	let channelName = $("#inputname2").val();
  	getChannelId(channelName,key)
- 	console.log($("#inputname2").val());
 });
 
 function getChannelId(channelName, key){

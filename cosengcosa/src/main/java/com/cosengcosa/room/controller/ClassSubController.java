@@ -40,6 +40,7 @@ public class ClassSubController {
 		
 		// 파라미터로 받은 모델 객체에 도메인 객체나 비지니스 로직을 처리한 결과를 모델을 저장.
 		model.addAttribute("csList", csList);
+		model.addAttribute("cmcode", cmcode);
 		
 		return "/class/classSubList";
 	}
@@ -47,4 +48,50 @@ public class ClassSubController {
 	/*
 	 * 서브강의 등록페이지 이동
 	 */
+	@RequestMapping("/classSubAddFrom")
+	public String classSubAddFrom(Model model,
+			@RequestParam(value="cmcode", required=false, defaultValue="") String cmcode) {
+		
+		// 서브 강의 코드값 가져오기
+		ClassSub classSub = classSubService.getClassSubCode(cmcode);
+		String chkCode = classSub.getCsCode();
+		String csCode ="";
+		if(chkCode.equals("01")) {
+			String newCscode = cmcode.toLowerCase();
+			csCode = newCscode + "_01";
+		}else {
+			csCode = classSub.getCsCode();
+		}
+		model.addAttribute("cscode", csCode);
+		// 코드값 모델에 지정
+		model.addAttribute("cmcode", cmcode);
+		
+		return "/class/classSubAddFrom";
+	}
+	
+	/*
+	 * 서브강의 등록
+	 */
+	@RequestMapping("/classSubAdd")
+	public String classSubAdd(Model model,
+			@RequestParam(value="hcsTitle", required=false, defaultValue="") String csTitle,
+			@RequestParam(value="hcsCode", required=false, defaultValue="") String csCode,
+			@RequestParam(value="hcsGroup", required=false, defaultValue="") String csGroup,
+			@RequestParam(value="hcsContent", required=false, defaultValue="") String csContent,
+			@RequestParam(value="hcsVideo", required=false, defaultValue="") String csVideo,
+			@RequestParam(value="hcsRuntime", required=false, defaultValue="") String csRuntime) {
+		
+		ClassSub classSub = new ClassSub();
+		classSub.setCsCode(csCode);
+		classSub.setCsGroup(csGroup);
+		classSub.setCsTitle(csTitle);
+		classSub.setCsContent(csContent);
+		classSub.setCsVideo(csVideo);
+		classSub.setCsRuntime(csRuntime);
+		classSub.setCsYn("Y");
+		
+		classSubService.insertClassSub(classSub);
+		
+		return "redirect:/classSubList?cmcode="+csGroup;
+	}
 }
