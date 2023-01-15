@@ -77,9 +77,9 @@ $.ajax({
 					      sec = "00";
 					  }
 					  var duration = hour+min+":"+sec;
-					  console.log(duration);
-					  console.log(vid);
-					  console.log(title);
+					  //console.log(duration);
+					  //console.log(vid);
+					  //console.log(title);
 					  var result = 
 	             		'<div class="col-5">'
 		             	+		'<div class="card border" style="width: 18rem;">'

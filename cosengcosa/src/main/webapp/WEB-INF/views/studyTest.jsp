@@ -27,11 +27,19 @@
 				<!-- <iframe id="ytplayer" type="text/html" width="720" height="405" src="https://www.youtube.com/embed/wST9cYLYO7o" frameborder="0" allowfullscreen></iframe> -->
 				<div id="view">
 				</div>
-				<div id="player"><!-- https://www.youtube.com/playlist?list=PLrSOSlasEemWLdyBXfdbVElXBcr5enJIr -->
-				</div>
+				<div id="player"></div><!-- https://www.youtube.com/playlist?list=PLrSOSlasEemWLdyBXfdbVElXBcr5enJIr -->
 			</div>
 		</div>
 	</div>
 </div>
 
-<script src="resources/js/youtobeApi.js"></script>
+<div>
+	<span id="sec">0</span>
+	<input type="hidden" id="hid_sec" value="0"/>
+	<a href="javascript:;" onclick="startTimer();">시작</a> 
+	<a href="javascript:;" onclick="stopTimer();">스톱</a> 
+	<a href="javascript:;" onclick="resetTimer();">리셋</a> 
+</div>
+
+<script src="resources/js/testApiTwo.js"></script>
+<!-- <script src="resources/js/youtobeApi.js"></script> -->
