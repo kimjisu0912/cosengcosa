@@ -17,7 +17,6 @@
     <script src="resources/js/jquery-3.6.1.min.js"></script>
 	<script src="resources/js/formcheck.js"></script>
 	<script src="resources/js/member.js"></script>
-	<script src="resources/js/pieChart.js"></script>
 	<script src="resources/js/zingchart.min.js"></script><!-- zingchart  -->
 	<script src="https://cdn.zingchart.com/zingchart.min.js"></script><!-- zingchart  -->
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> <!-- sweatalert -->
