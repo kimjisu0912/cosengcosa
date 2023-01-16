@@ -63,4 +63,21 @@ public class ClassSubServiceImpl implements ClassSubService {
 		classSubDao.insertClassSub(classSub);
 	}
 
+	/*
+	 * 서브강의 수정페이지 이동 서비스
+	 */
+	@Override
+	public ClassSub getClassSub(String cscode) {
+		ClassSub classSub = classSubDao.getClassSub(cscode);
+		return classSub;
+	}
+
+	/*
+	 * 서브강의 수정 서비스
+	 */
+	@Override
+	public void updateClassSub(ClassSub classSub) {
+		classSubDao.updateClassSub(classSub);
+	}
+
 }

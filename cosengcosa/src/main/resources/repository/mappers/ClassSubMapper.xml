@@ -37,6 +37,28 @@
 	VALUES (classsub_seq.NEXTVAL, #{csCode}, #{csGroup}, #{csTitle}, #{csContent}, #{csVideo}, #{csRuntime}, #{csYn})
 	</insert>
 	
+	<!-- 서브강의 상세 조회(서브강의코드) -->
+	<select id="getClassSub" resultType="ClassSub" resultMap="classSubResultMap">
+		SELECT 
+    		cs_no, cs_code, cs_group, cs_title, cs_content, cs_video, cs_runtime, cs_yn
+		FROM
+		    classsub
+		WHERE
+    		cs_code = #{cscode}
+	</select>
+	
+	<update id="updateClassSub" parameterType="ClassSub">
+		UPDATE
+		    classsub
+		SET
+		    cs_title = #{csTitle},
+		    cs_content = #{csContent},
+		    cs_video = #{csVideo},
+		    cs_runtime = #{csRuntime}
+		WHERE
+		    cs_code = #{csCode}
+	</update>
+	
 	<resultMap id="classSubResultMap" type="ClassSub">
 		<id property="csNo" column="cs_no" />
 		<result property="csCode" column="cs_code" />

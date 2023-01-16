@@ -94,4 +94,59 @@ public class ClassSubController {
 		
 		return "redirect:/classSubList?cmcode="+csGroup;
 	}
+	
+	/*
+	 * 서브강의 수정페이지 이동
+	 */
+	@RequestMapping("/classSubModFrom")
+	public String classSubModFrom(Model model,
+			@RequestParam(value="csCode", required=false, defaultValue="") String cscode) {
+		
+		// 서브 강의 상세조회
+		ClassSub classSub = classSubService.getClassSub(cscode);
+		
+		model.addAttribute("classSub", classSub);
+		
+		return "/class/classSubModFrom";
+	}
+	
+	/*
+	 * 서브강의 수정
+	 */
+	@RequestMapping("/classSubMod")
+	public String classSubMod(Model model,
+			@RequestParam(value="hcsTitle", required=false, defaultValue="") String csTitle,
+			@RequestParam(value="hcsCode", required=false, defaultValue="") String csCode,
+			@RequestParam(value="hcsGroup", required=false, defaultValue="") String csGroup,
+			@RequestParam(value="hcsContent", required=false, defaultValue="") String csContent,
+			@RequestParam(value="hcsVideo", required=false, defaultValue="") String csVideo,
+			@RequestParam(value="hcsRuntime", required=false, defaultValue="") String csRuntime) {
+		
+		ClassSub classSub = new ClassSub();
+		classSub.setCsCode(csCode);
+		classSub.setCsGroup(csGroup);
+		classSub.setCsTitle(csTitle);
+		classSub.setCsContent(csContent);
+		classSub.setCsVideo(csVideo);
+		classSub.setCsRuntime(csRuntime);
+		classSub.setCsYn("Y");
+		
+		classSubService.updateClassSub(classSub);
+		
+		return "redirect:/classSubList?cmcode="+csGroup;
+	}
+	
+	/*
+	 * 서브강의 삭제(상태값 변화)
+	 */
+	@RequestMapping("/classSubDel")
+	public String classSubDel(Model model,
+			@RequestParam(value="csCode", required=false, defaultValue="") String csCode,
+			@RequestParam(value="csGroup", required=false, defaultValue="") String csGroup
+			) {
+		
+		
+		
+		return "redirect:/classSubList?cmcode="+csGroup;
+	}
 }

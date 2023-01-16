@@ -15,7 +15,7 @@ function getChannelId(channelName, key){
 $.ajax({
             type: "GET",
             dataType: "json",
-            url: "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&regionCode=KR&q="+channelName+"&type=video&order=date&videoEmbeddable=true&key="+key,
+            url: "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=30&regionCode=KR&q="+channelName+"&type=video&order=date&videoEmbeddable=true&key="+key,
             contentType : "application/json",
             success : function(data) {
 
@@ -147,4 +147,40 @@ $(document).on("submit", "#classSubAddForm", function() {
 	
 });
 
+
+$(document).on("submit", "#classSubForm", function() {
+
+	$("#hcsTitle").val($("#csTitle").val());
+	$("#hcsCode").val($("#csCode").val());
+	$("#hcsGroup").val($("#csGroup").val());
+	$("#hcsContent").val($("#csContent").val());
+	$("#hcsRuntime").val($("#csRuntime").val());
+	
+	var title = $("#hcsTitle").val();
+	var cscontent = $("#hcsContent").val();
+	var video = $("#hcsVideo").val();
+	var csruntime = $("#hcsRuntime").val();
+	
+	if(title.length <=0){
+		alert("강의 명을 입력해주세요");
+		return false;
+	}
+	if(cscontent.length <=0){
+		alert("강의 내용을 입력해주세요");
+		return false;
+	}
+	if(video.length <=0){
+		alert("영상을 선택해주세요");
+		return false;
+	}
+	if(csruntime.length <=0){
+		alert("영상 시간을 입력해주세요");
+		return false;
+	}
+
+	$("#classSubForm").attr("action", "classSubMod");
+	$("#classSubForm").attr("method", "post");
+	$("#classSubForm").submit();
+	
+});
 

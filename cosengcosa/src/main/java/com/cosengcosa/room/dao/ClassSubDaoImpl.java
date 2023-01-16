@@ -51,5 +51,21 @@ public class ClassSubDaoImpl implements ClassSubDao {
 	public void insertClassSub(ClassSub classSub) {
 		sqlSession.insert(NAME_SPACE + ".insertClassSub", classSub);
 	}
+
+	/*
+	 * 서브강의 수정페이지 요청 시 호출되는 메소드
+	 */
+	@Override
+	public ClassSub getClassSub(String cscode) {
+		return sqlSession.selectOne(NAME_SPACE + ".getClassSub", cscode);
+	}
+
+	/*
+	 * 서브강의 수정 요청 시 호출되는 메소드
+	 */
+	@Override
+	public void updateClassSub(ClassSub classSub) {
+		sqlSession.update(NAME_SPACE + ".updateClassSub", classSub);
+	}
 	
 }

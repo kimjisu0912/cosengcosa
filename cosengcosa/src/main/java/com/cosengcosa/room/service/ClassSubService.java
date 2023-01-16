@@ -26,4 +26,15 @@ public interface ClassSubService {
 	 * 서브강의 입력 ClassSubDao에 호출 메소드
 	 */
 	public abstract void insertClassSub(ClassSub classSub); 
+	
+	/*
+	 * 서브강의 수정페이지 이동 ClassSubDao에 호출 메소드
+	 */
+	public abstract ClassSub getClassSub(String cscode);
+	
+	/*
+	 * 서브강의 수정 ClassSubDao에 호출 메소드
+	 */
+	public abstract void updateClassSub(ClassSub classSub);
+	
 }

@@ -79,7 +79,10 @@
 	        
 	        <!-- Modal footer -->
 	        <div class="modal-footer">
-	          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="onPlayerClose()">Close</button>
+	        	<c:if test="${sessionScope.member.id == 'admin' }">
+	        		<a href="classSubModFrom?csCode=${c.csCode}" class="btn btn-outline-success">강의수정</a>
+	        	</c:if>
+	         	<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="onPlayerClose()">Close</button>
 	        </div>
 	        
 	      </div>
@@ -87,3 +90,4 @@
 	</div> 
 </c:forEach>
 <script src="resources/js/iframeApi.js"></script>
+<script src="resources/js/classSubModify.js"></script>

@@ -1,13 +1,6 @@
 <%-- 회원가입 폼 요청 처리 결과를 출력할 View 페이지 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!-- 
-	새로운 5자리 우편번호로 회원 주소를 입력 받기 위해 daum.net에서
-	제공하는 우편번호 찾기 API를 사용하였다.
-	참고 사이트 : http://postcode.map.daum.net/guide
--->    
-<script src=
-"https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <div class="row my-5" id="global-content">
 	<div class="col">
 		<div class="row my-3 text-center">
@@ -56,9 +49,10 @@
 				<div class="col-8 offset-2">
 					<label for="address2" class="form-label">* 강의영상 : </label>
 					<input type="text" name="inputname" id="inputname"><button id="apibutton">api</button>
-					<div class="row" id="view">
+					<div style="width: 100%; height: 350px; overflow: scroll;">
+						<div class="row" id="view">
+						</div>
 					</div>
-					
 				</div>
 			</div>
 			<div class="row my-3">
