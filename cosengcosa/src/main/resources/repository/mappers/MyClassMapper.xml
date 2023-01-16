@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<!--
+	맵퍼의 namespace 속성은 맵핑 구문을 그룹핑 하는 역할을 한다.
+	여러 맵퍼에서 맵핑 구문의 id 속성의 값이 중복되더라도 namespace와
+	맵핑 구문의 id 속성에 지정한 값을 합쳐서 호출하기 때문에 맵핑 구문이
+	중복되지 않게 분류하여 관리할 수 있다.
+	테이블 이름을 바탕으로 namespace를 지정하고 맵핑 구문의 id 속성의
+	값은 SQL 문의 맥락에 따라서 명명하는 것이 일반적 이다.
+	
+	parameterType 속성에는 주로 SQL 문의 조건에 사용할 파라미터의
+	데이터 타입을 지정하는 속성으로 자바 원시 타입(기본 타입, String)과 자바빈,
+	Map과 같은 타입을 지정할 수 있다. resultType 속성도 parameterType
+	속성에서 지정한 타입을 많이 사용한다. parameterType과 resultType에
+	지정할 데이터 타입이 자바 원시 타입이면 생략가능하다.
+	
+	마이바티스 참고 사이트
+	  - http://blog.mybatis.org/ 
+	  - http://www.mybatis.org/mybatis-3/ko/index.html
+-->
+<mapper namespace="com.cosengcosa.room.mapper.MyClassMapper" >	
+
+<select id="getMyClassMain" resultType="MyClassMain" resultMap="MyClassMainResultMap">
+	SELECT mym_no, mym_mid, mym_code, mym_title, mym_name, mym_sdate, mym_edate, mym_done, mym_yn, video
+	FROM myclassmain, 
+	(SELECT cs_group, cs_code, cs_video video
+		FROM classsub)
+	WHERE mym_mid = #{id} 
+	AND mym_yn = 'Y'
+	AND cs_code = CONCAT(LOWER(mym_code),'_01')
+</select>
+<!-- 
+<select id="getMyClassSub" parameterType="hashmap" resultType="MyClassSub" resultMap="MyClassSubResultMap">
+	SELECT mys_mid FROM myclasssub
+	WHERE mys_mid = #{id}
+	AND mys_yn = 'Y'
+	
+	AND mys_group = #{mymCode}
+</select>
+ -->
+	<resultMap id="MyClassMainResultMap" type="MyClassMain">
+		<id property="mymNo" column="mym_no" />
+		<result property="mymMid" column="mym_mid" />
+		<result property="mymCode" column="mym_code" />
+		<result property="mymTitle" column="mym_title" />
+		<result property="mymName" column="mym_name" />
+		<result property="mymRuntime" column="mym_runtime" />
+		<result property="mymWatchtime" column="mym_watchtime" />
+		<result property="mymSdate" column="mym_sdate" />
+		<result property="mymEdate" column="mym_edate" />
+		<result property="mymDone" column="mym_done" />
+		<result property="mymYN" column="mym_yn" />
+		<result property="image" column="video" />
+	</resultMap>
+	
+	<resultMap id="MyClassSubResultMap" type="MyClassSub">
+		<id property="mysNo" column="mys_no" />
+		<result property="mysMid" column="mys_mid" />
+		<result property="mysCode" column="mys_code" />
+		<result property="mysGroup" column="mys_group" />
+		<result property="mysTitle" column="mys_title" />
+		<result property="mysContent" column="mys_content" />
+		<result property="mysVideo" column="mys_video" />
+		<result property="mysRuntime" column="mys_runtime" />
+		<result property="mysWatchtime" column="mys_watchtime" />
+		<result property="mysSdate" column="mys_sdate" />
+		<result property="mysEdate" column="mys_edate" />
+		<result property="mysDone" column="mys_done" />
+		<result property="mysYN" column="mys_yn" />
+	</resultMap>				
+</mapper>

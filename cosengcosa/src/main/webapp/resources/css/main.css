@@ -8,10 +8,15 @@
 .fbk {
 	color: black;
 	font-weight: bolder;
+	text-decoration: none;
 }
 
 .fwh {
 	color: white;
 	font-weight: bolder;
+}
+.dnone{
+	text-decoration: none;
+	color: gray;
 }
 

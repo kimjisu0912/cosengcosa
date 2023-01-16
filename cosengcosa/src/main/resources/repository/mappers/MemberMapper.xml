@@ -78,7 +78,7 @@
 		<result property="birth" column="m_birth" />
 		<result property="email" column="m_email" />
 		<result property="zipcode" column="m_zipcode" />
-		<result property="address1" column="m_address2" />
+		<result property="address1" column="m_address1" />
 		<result property="address2" column="m_address2" />
 		<result property="grant" column="m_grant" />
 		<result property="joindate" column="m_joindate" />

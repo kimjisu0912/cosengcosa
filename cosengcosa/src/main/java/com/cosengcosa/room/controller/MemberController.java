@@ -61,12 +61,13 @@ public class MemberController {
 			response.setContentType("text/html; charset=utf-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
-			out.println("	alert('비밀번호가 다릅니다.');");
+			out.println("	alert('비밀번호가 틀렸습니다.');");
 			out.println("	location.href='loginForm'");
 			out.println("</script>");
 			
 			return null;
 		}
+		
 		
 		Member member = memberService.getMember(id);
 		session.setAttribute("isLogin", true);	
@@ -76,7 +77,9 @@ public class MemberController {
 		 * 추가하면 스프링이 세션 영역에 데이터를 저장해 준다.
 		 **/ 
 		model.addAttribute("member", member);
-		session.setAttribute("userid", member.getName());
+		session.setAttribute("userName", member.getName());
+		session.setAttribute("userId", member.getId());
+		
 		System.out.println("member.name : " + member.getName());
 
 		/* 클라이언트 요청을 처리한 후 리다이렉트 해야할 경우 아래와 같이 redirect:

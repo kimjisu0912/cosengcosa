@@ -20,6 +20,7 @@
 	<script src="resources/js/pieChart.js"></script>
 	<script src="resources/js/zingchart.min.js"></script><!-- zingchart  -->
 	<script src="https://cdn.zingchart.com/zingchart.min.js"></script><!-- zingchart  -->
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> <!-- sweatalert -->
 	
   </head>
   <body>

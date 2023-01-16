@@ -18,11 +18,11 @@ $(function() {
 	
 	// 비밀번호 확인
 	$("#btnPassCheck").on("click",function(){
-		var oldId = $("#userId").val();
+		var oldId = $("#id").val();
 		var oldPass = $("#oldPass").val();
 		
 		if($.trim(oldPass).length == 0){
-			alert("기본 비밀번호를 입력해주세요");
+			swal("입력오류", "현재 비밀번호를 입력해주세요", 'warning');
 			return false;
 		}
 		// 쿼리스트링 데이터 작업
@@ -77,31 +77,47 @@ $(function() {
 	
 	// 아이디 중복검사
 	$("#btnOverlapId").on("click",function(){
-		var id = $("#userId").val();
+		var id = $("#id").val();
 		var url = "overlapIdCheck?id="+id;
 		
 		if(id.length<=0){
-			alert("아이디를 입력해 주세요");
+			swal("입력오류", "아이디를 입력해 주세요",'warning');
 			return false;
 		}
 		if(id.length < 5){
-			alert("아이디는 5자 이상 입력해야 합니다.");
+			swal("","아이디는 5자 이상 입력해야 합니다.",'warning');
 			return false;
 		}
 		// toolbar 이후 부터 옵션임
 		window.open(url, "idChedk", "toolbar=no, location=no, status=no, menubar=no, width=500, height=400");
 	});
 	
+	
 	// 우편번호 찾기 이벤트 처리
 	$("#btnZipcode").click(findZipcode); // findZipcode 호출
 	
 	// 정규식(https://developer.mozilla.org/ko/docs/Web/JavaScript/Guide/Regular_Expressions 참조)
 	// 회원가입 유효성 검사
-	$("#userId").on("keyup", inputCharReplace); // inputCharReplace 호출
+	$("#id").on("keyup", inputCharReplace); // inputCharReplace 호출
 	$("#pass1").on("keyup", inputCharReplace); 
 	$("#pass2").on("keyup", inputCharReplace); 
 	$("#emailId").on("keyup", inputCharReplace); 
 	$("#emailDomain").on("keyup", inputEmailDomainReplace); // inputCharReplace 호출
+	
+	// 생년월일 유효성 검사
+	$("#birthM").on("keyup", birthCheck);
+	$("#birthD").on("keyup", birthCheck);
+	
+	
+function birthCheck(){
+	if($("#birthY").val().length < 4){
+		swal("","년도는 4자리 입니다", 'warning');
+		$("#birthY").focus();
+	};
+	if($("#birthM").val().length == 0){
+		swal("","월을 입력해주세요", 'warning');
+	};
+}
 	
 	// 이메일 직접입력 선택입력 여부 체크
 	$("#selectDomain").on("change",function(){
@@ -135,15 +151,16 @@ $(function() {
 		var pass = $("#userPass").val();
 		
 		if(id.length <= 0) {
-			alert("아이디가 입력되지 않았습니다.\n아이디를 입력해주세요");
-			$("#userId").focus();
+			swal("","아이디가 입력되지 않았습니다.\n아이디를 입력해주세요", 'warning');
+			$("#id").focus();
 			return false;
 		}
 		if(pass.length <= 0) {
-			alert("비밀번호가 입력되지 않았습니다.\n비밀번호를 입력해주세요");
+			swal("","비밀번호가 입력되지 않았습니다.\n비밀번호를 입력해주세요", 'warning');
 			$("#userPass").focus();
 			return false;
 		}
+		
 	});
 	
 	
@@ -229,7 +246,7 @@ function inputCharReplace(){
 	// .test() > 모질라에서 만든 검증 함수
 	if(regExp.test($(this).val())) {
 		// [a-zA-Z0-9]
-		alert("영문 대소문자, 숫자만 입력 할 수 있습니다.");
+		swal("","영문 대소문자, 숫자만 입력 할 수 있습니다.", 'warning');
 		$(this).val($(this).val().replace(regExp,"")); //잘몬된 부분만 지워라 replace()함수 사용
 		return;
 	}
@@ -242,7 +259,7 @@ function inputEmailDomainReplace(){
 	// .test() > 모질라에서 만든 검증 함수
 	if(regExp.test($(this).val())) {
 		// [a-zA-Z0-9]
-		alert("이메일 도메인은 영문 소문자, 숫자, 점(.)만 입력 할 수 있습니다.");
+		swal("","이메일 도메인은 영문 소문자, 숫자, 점(.)만 입력 할 수 있습니다.", 'warning');
 		$(this).val($(this).val().replace(regExp,"")); //잘몬된 부분만 지워라 replace()함수 사용
 		return;
 	}
@@ -254,7 +271,7 @@ function inputEmailDomainReplace(){
  **/
 function joinFormCheck(isJoinForm) {
 	var name = $("#name").val();
-	var id = $("#userId").val();
+	var id = $("#id").val();
 	var pass1 = $("#pass1").val();
 	var pass2 = $("#pass2").val();
 	var zipcode = $("#zipcode").val();
@@ -264,50 +281,60 @@ function joinFormCheck(isJoinForm) {
 	var mobile2 = $("#mobile2").val();
 	var mobile3 = $("#mobile2").val();
 	var isIdCheck = $("#isIdCheck").val();
+	var birthY = $("#birthY").val();
+	var birthM = $("#birthM").val();
+	var birthD = $("#birthD").val();
 	
 	if(name.length == 0) {		
-		alert("이름이 입력되지 않았습니다.\n이름을 입력해주세요");
+		swal("입력오류","이름을 입력해주세요",'warning');
 		return false;
 	}	
 	if(id.length == 0) {		
-		alert("아이디가 입력되지 않았습니다.\n아이디를 입력해주세요");
+		swal("입력오류","아이디를 입력해주세요",'warning');
 		return false;
 	}		
 	if(isJoinForm && isIdCheck == 'false') {		
-		alert("아이디 중복 체크를 하지 않았습니다.\n아이디 중복 체크를 해주세요");
+		swal("입력오류","아이디 중복 체크를 해주세요",'warning');
 		return false;
 	}	
 	if(pass1.length == 0) {		
-		alert("비밀번호가 입력되지 않았습니다.\n비밀번호를 입력해주세요");
+		swal("입력오류","비밀번호를 입력해주세요",'warning');
 		return false;
 	}
 	
 	if(pass2.length == 0) {		
-		alert("비밀번호 확인이 입력되지 않았습니다.\n비밀번호 확인을 입력해주세요");
+		swal("입력오류","비밀번호 확인을 입력해주세요",'warning');
 		return false;
 	}
 	if(pass1 != pass2) {
-		alert("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
+		swal("입력오류","비밀번호와 비밀번호 확인이 일치하지 않습니다.",'warning');
 		return false;
 	}	
 	if(zipcode.length == 0) {		
-		alert("우편번호가 입력되지 않았습니다.\n우편번호를 입력해주세요");
+		swal("입력오류","우편번호를 입력해주세요",'warning');
 		return false;
 	}	
 	if(address1.length == 0) {		
-		alert("주소가 입력되지 않았습니다.\n주소를 입력해주세요");
+		swal("입력오류","주소를 입력해주세요",'warning');
 		return false;
 	}	
 	if(emailId.length == 0) {		
-		alert("이메일 아이디가 입력되지 않았습니다.\n이메일 아이디를 입력해주세요");
+		swal("입력오류","이메일 아이디를 입력해주세요",'warning');
 		return false;
 	}	
 	if(emailDomain.length == 0) {		
-		alert("이메일 도메인이 입력되지 않았습니다.\n이메일 도메인을 입력해주세요");
+		swal("입력오류","이메일 도메인을 입력해주세요",'warning');
 		return false;
 	}	
 	if(mobile2.length == 0 || mobile3.length == 0) {		
-		alert("휴대폰 번호가 입력되지 않았습니다.\n휴대폰 번호를 입력해주세요");
+		swal("입력오류","전화번호를 입력해주세요",'warning');
 		return false;
 	}
+	
+	if(birthD.length == o){
+		swal("입력오류","생년월일을 입력해주세요",'warning');
+		return false;
+	}
+	
+	swal("회원가입을 축하합니다!", "로그인 해주세요", 'success');
 }
