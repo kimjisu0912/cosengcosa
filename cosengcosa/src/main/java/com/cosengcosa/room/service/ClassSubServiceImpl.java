@@ -33,4 +33,34 @@ public class ClassSubServiceImpl implements ClassSubService {
 		return classSubDao.classSubList(cmcode);
 	}
 
+	/*
+	 * 서브강의 코드값을 서비스
+	 */
+	@Override
+	public ClassSub getClassSubCode(String cmcode) {
+		ClassSub classSub = classSubDao.getClassSubCode(cmcode);
+		String reCscode = "";
+		if(classSub.getCsCode().equals("01")) {
+			reCscode = "01";
+		}else {
+			
+			String[] arrary = classSub.getCsCode().split("_");
+			String result = arrary[1];
+			int newNum = Integer.parseInt(result) + 1;
+			
+			reCscode = arrary[0] +"_"+ newNum;
+		}
+		
+		classSub.setCsCode(reCscode);
+		return classSub;
+	}
+
+	/*
+	 * 서브강의 입력 서비스
+	 */
+	@Override
+	public void insertClassSub(ClassSub classSub) {
+		classSubDao.insertClassSub(classSub);
+	}
+
 }

@@ -5,7 +5,6 @@
  	let key = "AIzaSyDFyNAy8OkLEMb4y5vNIG8LZubxW0IqAYA";
  	let channelName = $("#inputname2").val();
  	getChannelId(channelName,key)
- 	console.log($("#inputname2").val());
 });
 
 function getChannelId(channelName, key){
@@ -47,3 +46,28 @@ $.ajax({
             }
         });
 }
+
+
+
+// ===============================================
+var timer =0;
+
+function resetTimer(){
+	$("#hid_sec").val(0);
+	$("#sec").html("0");
+}
+
+
+function startTimer(){
+	timer = setInterval(function () {
+		$("#hid_sec").val(Number($("#hid_sec").val()) + 1);
+		$("#sec").html($("#hid_sec").val());
+	 }, 1000); 
+}
+
+
+function stopTimer(){
+	clearInterval(timer);
+}
+
+

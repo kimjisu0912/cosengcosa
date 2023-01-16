@@ -23,37 +23,109 @@
 <mapper namespace="com.cosengcosa.room.mapper.StudyMapper" >
 	
 	<select id="studyList" resultType="Study" parameterType="hashmap">
-		SELECT 
-		    num, sNo, sCode, sTitle, sAskcontent, sAskimg, sAnswer, sAnswerimg, sAskid, sAnswerid, sOpen, sCdate, sCount, sRecommend, sYn 
-		FROM    
-		    (SELECT 
-		        ROWNUM num, sNo, sCode, sTitle, sAskcontent, sAskimg, sAnswer, sAnswerimg, sAskid, sAnswerid, sOpen, sCdate, sCount, sRecommend, sYn 
-		    FROM 
-		        (SELECT 
-		            s_no AS sNo,
-		            s_code AS sCode,
-		            s_title AS sTitle,
-	                s_askcontent AS sAskcontent,
-	                s_askimg AS sAskimg,
-	                s_answer AS sAnswer,
-	                s_answerimg AS sAnswerimg,
-	                s_askid AS sAskid,
-	                s_answerid AS sAnswerid,
-	                s_open AS sOpen,
-	                s_cdate AS sCdate,
-		            s_count AS sCount,
-		            s_recommend AS sRecommend,
-		            s_file AS sFile,
-		            s_yn AS sYn
-		        FROM 
-	            study 
-				WHERE 
-	            s_yn = 'Y' 
-	        ) study 
-	        ORDER BY sNo ASC 
-	    ) 
+		    SELECT
+			    num, sNo,sCode,sTitle,sAskcontent, sAskimg, sAnswer,sAnswerimg,sAskid,sAnswerid, sOpen,sCdate,sCount,sRecommend, sYn
+			FROM    
+			    (
+				    SELECT
+				        ROWNUM num, sNo,sCode,sTitle,sAskcontent, sAskimg, sAnswer,sAnswerimg,sAskid,sAnswerid, sOpen,sCdate,sCount,sRecommend, sYn
+				    FROM 
+				        (
+				            SELECT
+				                s_no AS sNo,
+				                s_code AS sCode,
+				                s_title AS sTitle,
+				                s_error AS sError,
+				                s_askcontent AS sAskcontent,
+				                s_askimg AS sAskimg,
+				                s_answer AS sAnswer,
+				                s_answerimg AS sAnswerimg,
+				                s_askid AS sAskid,
+				                s_answerid AS sAnswerid,
+				                s_open AS sOpen,
+				                s_cdate AS sCdate,
+				                s_count AS sCount,
+				                s_recommend AS sRecommend,
+				                s_file AS sFile,
+				                s_yn AS sYn
+				             FROM
+				                study
+				             WHERE
+				                s_yn = 'Y'
+				       ) study
+				    ORDER BY 
+				        sNo ASC
+			    )
+			<where>
+				num <![CDATA[>=]]> #{startRow} AND num <![CDATA[<=]]> #{endRow}
+				<if test="type == 'title'">
+					AND sTitle LIKE '%' || #{keyword} || '%'
+				</if>
+				<if test="type == 'writer'">
+					AND sAskid LIKE '%' || #{keyword} || '%'
+				</if>
+			</where> 
 	</select>
 	
+	<select id="getStudyCount" resultType="int">
+		SELECT 
+		    COUNT(s_no) 
+		FROM 
+			study 
+		<where>
+			<if test="type == 'title'">
+				s_title LIKE '%' || #{keyword} || '%'
+			</if>				
+			<if test="type == 'writer'">
+				s_askid LIKE '%' || #{keyword} || '%'
+			</if>				
+		</where>
+	</select>
+	
+	<select id="getStudy" resultType="Study" resultMap="StudyResultMap">
+		SELECT 
+			* 
+		FROM study 
+		WHERE s_no = #{sNo}
+	</select>
+	
+	<insert id="insertStudy" parameterType="Study"
+		useGeneratedKeys="true" keyProperty="no">
+		INSERT INTO study ( s_code, s_title, s_askcontent, s_askimg, s_answer, 
+		s_answerimg, s_askid, s_answerid, s_count, s_recommend, s_file, s_open, 
+		s_clear, s_cdate, s_yn) 
+		
+		VALUES(#{sCode}, #{sTitle}, #{sAskcontent}, #{sAskimg}, #{sAnswer}, #{sAnswerimg},
+			#{sAskid}, #{sAnswerid}, #{sCount}, #{sRecommend}, #{sFile}, #{sOpen}, #{sClear}, SYSDATE, #{sYn})
+				
+	</insert>
+	
+	<select id="isIdCheck">
+		SELECT
+            s_askid
+        FROM
+            study
+        WHERE
+            s_no = #{sNo}
+	</select>
+	
+	<update id="incrementReadCount">
+		UPDATE study
+			SET s_count = s_count + 1
+		WHERE s_no = #{sNo}
+	</update>
+	
+	<update id="updateStudy" parameterType="Study">
+		UPDATE study 
+			SET s_title = #{sTitle}, s_Askcontent = #{content},
+				s_cdate = SYSDATE
+		WHERE s_no = #{sNo}
+	</update>
+	
+	<delete id="deleteStudy">
+		DELETE FROM study
+		WHERE s_no = #{sNo}
+	</delete>
 	
 	<!-- Pay 클래스의 프로퍼티와 테이블의 컬럼을 맵핑하는 ResultMap -->
 	<resultMap id="StudyResultMap" type="Study" >
@@ -62,6 +134,7 @@
 		<result property="sRecommend" column="s_recommend" />
 		<result property="sCode" column="s_code" />
 		<result property="sTitle" column="s_title" />
+		<result property="sError" column="s_error" />
 		<result property="sAskcontent" column="s_askcontent" />
 		<result property="sAskimg" column="s_askimg" />
 		<result property="sAnswer" column="s_answer" />

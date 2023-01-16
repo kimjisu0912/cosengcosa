@@ -35,6 +35,8 @@ CREATE TABLE study(
         CONSTRAINT S_CODE_NN NOT NULL,				  
     s_title VARCHAR2(50 CHAR)                   -- 글 제목
         CONSTRAINT S_TITLE_NN NOT NULL,
+    s_error VARCHAR2(50 CHAR)
+        CONSTRAINT S_ERR_NN NOT NULL,
     s_askcontent VARCHAR2(700 CHAR)            -- 글 내용
         CONSTRAINT S_CON_NN NOT NULL,
     s_askimg VARCHAR2(10 CHAR),                -- 이미지
@@ -87,16 +89,16 @@ null,
 -- 테스트용 및 참고용
 -- 메인강의 테이블 값 입력
 -- 적당히 한 40번만 컨트롤 시프트 엔터로 하자
-INSERT INTO study (s_no, s_code, s_title, s_askcontent, s_askimg, s_answer, s_answerimg, s_askid, s_answerid, s_count, s_recommend, s_file, s_open, s_clear, s_cdate, s_yn) 
-VALUES (study_seq.NEXTVAL,'ja01', 'db 쿼리는 짜는데 ORA-02253 오류가 나요', '테이블 생성을 하면서 제약 조건을 주는데 자꾸 오류가 나요ㅠㅠ', null, '중간에 이름이 겹친게 하나 있네요. 한번 삭제 해보세요~~~', null, 'test01', 'test02', 20,10,null,'Y','Y','2023-01-06 17:31:08','Y');
-INSERT INTO study (s_no, s_code, s_title, s_askcontent, s_askimg, s_answer, s_answerimg, s_askid, s_answerid, s_count, s_recommend, s_file, s_open, s_clear, s_cdate, s_yn) 
-VALUES (study_seq.NEXTVAL,'ja02', 'spring에서 db데이터를 못 받아오는데 어떻게 하나요??', 'sql문이 틀린건지 명칭을 잘못준건지 어디가 문제인지 잘 모르겠어요.... 고인물분들 도와주세요', null, 'sql문에 띄어쓰기 하셧나요? 띄어쓰기를 하지 않으면 오류가 납니다!!', null, 'test01', 'test02', 15,7,null,'Y','Y','2022-11-14 13:24:22','Y');
-INSERT INTO study (s_no, s_code, s_title, s_askcontent, s_askimg, s_answer, s_answerimg, s_askid, s_answerid, s_count, s_recommend, s_file, s_open, s_clear, s_cdate, s_yn) 
-VALUES (study_seq.NEXTVAL,'ja03', 'HTML에서 블럭을 오른쪽으로 보내고 싶은데...', '시작하지 일주일도 안되서 방법을 하나도 모르겠어요... ', null, '태그에 style속성을 주고 float:right을 주면 됩니다.', null, 'test01', 'test02', 30,12,null,'Y','Y','2023-01-02 22:20:05','Y');
-INSERT INTO study (s_no,  s_code, s_title, s_askcontent, s_askimg, s_answer, s_answerimg, s_askid, s_answerid, s_count, s_recommend,  s_file, s_open, s_clear, s_cdate, s_yn) 
-VALUES (study_seq.NEXTVAL,'ja04', 'java를 다운 받으려는데 설치는 했는데 실행이 안됬읍니다.  ', '모르겠읍니다', null, '어후 틀딱 이것도 못하냐 java만 다운 받으면 안되고 jdk라고 검색받고 깔고 다시해봐', null, 'test01', 'test02', 99,55,null,'Y','Y','2023-01-02 13:33:55','Y');
-INSERT INTO study (s_no, s_code, s_title, s_askcontent, s_askimg, s_answer, s_answerimg, s_askid, s_answerid, s_count, s_recommend, s_file, s_open, s_clear, s_cdate, s_yn) 
-VALUES (study_seq.NEXTVAL,'ja05', '님들 오늘 신로림역에서 지갑 잃어버림 보신 분?', '제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발', null, '이건 뭐하는 놈이냐 ㅋㅋㅋㅋㅋ ', null, 'test01', 'test02', 5,0,null,'Y','Y','2023-01-05 18:34:26','Y');
+INSERT INTO study (s_no, s_code, s_title, s_error, s_askcontent, s_askimg, s_answer, s_answerimg, s_askid, s_answerid, s_count, s_recommend, s_file, s_open, s_clear, s_cdate, s_yn) 
+VALUES (study_seq.NEXTVAL,'ja01', 'db 쿼리는 짜는데 ORA-02253 오류가 나요','sql command not properly ended', '테이블 생성을 하면서 제약 조건을 주는데 자꾸 오류가 나요ㅠㅠ', null, '중간에 이름이 겹친게 하나 있네요. 한번 삭제 해보세요~~~', null, 'test01', 'test02', 20,10,null,'Y','Y','2023-01-06 17:31:08','Y');
+INSERT INTO study (s_no, s_code, s_title, s_error, s_askcontent, s_askimg, s_answer, s_answerimg, s_askid, s_answerid, s_count, s_recommend, s_file, s_open, s_clear, s_cdate, s_yn) 
+VALUES (study_seq.NEXTVAL,'ja02', 'spring에서 db데이터를 못 받아오는데 어떻게 하나요??','sql command not properly ended',  'sql문이 틀린건지 명칭을 잘못준건지 어디가 문제인지 잘 모르겠어요.... 고인물분들 도와주세요', null, 'sql문에 띄어쓰기 하셧나요? 띄어쓰기를 하지 않으면 오류가 납니다!!', null, 'test01', 'test02', 15,7,null,'Y','Y','2022-11-14 13:24:22','Y');
+INSERT INTO study (s_no, s_code, s_title,s_error,  s_askcontent, s_askimg, s_answer, s_answerimg, s_askid, s_answerid, s_count, s_recommend, s_file, s_open, s_clear, s_cdate, s_yn) 
+VALUES (study_seq.NEXTVAL,'ja03', 'HTML에서 블럭을 오른쪽으로 보내고 싶은데...','sql command not properly ended',  '시작하지 일주일도 안되서 방법을 하나도 모르겠어요... ', null, '태그에 style속성을 주고 float:right을 주면 됩니다.', null, 'test02', 'test01', 30,12,null,'Y','Y','2023-01-02 22:20:05','Y');
+INSERT INTO study (s_no,  s_code, s_title, s_error, s_askcontent, s_askimg, s_answer, s_answerimg, s_askid, s_answerid, s_count, s_recommend,  s_file, s_open, s_clear, s_cdate, s_yn) 
+VALUES (study_seq.NEXTVAL,'ja04', 'java를 다운 받으려는데 설치는 했는데 실행이 안됬읍니다.  ','sql command not properly ended',  '모르겠읍니다', null, '어후 틀딱 이것도 못하냐 java만 다운 받으면 안되고 jdk라고 검색받고 깔고 다시해봐', null, 'test01', 'test02', 99,55,null,'Y','Y','2023-01-02 13:33:55','Y');
+INSERT INTO study (s_no, s_code, s_title, s_error, s_askcontent, s_askimg, s_answer, s_answerimg, s_askid, s_answerid, s_count, s_recommend, s_file, s_open, s_clear, s_cdate, s_yn) 
+VALUES (study_seq.NEXTVAL,'ja05', '님들 오늘 신도림역에서 지갑 잃어버림 보신 분?','sql command not properly ended',  '제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발', null, '이건 뭐하는 놈이냐 ㅋㅋㅋㅋㅋ ', null, 'test01', 'test02', 5,0,null,'Y','Y','2023-01-05 18:34:26','Y');
 
 commit;
 select * from study ORDER BY s_no DESC;
@@ -136,5 +138,16 @@ SELECT
     )
 	WHERE num>=1 AND num <= 10
     ;
+
+
+    SELECT 
+		    COUNT(*) 
+		FROM 
+			study 
+		WHERE 
+			s_title LIKE '%' || 'db' || '%'	
+        ;
+
+SELECT * FROM study WHERE s_no = 5;
 
 -- sNo,sCode,sTitle,sAskcontent, sAskimg, sAnswer,sAnswerimg,sAskid,sAnswerid, sOpen,sCdate,sCount,sRecommend, sYn
