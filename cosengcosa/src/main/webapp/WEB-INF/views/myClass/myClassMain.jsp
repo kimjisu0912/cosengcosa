@@ -32,7 +32,7 @@
 		<div class="row mt-3">
 			<div class="col-6">
 				<div class="row text-center"> 
-					<h4>최근 본 강의</h4>
+					<h4>최근 본 강의</h4> 
 				</div>
 				<div class="row mt-3">
 					<div class="col">
