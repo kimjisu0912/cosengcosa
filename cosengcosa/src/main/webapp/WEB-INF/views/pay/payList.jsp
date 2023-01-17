@@ -12,7 +12,7 @@
  <div class="row" id="global-content">
  	<div class="row my-5 text-center">
  		<div class="col">
- 			<h2 class="fs-3 fw-bold">결재 리스트${sessionScope.member.id }</h2>
+ 			<h2 class="fs-3 fw-bold">${sessionScope.member.id }님의 결재 리스트</h2>
  		</div>
  	</div>
  		<div class="row">
@@ -20,6 +20,7 @@
 				<div class="col-2">
 					<input type="text" name="datePicker1" id="datePicker1" class="form-control" value="${datePicker1 }">
 				</div>
+				~
 				<div class="col-2">
 					<input type="text" name="datePicker2" class="form-control" value="${datePicker2 }" readonly>
 				</div>

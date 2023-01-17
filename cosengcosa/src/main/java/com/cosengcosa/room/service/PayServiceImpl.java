@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cosengcosa.room.dao.PayDao;
+import com.cosengcosa.room.domain.ClassMain;
 import com.cosengcosa.room.domain.Pay;
 
 /**
@@ -106,5 +107,29 @@ public class PayServiceImpl implements PayService{
 		}
 		
 		return modelMap;
+	}
+
+	/*
+	 * 중복결재를 방지 하기 위한 장바구니 확인 서비스
+	 */
+	@Override
+	public int baCount(String cmcode) {
+		return payDao.baCount(cmcode);
+	}
+
+	/*
+	 * 중복 결재를 방지 하기 위한 장바구니 삭제 서비스
+	 */
+	@Override
+	public void baDelete(String cmcode) {
+		payDao.baDelete(cmcode);
+	}
+
+	/*
+	 * 결재에 필요한 강의(메인)정보 서비스
+	 */
+	@Override
+	public ClassMain getClassMainInfo(String cmcode) {
+		return payDao.getClassMainInfo(cmcode);
 	}
 }

@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.cosengcosa.room.domain.ClassMain;
 import com.cosengcosa.room.domain.Pay;
 
 /**
@@ -57,6 +58,30 @@ public class PayDaoImpl implements PayDao {
 		params.put("datePicker2", datePicker2);
 
 		return sqlSession.selectList(NAME_SPACE + ".payList", params);
+	}
+
+	/*
+	 * 결재 등록 하기 전 장바구니 확인 메소드
+	 */
+	@Override
+	public int baCount(String cmcode) {
+		return sqlSession.selectOne(NAME_SPACE + ".baCount", cmcode);
+	}
+
+	/*
+	 * 결재 등록 하기 전 장바구니 삭제 메소드
+	 */
+	@Override
+	public void baDelete(String cmcode) {
+		sqlSession.delete(NAME_SPACE + ".baDelete", cmcode);
+	}
+
+	/*
+	 * 결재에 필요한 강의(메인)정보 메소드
+	 */
+	@Override
+	public ClassMain getClassMainInfo(String cmcode) {
+		return sqlSession.selectOne(NAME_SPACE + ".getClassMainInfo", cmcode);
 	}
 
 }

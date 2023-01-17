@@ -38,14 +38,15 @@
 	<!-- 결재 리스트 조회 -->
 	<select id="payList" resultType="Pay" parameterType="hashmap">
 	SELECT
-	    num, pNo,  pMid, pCmcode, pCname, pChk, pPrice, pCdate, pYn
+	    num, pNo,  pMid, pName, pCmcode, pCname, pChk, pPrice, pCdate, pYn
 	FROM    
 	    (SELECT
-	        ROWNUM num, pNo, pMid, pCmcode, pCname, pChk, pPrice, pCdate, pYn
+	        ROWNUM num, pNo, pMid, pName, pCmcode, pCname, pChk, pPrice, pCdate, pYn
 	    FROM 
 	        (SELECT
 	            p_no AS pNo,
 	            p_mid AS pMid,
+	            p_name AS pName,
 	            p_cmcode AS pCmcode,
                 p_cname AS pCname,
 	            p_chk AS pChk,
@@ -65,10 +66,27 @@
 	WHERE num  <![CDATA[>=]]>#{startRow} AND num <![CDATA[<=]]>#{endRow}
 	</select>
 	
+	<select id="baCount" resultType="int">
+	</select>
+	
+	<delete id="baDelete">
+	</delete>
+	
+	<select id="getClassMainInfo" resultType="ClassMain">
+		SELECT 
+			cm_title AS cmTitle, 
+			cm_price AS cmPrice
+		FROM 
+			classmain
+		WHERE
+			cm_code = #{cmcode}
+	</select>
+	
 	<!-- Pay 클래스의 프로퍼티와 테이블의 컬럼을 맵핑하는 ResultMap -->
 	<resultMap id="payResultMap" type="Pay" >
 		<id property="pNo" column="p_no" />
 		<result property="pMid" column="p_mid" />
+		<result property="pName" column="p_name" />
 		<result property="pCmcode" column="p_cmcode" />
 		<result property="pCname" column="p_cname" />
 		<result property="pChk" column="p_chk" />

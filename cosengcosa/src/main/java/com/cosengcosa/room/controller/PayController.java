@@ -1,10 +1,12 @@
 package com.cosengcosa.room.controller;
 
+import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.cosengcosa.room.domain.ClassMain;
 import com.cosengcosa.room.service.PayService;
 
 /**
@@ -52,4 +55,45 @@ public class PayController {
 		
 		return "/pay/payList";
 	}
+	
+	/*
+	 * 결재 입력 폼
+	 */
+	@RequestMapping("/payAddForm")
+	public String payAddForm(Model model,
+			@RequestParam(value="cmcode", required=false, defaultValue="null") String cmcode,
+			HttpServletRequest request, HttpSession session, PrintWriter out, HttpServletResponse response) {
+		
+		String userid = (String) session.getAttribute("userId");
+		if(userid == null) {
+			
+			response.setContentType("text/html; charset=utf-8");
+			StringBuilder sb = new StringBuilder();
+			sb.append("<script>");
+			sb.append("	alert('로그인이 필요한 서비스 입니다.');");
+			sb.append("	history.back();");
+			sb.append("</script>");
+			
+			out.println(sb.toString());
+			return null;			
+			
+		}else {
+			// 장바구니에 해당 과목이 있는지 확인
+			// int cnt = payService.baCount(cmcode);
+			// 있으면 장바구니에 해당과목 삭제
+			// if(cnt > 0) {
+			//	payService.baDelete(cmcode);
+			// }
+			
+			// 코드값으로 메인강의 에서 정보 가져오기
+			ClassMain classmain = payService.getClassMainInfo(cmcode);
+			model.addAttribute("classmain", classmain);
+
+			return "/pay/payAddForm";
+		}
+		
+		
+		
+	}
+	
 }

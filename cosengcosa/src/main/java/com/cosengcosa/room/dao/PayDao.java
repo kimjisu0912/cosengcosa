@@ -2,6 +2,7 @@ package com.cosengcosa.room.dao;
 
 import java.util.List;
 
+import com.cosengcosa.room.domain.ClassMain;
 import com.cosengcosa.room.domain.Pay;
 
 /**
@@ -17,4 +18,14 @@ public interface PayDao {
 	
 	// 결재리스트 요청 시 호출되는 메소드
 	public abstract List<Pay> payList(int startRow, int endRow, int PAGE_SIZE, String type, String keyword, String userid);
+	
+	// 결재 등록 하기 전 장바구니 확인 메소드
+	public abstract int baCount(String cmcode);
+	
+	// 결재 등록 하기 전 장바구니 삭제 메소드
+	public abstract void baDelete(String cmcode);
+	
+	// 결재에 필요한 강의(메인)정보 메소드
+	public abstract ClassMain getClassMainInfo(String cmcode);
+	
 }

@@ -12,6 +12,7 @@ public class Pay {
 	
 	private int pNo;
 	private String pMid;
+	private String pName;
 	private String pCmcode;
 	private String pCname;
 	private String pChk;
@@ -22,9 +23,10 @@ public class Pay {
 	
 	// 생성자
 	public Pay() {}
-	public Pay(int pNo, String pMid, String pCmcode, String pCname, String pChk, int pPrice, Timestamp pCdate, String pYn, int num) {
+	public Pay(int pNo, String pMid, String pName, String pCmcode, String pCname, String pChk, int pPrice, Timestamp pCdate, String pYn, int num) {
 		this.pNo = pNo;
 		this.pMid = pMid;
+		this.pName = pName;
 		this.pCmcode = pCmcode;
 		this.pCname = pCname;
 		this.pChk = pChk;
@@ -44,6 +46,12 @@ public class Pay {
 	}
 	public void setpMid(String pMid) {
 		this.pMid = pMid;
+	}
+	public String getpName() {
+		return pName;
+	}
+	public void setpName(String pName) {
+		this.pName = pName;
 	}
 	public String getpCmcode() {
 		return pCmcode;
