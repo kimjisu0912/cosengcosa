@@ -37,4 +37,9 @@ public interface ClassSubService {
 	 */
 	public abstract void updateClassSub(ClassSub classSub);
 	
+	/*
+	 * 서브강의 삭제 ClassSubDao에 호출 메소드
+	 */
+	public abstract void deleteClassSub(ClassSub classSub);
+	
 }

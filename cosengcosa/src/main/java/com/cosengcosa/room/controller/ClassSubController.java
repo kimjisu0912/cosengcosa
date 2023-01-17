@@ -145,7 +145,11 @@ public class ClassSubController {
 			@RequestParam(value="csGroup", required=false, defaultValue="") String csGroup
 			) {
 		
+		ClassSub classSub = new ClassSub();
+		classSub.setCsCode(csCode);
+		classSub.setCsYn("N");
 		
+		classSubService.deleteClassSub(classSub);
 		
 		return "redirect:/classSubList?cmcode="+csGroup;
 	}

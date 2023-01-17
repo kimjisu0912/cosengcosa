@@ -99,13 +99,13 @@
 	      
 	        <!-- Modal Header -->
 	        <div class="modal-header bg-dark text-white">
-	          <h4 class="modal-title">강의 삭제</h4>
+	          <h4 class="modal-title"><i class="bi bi-exclamation-circle"></i>&nbsp;&nbsp;강의 삭제</h4>
 	          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">&times;</button>
 	        </div>
 	        
 	        <!-- Modal body -->
 	        <div class="modal-body text-center">
-	        	' ${classSub.csTitle } ' 을(를) 삭제 하시겠습니까?
+	        	<i class="bi bi-exclamation-circle-fill"></i> &nbsp;&nbsp;' ${classSub.csTitle } ' 을(를) 삭제 하시겠습니까?
 	        </div>
 	        
 	        <!-- Modal footer -->

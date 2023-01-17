@@ -67,5 +67,13 @@ public class ClassSubDaoImpl implements ClassSubDao {
 	public void updateClassSub(ClassSub classSub) {
 		sqlSession.update(NAME_SPACE + ".updateClassSub", classSub);
 	}
+
+	/*
+	 * 서브강의 삭제 요청 시 호출되는 메소드
+	 */
+	@Override
+	public void deleteClassSub(ClassSub classSub) {
+		sqlSession.update(NAME_SPACE + ".deleteClassSub", classSub);
+	}
 	
 }

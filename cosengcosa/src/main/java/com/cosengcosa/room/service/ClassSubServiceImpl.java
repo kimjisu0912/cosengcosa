@@ -80,4 +80,12 @@ public class ClassSubServiceImpl implements ClassSubService {
 		classSubDao.updateClassSub(classSub);
 	}
 
+	/*
+	 * 서브강의 삭제 서비스
+	 */
+	@Override
+	public void deleteClassSub(ClassSub classSub) {
+		classSubDao.deleteClassSub(classSub);
+	}
+
 }

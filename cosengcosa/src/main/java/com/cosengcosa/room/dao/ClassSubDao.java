@@ -26,4 +26,7 @@ public interface ClassSubDao {
 	
 	// 서브강의 수정 요청 시 호출되는 메소드
 	public abstract void updateClassSub(ClassSub classSub);
+	
+	// 서브강의 삭제 요청 시 호출되는 메소드
+	public abstract void deleteClassSub(ClassSub classSub);
 }

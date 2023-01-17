@@ -42,8 +42,7 @@ public class PayController {
 			@RequestParam(value="datePicker2", required=false, defaultValue="null") String datePicker2,
 			HttpServletRequest request, HttpSession session) {
 		
-		String userid = (String) session.getAttribute("userid");
-		
+		String userid = (String) session.getAttribute("userId");
 		
 		// 결재 리스트 서비스 호출통해서 결재리스트 데이터를 가져온다.
 		Map<String, Object> modelMap = payService.payList(pageNum, datePicker1, datePicker2, userid);

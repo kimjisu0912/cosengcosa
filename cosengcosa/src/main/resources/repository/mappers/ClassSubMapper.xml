@@ -59,6 +59,15 @@
 		    cs_code = #{csCode}
 	</update>
 	
+	<update id="deleteClassSub" parameterType="ClassSub">
+		UPDATE
+		    classsub
+		SET
+		    cs_yn = #{csYn}
+		WHERE
+		    cs_code = #{csCode}
+	</update>
+	
 	<resultMap id="classSubResultMap" type="ClassSub">
 		<id property="csNo" column="cs_no" />
 		<result property="csCode" column="cs_code" />
