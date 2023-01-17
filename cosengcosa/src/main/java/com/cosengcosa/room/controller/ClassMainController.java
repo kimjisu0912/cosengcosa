@@ -60,7 +60,7 @@ public class ClassMainController {
 		return "/class/classMainList";
 	}
 	
-	@RequestMapping({"/classMainDetail", "/payList"})
+	@RequestMapping("/classMainDetail")
 	public String classMainDetail(Model model, int cmNo, 
 	@RequestParam(value="type", required=false, defaultValue="null") String type,
 	@RequestParam(value="keyword", required=false, defaultValue="null") String keyword,
@@ -80,8 +80,8 @@ public class ClassMainController {
 	}
 	
 	
-	@RequestMapping(value="/classMainInsert", method= RequestMethod.GET)
-	public String classInsert(HttpServletRequest request,
+	@RequestMapping(value="/classMainAdd", method= RequestMethod.GET)
+	public String classMainAdd(HttpServletRequest request,
 			String cmTitle, String cmCode, String cmName,  String cmContent, 
 			@RequestParam(value="file1", required=false) MultipartFile multipartFile
 			) throws IOException{
