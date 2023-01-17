@@ -25,23 +25,26 @@
 <!-- 이번에 별칭을 사용해보자 동적쿼리에 부동호가 사용되게 되면 CDATA 기법 사용해야된다. -->
 	<select id="classMainList" resultType="ClassMain" parameterType="hashmap">
 	SELECT
-	    num, cmNo, cmCode,cmTitle, cmName, cmPeriod, cmPrice, cmCount,
-	    cmRecommend, cmStar, cmYn
+	    num, cmNo, cmCode, cmTitle, cmName, cmContent, cmPeriod, cmPrice, cmCount,
+	    cmRecommend, cmStar, file1, video, cmYn
 	FROM    
 	    (SELECT
-	        ROWNUM num, cmNo, cmCode, cmTitle, cmName, cmPeriod, cmPrice, cmCount,
-	        cmRecommend, cmStar, cmYn
+	        ROWNUM num, cmNo, cmCode, cmTitle, cmName, cmContent, cmPeriod, cmPrice, cmCount,
+	        cmRecommend, cmStar, file1, video, cmYn
 	    FROM 
 	        (SELECT
 	            cm_no AS cmNo,
 	            cm_code AS cmCode,
 	            cm_title AS cmTitle,
 	            cm_name AS cmName,
+	            cm_content AS cmContent,
 	            cm_period AS cmPeriod,
 	            cm_price AS cmPrice,
 	            cm_count AS cmCount,
 	            cm_recommend AS cmRecommend,
-	            cm_star AS cmStar,	        
+	            cm_star AS cmStar,	
+	            file1 AS file1,	
+	            video AS video,	        
 	            cm_yn AS cmYn
 	        FROM
             classmain
@@ -67,11 +70,89 @@
 	 		classmain
 	 	<where>
 			cm_yn = 'Y'
-	 		<if test="type=='cmname'">
-	 			AND cm_name LIKE '%' || #{keyword} || '%'
+	 		<if test="type=='cmtitle'">
+	 			AND cm_title LIKE '%' || #{keyword} || '%'
 	 		</if>
 	 	</where>
 	 </select>
+	 
+	<!-- 메인강의 결재 처음유무 조회 -->
+	<select id="payCountChk" resultType="String" parameterType="HashMap">
+		SELECT
+		    count(*) as cnt
+		FROM
+		    pay
+		WHERE
+		    p_cmcode = #{cmCode}
+		    AND p_mid = #{userid}
+	</select>
+	
+	<!-- 메인강의 결재 상태유무 조회 -->
+	<select id="payChk" resultType="ClassMain" parameterType="HashMap">
+		SELECT
+		    p_no, NVL(p_CHK, 'N') as payChk, p_cdate
+		FROM
+		    pay
+		WHERE
+		    p_cmcode = #{cmCode}
+		    AND p_mid = #{userid}
+		GROUP by p_no, p_CHK, p_cdate
+		ORDER BY p_cdate, p_no
+	</select>
+	
+	<select id="detailVideo" resultType="ClassMain" parameterType="HashMap">
+		SELECT b.cs_video as cmVideo FROM
+			classmain a,
+			classsub b
+		WHERE
+			a.cm_code = b.cs_group
+			AND a.cm_code = #{cmCode}
+			AND b.cs_code = (SELECT MIN(cs_code) FROM classsub
+			WHERE cs_group = #{cmCode})
+	</select>
+	
+	 <!-- 메인강의 상세조회 -->
+	<select id="getDetail" resultType="ClassMain" parameterType="HashMap">
+		SELECT
+			num, cmNo, cmCode, cmTitle, cmName, cmContent, cmPeriod, cmPrice, cmCount,
+	   			 cmRecommend, cmStar, file1, video, cmYn
+		FROM 
+		 (SELECT
+	        ROWNUM num, cmNo, cmCode, cmTitle, cmName, cmContent, cmPeriod, cmPrice, cmCount,
+	        cmRecommend, cmStar, file1, video, cmYn
+	    FROM 
+	        (SELECT
+	            cm_no AS cmNo,
+	            cm_code AS cmCode,
+	            cm_title AS cmTitle,
+	            cm_name AS cmName,
+	            cm_content AS cmContent,
+	            cm_period AS cmPeriod,
+	            cm_price AS cmPrice,
+	            cm_count AS cmCount,
+	            cm_recommend AS cmRecommend,
+	            cm_star AS cmStar,	
+	            file1 AS file1,	
+	            video AS video,	        
+	            cm_yn AS cmYn
+	        FROM
+            classmain
+       <where>
+			cm_no = #{cmNo}
+	 	</where>
+        ) classmain
+        ORDER BY cmNo 	
+    )
+	WHERE cmNo =#{cmNo}
+	</select> 
+	
+	
+	<insert id="classInsert" parameterType="HashMap" useGeneratedKeys="true" keyProperty="no">
+		INSERT INTO classmain(cmTitle, cmName, cmCode, cmPeriod)		
+		VALUES(#{cmTitle}, #{cmName},#{cmContent}, #{cmCode}, #{cmPeriod})
+	</insert>
+	 
+	 
 	 
 	 
 	 <!--
@@ -90,10 +171,13 @@
 		<id property="cmNo" column="cm_no" />
 		<result property="cmId" column="cm_id" />
 		<result property="cmCode" column="cm_code" />
+		<result property="cmTitle" column="cm_title" />
 		<result property="cmName" column="cm_name" />
+		<result property="cmContent" column="cm_content" />
 		<result property="cmSdate" column="cm_sdate" />
 		<result property="cmEdate" column="cm_edate" />
 		<result property="cmPrice" column="cm_price" />
+		<result property="cmPeriod" column="cm_period" />
 		<result property="cmCount" column="cm_count" />
 		<result property="cmRecommend" column="cm_recommend" />
 		<result property="cmStar" column="cm_star" />

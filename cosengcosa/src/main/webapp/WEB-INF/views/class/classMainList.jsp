@@ -50,7 +50,7 @@
  	<c:if test="${not searchOption }" >
 	 	<div class="row">
 	 		<div class="col text-end">
-	 			<a href="writeForm" class="btn btn-outline-success">글쓰기</a>
+	 			<a href="classInsert" class="btn btn-outline-success">글쓰기</a>
 	 		</div>
 	 	</div>
  	</c:if>
@@ -72,7 +72,7 @@
  						<c:forEach var="c" items="${classMainList }">
  							<tr class="table-light">
  								<td>${c.cmNo }</td>
- 								<td><a href="classMainDetail?cmNo=${c.cmNo }&pageNum=${currentPage}&type=${type}&keyword=${keyword}">${c.cmTitle }</a></td>
+ 								<td><a href="classMainDetail?cmNo=${c.cmNo }&cmCode=${c.cmCode }&pageNum=${currentPage}&type=${type}&keyword=${keyword}">${c.cmTitle }</a></td>
  								<td>${c.cmPrice }</td>
  								<td>${c.cmStar }</td>
  							</tr>
@@ -84,7 +84,7 @@
  						<c:forEach var="c" items="${classMainList }">
  							<tr class="table-light">
  								<td>${c.cmNo }</td>
- 								<td><a href="classMainDetail?cmNo=${c.cmNo }&pageNum=${currentPage}">${c.cmTitle }</a></td>
+ 								<td><a href="classMainDetail?cmNo=${c.cmNo }&cmCode=${c.cmCode }&pageNum=${currentPage}">${c.cmTitle }</a></td>
  								<td>${c.cmPrice }</td>
  								<td>${c.cmStar }</td>
  							</tr>

@@ -3,17 +3,20 @@ package com.cosengcosa.room.controller;
 import java.io.PrintWriter;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cosengcosa.room.domain.ClassMain;
 import com.cosengcosa.room.service.ClassMainService;
+
 
 /**
  * 메인강의 컨트롤러
@@ -29,7 +32,7 @@ public class ClassMainController {
 	private ClassMainService classMainService;
 	
 	public void setClassMainService(ClassMainService classMainService) {
-		
+		this.classMainService = classMainService;
 	}
 	
 	/*
@@ -47,32 +50,68 @@ public class ClassMainController {
 		// 파라미터로 받은 모델 객체에 도메인 객체나 비지니스 로직을 처리한 결과를 모델을 저장.
 		model.addAllAttributes(modelMap);
 		
-		System.out.println("dd");  
+	
 		return "/class/classMainList";
 	}
 	
-	@RequestMapping("/classMainDetail")
-	public String classMainDetail(Model model, int cmNo, int pageNum,
+	@RequestMapping({"/classMainDetail", "/payList"})
+	public String classMainDetail(Model model, int cmNo, 
 	@RequestParam(value="type", required=false, defaultValue="null") String type,
-	@RequestParam(value="keyword", required=false, defaultValue="null") String keyword) {
+	@RequestParam(value="keyword", required=false, defaultValue="null") String keyword,
+	@RequestParam(value="cmCode", required=false, defaultValue="null") String cmCode,
+	HttpServletRequest request, HttpSession session) {
 		
 		
-		ClassMain cl = classMainService.getDetail(cmNo, true);
+		String userid = (String) session.getAttribute("userId");
 		
-		model.addAttribute("cl",cl );
-		model.addAttribute("pageNum",pageNum );
-		System.out.println("dd");  
+		Map<String, Object> cl = classMainService.getDetail(cmNo, true, cmCode, userid);
+		
+		model.addAllAttributes(cl);
+		
+		 
 		
 		return "/class/classMainDetail";
 	}
 	
-	@RequestMapping(value="/delete", method=RequestMethod.POST)// delete라고 했지만, 'N'으로 바꾸기 위해 update 구문
-	public String DeleteMain(Model model, HttpServletResponse response, 
-			PrintWriter out, int cmNo, String pass) {
-	//패스워드 필요한가?
+	
+	@RequestMapping(value="/classInsert")
+	public String classInsert(HttpServletRequest request,
+			String cmTitle, String cmCode, String cmName, int cmPeriod, String cmContent
+			) {
 		
+		ClassMain cl = new ClassMain();
 		
+		cl.setCmTitle(cmTitle);
+		cl.setCmCode(cmCode);
+		cl.setCmName(cmName);
+		cl.setCmPeriod(cmPeriod);
+		cl.setCmContent(cmContent);
 		
-		return null;
-	} 
+		classMainService.insertBoard(cl);
+		
+		return "redirect:classMainList";
+	}
+	
+	/*
+	 * @RequestMapping(value="/delete")// delete라고 했지만, 'N'으로 바꾸기 위해 update 구문
+	 * public String DeleteMain(Model model, HttpServletResponse response,
+	 * PrintWriter out, int cmNo,
+	 * 
+	 * @RequestParam(value="type", required=false, defaultValue="null") String type,
+	 * 
+	 * @RequestParam(value="keyword", required=false, defaultValue="null") String
+	 * keyword) throws Exception {
+	 * 
+	 * boolean searchOption = (type.equals("null")|| keyword.equals("null")) ? false
+	 * : true;
+	 * 
+	 * if(searchOption) { model.addAttribute("type", type);
+	 * model.addAttribute("keyword", keyword); }
+	 * 
+	 * ClassMain main = classMainService.getDelete(cmNo, false);
+	 * 
+	 * model.addAttribute("main", main);
+	 * 
+	 * return "classDelete"; }
+	 */
 }

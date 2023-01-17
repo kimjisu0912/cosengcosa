@@ -14,6 +14,7 @@ public class ClassMain {
 	private String cmCode;
 	private String cmTitle;
 	private String cmName;
+	private String cmContent;
 	private int cmPeriod;
 	private int cmPrice;
 	private int cmCount;
@@ -22,15 +23,20 @@ public class ClassMain {
 	private String file1;
 	private String video;
 	private String cmYn;
+	private String payChk;
+	private String cmVideo;
 	
 	// 생성자
 	public ClassMain() {}
-	public ClassMain(int cmNo, String cmId, String cmCode, String cmTitle, String cmName, Timestamp cmSdate, Timestamp cmEdate,
-			 int cmPrice, int cmCount, int cmRecommend, int cmStar, String file1, String video, String cmYn) {
+	
+	public ClassMain(int cmNo, String cmCode, String cmTitle, String cmName, String cmContent,Timestamp cmSdate, Timestamp cmEdate,
+			 int cmPrice, int cmCount, int cmRecommend, int cmStar,int cmPeriod, String file1, String video, String cmYn, String  payChk,
+			 String cmVideo) {
 		this.cmNo = cmNo;
 		this.cmCode = cmCode;
 		this.cmTitle = cmTitle;
 		this.cmName = cmName;
+		this.cmContent = cmContent;
 		this.cmPeriod = cmPeriod;
 		this.cmPrice = cmPrice;
 		this.cmCount = cmCount;
@@ -39,6 +45,8 @@ public class ClassMain {
 		this.file1 = file1;
 		this.video = video;
 		this.cmYn = cmYn;
+		this.payChk = payChk;
+		this.cmVideo = cmVideo;
 	}
 	public int getCmNo() {
 		return cmNo;
@@ -107,11 +115,33 @@ public class ClassMain {
 	public void setCmTitle(String cmTitle) {
 		this.cmTitle = cmTitle;
 	}
+
 	public int getCmPeriod() {
 		return cmPeriod;
 	}
 	public void setCmPeriod(int cmPeriod) {
 		this.cmPeriod = cmPeriod;
 	}
+	public String getCmContent() {
+		return cmContent;
+	}
+	public void setCmContent(String cmContent) {
+		this.cmContent = cmContent;
+	}
+	public String getPayChk() {
+		return payChk;
+	}
+	public void setPayChk(String payChk) {
+		this.payChk = payChk;
+	}
+	public String getCmVideo() {
+		return cmVideo;
+	}
+	public void setCmVideo(String cmVideo) {
+		this.cmVideo = cmVideo;
+	}
+	
+	
+	
 	
 }

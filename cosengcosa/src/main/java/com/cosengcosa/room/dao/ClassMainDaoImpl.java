@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.cosengcosa.room.domain.ClassMain;
 
+
 /**
  * 메인강의 Dao
  * @author 김지수/박예준
@@ -73,11 +74,78 @@ public class ClassMainDaoImpl implements ClassMainDao {
 		return sqlSession.selectList(NAME_SPACE + ".classMainList", param);
 	}
 
+	/*
+	 * 메인강의의 상세조회 시 결재 처음유무 조회 요청 시 호출되는 메소드
+	 */
+	@Override
+	public String payCountChk(String cmCode, String userid) {
+		// 받는 파라미터가 같은 타입이므로 String 사용함
+		Map<String, String> param = new HashMap<String, String>();
+		param.put("cmCode", cmCode);
+		param.put("userid", userid);
+		return sqlSession.selectOne(NAME_SPACE + ".payCountChk", param);
+	}
+
+	/*
+	 * 메인강의의 상세조회 시 결재 상태값 조회 요청 시 호출되는 메소드
+	 */
+	@Override
+	public ClassMain payChk(String cmCode, String userid) {
+		// 받는 파라미터가 같은 타입이므로 String 사용함
+		Map<String, String> param = new HashMap<String, String>();
+		param.put("cmCode", cmCode);
+		param.put("userid", userid);
+		return sqlSession.selectOne(NAME_SPACE + ".payChk", param);
+	}
+	
+	
+	/*
+	 * 메인강의의 리스트를 요청 시 호출되는 메소드
+	 */
 	@Override
 	public ClassMain getDetail(int cmNo, boolean b) {
 		
-		return null;
+		
+//		Map param = new HashMap();
+//		param.put("cmNo", cmNo);
+//		param.put("b", b);
+
+		
+		return sqlSession.selectOne(NAME_SPACE + ".getDetail", cmNo) ;
 	}
+	
+	/*
+	 * 메인강의 비디오조회 요청 시 호출되는 메소드
+	 */
+	@Override
+	public ClassMain getCmVideo(String cmCode) {
+		return sqlSession.selectOne(NAME_SPACE + ".detailVideo", cmCode);
+	}
+
+
+	public void classInsert(ClassMain cl) {
+		sqlSession.insert(NAME_SPACE + ".classInsert", cl );
+	}
+
+
+
+	
+
+	
+
+
+
+	
+
+	
+	
+	
+
+
+	
+
+	
+
 
 	
 	

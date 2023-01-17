@@ -17,7 +17,23 @@ public interface ClassMainService {
 	 */
 	public abstract Map<String, Object> classMainList(int pageNum, String type, String keyword);
 
-	public abstract ClassMain getDetail(int cmNo, boolean b);
+	
+
+	public abstract void insertBoard(ClassMain cl);
+
+	public abstract Map<String, Object> getDetail(int cmNo, boolean b, String cmCode, String userid);
+
+//	public abstract void detailVideo(video);
+
+	
+
+
+
+	
+
+
+
+	/* public abstract ClassMain getDelete(int cmNo, boolean b); */
 
 	
 
