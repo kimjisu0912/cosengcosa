@@ -9,6 +9,8 @@ DROP SEQUENCE classmain_seq;
        NOCACHE
        NOORDER;
 
+drop table pay;
+
 DROP TABLE classmain;
 CREATE TABLE classmain(
 	cm_no NUMBER(5)

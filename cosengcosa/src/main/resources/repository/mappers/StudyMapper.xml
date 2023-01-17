@@ -24,24 +24,20 @@
 	
 	<select id="studyList" resultType="Study" parameterType="hashmap">
 		    SELECT
-			    num, sNo,sCode,sTitle,sAskcontent, sAskimg, sAnswer,sAnswerimg,sAskid,sAnswerid, sOpen,sCdate,sCount,sRecommend, sYn
+			    num, sNo,sTitle,sError, sAskcontent, sAskimg,sAskid, sOpen,sCdate,sCount,sRecommend, sYn
 			FROM    
 			    (
 				    SELECT
-				        ROWNUM num, sNo,sCode,sTitle,sAskcontent, sAskimg, sAnswer,sAnswerimg,sAskid,sAnswerid, sOpen,sCdate,sCount,sRecommend, sYn
+				       ROWNUM num, sNo,sTitle,sError, sAskcontent, sAskimg,sAskid, sOpen,sCdate,sCount,sRecommend, sYn
 				    FROM 
 				        (
 				            SELECT
 				                s_no AS sNo,
-				                s_code AS sCode,
 				                s_title AS sTitle,
 				                s_error AS sError,
 				                s_askcontent AS sAskcontent,
 				                s_askimg AS sAskimg,
-				                s_answer AS sAnswer,
-				                s_answerimg AS sAnswerimg,
 				                s_askid AS sAskid,
-				                s_answerid AS sAnswerid,
 				                s_open AS sOpen,
 				                s_cdate AS sCdate,
 				                s_count AS sCount,
@@ -51,20 +47,22 @@
 				             FROM
 				                study
 				             WHERE
-				                s_yn = 'Y'
+		               			 s_yn = 'Y'
 				       ) study
-				    ORDER BY 
-				        sNo ASC
-			    )
-			<where>
-				num <![CDATA[>=]]> #{startRow} AND num <![CDATA[<=]]> #{endRow}
-				<if test="type == 'title'">
-					AND sTitle LIKE '%' || #{keyword} || '%'
-				</if>
-				<if test="type == 'writer'">
-					AND sAskid LIKE '%' || #{keyword} || '%'
-				</if>
-			</where> 
+				       ORDER BY 
+			        		sNo DESC 	
+			    	)
+			    	<where>
+						num <![CDATA[>=]]> #{startRow} AND num <![CDATA[<=]]> #{endRow}
+						<if test="type == 'title'">
+							AND sTitle LIKE '%' || #{keyword} || '%'
+						</if>
+						<if test="type == 'writer'">
+							AND sAskid LIKE '%' || #{keyword} || '%'
+						</if>
+					</where> 
+			    	
+			    
 	</select>
 	
 	<select id="getStudyCount" resultType="int">
@@ -89,14 +87,16 @@
 		WHERE s_no = #{sNo}
 	</select>
 	
+	<!-- sAskimg -->
 	<insert id="insertStudy" parameterType="Study"
-		useGeneratedKeys="true" keyProperty="no">
-		INSERT INTO study ( s_code, s_title, s_askcontent, s_askimg, s_answer, 
-		s_answerimg, s_askid, s_answerid, s_count, s_recommend, s_file, s_open, 
+		useGeneratedKeys="false" keyProperty="sNo">
+		INSERT INTO study (s_no,  s_title, s_error, s_askcontent, s_askimg, 
+		s_askid,  s_count, s_recommend, s_file, s_open, 
 		s_clear, s_cdate, s_yn) 
 		
-		VALUES(#{sCode}, #{sTitle}, #{sAskcontent}, #{sAskimg}, #{sAnswer}, #{sAnswerimg},
-			#{sAskid}, #{sAnswerid}, #{sCount}, #{sRecommend}, #{sFile}, #{sOpen}, #{sClear}, SYSDATE, #{sYn})
+		VALUES(study_seq.NEXTVAL,  #{sTitle}, #{sError}, #{sAskcontent}, #{sAskimg}, 
+			#{sAskid}, #{sCount}, #{sRecommend}, #{sFile}, #{sOpen}, 
+			#{sClear}, SYSDATE, #{sYn})
 				
 	</insert>
 	
@@ -117,7 +117,7 @@
 	
 	<update id="updateStudy" parameterType="Study">
 		UPDATE study 
-			SET s_title = #{sTitle}, s_Askcontent = #{content},
+			SET s_title = #{sTitle}, s_askcontent = #{sAskcontent}, s_error = #{sError},	
 				s_cdate = SYSDATE
 		WHERE s_no = #{sNo}
 	</update>
@@ -137,10 +137,7 @@
 		<result property="sError" column="s_error" />
 		<result property="sAskcontent" column="s_askcontent" />
 		<result property="sAskimg" column="s_askimg" />
-		<result property="sAnswer" column="s_answer" />
-		<result property="sAnswerimg" column="s_answerimg" />
 		<result property="sAskid" column="s_askid" />
-		<result property="sAnswerid" column="s_answerid" />
 		<result property="sFile" column="s_file" />
 		<result property="sOpen" column="s_open" />
 		<result property="sClear" column="s_clear" />

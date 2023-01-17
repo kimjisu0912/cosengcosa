@@ -27,9 +27,9 @@ public class StudyServicelmpl implements StudyService {
 		this.studyDao = studyDao;
 	}
 	
-	private static final int PAGE_SIZE = 10;
+	private static final int PAGE_SIZE = 5;
 	
-	private static final int PAGE_GROUP = 10;
+	private static final int PAGE_GROUP = 5;
 	
 	@Override
 	public Map<String, Object> studyList(int pageNum, String type, String keyword) {
@@ -43,7 +43,6 @@ public class StudyServicelmpl implements StudyService {
 		
 		int endRow = (startRow + PAGE_SIZE) -1 ;
 		
-		System.out.println(startRow);
 		
 		// 페이징 처리를 이해 필요한 데이터 
 		// 전체 게시 글 수
@@ -62,7 +61,6 @@ public class StudyServicelmpl implements StudyService {
 		
 		int endPage = startPage + PAGE_GROUP - 1;
 		
-		System.out.println(startPage +" - "+ endPage);
 		// 전체 페이지 수 계산
 		int pageCount = listCount / PAGE_SIZE
 						+ (listCount % PAGE_SIZE == 0 ? 0 : 1);
@@ -104,18 +102,18 @@ public class StudyServicelmpl implements StudyService {
 	}
 
 	@Override
-	public boolean isPassCheck(int no, String pass) {
-		return studyDao.isPassCheck(no, pass);
-	}
-
-	@Override
 	public void updateStudy(Study study) {
 		studyDao.updateStudy(study);
 	}
 
 	@Override
-	public void deleteStudy(int no) {
-		studyDao.deleteStudy(no);
+	public void deleteStudy(int sno) {
+		studyDao.deleteStudy(sno);
+	}
+
+	@Override
+	public void writeStudy() {
+		studyDao.writeStudy();
 	}
 	
 	

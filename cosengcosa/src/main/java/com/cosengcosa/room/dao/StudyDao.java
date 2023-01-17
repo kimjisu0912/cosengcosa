@@ -14,10 +14,10 @@ public interface StudyDao {
 	
 	public abstract void insertStudy(Study study);
 	
-	public boolean isPassCheck(int no, String pass);
-	
 	public abstract void updateStudy(Study study);
 	
 	public abstract void deleteStudy(int no);
+	
+	public abstract void writeStudy();
 	
 }

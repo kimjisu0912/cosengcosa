@@ -24,6 +24,11 @@
 			<div class="col-auto">
 				<input type="submit" value="검 색" class="btn btn-primary"/>
 			</div>
+		<c:if test="${ not searchOption }">
+				<div class="col-auto text-end">
+					<a href="writeForm" class="btn btn-outline-success">글쓰기</a>
+				</div>
+		</c:if>
 		</form>
 			
 		<!-- 검색 요청일 경우 아래를 화면에 표시 -->	
@@ -46,69 +51,53 @@
 		</c:if>
 		
 		<!-- 검색 요청이 아닐 경우 아래를 화면에 표시 -->
-		<c:if test="${ not searchOption }">
-			<div class="row my-3">
-				<div class="col text-end">
-					<a href="writeForm" class="btn btn-outline-success">글쓰기</a>
-				</div>
-			</div>
-		</c:if>
 		
 		<div class="row my-3">
-			<div class="col">
-				<table class="table table-hover">
-					<thead>
-						<tr class="table-dark">
-					<th>NO</th>
-					<th>제목</th>
-					<th>작성자</th>
-					<th>작성일</th>
-					<th>조회수</th>
-					<th>해결</th>
-					<th>${ endRow }</th>
-				</tr>		
-					</thead>
-					<tbody class="text-secondary">
+				
+				
+				
+				
 					<%-- 
 						검색 요청 이면서 검색된 리스트가 존재할 경우
 						게시 글 상세보기로 링크를 적용할 때 type과 keyword 
 						파라미터를 적용해 링크를 설정한다. 
 					--%>	
-					<c:if test="${ searchOption and not empty studyList }">
-						<c:forEach var="s" items="${studyList}" varStatus="status">
-						<tr>
-							<td>${ s.sNo }</td>
-							<td>
-								<a href="studyDetail?no=${s.sNo}&pageNum=${currentPage}
-								&type=${ type }&keyword=${ keyword }" 
-								class="text-decoration-none link-secondary">${ s.sTitle }</a>
-							</td>
-							<td>${ s.sAskid }</td>
-							<td>${ s.sCdate }</td>
-							<td>${ s.sCount }</td>
-							<td>${ s.sClear }</td>
-						</tr>
-						</c:forEach>
-					</c:if>
+						<c:if test="${ searchOption and not empty studyList }">
+							<c:forEach var="s" items="${studyList}" varStatus="status">
+								<div class="row  justify-content-center">
+										<div class="inline-block col-8 my-3  shadow border-bottom border-info" style="height: 150px;">
+											<div>
+												<div><a class=" text-reset text-decoration-none" href="studyDetail?no=${s.sNo}&pageNum=${currentPage}
+												&type=${ type }&keyword=${ keyword }" ><span class="fw-bold fs-4">${ s.sTitle }</span></a></div>
+												<div><span class="fw-bold fs-6">오류코드 : </span>${ s.sError }</div>
+												<div><span class="fw-lighter fs-8">${ s.sAskid } ${ s.sCdate } ${ s.sCount } ${ s.sRecommend }</span></div>
+											</div>
+										</div>
+								</div>
+								<!-- <div class="col"></div> -->
+							</c:forEach>
+						</c:if>
+					
 					
 					<%-- 
 						일반 게시 글 리스트 요청 이면서 게시 글 리스트가 존재할 경우
 						게시 글 상세보기로 링크를 적용할 때 type과 keyword 
 						파라미터는 필요 없다. 
 					--%>
-					<c:if test="${ not searchOption and not empty studyList }">
-						<c:forEach var="s" items="${studyList}" varStatus="status">
-						<tr>
-							<td>${ s.sNo }</td>
-							<td><a href="studyDetail?no=${s.sNo}&pageNum=${currentPage}" 
-								class="text-decoration-none link-secondary">${ s.sTitle }</a></td>
-							<td>${ s.sAskid }</td>
-							<td>${ s.sCdate }</td>
-							<td>${ s.sCount }</td>
-							<td>${ s.sClear }</td>
-						</tr>
-						</c:forEach>
-					</c:if>
+						<c:if test="${ not searchOption and not empty studyList }">
+							<c:forEach var="s" items="${studyList}" varStatus="status">
+								<div class="row  justify-content-center">
+										<div class="inline-block col-8 my-3  shadow border-bottom border-info" style="height: 150px;">
+											<div>
+												<div><a class=" text-reset text-decoration-none" href="studyDetail?no=${s.sNo}&pageNum=${currentPage}" ><span class="fw-bold fs-4">${ s.sTitle }</span></a></div>
+												<div><span class="fw-bold fs-6">오류코드 : </span>${ s.sError }</div>
+												<div><span class="fw-lighter fs-8">${ s.sAskid } ${ s.sCdate } ${ s.sCount } ${ s.sRecommend }</span></div>
+											</div>
+										</div>
+								</div>
+								<!-- <div class="col"></div> -->
+							</c:forEach>
+						</c:if>
 					
 					<%-- 검색 요청이면서 검색된 리스트가 존재하지 않을 경우 --%>
 					<c:if test="${ searchOption and empty studyList }">
@@ -125,9 +114,6 @@
 							<td colspan="5" class="text-center">게시 글이 존재하지 않습니다.</td>
 						</tr>
 					</c:if>
-					</tbody>					
-				</table>
-			</div>			
 		</div>
 		
 		<!-- 검색 안했을 때 페이징 -->
@@ -208,7 +194,7 @@
 				</div>
 			</div>
 		</c:if>
-		
-			
-	</div>
+
+	</div>				
 </div>
+

@@ -11,25 +11,29 @@
 		<form name="writeForm" action="writeProcess" id="writeForm" 
 			class="row g-3 border-primary" method="post" enctype="multipart/form-data">
 		  	<div class="col-4 offset-md-2">
-			    <label for="writer" class="form-label">글쓴이</label>
-			    <input type="text" class="form-control" name="writer"  id="writer" 
-			    	placeholder="작성자를 입력해 주세요">
+			    <label for="writer" class="form-label">작성자</label>
+			    <input type="text" class="form-control" name="sAskid"  id="writer" 
+			    	placeholder="작성자를 입력해 주세요" value="${ member.id }" readonly>
 	  		</div>
 	  		<div class="col-8 offset-md-2">
 			    <label for="title" class="form-label">제 목</label>
-			    <input type="text" class="form-control" name="title"  id="title" >
+			    <input type="text" class="form-control" name="sTitle"  id="title" >
 	  		</div>
 	  		<div class="col-8 offset-md-2">
-			    <label for="title" class="form-label">오류코드</label>
-			    <input type="text" class="form-control" name="error"  id="error" >
+			    <label for="error" class="form-label">오류코드</label>
+			    <input type="text" class="form-control" name="sError"  id="error" >
 	  		</div>
 			<div class="col-8 offset-md-2">
 			    <label for="content" class="form-label">내 용</label>
-			    <textarea class="form-control" name="content" id="content" rows="10"></textarea>
+			    <textarea class="form-control" name="sAskcontent" id="content" rows="10"></textarea>
 	  		</div>
 	  		<div class="col-8 offset-md-2">
-			    <label for="file1" class="form-label">파 일</label>
-			    <input type="file" class="form-control" name="file1"  id="file1" >
+			    <label for="sAskimg" class="form-label">이미지</label>
+			    <input type="file" class="form-control" name="qimg"  id="sAskimg" >
+	  		</div>	
+	  		<div class="col-8 offset-md-2">
+			    <label for="sFile" class="form-label">오류파일</label>
+			    <input type="file" class="form-control" name="sFile"  id="sFile" >
 	  		</div>	
 	  		<div class="col-8 offset-md-2 text-center mt-5">
 			   <input type="submit" value="등록하기" class="btn btn-primary"/>

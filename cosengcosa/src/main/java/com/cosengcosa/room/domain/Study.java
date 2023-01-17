@@ -5,12 +5,12 @@ import java.sql.Timestamp;
 public class Study {
 	
 	private int sNo, sCount, sRecommend;
-	private String sError,sCode, sTitle, sAskcontent, sAskimg, sAnswer, sAnswerimg, sAskid, sAnswerid, sFile, sOpen, sClear, sYn;
+	private String sError,sCode, sTitle, sAskcontent, sAskimg,  sAskid, sFile, sOpen, sClear, sYn;
 	private Timestamp sCdate;
 	
 	public Study() {}
 	public Study(int s_no, int s_id, int s_count, int s_recommend, int s_star, String s_code, String s_title,String s_error, String s_askcontent, String s_askimg, 
-			String s_answer, String s_answerimg, String s_askid, String s_answerid, String s_file, String s_open, String s_clear, String s_yn, Timestamp s_cdate ) {
+			 String s_askid,  String s_file, String s_open, String s_clear, String s_yn, Timestamp s_cdate ) {
 		
 		this.sNo = s_no;
 		this.sCount = s_count;
@@ -20,10 +20,7 @@ public class Study {
 		this.sTitle = s_title;
 		this.sAskcontent = s_askcontent;
 		this.sAskimg = s_askimg;
-		this.sAnswer = s_answer;
-		this.sAnswerimg = s_answerimg;
 		this.sAskid = s_askid;
-		this.sAnswerid = s_answerid;
 		this.sFile = s_file;
 		this.sOpen = s_open;
 		this.sClear = s_clear;
@@ -80,29 +77,11 @@ public class Study {
 	public void setsAskimg(String sAskimg) {
 		this.sAskimg = sAskimg;
 	}
-	public String getsAnswer() {
-		return sAnswer;
-	}
-	public void setsAnswer(String sAnswer) {
-		this.sAnswer = sAnswer;
-	}
-	public String getsAnswerimg() {
-		return sAnswerimg;
-	}
-	public void setsAnswerimg(String sAnswerimg) {
-		this.sAnswerimg = sAnswerimg;
-	}
 	public String getsAskid() {
 		return sAskid;
 	}
 	public void setsAskid(String sAskid) {
 		this.sAskid = sAskid;
-	}
-	public String getsAnswerid() {
-		return sAnswerid;
-	}
-	public void setsAnswerid(String sAnswerid) {
-		this.sAnswerid = sAnswerid;
 	}
 	public String getsFile() {
 		return sFile;

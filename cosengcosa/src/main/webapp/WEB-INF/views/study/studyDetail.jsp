@@ -6,7 +6,7 @@
 <div class="row my-5" id="global-content">
 	<div class="col">
 		<form name="checkForm" id="checkForm">
-			<input type="hidden" name="no" id="no" value="${ study.sNo }"/>
+			<input type="hidden" name="sno" id="sno" value="${study.sNo }"/>
 			<input type="hidden" name="pageNum" value="${ pageNum }" />
 
 			<%-- 
@@ -48,6 +48,17 @@
 							<th>조회수</th>
 							<td>${ study.sCount }</td>
 						</tr>	
+						<tr>
+							<th>이미지</th>
+							<td colspan="3">
+							<c:if test="${ empty study.sAskimg }">
+								첨부파일 없음
+							</c:if> 
+							<c:if test="${ not empty study.sAskimg }">
+								<a href="resources/upload/${ study.sAskimg }">이미지 다운로드</a>
+							</c:if>
+							</td>		
+						</tr>
 						<tr>
 							<th>파&nbsp;&nbsp;&nbsp;&nbsp;일</th>
 							<td colspan="3">

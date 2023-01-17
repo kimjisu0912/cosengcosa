@@ -16,7 +16,7 @@ import com.cosengcosa.room.domain.Study;
  */
 
 @Repository
-public class StudyDaolmpl implements StudyDao {
+public class StudyDaoImpl implements StudyDao {
 	
 	private final String NAME_SPACE = "com.cosengcosa.room.mapper.StudyMapper";
 	
@@ -38,9 +38,7 @@ public class StudyDaolmpl implements StudyDao {
 		param.put("type", type);
 		param.put("keyword", keyword);
 		
-		System.out.println(type + " - " + keyword);
 		
-		System.out.println("===="+sqlSession.selectList(NAME_SPACE + ".studyList", param));
 		return sqlSession.selectList(NAME_SPACE + ".studyList", param);
 	}
 	@Override
@@ -71,28 +69,19 @@ public class StudyDaolmpl implements StudyDao {
 	}
 
 	@Override
-	public boolean isPassCheck(int no, String pass) {
-		boolean result = false;
-		
-		// isPassCheck 맵핑 구문을 호출하면서 게시 글 번호인 no를 파라미터로 지정했다.
-		String dbPass = sqlSession.selectOne(
-				NAME_SPACE + ".isPassCheck",	no);
-
-		// 비밀번호가 맞으면 true가 반환된다.
-		if(dbPass.equals(pass)) {
-			result = true;		
-		}
-		return result;
-	}
-
-	@Override
 	public void updateStudy(Study study) {
 		sqlSession.update(NAME_SPACE + ".updateStudy", study);		
 	}
 
 	@Override
-	public void deleteStudy(int no) {
-		sqlSession.delete(NAME_SPACE + ".deleteStudy", no);		
+	public void deleteStudy(int sno) {
+		sqlSession.delete(NAME_SPACE + ".deleteStudy", sno);		
+	}
+
+	@Override
+	public void writeStudy() {
+		sqlSession.selectList(NAME_SPACE + ".writeStudy");
+		return; 
 	}
 
 }
