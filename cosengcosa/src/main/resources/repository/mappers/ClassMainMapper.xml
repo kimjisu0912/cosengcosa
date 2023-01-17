@@ -87,7 +87,7 @@
 		    AND p_mid = #{userid}
 	</select>
 	
-	<!-- 메인강의 결재 상태유무 조회 -->
+	<!-- 메인강의 결재 상태유무 조회(최신 1건만) -->
 	<select id="payChk" resultType="ClassMain" parameterType="HashMap">
 		SELECT payChk
 			FROM

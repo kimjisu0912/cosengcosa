@@ -96,11 +96,11 @@ public class ClassMainServiceImpl implements ClassMainService {
 	public Map<String, Object> getDetail(int cmNo, boolean b, String cmCode, String userid) {
 		String payChk = "";
 		Map<String, Object> modelMap = new HashMap<String, Object>();
-		// 비로그인
+		// 비로그인시도 상세화면 허용
 		ClassMain classMain = classMainDao.getDetail(cmNo, b);
 		ClassMain cv = classMainDao.getCmVideo(cmCode);
 		String cmVideo = cv.getCmVideo();
-		// 로그인
+		// 로그인 시 로직
 		if(userid == null) {
 			payChk = "N";
 		}
