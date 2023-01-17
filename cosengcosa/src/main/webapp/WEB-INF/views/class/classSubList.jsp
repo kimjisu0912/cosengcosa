@@ -14,7 +14,7 @@
 	 	<div class="row">
 	 		<div class="col text-end">
 	 			<c:if test="${sessionScope.member.id == 'admin' }">
-	 				<a href="classSubAddFrom?cmcode=${cmcode}" class="btn btn-outline-success">강의등록</a>
+	 				<a href="classSubAddForm?cmcode=${cmcode}" class="btn btn-outline-success">강의등록</a>
 	 			</c:if>
 	 		</div>
 	 	</div>
@@ -80,7 +80,7 @@
 	        <!-- Modal footer -->
 	        <div class="modal-footer">
 	        	<c:if test="${sessionScope.member.id == 'admin' }">
-	        		<a href="classSubModFrom?csCode=${c.csCode}" class="btn btn-outline-success">강의수정</a>
+	        		<a href="classSubModForm?csCode=${c.csCode}" class="btn btn-outline-success">강의수정</a>
 	        	</c:if>
 	         	<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="onPlayerClose()">Close</button>
 	        </div>

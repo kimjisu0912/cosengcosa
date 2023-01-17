@@ -48,8 +48,8 @@ public class ClassSubController {
 	/*
 	 * 서브강의 등록페이지 이동
 	 */
-	@RequestMapping("/classSubAddFrom")
-	public String classSubAddFrom(Model model,
+	@RequestMapping("/classSubAddForm")
+	public String classSubAddForm(Model model,
 			@RequestParam(value="cmcode", required=false, defaultValue="") String cmcode) {
 		
 		// 서브 강의 코드값 가져오기
@@ -66,7 +66,7 @@ public class ClassSubController {
 		// 코드값 모델에 지정
 		model.addAttribute("cmcode", cmcode);
 		
-		return "/class/classSubAddFrom";
+		return "/class/classSubAddForm";
 	}
 	
 	/*
@@ -98,8 +98,8 @@ public class ClassSubController {
 	/*
 	 * 서브강의 수정페이지 이동
 	 */
-	@RequestMapping("/classSubModFrom")
-	public String classSubModFrom(Model model,
+	@RequestMapping("/classSubModForm")
+	public String classSubModForm(Model model,
 			@RequestParam(value="csCode", required=false, defaultValue="") String cscode) {
 		
 		// 서브 강의 상세조회
@@ -107,7 +107,7 @@ public class ClassSubController {
 		
 		model.addAttribute("classSub", classSub);
 		
-		return "/class/classSubModFrom";
+		return "/class/classSubModForm";
 	}
 	
 	/*
