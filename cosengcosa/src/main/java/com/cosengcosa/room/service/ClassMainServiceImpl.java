@@ -95,21 +95,28 @@ public class ClassMainServiceImpl implements ClassMainService {
 	@Override
 	public Map<String, Object> getDetail(int cmNo, boolean b, String cmCode, String userid) {
 		String payChk = "";
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		// 비로그인
 		ClassMain classMain = classMainDao.getDetail(cmNo, b);
 		ClassMain cv = classMainDao.getCmVideo(cmCode);
 		String cmVideo = cv.getCmVideo();
-		// 1. 한번이라도 결재가 되어있는지 확인
-		String cnt = classMainDao.payCountChk(cmCode, userid);
-		if(cnt.equals("0")) {	// 2-1. 결재가 한번도 없는 경우는 = N 리턴
+		// 로그인
+		if(userid == null) {
 			payChk = "N";
-		}else { // 2-2. 결재가 한번 이상 있는 경우 한번 더 체크
-			// 3. 결재상태 값 확인 (Y인지 N인지)
-			ClassMain cm = classMainDao.payChk(cmCode, userid);
-			payChk = cm.getPayChk();
+		}
+		else{
+			// 1. 한번이라도 결재가 되어있는지 확인
+			String cnt = classMainDao.payCountChk(cmCode, userid);
+			if(cnt.equals("0")) {	// 2-1. 결재가 한번도 없는 경우는 = N 리턴
+				payChk = "N";
+			}else { // 2-2. 결재가 한번 이상 있는 경우 한번 더 체크
+				// 3. 결재상태 값 확인 (Y인지 N인지)
+				ClassMain cm = classMainDao.payChk(cmCode, userid);
+				payChk = cm.getPayChk();
+			}
 		}
 		
 		
-		Map<String, Object> modelMap = new HashMap<String, Object>();
 		modelMap.put("classMain", classMain);
 		modelMap.put("payChk", payChk);
 		modelMap.put("cmVideo", cmVideo);

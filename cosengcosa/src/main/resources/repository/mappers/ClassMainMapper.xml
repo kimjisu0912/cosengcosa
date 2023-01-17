@@ -89,15 +89,17 @@
 	
 	<!-- 메인강의 결재 상태유무 조회 -->
 	<select id="payChk" resultType="ClassMain" parameterType="HashMap">
-		SELECT
-		    p_no, NVL(p_CHK, 'N') as payChk, p_cdate
-		FROM
-		    pay
-		WHERE
-		    p_cmcode = #{cmCode}
-		    AND p_mid = #{userid}
-		GROUP by p_no, p_CHK, p_cdate
-		ORDER BY p_cdate, p_no
+		SELECT payChk
+			FROM
+			(
+			    SELECT p_no, p_cmcode, NVL(p_CHK, 'N') as payChk, p_cdate
+			    FROM pay
+			    WHERE
+			    p_cmcode = #{cmCode}
+			    AND p_mid = #{userid}
+			    ORDER BY p_cdate DESC
+			)
+			WHERE ROWNUM = 1
 	</select>
 	
 	<select id="detailVideo" resultType="ClassMain" parameterType="HashMap">
