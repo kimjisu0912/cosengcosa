@@ -47,9 +47,8 @@
 		
 		<div class="row">
 			<div class="col-8">
-				<svg class="bd-placeholder-img" width="200" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">맛보기영상</text></svg>
-				<strong><div class="fs-3">${classMain.cmContent }</div></strong>
 				<iframe width="720" height="480" src="https://www.youtube.com/embed/${cmVideo }" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				<strong><div class="fs-3" >${classMain.cmContent }</div></strong>
 			</div>
 			<!-- 구매했을 경우  -->
 			<c:if test="${payChk == 'Y' }">
@@ -75,8 +74,7 @@
 					<li class="list-group-item d-flex justify-content-between lh-sm bg-info bg-opacity-10">
 						<div>
 							<p>채널명 : ${classMain.cmName }<p>
-							<p>총${classMain.cmCode }개 수업</p>
-							<p>수강기간: ${classMain.cmPeriod}</p>
+							<p>수강기간: ${classMain.cmPeriod} 개월</p>
 						</div>
 					</li>
 				</ul>
@@ -108,8 +106,7 @@
 					<li class="list-group-item d-flex justify-content-between lh-sm bg-info bg-opacity-10">
 						<div>
 							<p>채널명 : ${classMain.cmName }<p>
-							<p>총${classMain.cmCode }개 수업</p>
-							<p>수강기간: ${classMain.cmPeriod}</p>
+							<p>수강기간: ${classMain.cmPeriod}개월</p>
 						</div>
 					</li>
 				</ul>

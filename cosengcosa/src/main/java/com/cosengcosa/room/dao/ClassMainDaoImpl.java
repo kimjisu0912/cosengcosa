@@ -105,12 +105,6 @@ public class ClassMainDaoImpl implements ClassMainDao {
 	@Override
 	public ClassMain getDetail(int cmNo, boolean b) {
 		
-		
-//		Map param = new HashMap();
-//		param.put("cmNo", cmNo);
-//		param.put("b", b);
-
-		
 		return sqlSession.selectOne(NAME_SPACE + ".getDetail", cmNo) ;
 	}
 	
@@ -122,10 +116,15 @@ public class ClassMainDaoImpl implements ClassMainDao {
 		return sqlSession.selectOne(NAME_SPACE + ".detailVideo", cmCode);
 	}
 
-
-	public void classInsert(ClassMain cl) {
-		sqlSession.insert(NAME_SPACE + ".classInsert", cl );
+	@Override
+	public void classMainInsert(ClassMain classMain) {
+		
+		sqlSession.insert(NAME_SPACE + ".classMainInsert", classMain);
+		
 	}
+
+
+	
 
 
 

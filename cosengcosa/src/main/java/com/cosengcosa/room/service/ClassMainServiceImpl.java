@@ -131,12 +131,7 @@ public class ClassMainServiceImpl implements ClassMainService {
 	}
 
 
-	/*
-	 * @Override public ClassMain getDelete(int cmNo, boolean b) { 
-	 * 
-	 * 
-	 * }
-	 */
+	
 
 	
 

@@ -30,8 +30,12 @@ public interface ClassMainDao {
 	public abstract ClassMain getCmVideo(String cmCode);
 	
 	
+	// 메인 강의 등록하는 페이지 요청시 호출되는 메소드  
+	void classMainInsert(ClassMain classMain);
 	
-	/* public abstract void getDelete(int cmNo); */
+	
+	
+	
 
 	
 

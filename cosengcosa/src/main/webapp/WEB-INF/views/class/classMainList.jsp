@@ -50,7 +50,7 @@
  	<c:if test="${not searchOption }" >
 	 	<div class="row">
 	 		<div class="col text-end">
-	 			<a href="classInsert" class="btn btn-outline-success">글쓰기</a>
+	 			<a href="classMainInsert" class="btn btn-outline-success">글쓰기</a>
 	 		</div>
 	 	</div>
  	</c:if>

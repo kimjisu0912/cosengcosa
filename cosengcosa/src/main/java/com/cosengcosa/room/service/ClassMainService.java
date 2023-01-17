@@ -17,13 +17,13 @@ public interface ClassMainService {
 	 */
 	public abstract Map<String, Object> classMainList(int pageNum, String type, String keyword);
 
-	
-
-	public abstract void insertBoard(ClassMain cl);
-
+	// 메인 상세페이지를 ClassMainDao에 호출하는 메소드 
 	public abstract Map<String, Object> getDetail(int cmNo, boolean b, String cmCode, String userid);
 
-//	public abstract void detailVideo(video);
+	// 메인페이지에서 등록하는 페이지를 ClassMainDao에 호출하는 메소드 
+	public abstract void classMainInsert(ClassMain classMain);
+
+
 
 	
 
