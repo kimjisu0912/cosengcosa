@@ -43,4 +43,14 @@ public class MemberDaoImpl implements MemberDao {
 		return sqlSession.selectOne(NAME_SPACE + ".memberPassCheck",	id);
 	}
 
+	@Override
+	public Member getNickName(String nickname) {
+		return sqlSession.selectOne(NAME_SPACE + ".getNickname", nickname);
+	}
+
+	@Override
+	public void updatePass(Member member) {
+		sqlSession.update(NAME_SPACE + ".updatePass", member);
+	}
+
 }

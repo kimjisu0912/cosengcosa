@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<script>
+	var data = ${result};
+	console.log(data);
+</script>
 <div class="row my-3 py-2 subBk">
 	<h2 class="ms-5 fw-bold">MyPage</h2> 
 </div>
@@ -45,6 +49,12 @@
 								</tr>		
 							</thead>
 						</table>
+						<div>
+						<h1>${count.JA}</h1>
+						<h1>${count.DB}</h1>
+						<h1>${count.JS}</h1>
+						<h1>${count.SP}</h1>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -52,13 +62,21 @@
 				<div class="row text-center">
 					<h4>${userName}님의 기술스택</h4>
 				</div>
-				<div class="zc-body">
-					<div id="myChart" class="chart--container">
-				      <a href="https://www.zingchart.com/" rel="noopener" class="zc-ref">Powered by ZingChart</a>
-				    </div>
+				<div class="row">
+					<div id="chart" style="width: 100%; height:500px;"></div> 
 				</div>
 			</div>
 		</div>
-		<div class="row"></div>
+		<div class="row">
+			<div class="row">
+				<h2>나의 학습열정</h2>
+			</div>
+			<div class="row"">
+				<div class="myCal" style="width: 100% height:500px;"></div>
+			</div>
+		</div>
 	</div>
 </div>
+	<script src="resources/js/chart.js"></script><!-- echart  -->
+	<!-- <script src="resources/js/myCal.js"></script>echart  -->
+	<script src="resources/js/echarts.min.js"></script><!-- echart  -->

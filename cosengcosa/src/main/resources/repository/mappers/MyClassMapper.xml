@@ -22,6 +22,7 @@
 -->
 <mapper namespace="com.cosengcosa.room.mapper.MyClassMapper" >	
 
+<!-- 수강중인 메인강의 -->
 <select id="getMyClassMain" resultType="MyClassMain" resultMap="MyClassMainResultMap">
 	SELECT mym_no, mym_mid, mym_code, mym_title, mym_name, mym_sdate, mym_edate, mym_done, mym_yn, video
 	FROM myclassmain, 
@@ -30,6 +31,55 @@
 	WHERE mym_mid = #{id} 
 	AND mym_yn = 'Y'
 	AND cs_code = CONCAT(LOWER(mym_code),'_01')
+</select>
+
+<!-- 수강한 과목별 카운트 -->
+<select id="getSubCount" resultType="SubTitle">
+	SELECT 
+	    (SELECT COUNT(mym_code) count
+	    FROM myclassmain
+	    WHERE mym_mid = #{id} 
+	    AND SUBSTR(mym_code, 1,2) = 'JA') JA,
+	    (SELECT COUNT(mym_code) count
+	    FROM myclassmain
+	    WHERE mym_mid = #{id} 
+	    AND SUBSTR(mym_code, 1,2) = 'DB') DB,
+	     (SELECT COUNT(mym_code) count
+	    FROM myclassmain
+	    WHERE mym_mid = #{id} 
+	    AND SUBSTR(mym_code, 1,2) = 'JS') JS,
+	     (SELECT COUNT(mym_code) count
+	    FROM myclassmain
+	    WHERE mym_mid = #{id} 
+	    AND SUBSTR(mym_code, 1,2) = 'SP') SP,
+	     (SELECT COUNT(mym_code) count
+	    FROM myclassmain
+	    WHERE mym_mid = #{id} 
+	    AND SUBSTR(mym_code, 1,2) = 'BS') BS,
+	     (SELECT COUNT(mym_code) count
+	    FROM myclassmain
+	    WHERE mym_mid = #{id} 
+	    AND SUBSTR(mym_code, 1,2) = 'KT') KT,
+	     (SELECT COUNT(mym_code) count
+	    FROM myclassmain
+	    WHERE mym_mid = #{id} 
+	    AND SUBSTR(mym_code, 1,2) = 'HL') HL,
+	     (SELECT COUNT(mym_code) count
+	    FROM myclassmain
+	    WHERE mym_mid = #{id} 
+	    AND SUBSTR(mym_code, 1,2) = 'JQ') JQ,
+	     (SELECT COUNT(mym_code) count
+	    FROM myclassmain
+	    WHERE mym_mid = #{id} 
+	    AND SUBSTR(mym_code, 1,2) = 'AJ') AJ
+	FROM dual
+</select>
+
+<!-- 결제 리스트 -->
+<select id="getPayList" resultType="Pay" resultMap="MyClassPayResultMap">
+	SELECT * FROM pay
+	WHERE p_mid = #{id}
+	ORDER BY p_cdate DESC
 </select>
 <!-- 
 <select id="getMyClassSub" parameterType="hashmap" resultType="MyClassSub" resultMap="MyClassSubResultMap">
@@ -69,5 +119,17 @@
 		<result property="mysEdate" column="mys_edate" />
 		<result property="mysDone" column="mys_done" />
 		<result property="mysYN" column="mys_yn" />
-	</resultMap>				
+	</resultMap>
+	
+	<resultMap id="MyClassPayResultMap" type="Pay">
+		<id property="pNo" column="p_no" />
+		<result property="pMid" column="p_mid" />
+		<result property="pCmcode" column="p_cmcode" />
+		<result property="pCname" column="p_cname" />
+		<result property="pChk" column="p_chk" />
+		<result property="pPrice" column="p_price" />
+		<result property="pCdate" column="p_cdate" />
+		<result property="pYn" column="p_yn" />
+	</resultMap>
+					
 </mapper>

@@ -30,5 +30,11 @@ public interface MemberService {
 	
 	// 회원 정보를 DAO를 이용해 회원 테이블에서 수정하는 메서드
 	public void updateMember(Member member);
+	
+	// 회원가입, 회원정보 수정시 닉네임 중복확인 메서드
+	public boolean overlapNickNameCheck(String nickname);
+	
+	// 비밀번호 수정 메서드
+	public void updatePass(Member member);
 
 }

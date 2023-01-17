@@ -6,8 +6,7 @@
 	제공하는 우편번호 찾기 API를 사용하였다.
 	참고 사이트 : http://postcode.map.daum.net/guide
 -->    
-<script src=
-"https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <div class="row my-5" id="global-content">
 	<div class="col">
 		<div class="row">
@@ -17,6 +16,7 @@
 						회원 아이디 중복 검사를 했는지의 정보를 hidden 필드로 저장 
 					--%>
 					<input type="hidden" name="isIdCheck" id="isIdCheck" value="false"/>
+					<input type="hidden" name="isNickNameCheck" id="isNickNameCheck" value="false"/>
 					<div class="row text-center mb-10">
 						<h2 class="fs03 fw-bold">회원가입</h2>
 					</div>
@@ -124,7 +124,7 @@
 						<div class="col-8 offset-2">
 							<div class="input-group mb-3">
 								<span class="input-group-text">전화번호</span>
-								<select class="form-select" name="mobile1" id="mobile1">
+								<select class="form-select" name="tel1" id="tel1">
 										<option>010</option>
 										<option>011</option>
 										<option>016</option>
@@ -133,15 +133,15 @@
 										<option>019</option>
 								</select>
 							  	<span class="input-group-text">-</span>
-								<input type="text" class="form-control" name="mobile2" id="mobile2" maxlength="4">
+								<input type="text" class="form-control" name="tel2" id="tel2" maxlength="4">
 							  	<span class="input-group-text">-</span>
-							  	<input type="text" class="form-control" name="mobile3" id="mobile3" maxlength="4">
+							  	<input type="text" class="form-control" name="tel3" id="tel3" maxlength="4">
 							</div>
 						</div>
 					</div>			
 					<div class="row mb-3 mt-5">				
 						<div class="col-8 offset-2 text-end">
-							<input type="submit" value="가입하기" class="btn btn-black">
+							<input type="submit" value="가입하기" class="btn btn-dark">
 						</div>
 					</div>
 				</form>

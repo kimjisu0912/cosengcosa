@@ -48,11 +48,12 @@
 				</select>
 			</div>
 			<div class="col-4"></div>
-			<div class="col-4 mt-3">
-				<form class="d-flex" role="search">
-		        	<input class="form-control form-control-sm me-2" type="search" placeholder="강의명 또는 강사명" aria-label="Search">
-		       		<button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>
-		      	</form>
+			<div class="col-4">
+					<div class="row fwh">검색</div>
+					<form class="d-flex" role="search">
+			        	<input class="form-control form-control-sm me-2" type="search" placeholder="강의명 또는 강사명" aria-label="Search">
+			       		<button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>
+			      	</form>
 			</div>
 		</div> <!-- 분류 및 검색 end -->
 		<!-- 강의 리스트 -->
@@ -61,8 +62,8 @@
 				<c:forEach var="m" items="${mList}" >
 					<div class="col-4 mb-5" >	
 						<div class="text-center">
-							<div class="row"><a><img width="260px"  height="170px" src="http://img.youtube.com/vi/${m.image }/mqdefault.jpg"></a></div>
-							<div class="row mt-3"><a class="fbk px-4">${m.mymTitle }</a></div>
+							<div class="row"><a href="classSubList?cmcode=${m.mymCode}"><img width="260px"  height="170px" src="http://img.youtube.com/vi/${m.image }/mqdefault.jpg"></a></div>
+							<div class="row mt-3"><a href="classSubList?cmcode=${m.mymCode}" class="fbk px-4">${m.mymTitle }</a></div>
 							<div class="row my-1"><a class="color-black dnone px-4">수강기간 : ${m.sdate} ~ ${m.edate}</a></div>
 							<div class="row my-1"><p>학습률</p></div>
 						</div>	

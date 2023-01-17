@@ -25,9 +25,44 @@
 		<div class="row">
 			<nav class="navbar bg-light">
 			  <div class="container-fluid">
-			    <a class="navbar-brand fw-bold" >${userId}님의 결제내역</a>
+			    <a class="navbar-brand fw-bold" >${userId} 님의 결제내역</a>
 			  </div>
 			</nav>
+		</div>
+		<div class="row">
+			<div class="col ms-5 mt-3">
+			<table class="table table-borderless">
+				<thead>
+				  <tr>
+				    <th scope="col"></th>
+				    <th scope="col" class="fs-5">강의명</th>
+				    <th scope="col" class="fs-5">가격</th>
+				    <th scope="col" class="fs-5">결제일</th>
+				  </tr>
+				</thead>
+				<c:if test="${not empty pList  }">
+					<c:forEach var="p" items="${pList}" varStatus="status">
+						<tbody class="table-group-divider">
+						  <tr>
+						    <th scope="row">${status.count}</th>
+						    <td>${p.pCname}</td>
+						    <td>${p.pPrice}</td>
+						    <td><fmt:formatDate type="date" pattern="yyyy-MM-dd" value="${p.pCdate}" /></td>
+						  </tr>
+						</tbody>
+					</c:forEach>
+				</c:if>
+				<c:if test="${empty pList }">
+					<tbody class="table-group-divider">
+						<tr>
+						    <td colspan="3" class="text-center fs-3">
+						    	결제하신 강의가 없습니다
+						    </td>
+					    </tr>
+					 </tbody>
+				</c:if>	  
+				</table>
+			</div>
 		</div>
 	</div>
 </div>

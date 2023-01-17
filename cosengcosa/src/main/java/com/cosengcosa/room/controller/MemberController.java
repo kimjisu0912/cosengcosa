@@ -2,6 +2,8 @@ package com.cosengcosa.room.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
@@ -121,12 +124,12 @@ public class MemberController {
 	public String joinResult(Model model, Member member,
 			String pass1, String birthY, String birthM, String birthD,
 			String emailId, String emailDomain,
-			String mobile1, String mobile2, String mobile3) {		
+			String tel1, String tel2, String tel3) {		
 		
 		member.setPass(pass1);
 		member.setBirth(birthY +"/" + birthD + "/" + birthD);
 		member.setEmail(emailId + "@" + emailDomain);
-		member.setTel(mobile1 + "-" + mobile2 + "-" + mobile3);
+		member.setTel(tel2 + "-" + tel2 + "-" + tel3);
 				
 		
 
@@ -139,14 +142,89 @@ public class MemberController {
 	}
 	
 	// 회원가입 폼에서 들어오는 중복 아이디 체크 요청을 처리하는 메서드
-		@RequestMapping("/overlapIdCheck")	
-		public String overlapIdCheck(Model model, String id) {		
+	@RequestMapping("/overlapIdCheck")	
+	public String overlapIdCheck(Model model, String id) {		
+		
+		// 회원 아이디 중복 여부를 받아온다.
+		boolean overlap = memberService.overlapIdCheck(id);
+		
+		// model에 id와 회원 아이디 중복 여부를 저장 한다. 
+		model.addAttribute("id", id);
+		model.addAttribute("overlap", overlap);
+		
+		/* 회원 가입 폼에서 아이디 중복확인 버튼을 클릭하면 새창으로 뷰가 보이게
+		 * 해야 하므로 뷰 이름을 반환 할 때 "forward:" 접두어를 사용했다. 
+		 * "forwrad:" 접두어가 있으면 뷰 리졸버 설정에 지정한 prefix, suffix를
+		 * 적용하지 않고 "forwrad:" 뒤에 붙인 뷰 페이지로 포워딩 된다. 
+		 **/
+		return "forward:WEB-INF/views/member/overlapIdCheck.jsp";
+	}	
+		
+	// 회원정보 보기 요청처리 함수
+	
+	@RequestMapping("/myInfo")
+	public String myInfo(Model model, HttpSession session) {		
+		
+		return "member/myInfo";
+	}
+	
+	// 회원정보 수정 요청 처리 함수
+	@RequestMapping("/memberUpdateResult")
+	public String memberUpdateInfo(Model model, Member member,
+			String nickname, String emailId, String emailDomain,
+			String tel1, String tel2, String tel3, String zipcode,
+			String address1, String adrress2){
+		
+		member.setEmail(emailId + "@" + emailDomain);
+		member.setTel(tel1 + "-" + tel2 + "-" + tel3);
+				
+		if(tel2.equals("") || tel3.equals("")) {			
+			member.setTel("");				
+		} else {			
+			member.setTel(tel1 + "-" + tel2 + "-" + tel3);
+		}				
+			
+		// MemberService를 통해서 회원 수정 폼에서 들어온 데이터를 DB에서 수정한다.
+		memberService.updateMember(member);		
+		System.out.println("memberUpdateResult : " + member.getId());
+	
+		/* 클래스 레벨에 @SessionAttributes({"member"}) 
+		 * 애노테이션을 지정하고 컨트롤러의 메서드에서 아래와 같이 동일한 
+		 * 이름으로 모델에 추가하면 스프링이 세션 영역에 데이터를 저장해 준다.
+		 **/ 
+		model.addAttribute("member", member);
+		
+		return "redirect:myInfo";
+	}
+		
+	// 회원가입시 닉네임 중복 체크 요청을 처리하는 메서드
+	@RequestMapping("/overlapNickNameCheck")	
+	public String overlapNickNameCheck(Model model, String nickname) {		
+		
+		// 회원 아이디 중복 여부를 받아온다.
+		boolean overlap = memberService.overlapNickNameCheck(nickname);
+		
+		// model에 id와 회원 아이디 중복 여부를 저장 한다. 
+		model.addAttribute("nickname", nickname);
+		model.addAttribute("overlap", overlap);
+		
+		/* 회원 가입 폼에서 아이디 중복확인 버튼을 클릭하면 새창으로 뷰가 보이게
+		 * 해야 하므로 뷰 이름을 반환 할 때 "forward:" 접두어를 사용했다. 
+		 * "forwrad:" 접두어가 있으면 뷰 리졸버 설정에 지정한 prefix, suffix를
+		 * 적용하지 않고 "forwrad:" 뒤에 붙인 뷰 페이지로 포워딩 된다. 
+		 **/
+		return "forward:WEB-INF/views/member/overlapNickNameCheck.jsp";
+	}	
+	
+	// 회원수정시 닉네임 중복 체크 요청을 처리하는 메서드
+		@RequestMapping("/overlapNickNameCheck2")	
+		public String overlapNickNameCheck2(Model model, String nickname) {		
 			
 			// 회원 아이디 중복 여부를 받아온다.
-			boolean overlap = memberService.overlapIdCheck(id);
+			boolean overlap = memberService.overlapNickNameCheck(nickname);
 			
 			// model에 id와 회원 아이디 중복 여부를 저장 한다. 
-			model.addAttribute("id", id);
+			model.addAttribute("nickname", nickname);
 			model.addAttribute("overlap", overlap);
 			
 			/* 회원 가입 폼에서 아이디 중복확인 버튼을 클릭하면 새창으로 뷰가 보이게
@@ -154,14 +232,38 @@ public class MemberController {
 			 * "forwrad:" 접두어가 있으면 뷰 리졸버 설정에 지정한 prefix, suffix를
 			 * 적용하지 않고 "forwrad:" 뒤에 붙인 뷰 페이지로 포워딩 된다. 
 			 **/
-			return "forward:WEB-INF/views/member/overlapIdCheck.jsp";
-		}	
-		
-		// 회원정보 보기 요청처리 함수
-		
-		@RequestMapping("/myInfo")
-		public String myInfo(Model model, HttpSession session) {		
-			
-			return "member/myInfo";
+			return "forward:WEB-INF/views/member/overlapNickNameCheck2.jsp";
 		}
+		// 비밀번호 수정 처리 메서드
+		@RequestMapping("/passUpdate")
+		public String passUpdate(Model model, Member member, String id, String pass1) {
+			
+			member.setPass(pass1);
+			memberService.updatePass(member);
+			
+			model.addAttribute("member", member);
+			
+			return "redirect:myInfo";
+		}
+		
+		// 회원정보 수정에서 비밀번호 수정시 현재 비밀번호 확인하는 메서드
+		@RequestMapping("/passCheck.ajax")
+		@ResponseBody
+		public Map<String, Boolean> memberPassCheck(String id, String pass) {
+			
+			boolean result = memberService.memberPassCheck(id, pass);
+			Map<String, Boolean> map = new HashMap<String, Boolean>();
+			map.put("result", result);
+			
+			/* MappingJackson2HttpMessageConverter에 의해서
+			 * Map 객체가 아래와 같이 json 형식으로 변환된다.
+			 * 
+			 * {
+			 * 		"result": 0 또는 "result": 2
+			 * }
+			 **/
+			return map;
+		}
+
+
 }

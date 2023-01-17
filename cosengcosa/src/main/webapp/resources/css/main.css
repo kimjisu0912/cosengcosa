@@ -3,7 +3,7 @@
 	background-color:#9933ff;
 }
 .subBk{
-	background-color:#e6ccff;
+	background-color:#d966ff;
 }
 .fbk {
 	color: black;
@@ -18,5 +18,12 @@
 .dnone{
 	text-decoration: none;
 	color: gray;
+}
+.bbk{
+	background-color: black;
+}
+
+.checked {
+  color: orange;
 }
 

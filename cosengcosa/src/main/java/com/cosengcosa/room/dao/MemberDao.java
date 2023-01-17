@@ -21,4 +21,11 @@ public interface MemberDao {
 	
 	// 회원 비밀번호 확인 함수
 	public String memberPassCheck(String id, String pass);
+	
+	// 회원 닉네임 조회 함수
+	public Member getNickName(String nickname);
+
+	// 회원 비밀번호 수정 처리함수
+	public void updatePass(Member member);
+	
 }

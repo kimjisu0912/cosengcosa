@@ -8,22 +8,34 @@ import org.springframework.stereotype.Service;
 import com.cosengcosa.room.dao.MyClassDao;
 import com.cosengcosa.room.domain.MyClassMain;
 import com.cosengcosa.room.domain.MyClassSub;
+import com.cosengcosa.room.domain.Pay;
+import com.cosengcosa.room.domain.SubTitle;
 
 @Service
 public class MyClassServiceImpl implements MyClassService {
 
 	@Autowired
-	private MyClassDao myclassdao;
+	private MyClassDao myclassDao;
 	
 	@Override
 	public List<MyClassMain> getMyClassMain(String id) {
 		
-		return myclassdao.getMyClassMain(id);
+		return myclassDao.getMyClassMain(id);
 	}
 
 	@Override
 	public List<MyClassSub> getMyClassSub(String id, String mymCode) {
-		return myclassdao.getMyClassSub(id, mymCode);
+		return myclassDao.getMyClassSub(id, mymCode);
+	}
+
+	@Override
+	public SubTitle getSubCount(String id) {
+		return myclassDao.getSubCount(id);
+	}
+
+	@Override
+	public List<Pay> getPayList(String id) {
+		return myclassDao.getPayList(id);
 	}
 
 }

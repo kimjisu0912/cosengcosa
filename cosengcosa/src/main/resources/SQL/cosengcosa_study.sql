@@ -129,14 +129,14 @@ SELECT
 	            s_recommend AS sRecommend,
 	            s_file AS sFile,
 	            s_yn AS sYn
-	        FROM
-            study
-			WHERE
-            s_yn = 'Y'
-        ) study
+                FROM
+                study
+                WHERE
+                s_yn = 'Y'
+            ) study
         ORDER BY sNo ASC
     )
-	WHERE num>=1 AND num <= 10
+	WHERE num>=1 AND num <= 20
     ;
 
 

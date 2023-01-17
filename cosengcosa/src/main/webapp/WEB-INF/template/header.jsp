@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  <!-- header row는 최대수치가 12분할이다-->
  	<div class="row border-bottom" id="global-header">
- 		<div class>
+ 		<div class="col">
  			<p><a href="main"><img src="resources/images/logo.jpg" class="mt-1"></a></p>
  		</div>
  		<!-- nav 왼쪽 -->
@@ -45,7 +45,7 @@
  						</li>
 	 					<c:if test="${sessionScope.isLogin }">	
 	 						<li class="nav-item">
-	 							<a class="nav-link fwh fs-4" href="myClassMain">내 강의실</a>
+	 							<a class="nav-link fwh fs-4" href="myClassMain"><i class="bi bi-person-lines-fill"></i> MY</a>
 	 						</li>
 	 					</c:if>	
 	 					<c:if test="${not sessionScope.isLogin }">

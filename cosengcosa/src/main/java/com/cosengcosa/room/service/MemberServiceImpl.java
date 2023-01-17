@@ -25,7 +25,7 @@ public class MemberServiceImpl implements MemberService {
 		this.memberDao = memberDao;
 	}
 	
-	
+	// 로그인 처리 메서드
 	@Override
 	public int login(String id, String pass) {
 		
@@ -52,11 +52,13 @@ public class MemberServiceImpl implements MemberService {
 		return result;
 	}
 
+	// 회원조회 메서드
 	@Override
 	public Member getMember(String id) {
 		return memberDao.getMember(id);
 	}
-
+	
+	// 아이디 중복확인 메서드
 	@Override
 	public boolean overlapIdCheck(String id) {
 		Member member = memberDao.getMember(id);
@@ -66,7 +68,8 @@ public class MemberServiceImpl implements MemberService {
 		}
 		return true;
 	}
-
+	
+	// 회원가입 메서드
 	@Override
 	public void addMember(Member member) {
 		// BCryptPasswordEncoder 객체를 이용해 비밀번호를 암호화한 후 저장
@@ -77,6 +80,7 @@ public class MemberServiceImpl implements MemberService {
 
 	}
 
+	// 회원 비밀번호 확인 메서드
 	@Override
 	public boolean memberPassCheck(String id, String pass) {
 		String dbPass = memberDao.memberPassCheck(id, pass);		
@@ -93,13 +97,30 @@ public class MemberServiceImpl implements MemberService {
 		return result;
 	}
 
+	// 회원 비밀번호 수정 메서드
 	@Override
 	public void updateMember(Member member) {
-		// BCryptPasswordEncoder 객체를 이용해 비밀번호를 암호화한 후 저장
-		member.setPass(passwordEncoder.encode(member.getPass()));
-		System.out.println(member.getPass());
-		
 		memberDao.updateMember(member);
+	}
+
+	// 닉네임 중복확인 메서드
+	@Override
+	public boolean overlapNickNameCheck(String nickname) {
+		Member member = memberDao.getNickName(nickname);
+		System.out.println("overlapNickNameCheck - member : " + member);
+		if(member == null) {
+			return false;
+		}
+		return true;
+	}
+
+	// 비밀번호 변경 메서드
+	@Override
+	public void updatePass(Member member) {
+		member.setPass(passwordEncoder.encode(member.getPass()));
+		
+		memberDao.updatePass(member);
+		
 	}
 
 }

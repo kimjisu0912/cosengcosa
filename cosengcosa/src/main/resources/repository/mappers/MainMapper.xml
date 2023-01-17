@@ -21,7 +21,43 @@
 	  - http://www.mybatis.org/mybatis-3/ko/index.html
 -->
 <mapper namespace="com.cosengcosa.room.mapper.MainMapper" >
-
+	
+	<!-- 메인강의리스트 최신순으로 가져오기 -->
+	<select id="getClassMainListD" resultType="ClassMain" resultMap="classMainResultMap">
+		SELECT cm_no, cm_code, cm_title, cm_name, cm_content, cm_period, cm_price, cm_count, cm_recommend, cm_star, cm_yn, cs_video video
+	    FROM classmain, classsub 
+	    WHERE cm_yn = 'Y'
+	    AND cs_code = CONCAT(LOWER(cm_code),'_01')
+	    ORDER BY cm_no DESC 
+	</select>
+	
+	<select id="getClassMainListR" resultType="ClassMain" resultMap="classMainResultMap">
+		SELECT cm_no, cm_code, cm_title, cm_name, cm_content, cm_period, cm_price, cm_count, cm_recommend, cm_star, cm_yn, cs_video video
+	    FROM classmain, classsub 
+	    WHERE cm_yn = 'Y'
+	    AND cs_code = CONCAT(LOWER(cm_code),'_01')
+	    ORDER BY cm_recommend DESC  
+	</select>
+	
+	
+	<resultMap id="classMainResultMap" type="ClassMain">
+		<id property="cmNo" column="cm_no" />
+		<result property="cmId" column="cm_id" />
+		<result property="cmCode" column="cm_code" />
+		<result property="cmTitle" column="cm_title" />
+		<result property="cmName" column="cm_name" />
+		<result property="cmContent" column="cm_content" />
+		<result property="cmSdate" column="cm_sdate" />
+		<result property="cmEdate" column="cm_edate" />
+		<result property="cmPrice" column="cm_price" />
+		<result property="cmPeriod" column="cm_period" />
+		<result property="cmCount" column="cm_count" />
+		<result property="cmRecommend" column="cm_recommend" />
+		<result property="cmStar" column="cm_star" />
+		<result property="file1" column="file1" />
+		<result property="video" column="video" />
+		<result property="cmYn" column="cm_yn" />
+	</resultMap>
 </mapper>	
 
 

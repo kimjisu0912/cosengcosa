@@ -1,24 +1,10 @@
 // DOM이 준비되면 실행될 콜백 함수 
 $(function() {	
 	
-	$("#memberUpdateForm").on("submit", function() {
-		// 비밀번호 확인을 했는지 체크 - 비밀번호 확인버튼이 비활성화 유무로 확인한다
-		if(! $("#btnPassCheck").prop("disabled")) {
-			alert("비밀번호 확인을 해주세요");
-			return false;
-		}
-		
-		return joinFormCheck(false); 
-	});
-	
-	// 기존 비밀번호 다시 입력시 비활성화
-	$("#oldPass").change(function(){
-		$("#btnPassCheck").prop("disabled", false); // 버튼 활성화
-	});
-	
 	// 비밀번호 확인
 	$("#btnPassCheck").on("click",function(){
 		var oldId = $("#id").val();
+		console.log(oldId);
 		var oldPass = $("#oldPass").val();
 		
 		if($.trim(oldPass).length == 0){
@@ -41,12 +27,12 @@ $(function() {
 				console.log("d: \n");
 				console.log(d); // 이렇게 순수하게 그 자체로 찍으면 객체처럼 보인다. 
 				if(d.result){
-					alert("비밀번호가 확인되었습니다. \n새로운 비밀번호로 수정해주세요.");
+					swal("확인완료", "비밀번호가 확인되었습니다. \n새로운 비밀번호로 수정해주세요.", 'success');
 					$("#btnPassCheck").prop("disabled", true); // 버튼 비활성화
 					$("#pass1").focus();
 				}else{
 				// 비밀번호가 틀린 경우 - 비밀번호가 틀림을 알림
-					alert("비밀번호가 맞지 않습니다.");
+					swal("확인실패","비밀번호가 맞지 않습니다.",'warning');
 					$("#oldPass").val("").focus();
 				}			
 			},
@@ -57,6 +43,42 @@ $(function() {
 		});
 		
 	});
+	
+	// 기존 비밀번호 다시 입력시 비활성화
+	$("#oldPass").change(function(){
+		$("#btnPassCheck").prop("disabled", false); // 버튼 활성화
+	});
+	
+	// 비밀번호 변경버튼 클릭시 확인후 전달
+	$("#passChange").on("submit", function() {
+	// 비밀번호 확인을 했는지 체크 - 비밀번호 확인버튼이 비활성화 유무로 확인한다
+		
+		var pass1 = $("#pass1").val();
+		var pass2 = $("#pass2").val();
+		
+		if(! $("#btnPassCheck").prop("disabled")) {
+			swal("","현재 비밀번호를 확인해주세요", 'warning');
+			return false;
+		}
+		
+		if(pass1.length == 0) {		
+		swal("입력오류","새 비밀번호를 입력해주세요",'warning');
+		return false;
+		}
+	
+		if(pass2.length == 0) {		
+			swal("입력오류","새 비밀번호 확인을 입력해주세요",'warning');
+			return false;
+		}
+		
+		if(pass1 != pass2) {
+			swal("입력오류","새 비밀번호와 새 비밀번호 확인이 일치하지 않습니다.",'warning');
+			return false;
+		}	
+		
+		swal("변경완료", "비밀번호가 변경되었습니다", 'success');
+	});
+	
 	
 	// 회원가입 버튼 이벤트 처리
 	$("#joinForm").on("submit",function(){
@@ -75,6 +97,8 @@ $(function() {
 		window.close();
 	});
 	
+	
+	
 	// 아이디 중복검사
 	$("#btnOverlapId").on("click",function(){
 		var id = $("#id").val();
@@ -91,6 +115,65 @@ $(function() {
 		// toolbar 이후 부터 옵션임
 		window.open(url, "idChedk", "toolbar=no, location=no, status=no, menubar=no, width=500, height=400");
 	});
+	
+	// 회원가입시 닉네임 중복검사 새창으로 확인하기
+	$("#btnOverlapNickName").on("click",function(){
+		var nickname = $("#nickname").val();
+		var url = "overlapNickNameCheck?nickname="+nickname;
+		
+		if(nickname.length<=0){
+			swal("입력오류", "닉네임을 입력해 주세요",'warning');
+			return false;
+		}
+		if(nickname.length < 5){
+			swal("","닉네임은 5자 이상 입력해야 합니다.",'warning');
+			return false;
+		}
+		// toolbar 이후 부터 옵션임
+		window.open(url, "nicknameCheck", "toolbar=no, location=no, status=no, menubar=no, width=500, height=400, top=300, left=300 ");
+	});
+	
+	// 회원가입시 닉네임 중복검사 새창에서 이벤트 처리
+	$("#btnNickNameCheckClose").on("click",function(){
+		var nickname = $(this).attr("data-id-value"); // attr()은 해당 태그의 속성이다
+		
+		// 부모창에 도큐먼트에 해당폼의 아이디의 값에 id값을 넣어준다
+		opener.document.joinForm.nickname.value = nickname;
+		// 아이디 체크 상태를 변경해준다.
+		opener.document.joinForm.isNickNameCheck.value = true;
+		// 팝업창 닫자
+		window.close();
+	});
+	
+	// 회원정보 수정시 닉네임 중복검사 새창으로 확인하기
+	$("#btnOverlapNickName2").on("click",function(){
+		var nickname = $("#nickname").val();
+		var url = "overlapNickNameCheck2?nickname="+nickname;
+		
+		if(nickname.length<=0){
+			swal("입력오류", "닉네임을 입력해 주세요",'warning');
+			return false;
+		}
+		if(nickname.length < 5){
+			swal("","닉네임은 5자 이상 입력해야 합니다.",'warning');
+			return false;
+		}
+		// toolbar 이후 부터 옵션임
+		window.open(url, "nicknameCheck", "toolbar=no, location=no, status=no, menubar=no, width=500, height=400, top=0, left=0");
+	});
+	
+	// 회원정보 수정시 닉네임 중복검사 새창에서 이벤트 처리
+	$("#btnNickNameCheckClose2").on("click",function(){
+		var nickname = $(this).attr("data-id-value"); // attr()은 해당 태그의 속성이다
+		
+		// 부모창에 도큐먼트에 해당폼의 아이디의 값에 id값을 넣어준다
+		opener.document.memberUpdateForm.nickname.value = nickname;
+		// 아이디 체크 상태를 변경해준다.
+		opener.document.memberUpdateForm.isNickNameCheck.value = true;
+		// 팝업창 닫자
+		window.close();
+	});
+	
 	
 	
 	// 우편번호 찾기 이벤트 처리
