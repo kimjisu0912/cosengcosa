@@ -147,10 +147,10 @@
 	</select> 
 	
 	
-	<insert id="classInsert" parameterType="HashMap" useGeneratedKeys="true" keyProperty="no">
-		INSERT INTO classmain(cmTitle, cmName, cmCode, cmPeriod)		
+	 <insert id="classMainInsert" parameterType="HashMap" useGeneratedKeys="true" keyProperty="no">
+		INSERT INTO classmain(cmTitle, cmName, cmContent, cmCode, cmPeriod)		
 		VALUES(#{cmTitle}, #{cmName},#{cmContent}, #{cmCode}, #{cmPeriod})
-	</insert>
+	</insert> 
 	 
 	 
 	 
