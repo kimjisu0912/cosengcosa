@@ -124,8 +124,9 @@ public class ClassMainServiceImpl implements ClassMainService {
 	}
 
 	@Override
-	public void insertBoard(ClassMain cl) {
+	public void classMainInsert(ClassMain classMain) {
 		
+		classMainDao.classMainInsert(classMain);
 		
 	}
 
