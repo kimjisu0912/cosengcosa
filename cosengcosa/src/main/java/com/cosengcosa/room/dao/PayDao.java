@@ -28,4 +28,7 @@ public interface PayDao {
 	// 결재에 필요한 강의(메인)정보 메소드
 	public abstract ClassMain getClassMainInfo(String cmcode);
 	
+	// 결재처리 메소드
+	public abstract void insertPay(Pay pay);
+	
 }

@@ -84,4 +84,12 @@ public class PayDaoImpl implements PayDao {
 		return sqlSession.selectOne(NAME_SPACE + ".getClassMainInfo", cmcode);
 	}
 
+	/*
+	 * 결재처리 메소드
+	 */
+	@Override
+	public void insertPay(Pay pay) {
+		sqlSession.insert(NAME_SPACE + ".insertPay", pay);
+	}
+
 }

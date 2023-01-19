@@ -132,4 +132,12 @@ public class PayServiceImpl implements PayService{
 	public ClassMain getClassMainInfo(String cmcode) {
 		return payDao.getClassMainInfo(cmcode);
 	}
+
+	/*
+	 * 결재처리 서비스
+	 */
+	@Override
+	public void insertPay(Pay pay) {
+		payDao.insertPay(pay);
+	}
 }

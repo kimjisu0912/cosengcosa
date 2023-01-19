@@ -3,6 +3,7 @@ package com.cosengcosa.room.service;
 import java.util.Map;
 
 import com.cosengcosa.room.domain.ClassMain;
+import com.cosengcosa.room.domain.Pay;
 
 /**
  * 결재 서비스 인터페이스
@@ -31,4 +32,9 @@ public interface PayService {
 	 * 결재에 필요한 강의(메인)정보를 PayDao에 호출 메소드
 	 */
 	public abstract ClassMain getClassMainInfo(String cmcode);
+	
+	/*
+	 * 결재처리 PayDao에 호출 메소드
+	 */
+	public abstract void insertPay(Pay pay);
 }

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cosengcosa.room.domain.ClassMain;
+import com.cosengcosa.room.domain.Pay;
 import com.cosengcosa.room.service.PayService;
 
 /**
@@ -92,8 +93,37 @@ public class PayController {
 			return "/pay/payAddForm";
 		}
 		
-		
-		
 	}
+	
+	/*
+	 * 결재 입력
+	 */
+	@RequestMapping("classPayAdd")
+	public String classPayAdd(Model model,
+			@RequestParam(value="cmNo", required=false, defaultValue="null") String cmNo,
+			@RequestParam(value="pMid", required=false, defaultValue="null") String pMid,
+			@RequestParam(value="pName", required=false, defaultValue="null") String pName,
+			@RequestParam(value="pCmcode", required=false, defaultValue="null") String pCmcode,
+			@RequestParam(value="pCname", required=false, defaultValue="null") String pCname,
+			@RequestParam(value="pPrice", required=false, defaultValue="null") String pPrice,
+			PrintWriter out, HttpServletResponse response) {
+		
+		Pay pay = new Pay();
+		
+		pay.setpMid(pMid);
+		pay.setpName(pName);
+		pay.setpCmcode(pCmcode);
+		pay.setpCname(pCname);
+		pay.setpChk("Y");
+		int pprice = Integer.parseInt(pPrice);
+		pay.setpPrice(pprice);
+		pay.setpYn("Y");
+		
+		payService.insertPay(pay);
+		
+		return "redirect:/classMainDetail?cmNo="+cmNo+"&cmCode="+pCmcode;
+	}
+
+	
 	
 }

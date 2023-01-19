@@ -71,7 +71,7 @@
  					<c:if test="${searchOption and not empty payList }">
  						<c:forEach var="p" items="${payList }" varStatus="status">
  							<tr class="table-light">
- 								<td>${listCount - ((currentPage-1) * 10 + status.index) }</td>
+ 								<td>${p.num }</td>
  								<%-- <td>${p.pNo }</td> --%>
  								<td>${p.pCname }</td>
  								<td><fmt:formatNumber type="number" maxFractionDigits="3" value="${p.pPrice }"/></td>
@@ -84,8 +84,9 @@
  					<c:if test="${not searchOption and not empty payList }">
  						<c:forEach var="p" items="${payList }" varStatus="status">
  							<tr class="table-light">
- 								<td>${listCount - ((currentPage-1) * 10 + status.index) }</td>
- 								<%-- <td>${p.pNo }</td> --%>
+ 								<td>${p.num }</td>
+ 								<%-- <td>${status.count }</td> --%>
+ 								<%-- <td>${listCount - ((currentPage-1) * 10 + status.index) }</td> --%>
  								<td>${p.pCname }</td>
  								<td><fmt:formatNumber type="number" maxFractionDigits="3" value="${p.pPrice }"/></td>
  								<td><fmt:formatDate value="${p.pCdate }" pattern="yyyy-MM-dd"/></td>

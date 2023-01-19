@@ -58,29 +58,49 @@
 			<where>
 				p_yn = 'Y'
 				AND p_mid LIKE '%' || #{userid,jdbcType=VARCHAR} || '%'
-				AND p_cdate BETWEEN #{datePicker1} AND #{datePicker2}
+				AND TO_CHAR(p_cdate, 'YYYYMMDD') <![CDATA[>=]]> #{datePicker1} AND TO_CHAR(p_cdate, 'YYYYMMDD') <![CDATA[<=]]> #{datePicker2}
 			</where>
+			ORDER BY p_cdate DESC
         ) pay
-        ORDER BY pCdate DESC
     )
 	WHERE num  <![CDATA[>=]]>#{startRow} AND num <![CDATA[<=]]>#{endRow}
 	</select>
 	
+	<!-- 장바구니 확인 -->
 	<select id="baCount" resultType="int">
 	</select>
 	
+	<!-- 장바구니 비우기 -->
 	<delete id="baDelete">
 	</delete>
 	
+	<!-- 결재 정보(강의) 가져오기 -->
 	<select id="getClassMainInfo" resultType="ClassMain">
-		SELECT 
-			cm_title AS cmTitle, 
-			cm_price AS cmPrice
+		SELECT
+			cm_no		AS cmNo,
+			cm_code 	AS cmCode, 
+			cm_title 	AS cmTitle,
+			cm_name 	AS cmName,
+			cm_content 	AS cmContent,
+			cm_period	AS cmPeriod,			
+			cm_price 	AS cmPrice,
+			cm_count	AS cmCount,
+			cm_recommend AS cmRecommend,
+			cm_star		AS cmStar,
+			file1		AS file1,
+			video		AS	video
 		FROM 
 			classmain
 		WHERE
-			cm_code = #{cmcode}
+			cm_yn = 'Y'
+			AND cm_code = #{cmcode}
 	</select>
+	
+	<!-- 결재 처리 -->
+	<insert id="insertPay" parameterType="Pay" useGeneratedKeys="false" keyProperty="pNo">
+	INSERT INTO pay (p_no, p_mid, p_name, p_cmcode, p_cname, p_chk, p_price, p_cdate, p_yn) 
+	VALUES (pay_seq.NEXTVAL, #{pMid}, #{pName}, #{pCmcode}, #{pCname}, #{pChk}, #{pPrice}, SYSDATE, #{pYn})
+	</insert>
 	
 	<!-- Pay 클래스의 프로퍼티와 테이블의 컬럼을 맵핑하는 ResultMap -->
 	<resultMap id="payResultMap" type="Pay" >
