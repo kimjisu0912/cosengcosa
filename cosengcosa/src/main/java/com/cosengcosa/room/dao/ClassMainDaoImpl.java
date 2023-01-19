@@ -122,6 +122,41 @@ public class ClassMainDaoImpl implements ClassMainDao {
 		sqlSession.insert(NAME_SPACE + ".classMainInsert", classMain);
 		
 	}
+	
+	@Override
+	public void classMainUpdate(ClassMain classMain) {
+		
+		sqlSession.update(NAME_SPACE + ".classMainUpdate", classMain);
+	}
+	
+	// 글 삭제 요청시 호출되는 메서드
+	@Override
+	public void classMainDelete(int cmNo) {
+		
+		sqlSession.delete(NAME_SPACE + ".classMainDelete", cmNo);
+	}
+
+	
+
+	/*
+	 * 메인강의 비디오조회 요청 시 유무 확인 메소드
+	 */
+	@Override
+	public int getDetailVideoChk(String cmCode) {
+		return sqlSession.selectOne(NAME_SPACE + ".detailVideoChk", cmCode);
+	}
+
+		
+	}
+
+	
+
+
+	
+
+
+
+	
 
 
 	
@@ -150,4 +185,4 @@ public class ClassMainDaoImpl implements ClassMainDao {
 	
 
 
-}
+

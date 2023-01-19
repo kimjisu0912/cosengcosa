@@ -10,7 +10,7 @@
 			<div class="col-md ">
 				<div class="row position-relative bg-primary bg-opacity-50" >
 					<div class="col-3">
-						<svg class="bd-placeholder-img" width="200" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">이미지</text></svg>
+						 <img src="http://img.youtube.com/vi/${cmVideo }/mqdefault.jpg"></img>
 					</div>
 					
 					<div class="col p-3 d-flex flex-column position-static">
@@ -23,21 +23,15 @@
 				</div>
 				<div class="row">
 					<div class="col shadow p-3 mb-5 bg-body rounded">
-						<ul class="nav nav-pills justify-content-start">
+						<ul class="nav nav-pills justify-content-end">
 							<li class="nav-item">
-								<a class="nav-link fbk " href="#">강의소개</a>
+								<a type="button" class="btn btn-outline-success m-2" href="classSubAddForm?cmcode=${classMain.cmCode }">강의영상 등록</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link fbk" href="#">커리큐럼</a>
+								<a type="button" class="btn btn-outline-success m-2" href="classMainModForm?cmNo=${classMain.cmNo }&cmcode=${classMain.cmCode }">수정</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link fbk" href="#">수강평</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link fbk" href="#">커뮤니티</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link fbk" href="#">새소식</a>
+								<a type="button" class=" btn btn-outline-success m-2" id="classMainDelete" data-uri="classMainList" >삭제</a>
 							</li>
 						</ul>
 			 		</div>
@@ -52,9 +46,9 @@
 			</div>
 			<!-- 구매했을 경우  -->
 			<c:if test="${payChk == 'Y' }">
-			<div class="col-md-4 col-lg-3 order-md-last">
-				<ul class="list-group mb-3">
-					<li class="list-group-item d-flex justify-content-between lh-sm">
+			<div class="col-md-4 col-lg-3 order-md-last ">
+				<ul class="list-group mb-3 shadow p-3 mb-5 bg-body rounded">
+					<li class="list-group-item d-flex justify-content-between lh-sm ">
 						<div class="row">
 							<div class="col">
 								<div>
@@ -62,11 +56,11 @@
 									<p class="text-muted fs-4">${classMain.cmPrice/5 }/ ${classMain.cmPeriod}개월</p>
 								</div>
 								<div class="d-grid gap-3">
-									<a class="btn btn-outline-success bg-opacity-50" type="button" href="classSubList?cmcode=${classMain.cmCode }">수강하기</a>
+									<a class="btn btn-outline-success" type="button" href="classSubList?cmcode=${classMain.cmCode }">수강하기</a>
 								</div>
 								<div class="button-group-center">
-									<button type="button" class="btn btn-link"><i class="bi bi-heart"></i> </button>
-									<button type="button" class="btn btn-default bi bi-share"><span class="glyphicon glyphicon-share-alt"></span></button>
+									<a type="button" class="btn btn-link"><i class="bi bi-heart"></i> </a>
+									<a type="button" class="btn btn-default bi bi-share"><span class="glyphicon glyphicon-share-alt"></span></a>
 								</div>
 							</div>
 						</div>
@@ -94,11 +88,11 @@
 								</div>
 								<div class="d-grid gap-3">
 									<a class="btn btn-outline-success bg-opacity-50" type="button" href="payAddForm?cmcode=${classMain.cmCode }">결재하기</a>
-									<a class="btn btn-outline-success bg-opacity-50" type="button" href="myBasket?cmcode=${classMain.cmCode }">장바구니</a>
+									<a class="btn btn-outline-success bg-opacity-50" type="button" href="basketList">장바구니</a>
 								</div>
 								<div class="button-group-center">
-									<button type="button" class="btn btn-link"><i class="bi bi-heart"></i> </button>
-									<button type="button" class="btn btn-default bi bi-share"><span class="glyphicon glyphicon-share-alt"></span></button>
+									<a type="button" class="btn btn-link"><i class="bi bi-heart"></i> </a>
+									<a type="button" class="btn btn-default bi bi-share"><span class="glyphicon glyphicon-share-alt"></span></a>
 								</div>
 							</div>
 						</div>
@@ -112,7 +106,7 @@
 				</ul>
 			</div>
 		</c:if>
-		
+		</div>
 	</div>
 </div>
 

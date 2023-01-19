@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cosengcosa.room.domain.ClassMain;
 import com.cosengcosa.room.service.ClassMainService;
@@ -60,62 +62,136 @@ public class ClassMainController {
 		return "/class/classMainList";
 	}
 	
+	/*
+	 * 메인강의 상제조회
+	 */
 	@RequestMapping("/classMainDetail")
 	public String classMainDetail(Model model, int cmNo, 
-	@RequestParam(value="type", required=false, defaultValue="null") String type,
-	@RequestParam(value="keyword", required=false, defaultValue="null") String keyword,
 	@RequestParam(value="cmCode", required=false, defaultValue="null") String cmCode,
+	@RequestParam(value="pageNum", required=false, defaultValue="null") String pageNum,
+	@RequestParam(value="keyword", required=false,defaultValue="null") String keyword,
+	@RequestParam(value="type", required=false,defaultValue="null") String type,
 	HttpServletRequest request, HttpSession session) {
 		
 		
 		String userid = (String) session.getAttribute("userId");
 		
+		boolean searchOption = (type.equals("null") 
+				|| keyword.equals("null")) ? false : true; 	
+		
 		Map<String, Object> cl = classMainService.getDetail(cmNo, true, cmCode, userid);
 		
 		model.addAllAttributes(cl);
+		model.addAttribute("searchOption", searchOption);
+		model.addAttribute("pageNum", searchOption);
+		
 		
 		 
 		
 		return "/class/classMainDetail";
 	}
 	
-	
-	@RequestMapping(value="/classMainAdd", method= RequestMethod.GET)
-	public String classMainAdd(HttpServletRequest request,
-			String cmTitle, String cmCode, String cmName,  String cmContent, 
-			@RequestParam(value="file1", required=false) MultipartFile multipartFile
-			) throws IOException{
+	/*
+	 * 메인강의 입력
+	 */
+	@RequestMapping(value="/classMainAdd", method= RequestMethod.POST)
+	public String classMainAdd(Model model,
+			@RequestParam(value="cmTitle", required=false, defaultValue="null") String cmTitle,
+			@RequestParam(value="cmCode", required=false, defaultValue="null") String cmCode,
+			@RequestParam(value="cmName", required=false, defaultValue="null") String cmName,
+			@RequestParam(value="cmPrice", required=false, defaultValue="null") String cmPrice,
+			@RequestParam(value="cmPeriod", required=false, defaultValue="null") String cmPeriod,
+			@RequestParam(value="cmContent", required=false, defaultValue="null") String cmContent,
+			HttpSession session) throws IOException{
 		
 		ClassMain classMain = new ClassMain();
 		
 		classMain.setCmTitle(cmTitle);
 		classMain.setCmCode(cmCode);
 		classMain.setCmName(cmName);
-		//classMain.setCmPeriod(cmPeriod);
+		classMain.setCmPeriod(Integer.parseInt(cmPeriod));
 		classMain.setCmContent(cmContent);
-//		System.out.println("cmPeriod >>>> " + cmPeriod);
-		
-		if(!multipartFile.isEmpty()) {
-			
-			String filePath = request.getServletContext().getRealPath(DEFAULT_PATH);
-			
-			//uuid 사용 
-			UUID uid = UUID.randomUUID();
-			String saveName = uid.toString() + "_" + multipartFile.getOriginalFilename();
-			
-			File file = new File(filePath, saveName);
-			
-			//upload파일로 저장 
-			multipartFile.transferTo(file);
-			
-			classMain.setFile1(saveName);
-		}
-		
+		classMain.setCmPrice(Integer.parseInt(cmPrice));
+		classMain.setCmYn("Y");
 		
 		classMainService.classMainInsert(classMain);
 		
 		return "redirect:classMainList";
 	}
+	
+	/*
+	 * 메인강의 수정폼
+	 */
+	@RequestMapping("/classMainModForm")
+	public String classMainModForm(Model model, 
+			int cmNo,
+			@RequestParam(value="cmcode", required=false, defaultValue="null") String cmCode,
+			HttpServletResponse response,
+			HttpSession session, PrintWriter out 
+			)throws Exception {
+		
+		String userid = (String) session.getAttribute("userId");
+		Map<String, Object> cm = classMainService.getDetail(cmNo, true, cmCode, userid);
+		model.addAllAttributes(cm);
+		
+		return "/class/classMainUpdate";
+		
+	}
+	
+	/*
+	 * 메인강의 수정
+	 */
+	@RequestMapping(value="/classMainUpdate", method= RequestMethod.POST)
+	public String classMainUpdate(Model model,
+			@RequestParam(value="cmTitle", required=false, defaultValue="null") String cmTitle,
+			@RequestParam(value="cmCode", required=false, defaultValue="null") String cmCode,
+			@RequestParam(value="cmName", required=false, defaultValue="null") String cmName,
+			@RequestParam(value="cmPrice", required=false, defaultValue="null") String cmPrice,
+			@RequestParam(value="cmPeriod", required=false, defaultValue="null") String cmPeriod,
+			@RequestParam(value="cmContent", required=false, defaultValue="null") String cmContent,
+			HttpSession session) throws IOException{
+		
+		ClassMain classMain = new ClassMain();
+		
+		classMain.setCmTitle(cmTitle);
+		classMain.setCmCode(cmCode);
+		classMain.setCmName(cmName);
+		classMain.setCmPeriod(Integer.parseInt(cmPeriod));
+		classMain.setCmContent(cmContent);
+		classMain.setCmPrice(Integer.parseInt(cmPrice));
+		classMain.setCmYn("Y");
+		
+		classMainService.classMainUpdate(classMain);
+		
+		return "redirect:classMainList";
+	}
+	
+	@RequestMapping(value="/classMainDelete")
+	public String classMainDelete(HttpServletResponse response, PrintWriter out, int cmNo, RedirectAttributes reAttrs,
+			@RequestParam(value="pageNum", required=false, defaultValue="1") int pageNum,
+			@RequestParam(value="type", required=false, defaultValue="null") String type,
+			@RequestParam(value="keyword", required=false, defaultValue="null") String keyword
+			) throws Exception {
+		
+		
+		boolean searchOption = (type.equals("null") 
+				|| keyword.equals("null")) ? false : true;
+		
+		//service를 이용해서 게시글을 삭제 
+		classMainService.classMainDelete(cmNo);
+		
+		reAttrs.addAttribute("searchOption", searchOption);
+		
+		if(searchOption) {
+			reAttrs.addAttribute("type", type);
+			reAttrs.addAttribute("keyword", keyword);
+		}
+		
+		reAttrs.addAttribute("pageNum", pageNum);
+		
+		return "rediret:classMainList";
+	}
+	
 	
 	
 }

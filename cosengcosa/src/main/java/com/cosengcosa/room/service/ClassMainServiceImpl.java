@@ -92,14 +92,24 @@ public class ClassMainServiceImpl implements ClassMainService {
 		return modelMap;
 	}
 
+	/*
+	 * 메인강의 상세조회 서비스
+	 */
 	@Override
 	public Map<String, Object> getDetail(int cmNo, boolean b, String cmCode, String userid) {
 		String payChk = "";
 		Map<String, Object> modelMap = new HashMap<String, Object>();
 		// 비로그인시도 상세화면 허용
 		ClassMain classMain = classMainDao.getDetail(cmNo, b);
-		ClassMain cv = classMainDao.getCmVideo(cmCode);
-		String cmVideo = cv.getCmVideo();
+		String cmVideo = "";
+		int cmVideoChk = classMainDao.getDetailVideoChk(cmCode);
+		if(cmVideoChk > 0) {
+			ClassMain cv = classMainDao.getCmVideo(cmCode);
+			cmVideo = cv.getCmVideo();
+		}else {
+			cmVideo = "";
+		}
+		
 		// 로그인 시 로직
 		if(userid == null) {
 			payChk = "N";
@@ -123,12 +133,33 @@ public class ClassMainServiceImpl implements ClassMainService {
 		return modelMap;
 	}
 
+	/*
+	 * 메인강의 입력 서비스
+	 */
 	@Override
 	public void classMainInsert(ClassMain classMain) {
 		
 		classMainDao.classMainInsert(classMain);
 		
 	}
+	
+	/*
+	 * 메인강의 수정 서비스
+	 */
+	@Override
+	public void classMainUpdate(ClassMain classMain) {
+		classMainDao.classMainUpdate(classMain);
+	}
+	
+// classMainDao를 이용해 cmNo에 해당하는 게시글을 삭제 
+	@Override
+	public void classMainDelete(int cmNo) {
+		
+		classMainDao.classMainDelete(cmNo);
+	}
+
+	
+
 
 
 	

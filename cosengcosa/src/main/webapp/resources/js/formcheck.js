@@ -9,15 +9,17 @@ $(function() {
 		$("#checkForm").submit();
 	});
 	
-	/* 게시 글 상세보기에서 게시 글 삭제 요청 처리
-	 * 아래와 같이 hidden 폼을 통해 post 방식으로 처리 할 수 있다.
-	 **/
-	$("#detailDelete").on("click", function() {
+	
+				
+	//게시글 등록시 확인창 내리기
+	$(document).ready(function(){
+   		 $("#classMainInsert").on('click', function() {  // 
+       			 if(confirm("게시글을 등록하시겠습니까?")) {  // 확인 창이 열림
+           				location.href = $(this).data('/classMainList');  // data-uri 속성값으로 URL 호출
+       			 }
+   		 });
+});
 		
-		$("#checkForm").attr("action", "studyDelete");
-		$("#checkForm").attr("method", "post");
-		$("#checkForm").submit();
-	});
 	
 	// 게시 글쓰기 폼 유효성 검사
 	$("#writeForm").on("submit", function() {

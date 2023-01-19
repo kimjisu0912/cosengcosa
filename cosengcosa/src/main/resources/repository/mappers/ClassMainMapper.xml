@@ -26,11 +26,11 @@
 	<select id="classMainList" resultType="ClassMain" parameterType="hashmap">
 	SELECT
 	    num, cmNo, cmCode, cmTitle, cmName, cmContent, cmPeriod, cmPrice, cmCount,
-	    cmRecommend, cmStar, file1, video, cmYn
+	    cmRecommend, cmStar, video, cmYn
 	FROM    
 	    (SELECT
 	        ROWNUM num, cmNo, cmCode, cmTitle, cmName, cmContent, cmPeriod, cmPrice, cmCount,
-	        cmRecommend, cmStar, file1, video, cmYn
+	        cmRecommend, cmStar, video, cmYn
 	    FROM 
 	        (SELECT
 	            cm_no AS cmNo,
@@ -43,7 +43,7 @@
 	            cm_count AS cmCount,
 	            cm_recommend AS cmRecommend,
 	            cm_star AS cmStar,	
-	            file1 AS file1,	
+	           
 	            video AS video,	        
 	            cm_yn AS cmYn
 	        FROM
@@ -54,8 +54,9 @@
 	 			AND cm_title LIKE '%' || #{keyword} || '%'
 	 		</if>
 	 	</where>
+	 	ORDER BY cm_no DESC
         ) classmain
-        ORDER BY cmNo 
+        ORDER BY num 
     )
 	WHERE num  <![CDATA[>=]]>#{startRow} AND num <![CDATA[<=]]>#{endRow}
 	</select>
@@ -102,6 +103,19 @@
 			WHERE ROWNUM = 1
 	</select>
 	
+	<!-- 메인강의에 해당하는 서브강의 비디오id값 유무체크 -->
+	<select id="detailVideoChk" resultType="int">
+		SELECT COUNT(b.cs_video) as cmVideo FROM
+			classmain a,
+			classsub b
+		WHERE
+			a.cm_code = b.cs_group
+			AND a.cm_code = #{cmCode}
+			AND b.cs_code = (SELECT MIN(cs_code) FROM classsub
+			WHERE cs_group = #{cmCode})
+	</select>
+	
+	<!-- 서브강의 비디오id 가져오기 -->
 	<select id="detailVideo" resultType="ClassMain" parameterType="HashMap">
 		SELECT b.cs_video as cmVideo FROM
 			classmain a,
@@ -117,11 +131,11 @@
 	<select id="getDetail" resultType="ClassMain" parameterType="HashMap">
 		SELECT
 			num, cmNo, cmCode, cmTitle, cmName, cmContent, cmPeriod, cmPrice, cmCount,
-	   			 cmRecommend, cmStar, file1, video, cmYn
+	   			 cmRecommend, cmStar,  video, cmYn
 		FROM 
 		 (SELECT
 	        ROWNUM num, cmNo, cmCode, cmTitle, cmName, cmContent, cmPeriod, cmPrice, cmCount,
-	        cmRecommend, cmStar, file1, video, cmYn
+	        cmRecommend, cmStar,  video, cmYn
 	    FROM 
 	        (SELECT
 	            cm_no AS cmNo,
@@ -134,7 +148,7 @@
 	            cm_count AS cmCount,
 	            cm_recommend AS cmRecommend,
 	            cm_star AS cmStar,	
-	            file1 AS file1,	
+	            	
 	            video AS video,	        
 	            cm_yn AS cmYn
 	        FROM
@@ -149,12 +163,31 @@
 	</select> 
 	
 	
-	<insert id="classMainInsert" parameterType="HashMap" useGeneratedKeys="true" keyProperty="no">
-		INSERT INTO classmain(cmTitle, cmName, cmContent, cmCode, cmPeriod)		
-		VALUES(#{cmTitle}, #{cmName},#{cmContent}, #{cmCode}, #{cmPeriod})
+	<insert id="classMainInsert"  parameterType="classMain" useGeneratedKeys="true" keyProperty="no">
+		INSERT INTO classmain(cm_no, cm_code, cm_title, cm_name, cm_content, cm_period, cm_price, cm_yn)		
+		VALUES(classmain_seq.NEXTVAL, #{cmCode}, #{cmTitle}, #{cmName},#{cmContent}, #{cmPeriod}, #{cmPrice}, #{cmYn})
 	</insert>
 	 
+	 <!-- update -->
+	 <update id="classMainUpdate" parameterType="classMain">
+	 UPDATE classmain
+	 SET 	cm_title = #{cmTitle}, 
+	 		cm_name = #{cmName}, 
+	 		cm_content = #{cmContent}, 
+	 		cm_code = #{cmCode}, 
+	 		cm_period = #{cmPeriod},
+	 		cm_price = #{cmPrice},
+	 		cm_yn = #{cmYn}
+	 WHERE cm_code = #{cmCode}
 	 
+	 </update>
+	 
+	 
+	 <update id="classMainDelete"  parameterType="classMain">
+	 	UDATE classmain
+	 	SET cmYn = 'N'
+	 	WHERE cm_code = #{cmCode}
+	 </update>
 	 
 	 
 	 <!--

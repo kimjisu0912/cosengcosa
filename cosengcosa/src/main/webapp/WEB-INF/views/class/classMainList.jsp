@@ -41,7 +41,7 @@
  			<a href="classMainList" class="btn btn-outline-success">강의 리스트</a>
  		</div>
  		<div class="col-6 text-end">
- 			<a href="writeForm" class="btn btn-outline-success">글쓰기</a>
+ 			<a href="classMainInsert" class="btn btn-outline-success">글쓰기</a>
  		</div>
  	</div>
  	</c:if>
@@ -50,7 +50,7 @@
  	<c:if test="${not searchOption }" >
 	 	<div class="row">
 	 		<div class="col text-end">
-	 			<a href="classMainInsert" class="btn btn-outline-success">글쓰기</a>
+	 			<a href="classMainInsert" class="btn btn-outline-success" >글쓰기</a>
 	 		</div>
 	 	</div>
  	</c:if>
@@ -69,9 +69,10 @@
  				<tbody>
  					<!-- 검색 요청에서 게시 글이 있는 경우 -->
  					<c:if test="${searchOption and not empty classMainList }">
- 						<c:forEach var="c" items="${classMainList }">
+ 						<c:forEach var="c" items="${classMainList }" varStatus="status">
  							<tr class="table-light">
- 								<td>${c.cmNo }</td>
+ 								<%-- <td>${c.cmNo }</td> --%>
+ 								<td>${c.num }</td>
  								<td><a href="classMainDetail?cmNo=${c.cmNo }&cmCode=${c.cmCode }&pageNum=${currentPage}&type=${type}&keyword=${keyword}">${c.cmTitle }</a></td>
  								<td>${c.cmPrice }</td>
  								<td>${c.cmStar }</td>
@@ -81,9 +82,10 @@
  					
  					<!-- 일반 요청에서 게시 글이 있는 경우 -->
  					<c:if test="${not searchOption and not empty classMainList }">
- 						<c:forEach var="c" items="${classMainList }">
+ 						<c:forEach var="c" items="${classMainList }" varStatus="status">
  							<tr class="table-light">
- 								<td>${c.cmNo }</td>
+ 								<%-- <td>${c.cmNo }</td> --%>
+ 								<td>${c.num }</td>
  								<td><a href="classMainDetail?cmNo=${c.cmNo }&cmCode=${c.cmCode }&pageNum=${currentPage}">${c.cmTitle }</a></td>
  								<td>${c.cmPrice }</td>
  								<td>${c.cmStar }</td>
