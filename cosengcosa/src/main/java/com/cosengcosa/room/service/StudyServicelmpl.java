@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.cosengcosa.room.dao.StudyDao;
 import com.cosengcosa.room.domain.Study;
+import com.cosengcosa.room.domain.StudyAnswer;
 
 /**
  * 지식공유 Service
@@ -23,7 +24,7 @@ public class StudyServicelmpl implements StudyService {
 	@Autowired
 	private StudyDao studyDao;
 	
-	public void setBoardDao(StudyDao studyDao) {
+	public void setstudyDao(StudyDao studyDao) {
 		this.studyDao = studyDao;
 	}
 	
@@ -112,9 +113,35 @@ public class StudyServicelmpl implements StudyService {
 	}
 
 	@Override
-	public void writeStudy() {
-		studyDao.writeStudy();
+	public List<StudyAnswer> answerList(int no) {
+		return studyDao.answerList(no);
 	}
+
+	@Override
+	public  int recommend(int no) {
+		
+		studyDao.updateRecommend(no);
+		Study study = studyDao.getRecommend(no);
+		
+		return no;
+		
+	}
+
+	@Override
+	public void addReply(StudyAnswer answer) {
+		studyDao.addReply(answer);
+	}
+
+	@Override
+	public void updateReply(StudyAnswer answer) {
+		studyDao.updateReply(answer);
+	}
+
+	@Override
+	public void deleteReply(int no) {
+		studyDao.deleteReply(no);
+	}
+
 	
 	
 	

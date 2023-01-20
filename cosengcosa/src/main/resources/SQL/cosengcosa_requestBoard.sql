@@ -35,15 +35,14 @@ CREATE TABLE requestboard(
     r_code VARCHAR2(8 CHAR)
         --CONSTRAINT R_CODE_UK UNIQUE
         CONSTRAINT R_CODE_NN NOT NULL,
-    r_title VARCHAR2(30 CHAR)
+    r_title VARCHAR2(50 CHAR)
         CONSTRAINT R_TITLE_NN NOT NULL,
     r_content VARCHAR2(700 CHAR)
         CONSTRAINT R_CON_NN NOT NULL,
     r_writer VARCHAR2(10 CHAR)
         CONSTRAINT R_WRI_FK REFERENCES member(m_id)
         CONSTRAINT R_WRI_NN NOT NULL,
-    r_answer VARCHAR2(700 CHAR)
-        CONSTRAINT R_AS_NN NOT NULL,
+    r_answer VARCHAR2(700 CHAR),
     r_open CHAR(1) CHECK (r_open IN('Y', 'N'))              -- 살제유무
         CONSTRAINT R_OPEN_NN NOT NULL,
     r_cdate TIMESTAMP
@@ -100,19 +99,15 @@ SELECT
 	        cmRecommend, cmStar, file1, video, cmYn
 	    FROM 
 	        (SELECT
-	            cm_no AS cmNo,
-	            cm_id AS cmId,
-	            cm_code AS cmCode,
-	            cm_name AS cmName,
-	            cm_sdate AS cmSdate,
-	            cm_edate AS cmEdate,
-	            cm_price AS cmPrice,
-	            cm_count AS cmCount,
-	            cm_recommend AS cmRecommend,
-	            cm_star AS cmStar,
-	            file1 AS file1,
-	            video AS video,
-	            cm_yn AS cmYn
+	            r_no AS no,
+                r_code AS code,
+                r_title AS title,
+                r_content AS content,
+                r_writer AS writer, 
+                r_answer AS answer,
+                r_open AS open,
+                r_cdate AS cdate,
+                r_yn AS yn
 	        FROM
             classmain
 			WHERE
@@ -123,3 +118,14 @@ SELECT
     )
 	WHERE num>=1 AND num <= 10
     ;
+
+INSERT INTO requestBoard (r_answer)
+VALUES  ('');
+
+UPDATE requestBoard
+    SET r_answer = '이걸로 바꿈 ㅅㄱ'
+WHERE
+    r_no = 89
+;
+
+commit;

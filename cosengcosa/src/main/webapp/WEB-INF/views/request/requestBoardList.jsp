@@ -38,10 +38,10 @@
 			<%-- 검색 요청일 경우 일반 게시 글 리스트로 이동할 수 있도록 링크를 설정했다. --%>
 			<div class="row my-3">
 				<div class="col-6">
-					<a href="boardList" class="btn btn-outline-success">리스트</a>
+					<a href="requestBoardList" class="btn btn-outline-success">리스트</a>
 				</div>
 				<div class="col-6 text-end">
-					<a href="writeForm" class="btn btn-outline-success">글쓰기</a>
+					<a href="writeFormBoard" class="btn btn-outline-success">글쓰기</a>
 				</div>
 			</div>
 		</c:if>
@@ -50,7 +50,7 @@
 		<c:if test="${ not searchOption }">
 			<div class="row my-3">
 				<div class="col text-end">
-					<a href="writeForm" class="btn btn-outline-success">글쓰기</a>
+					<a href="writeFormBoard" class="btn btn-outline-success">글쓰기</a>
 				</div>
 			</div>
 		</c:if>
@@ -61,10 +61,10 @@
 					<thead>
 						<tr class="table-dark">
 					<th>NO</th>
-					<th>제목</th>
+					<th>요청사항</th>
 					<th>작성자</th>
 					<th>작성일</th>
-					<th>조회수</th>
+					<th>해결유무</th>
 				</tr>		
 					</thead>
 					<tbody class="text-secondary">
@@ -78,13 +78,18 @@
 						<tr>
 							<td>${ b.no }</td>
 							<td>
-								<a href="boardDetail?no=${b.no}&pageNum=${currentPage}
+								<a href="requestBoardDetail?no=${b.no}&pageNum=${currentPage}
 								&type=${ type }&keyword=${ keyword }" 
 								class="text-decoration-none link-secondary">${ b.title }</a>
 							</td>
 							<td>${ b.writer }</td>
-							<td>${ b.regDate }</td>
-							<td>${ b.readCount }</td>
+							<td>${ b.cdate }</td>
+							<c:if test='${ b.open == "Y"}'>
+								<td>해결</td>
+							</c:if>
+							<c:if test='${ b.open == "N"}'>
+								<td>미해결</td>
+							</c:if>
 						</tr>
 						</c:forEach>
 					</c:if>
@@ -98,11 +103,16 @@
 						<c:forEach var="b" items="${boardList}" varStatus="status">
 						<tr>
 							<td>${ b.no }</td>
-							<td><a href="boardDetail?no=${b.no}&pageNum=${currentPage}" 
+							<td><a href="requestBoardDetail?no=${b.no}&pageNum=${currentPage}" 
 								class="text-decoration-none link-secondary">${ b.title }</a></td>
 							<td>${ b.writer }</td>
-							<td>${ b.regDate }</td>
-							<td>${ b.readCount }</td>
+							<td>${ b.cdate }</td>
+							<c:if test='${ b.yn == "Y"}'>
+								<td>해결</td>
+							</c:if>
+							<c:if test='${ b.yn == "N"}'>
+								<td>미해결</td>
+							</c:if>
 						</tr>
 						</c:forEach>
 					</c:if>
@@ -141,7 +151,7 @@
 					 	 --%>
 					  	<c:if test="${ startPage > pageGroup }">
 						    <li class="page-item">
-						      <a class="page-link" href="boardList?pageNum=${ startPage - pageGroup }
+						      <a class="page-link" href="requestBoardList?pageNum=${ startPage - pageGroup }
 						      &type=${ type }&keyword=${ keyword }">Pre</a>
 						    </li>
 					    </c:if>
@@ -154,7 +164,7 @@
 					    	</c:if>
 					    	<c:if test="${i != currentPage }">
 						    	<li class="page-item">
-						    		<a class="page-link" href="boardList?pageNum=${ i }&type=${ type }&keyword=${ keyword }">${i}</a>
+						    		<a class="page-link" href="requestBoardList?pageNum=${ i }&type=${ type }&keyword=${ keyword }">${i}</a>
 						    	</li>
 						    </c:if>					    
 					    </c:forEach>
@@ -168,7 +178,7 @@
 					 	 --%>
 						<c:if test="${ endPage < pageCount }">
 						    <li class="page-item">
-						      <a class="page-link" href="boardList?pageNum=${ startPage + pageGroup }
+						      <a class="page-link" href="requestBoardList?pageNum=${ startPage + pageGroup }
 						      &type=${ type }&keyword=${ keyword }">Next</a>
 						    </li>
 					  	</c:if>
@@ -193,7 +203,7 @@
 					 	 --%>
 					  	<c:if test="${ startPage > pageGroup }">
 						    <li class="page-item">
-						      <a class="page-link" href="boardList?pageNum=${ startPage - pageGroup }">Pre</a>
+						      <a class="page-link" href="requestBoardList?pageNum=${ startPage - pageGroup }">Pre</a>
 						    </li>
 					    </c:if>
 					    
@@ -204,7 +214,7 @@
 					    	</li>
 					    	</c:if>
 					    	<c:if test="${i != currentPage }">
-						    	<li class="page-item"><a class="page-link" href="boardList?pageNum=${ i }">${i}</a></li>
+						    	<li class="page-item"><a class="page-link" href="requestBoardList?pageNum=${ i }">${i}</a></li>
 						    </c:if>					    
 					    </c:forEach>
 					    
@@ -217,7 +227,7 @@
 					 	 --%>
 						<c:if test="${ endPage < pageCount }">
 						    <li class="page-item">
-						      <a class="page-link" href="boardList?pageNum=${ startPage + pageGroup }">Next</a>
+						      <a class="page-link" href="requestBoardList?pageNum=${ startPage + pageGroup }">Next</a>
 						    </li>
 					  	</c:if>
 					  </ul>

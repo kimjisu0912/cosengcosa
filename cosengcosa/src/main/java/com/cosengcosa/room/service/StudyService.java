@@ -1,8 +1,10 @@
 package com.cosengcosa.room.service;
 
+import java.util.List;
 import java.util.Map;
 
 import com.cosengcosa.room.domain.Study;
+import com.cosengcosa.room.domain.StudyAnswer;
 
 public interface StudyService {
 	
@@ -16,6 +18,15 @@ public interface StudyService {
 	
 	public abstract void deleteStudy(int sno);
 	
-	public abstract void writeStudy();
 	
+	// 댓글
+	public abstract List<StudyAnswer> answerList(int no);
+	
+	public int recommend(int no);
+	
+	public void addReply(StudyAnswer answer);
+	
+	public void updateReply(StudyAnswer answer);
+	
+	public void deleteReply(int no);
 }

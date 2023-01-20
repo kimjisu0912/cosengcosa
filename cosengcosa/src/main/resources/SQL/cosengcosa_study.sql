@@ -39,18 +39,42 @@ CREATE TABLE study(
         CONSTRAINT S_YN_NN NOT NULL                    
 );
 
+-- 지식공유 답변 시퀀스
+DROP SEQUENCE studyAnswer_seq;
+ CREATE SEQUENCE studyAnswer_seq
+       INCREMENT BY 1
+       START WITH 1
+       MINVALUE 1
+       MAXVALUE 99999
+       NOCYCLE
+       NOCACHE
+       NOORDER;
+
 -- 지식공유 답변 테이블
+DROP TABLE studyAnswer;
 CREATE TABLE studyAnswer(
+    sa_no NUMBER(5)
+        CONSTRAINT SA_NO_PK PRIMARY KEY, 
+    sa_num NUMBER(5)
+        CONSTRAINT SA_NUM_FK REFERENCES study(s_no)
+        CONSTRAINT SA_NUM_NN NOT NULL,
     sa_answer VARCHAR2(700 CHAR),               -- 답변
     sa_answerimg VARCHAR2(100 CHAR),
     sa_answerid VARCHAR2(8 CHAR)                 -- 답변자 아이디
         CONSTRAINT SA_ANID_FK REFERENCES member(m_id),
     sa_cdate TIMESTAMP                           -- 등록일자
-        CONSTRAINT SA_DATE_NN NOT NULL,
-;
+        CONSTRAINT SA_DATE_NN NOT NULL
+);
 
+desc studyAnswer;
+SELECT * FROM studyAnswer;
 
---s_no,s_code ,s_title, s_askcontent,s_askimg ,s_answer,s_answerimg,s_askid,s_answerid,s_count,s_recommend,s_file,s_open, s_cdate,s_yn
+-- 답변 데이터
+INSERT INTO studyAnswer (sa_no, sa_num, sa_answer, sa_answerimg, sa_answerid,sa_cdate)
+    VALUES (studyAnswer_seq.NEXTVAL, '88', '제발 나와라', null, 'test01', '2023-01-15 15:02:12');
+
+commit;
+
 
 select 'cm'||TO_CHAR(nvl(max(a.cm_no)+1,1)) from classmain a;
 

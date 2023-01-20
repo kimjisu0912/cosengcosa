@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.URLEncoder;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -25,6 +26,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cosengcosa.room.domain.Study;
+import com.cosengcosa.room.domain.StudyAnswer;
 import com.cosengcosa.room.service.StudyService;
 
 
@@ -72,9 +74,12 @@ public class StudyController {
 		boolean searchOption = (type.equals("null") 
 				|| keyword.equals("null")) ? false : true; 		
 		
+		List<StudyAnswer> answerList = studyService.answerList(no);
+		
 		Study study = studyService.getStudy(no, true);
 		
 		model.addAttribute("study", study);
+		model.addAttribute("answerList", answerList);
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("searchOption", searchOption);
 		
@@ -218,7 +223,6 @@ public class StudyController {
 		
 		// 비밀번호가 맞지 않으면
 		
-		System.out.println("djahdjhasdjkhjk");
 		
 		boolean searchOption = (type.equals("null") 
 				|| keyword.equals("null")) ? false : true; 
@@ -241,7 +245,7 @@ public class StudyController {
 	}
 	
 	// 삭제
-	@RequestMapping("/studyDelete")
+	@RequestMapping("/studyDelete1")
 	public String deleteStudy(HttpServletResponse response, 
 			PrintWriter out,  String pass,
 			RedirectAttributes reAttrs,

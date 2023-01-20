@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cosengcosa.room.mapper.RequestBoardMapper" >
+	
+	<select id="boardList" resultType="RequestBoard" parameterType="hashmap">
+		    SELECT
+			    num, no, code, title, content, writer, answer, open, cdate, yn
+			FROM    
+			    (
+				    SELECT
+				       ROWNUM num, no, code, title, content, writer, answer, open, cdate, yn
+				    FROM 
+				        (
+				            SELECT
+				                r_no AS no,
+				                r_code AS code,
+				                r_title AS title,
+				                r_content AS content,
+				                r_writer AS writer, 
+				                r_answer AS answer,
+				                r_open AS open,
+				                r_cdate AS cdate,
+				                r_yn AS yn
+				             FROM
+				                requestBoard
+				             WHERE
+		               			 r_yn = 'Y'
+		               		 ORDER BY
+                                 r_no DESC
+				       ) requestBoard
+				       ORDER BY 
+			        		no DESC 	
+			    	)
+			    	<where>
+						num <![CDATA[>=]]> #{startRow} AND num <![CDATA[<=]]> #{endRow}
+						<if test="type == 'title'">
+							AND title LIKE '%' || #{keyword} || '%'
+						</if>
+						<if test="type == 'writer'">
+							AND writer LIKE '%' || #{keyword} || '%'
+						</if>
+					</where> 
+			    	
+			    
+	</select>
+	
+	<select id="getBoardCount" resultType="int">
+		SELECT 
+		    COUNT(r_no) 
+		FROM 
+			requestBoard
+		<where>
+			<if test="type == 'title'">
+				r_title LIKE '%' || #{keyword} || '%'
+			</if>				
+			<if test="type == 'writer'">
+				r_writer LIKE '%' || #{keyword} || '%'
+			</if>				
+		</where>
+	</select>
+	
+	<select id="getBoard" resultType="RequestBoard" resultMap="RequestBoardResultMap">
+		SELECT 
+			* 
+		FROM requestBoard 
+		WHERE r_no = #{no}
+	</select>
+	
+	<!-- sAskimg -->
+	<insert id="insertBoard" parameterType="RequestBoard"
+		useGeneratedKeys="false" keyProperty="no">
+		INSERT INTO requestBoard (r_no, r_code, r_title, r_content, r_writer , r_answer, r_open, r_cdate, r_yn) 
+		
+		VALUES(requestBoard_seq.NEXTVAL,  #{code}, #{title}, #{ content}, 
+			#{writer}, #{answer, jdbcType=VARCHAR}, #{open}, SYSDATE, #{yn,jdbcType=VARCHAR} )
+				
+	</insert>
+	
+	<select id="isIdCheck">
+		SELECT
+            r_writer
+        FROM
+            requestBoard
+        WHERE
+            r_no = #{no}
+	</select>
+		
+	<update id="updateBoard" parameterType="RequestBoard">
+		UPDATE requestBoard 
+			SET r_title = #{title}, r_content = #{content},	
+				r_cdate = SYSDATE
+		WHERE r_no = #{no}
+	</update>
+	
+	<delete id="deleteBoard">
+		DELETE FROM requestBoard
+		WHERE r_no = #{no}
+	</delete>
+		
+	<update id="updateAnswer" parameterType="hashmap">
+		UPDATE requestBoard
+			SET r_answer = #{answer}
+		WHERE
+			r_no = #{no}
+	</update>
+	
+	<!-- Pay 클래스의 프로퍼티와 테이블의 컬럼을 맵핑하는 ResultMap -->
+	<resultMap id="RequestBoardResultMap" type="RequestBoard" >
+		<id property="no" column="r_no" />
+		<result property="code" column="r_code" />
+		<result property="title" column="r_title" />
+		<result property="content" column="r_content" />
+		<result property="writer" column="r_writer" />
+		<result property="answer" column="r_answer" />
+		<result property="open" column="r_open" />
+		<result property="yn" column="r_yn" />
+		<result property="cdate" column="r_cdate" />
+	</resultMap>
+</mapper>	
+
+

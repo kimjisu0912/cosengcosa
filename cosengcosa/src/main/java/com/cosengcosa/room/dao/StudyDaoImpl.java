@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.cosengcosa.room.domain.Study;
+import com.cosengcosa.room.domain.StudyAnswer;
 /**
  * 지식공유Dao
  * @author 김태윤
@@ -79,9 +80,37 @@ public class StudyDaoImpl implements StudyDao {
 	}
 
 	@Override
-	public void writeStudy() {
-		sqlSession.selectList(NAME_SPACE + ".writeStudy");
-		return; 
+	public List<StudyAnswer> answerList(int no) {
+		return sqlSession.selectList(NAME_SPACE + ".answerList", no);
 	}
+
+	@Override
+	public void updateRecommend(int no) {
+		
+		
+		sqlSession.update(NAME_SPACE + ".updateRecommend", no);
+		
+	}
+
+	@Override
+	public Study getRecommend(int no) {
+		return sqlSession.selectOne(NAME_SPACE + ".getRecommend", no);
+	}
+
+	@Override
+	public void addReply(StudyAnswer answer) {
+		sqlSession.insert(NAME_SPACE + ".addAnswer", answer);		
+	}
+
+	@Override
+	public void updateReply(StudyAnswer answer) {
+		sqlSession.update(NAME_SPACE + ".updateAnswer", answer);		
+	}
+
+	@Override
+	public void deleteReply(int no) {
+		sqlSession.delete(NAME_SPACE + ".deleteAnswer", no);		
+	}
+
 
 }

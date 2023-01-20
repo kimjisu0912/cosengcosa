@@ -2,24 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!--
-	맵퍼의 namespace 속성은 맵핑 구문을 그룹핑 하는 역할을 한다.
-	여러 맵퍼에서 맵핑 구문의 id 속성의 값이 중복되더라도 namespace와
-	맵핑 구문의 id 속성에 지정한 값을 합쳐서 호출하기 때문에 맵핑 구문이
-	중복되지 않게 분류하여 관리할 수 있다.
-	테이블 이름을 바탕으로 namespace를 지정하고 맵핑 구문의 id 속성의
-	값은 SQL 문의 맥락에 따라서 명명하는 것이 일반적 이다.
-	
-	parameterType 속성에는 주로 SQL 문의 조건에 사용할 파라미터의
-	데이터 타입을 지정하는 속성으로 자바 원시 타입(기본 타입, String)과 자바빈,
-	Map과 같은 타입을 지정할 수 있다. resultType 속성도 parameterType
-	속성에서 지정한 타입을 많이 사용한다. parameterType과 resultType에
-	지정할 데이터 타입이 자바 원시 타입이면 생략가능하다.
-	
-	마이바티스 참고 사이트
-	  - http://blog.mybatis.org/
-	  - http://www.mybatis.org/mybatis-3/ko/index.html
--->
 <mapper namespace="com.cosengcosa.room.mapper.StudyMapper" >
 	
 	<select id="studyList" resultType="Study" parameterType="hashmap">
@@ -48,6 +30,8 @@
 				                study
 				             WHERE
 		               			 s_yn = 'Y'
+		               		ORDER BY
+                                s_no DESC
 				       ) study
 				       ORDER BY 
 			        		sNo DESC 	
@@ -94,8 +78,8 @@
 		s_askid,  s_count, s_recommend, s_file, s_open, 
 		s_clear, s_cdate, s_yn) 
 		
-		VALUES(study_seq.NEXTVAL,  #{sTitle}, #{sError}, #{sAskcontent}, #{sAskimg}, 
-			#{sAskid}, #{sCount}, #{sRecommend}, #{sFile}, #{sOpen}, 
+		VALUES(study_seq.NEXTVAL,  #{sTitle}, #{sError}, #{sAskcontent}, #{sAskimg, jdbcType=VARCHAR}, 
+			#{sAskid}, #{sCount}, #{sRecommend}, #{sFile, jdbcType=VARCHAR}, #{sOpen}, 
 			#{sClear}, SYSDATE, #{sYn})
 				
 	</insert>
@@ -125,6 +109,54 @@
 	<delete id="deleteStudy">
 		DELETE FROM study
 		WHERE s_no = #{sNo}
+	</delete>
+	
+	<!-- 댓글 -->
+	
+	<select id="answerList" resultType="StudyAnswer">
+		SELECT 
+   			sa_no AS saNo,
+   			sa_num AS saNum, 
+   			sa_answer AS saAnswer,
+   			sa_answerimg AS saAnswerImg,
+   			sa_answerid AS saAnswerId,
+   			sa_cdate AS saCdate 
+		FROM 
+		    studyAnswer 
+		WHERE 
+		    sa_num = #{no} 
+		ORDER BY 
+		    sa_no DESC   
+	</select>
+	
+	<update id="updateRecommend">
+		UPDATE study
+			SET
+				s_recommend= s_recommend + 1
+		WHERE s_no = #{no}
+	</update>
+	
+	<select id="getRecommend" resultType="Study">
+		SELECT s_recommend
+		FROM study
+		WHERE s_no = #{no}
+	</select>
+	
+	<insert id="addAnswer" parameterType="StudyAnswer">
+		INSERT INTO studyAnswer(sa_no, sa_num, sa_answer, sa_answerid, sa_answerimg, sa_cdate)
+		VALUES(studyAnswer_seq.NEXTVAL,#{saNum}, #{saAnswer}, #{saAnswerid}, #{saAnswerimg}, SYSDATE)
+	</insert>
+	
+	<update id="updateAnswer" parameterType="StudyAnswer">
+		UPDATE studyAnswer
+			SET sa_answer = #{saAnswer}, 
+				sa_cdate = SYSDATE
+		WHERE sa_no = #{saNo}
+	</update>
+	
+	<delete id="deleteAnswer">
+		DELETE FROM studyAnswer
+		WHERE sa_no = #{sNo}
 	</delete>
 	
 	<!-- Pay 클래스의 프로퍼티와 테이블의 컬럼을 맵핑하는 ResultMap -->

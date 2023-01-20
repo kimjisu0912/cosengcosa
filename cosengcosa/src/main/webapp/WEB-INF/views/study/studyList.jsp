@@ -74,7 +74,6 @@
 											</div>
 										</div>
 								</div>
-								<!-- <div class="col"></div> -->
 							</c:forEach>
 						</c:if>
 					
@@ -90,8 +89,8 @@
 										<div class="inline-block col-8 my-3  shadow border-bottom border-info" style="height: 150px;">
 											<div>
 												<div><a class=" text-reset text-decoration-none" href="studyDetail?no=${s.sNo}&pageNum=${currentPage}" ><span class="fw-bold fs-4">${ s.sTitle }</span></a></div>
-												<div><span class="fw-bold fs-6">오류코드 : </span>${ s.sError }</div>
-												<div><span class="fw-lighter fs-8">${ s.sAskid } ${ s.sCdate } ${ s.sCount } ${ s.sRecommend }</span></div>
+												<div class="mt-2"><span class="fw-bold fs-6">오류코드 : </span>${ s.sError }</div>
+												<div class="mt-5"><span class="fw-lighter fs-8">${ s.sAskid } ${ s.sCdate } ${ s.sCount } ${ s.sRecommend }</span></div>
 											</div>
 										</div>
 								</div>
