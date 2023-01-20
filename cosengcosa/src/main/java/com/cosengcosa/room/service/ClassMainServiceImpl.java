@@ -149,6 +149,14 @@ public class ClassMainServiceImpl implements ClassMainService {
 	}
 
 	/*
+	 * 메인강의 코드 체크 ajax
+	 */
+	@Override
+	public int cmCodeCount(String cmCode) {
+		return classMainDao.cmCodeCount(cmCode);
+	}
+	
+	/*
 	 * 메인강의 입력 서비스
 	 */
 	@Override
@@ -185,6 +193,8 @@ public class ClassMainServiceImpl implements ClassMainService {
 		classMainDao.classMainSubDelete(cmCode);
 		
 	}
+
+	
 	
 
 

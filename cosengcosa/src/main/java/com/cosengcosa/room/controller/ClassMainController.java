@@ -3,6 +3,7 @@ package com.cosengcosa.room.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
@@ -17,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -89,6 +91,17 @@ public class ClassMainController {
 		 
 		
 		return "/class/classMainDetail";
+	}
+	
+	/*
+	 * 메인강의 코드 체크 ajax
+	 */
+	// 회원정보 수정에서 비밀번호 수정시 현재 비밀번호 확인하는 메서드
+	@RequestMapping("/cmCodeChk.ajax")
+	@ResponseBody
+	public int cmCodeCheck(String cmCode) {
+		int cmCodeChk = classMainService.cmCodeCount(cmCode); 
+		return cmCodeChk;
 	}
 	
 	/*

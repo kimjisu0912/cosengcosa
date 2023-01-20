@@ -24,6 +24,8 @@
 						<div class="col-8">
 							<label for="text1" class="form-label">강의코드 : </label>
 							<input type="text" class="form-control" id="cmCode" name="cmCode" >
+							<div id="codeCk"></div>
+							<input type="hidden" id="hCmCode" name="hCmCode" value="">
 						</div>
 						<div class="col-8">
 							<label for="text1" class="form-label">강의제공자 : </label>
@@ -49,4 +51,5 @@
 	</div>
 </div>
 
-<script src="resources/js/classMain.js"></script>
+<script src="resources/js/classMain.js"></script>  
+<script src="resources/js/classMainScript.js"></script>

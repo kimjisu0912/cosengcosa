@@ -20,6 +20,9 @@ public interface ClassMainService {
 	// 메인 상세페이지를 ClassMainDao에 호출하는 메소드 
 	public abstract Map<String, Object> getDetail(int cmNo, boolean isCount, String cmCode, String userid);
 	
+	// 메인강의 코드 체크 ajax
+	public abstract int cmCodeCount(String cmCode);
+	
 	// 메인페이지에서 등록하는 페이지를 ClassMainDao에 호출하는 메소드 
 	public abstract void classMainInsert(ClassMain classMain);
 	// 메인강의 수정 

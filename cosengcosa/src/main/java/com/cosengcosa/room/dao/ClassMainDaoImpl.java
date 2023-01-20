@@ -131,6 +131,14 @@ public class ClassMainDaoImpl implements ClassMainDao {
 		return sqlSession.selectOne(NAME_SPACE + ".classMainBasketCount", param);
 	}
 	
+	/*
+	 * 메인강의 코드 체크 ajax 호출되는 메소드
+	 */
+	@Override
+	public int cmCodeCount(String cmCode) {
+		return sqlSession.selectOne(NAME_SPACE + ".cmCodeCount", cmCode);
+	}
+	
 	@Override
 	public void classMainInsert(ClassMain classMain) {
 		
@@ -167,6 +175,8 @@ public class ClassMainDaoImpl implements ClassMainDao {
 		sqlSession.update(NAME_SPACE + ".classMainSubDelete", cmCode);
 		
 	}
+
+
 
 	
 

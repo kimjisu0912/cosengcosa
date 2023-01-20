@@ -171,6 +171,13 @@
 			AND ba_mid LIKE '%' || #{userid} || '%'
 	</select>
 	
+	<!-- 메인강의 코드 체크 ajax  -->
+	<select id="cmCodeCount" resultType="int">
+		SELECT COUNT(cm_code)
+   		FROM classmain
+   		WHERE cm_code = #{cmCode}
+	</select>
+	
 	<insert id="classMainInsert"  parameterType="classMain" useGeneratedKeys="true" keyProperty="no">
 		INSERT INTO classmain(cm_no, cm_code, cm_title, cm_name, cm_content, cm_period, cm_price, cm_yn)		
 		VALUES(classmain_seq.NEXTVAL, #{cmCode}, #{cmTitle}, #{cmName},#{cmContent}, #{cmPeriod}, #{cmPrice}, #{cmYn})

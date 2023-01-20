@@ -33,7 +33,8 @@ public interface ClassMainDao {
 	// 메인강의 장바구니 체크 요청 시 호출되는 메소드
 	public abstract int classMainBasketCount(String cmCode, String userid);
 	
-	
+	// 메인강의 코드 체크 ajax 요청시 호출되는 메소드
+	public abstract int cmCodeCount(String cmCode);
 	// 메인 강의 등록하는 페이지 요청시 호출되는 메소드  
 	public abstract void classMainInsert(ClassMain classMain);
 	// 메인강의 수정 페이지 요청시 호출되는 메소드 
