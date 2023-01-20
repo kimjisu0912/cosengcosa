@@ -88,7 +88,7 @@
 								</div>
 								<div class="d-grid gap-3">
 									<a class="btn btn-outline-success bg-opacity-50" type="button" href="payAddForm?cmcode=${classMain.cmCode }">결재하기</a>
-									<a class="btn btn-outline-success bg-opacity-50" type="button" href="basketList">장바구니</a>
+									<a class="btn btn-outline-success bg-opacity-50" type="button" href="basketAdd?cmcode=${classMain.cmCode }">장바구니</a>
 								</div>
 								<div class="button-group-center">
 									<a type="button" class="btn btn-link"><i class="bi bi-heart"></i> </a>
