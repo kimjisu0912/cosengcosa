@@ -64,16 +64,22 @@ public class PayDaoImpl implements PayDao {
 	 * 결재 등록 하기 전 장바구니 확인 메소드
 	 */
 	@Override
-	public int baCount(String cmcode) {
-		return sqlSession.selectOne(NAME_SPACE + ".baCount", cmcode);
+	public int baCount(String cmcode, String userid) {
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("cmcode", cmcode);
+		params.put("userid", userid);
+		return sqlSession.selectOne(NAME_SPACE + ".baCount", params);
 	}
 
 	/*
 	 * 결재 등록 하기 전 장바구니 삭제 메소드
 	 */
 	@Override
-	public void baDelete(String cmcode) {
-		sqlSession.delete(NAME_SPACE + ".baDelete", cmcode);
+	public void baDelete(String cmcode, String userid) {
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("cmcode", cmcode);
+		params.put("userid", userid);
+		sqlSession.delete(NAME_SPACE + ".baDelete", params);
 	}
 
 	/*

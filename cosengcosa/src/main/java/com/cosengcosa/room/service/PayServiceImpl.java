@@ -113,16 +113,16 @@ public class PayServiceImpl implements PayService{
 	 * 중복결재를 방지 하기 위한 장바구니 확인 서비스
 	 */
 	@Override
-	public int baCount(String cmcode) {
-		return payDao.baCount(cmcode);
+	public int baCount(String cmcode, String userid) {
+		return payDao.baCount(cmcode, userid);
 	}
 
 	/*
 	 * 중복 결재를 방지 하기 위한 장바구니 삭제 서비스
 	 */
 	@Override
-	public void baDelete(String cmcode) {
-		payDao.baDelete(cmcode);
+	public void baDelete(String cmcode, String userid) {
+		payDao.baDelete(cmcode, userid);
 	}
 
 	/*

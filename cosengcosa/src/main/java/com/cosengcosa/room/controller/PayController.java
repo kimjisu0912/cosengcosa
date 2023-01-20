@@ -79,12 +79,6 @@ public class PayController {
 			return null;			
 			
 		}else {
-			// 장바구니에 해당 과목이 있는지 확인
-			// int cnt = payService.baCount(cmcode);
-			// 있으면 장바구니에 해당과목 삭제
-			// if(cnt > 0) {
-			//	payService.baDelete(cmcode);
-			// }
 			
 			// 코드값으로 메인강의 에서 정보 가져오기
 			ClassMain classmain = payService.getClassMainInfo(cmcode);
@@ -106,7 +100,7 @@ public class PayController {
 			@RequestParam(value="pCmcode", required=false, defaultValue="null") String pCmcode,
 			@RequestParam(value="pCname", required=false, defaultValue="null") String pCname,
 			@RequestParam(value="pPrice", required=false, defaultValue="null") String pPrice,
-			PrintWriter out, HttpServletResponse response) {
+			PrintWriter out, HttpServletResponse response, HttpSession session) {
 		
 		Pay pay = new Pay();
 		
@@ -118,6 +112,17 @@ public class PayController {
 		int pprice = Integer.parseInt(pPrice);
 		pay.setpPrice(pprice);
 		pay.setpYn("Y");
+		
+		
+		
+		String cmcode = pCmcode;
+		String userid = (String) session.getAttribute("userId");
+		// 장바구니에 해당 과목이 있는지 확인
+		int cnt = payService.baCount(cmcode, userid);
+		// 있으면 장바구니에 해당과목 삭제
+		if(cnt > 0) {
+			payService.baDelete(cmcode, userid);
+		 }
 		
 		payService.insertPay(pay);
 		

@@ -21,12 +21,12 @@ public interface PayService {
 	/*
 	 * 중복결재를 방지 하기 위한 장바구니 확인 PayDao에 호출 메소드
 	 */
-	public abstract int baCount(String cmcode);
+	public abstract int baCount(String cmcode, String userid);
 	
 	/*
 	 * 중복 결재를 방지 하기 위한 장바구니 삭제 PayDao에 호출 메소드
 	 */
-	public abstract void baDelete(String cmcode);
+	public abstract void baDelete(String cmcode, String userid);
 	
 	/*
 	 * 결재에 필요한 강의(메인)정보를 PayDao에 호출 메소드

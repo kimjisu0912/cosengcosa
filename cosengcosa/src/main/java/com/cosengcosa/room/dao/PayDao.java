@@ -20,10 +20,10 @@ public interface PayDao {
 	public abstract List<Pay> payList(int startRow, int endRow, int PAGE_SIZE, String type, String keyword, String userid);
 	
 	// 결재 등록 하기 전 장바구니 확인 메소드
-	public abstract int baCount(String cmcode);
+	public abstract int baCount(String cmcode, String userid);
 	
 	// 결재 등록 하기 전 장바구니 삭제 메소드
-	public abstract void baDelete(String cmcode);
+	public abstract void baDelete(String cmcode, String userid);
 	
 	// 결재에 필요한 강의(메인)정보 메소드
 	public abstract ClassMain getClassMainInfo(String cmcode);

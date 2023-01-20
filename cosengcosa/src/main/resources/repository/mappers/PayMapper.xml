@@ -68,10 +68,14 @@
 	
 	<!-- 장바구니 확인 -->
 	<select id="baCount" resultType="int">
+		SELECT COUNT(*) FROM basket 
+		WHERE ba_cmcode = #{cmcode} AND ba_mid LIKE '%' || #{userid} || '%'
 	</select>
 	
 	<!-- 장바구니 비우기 -->
 	<delete id="baDelete">
+		DELETE FROM basket
+		WHERE ba_cmcode = #{cmcode} AND ba_mid LIKE '%' || #{userid} || '%'
 	</delete>
 	
 	<!-- 결재 정보(강의) 가져오기 -->
