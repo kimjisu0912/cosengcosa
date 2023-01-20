@@ -97,7 +97,9 @@ public class ClassMainServiceImpl implements ClassMainService {
 	 */
 	@Override
 	public Map<String, Object> getDetail(int cmNo, boolean isCount, String cmCode, String userid) {
+		String baChk = "N";
 		String payChk = "";
+		
 		Map<String, Object> modelMap = new HashMap<String, Object>();
 		// 비로그인시도 상세화면 허용
 		ClassMain classMain = classMainDao.getDetail(cmNo, isCount);
@@ -110,11 +112,22 @@ public class ClassMainServiceImpl implements ClassMainService {
 			cmVideo = "";
 		}
 		
+		
 		// 로그인 시 로직
 		if(userid == null) {
 			payChk = "N";
 		}
 		else{
+			// 장바구니 확인
+			int baCnt = classMainDao.classMainBasketCount(cmCode, userid);
+			
+			if(baCnt > 0) {
+				baChk = "Y";
+			}else {
+				baChk = "N";
+			}
+			
+			
 			// 1. 한번이라도 결재가 되어있는지 확인
 			String cnt = classMainDao.payCountChk(cmCode, userid);
 			if(cnt.equals("0")) {	// 2-1. 결재가 한번도 없는 경우는 = N 리턴
@@ -128,8 +141,10 @@ public class ClassMainServiceImpl implements ClassMainService {
 		
 		
 		modelMap.put("classMain", classMain);
+		modelMap.put("baChk", baChk);
 		modelMap.put("payChk", payChk);
 		modelMap.put("cmVideo", cmVideo);
+		
 		return modelMap;
 	}
 

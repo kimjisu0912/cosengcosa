@@ -30,7 +30,8 @@ public interface ClassMainDao {
 	public abstract int getDetailVideoChk(String cmCode);
 	// 메인강의 비디오조회 요청 시 호출되는 메소드
 	public abstract ClassMain getCmVideo(String cmCode);
-	// update 요청시 호출되는 메소드
+	// 메인강의 장바구니 체크 요청 시 호출되는 메소드
+	public abstract int classMainBasketCount(String cmCode, String userid);
 	
 	
 	// 메인 강의 등록하는 페이지 요청시 호출되는 메소드  

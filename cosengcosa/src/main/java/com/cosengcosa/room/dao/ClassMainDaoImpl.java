@@ -120,6 +120,17 @@ public class ClassMainDaoImpl implements ClassMainDao {
 		return sqlSession.selectOne(NAME_SPACE + ".detailVideo", cmCode);
 	}
 
+	/*
+	 * 메인강의 장바구니 확인 요청 시 호출되는 메소드
+	 */
+	@Override
+	public int classMainBasketCount(String cmCode, String userid) {
+		Map<String, String> param = new HashMap<String, String>();
+		param.put("cmCode", cmCode);
+		param.put("userid", userid);
+		return sqlSession.selectOne(NAME_SPACE + ".classMainBasketCount", param);
+	}
+	
 	@Override
 	public void classMainInsert(ClassMain classMain) {
 		
@@ -156,6 +167,8 @@ public class ClassMainDaoImpl implements ClassMainDao {
 		sqlSession.update(NAME_SPACE + ".classMainSubDelete", cmCode);
 		
 	}
+
+	
 
 
 	

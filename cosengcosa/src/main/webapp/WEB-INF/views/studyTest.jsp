@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ <link href="resources/css/index.css" rel="stylesheet">
 <div class="row" id="global-content">
 	<div class="row my-5 text-center">
 		<div class="col">
@@ -40,6 +42,34 @@
 	<a href="javascript:;" onclick="stopTimer();">스톱</a> 
 	<a href="javascript:;" onclick="resetTimer();">리셋</a> 
 </div>
+
+
+<div>
+	<p id="testhover">테스트</p>
+</div>
+<div id="star">
+<span class="fa fa-star " ></span>
+<span class="fa fa-star " ></span>
+<span class="fa fa-star " ></span>
+<span class="fa fa-star " ></span>
+<span class="fa fa-star " ></span>
+</div>
+<script>
+
+$('#testhover').hover(function(){
+	$(this).css("color", "red");
+}, function(){
+	$(this).css("color", "blue");
+});
+
+
+$('.fa fa-star').hover(function(){
+	$(this).addClass("checked");
+}, function(){
+	$(this).removeClass("checked");
+});
+
+</script>
 
 <script src="resources/js/testApiTwo.js"></script>
 <!-- <script src="resources/js/youtobeApi.js"></script> -->
