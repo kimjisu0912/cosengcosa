@@ -182,13 +182,34 @@
 	 
 	 </update>
 	 
+	<!--  <update id="incrementReadCount">
+	 	UPDATE classmain
+	 		SET cm_count = cm_count + 1
+	 		WHERE cm_no = #{cmNo}
+	 </update> -->
 	 
-	 <update id="classMainDelete"  parameterType="classMain">
-	 	UDATE classmain
-	 	SET cmYn = 'N'
-	 	WHERE cm_code = #{cmCode}
-	 </update>
+	 <!-- 메인강의 삭제.... -->
+	  <update id="classMainDelete" parameterType="String">
+		 UPDATE 
+		 	classmain 
+		 SET 	
+		 	cm_yn = 'N'
+		 WHERE 
+		 	cm_code = #{cmCode}
+	 </update> 
 	 
+	 <update id="classMainSubDelete" parameterType="String">
+		UPDATE 
+			classsub
+        SET 
+	        cs_yn = 'N'
+	        
+        WHERE
+            cs_group = #{csGroup} 
+            
+            
+          
+	</update> 
 	 
 	 <!--
 		Board 클래스의 프로퍼티와 테이블의 컬럼을 맵핑하는 ResultMap
@@ -220,6 +241,7 @@
 		<result property="video" column="video" />
 		<result property="cmYn" column="cm_yn" />
 	</resultMap>
+
 </mapper>	
 
 

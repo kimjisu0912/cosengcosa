@@ -18,15 +18,26 @@ public interface ClassMainService {
 	public abstract Map<String, Object> classMainList(int pageNum, String type, String keyword);
 
 	// 메인 상세페이지를 ClassMainDao에 호출하는 메소드 
-	public abstract Map<String, Object> getDetail(int cmNo, boolean b, String cmCode, String userid);
+	public abstract Map<String, Object> getDetail(int cmNo, boolean isCount, String cmCode, String userid);
 	
 	// 메인페이지에서 등록하는 페이지를 ClassMainDao에 호출하는 메소드 
 	public abstract void classMainInsert(ClassMain classMain);
 	// 메인강의 수정 
 	public abstract void classMainUpdate(ClassMain classMain);
+
 	
-	//메인 상세페이지에서 cmNo를 이용하여 삭제하는 메소드
-	public abstract void classMainDelete(int cmNo);
+	//메인 상세페이지에서 cmCode를 이용하여 삭제하는 메소드
+	public abstract void classMainDelete(String cmCode);
+	
+	public abstract void classMainSubDelete(String cmCode);
+
+	
+
+	
+	
+	
+
+	
 
 	
 

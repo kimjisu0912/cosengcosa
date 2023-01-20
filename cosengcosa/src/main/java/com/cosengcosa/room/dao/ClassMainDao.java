@@ -25,7 +25,7 @@ public interface ClassMainDao {
 	// 메인강의 상세조회 시 결재 상태값 조회 요청 시 호출되는 메소드
 	public abstract ClassMain payChk(String cmCode, String userid);
 	// 메인강의 상세조회 요청 시 호출되는 메소드
-	public abstract ClassMain getDetail(int cmNo, boolean b);
+	public abstract ClassMain getDetail(int cmNo, boolean isCount);
 	// 메인강의 비디오조회 요청 시 유무 확인 메소드
 	public abstract int getDetailVideoChk(String cmCode);
 	// 메인강의 비디오조회 요청 시 호출되는 메소드
@@ -37,9 +37,15 @@ public interface ClassMainDao {
 	public abstract void classMainInsert(ClassMain classMain);
 	// 메인강의 수정 페이지 요청시 호출되는 메소드 
 	public abstract void classMainUpdate(ClassMain classMain);
+	
+	
+	
 	// main 강의 삭제를 요청시 호출되는 메소드 
-	public abstract void classMainDelete(int cmNo);
-	// 메인
+	public abstract void classMainDelete(String cmCode);
+		//main 강의 삭제시 서브강의 삭제를 요청하면 호출되는 메소드
+	public abstract void classMainSubDelete(String cmCode);
+
+	
 	
 	
 	

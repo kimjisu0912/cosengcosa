@@ -31,7 +31,7 @@
 								<a type="button" class="btn btn-outline-success m-2" href="classMainModForm?cmNo=${classMain.cmNo }&cmcode=${classMain.cmCode }">수정</a>
 							</li>
 							<li class="nav-item">
-								<a type="button" class=" btn btn-outline-success m-2" id="classMainDelete" data-uri="classMainList" >삭제</a>
+								<a type="button" class=" btn btn-outline-success m-2" href="classMainDelete?cmNo=${classMain.cmNo }&cmcode=${classMain.cmCode }">삭제</a>
 							</li>
 						</ul>
 			 		</div>

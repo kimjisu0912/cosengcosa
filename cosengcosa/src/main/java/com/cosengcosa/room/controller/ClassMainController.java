@@ -166,30 +166,18 @@ public class ClassMainController {
 		return "redirect:classMainList";
 	}
 	
-	@RequestMapping(value="/classMainDelete")
-	public String classMainDelete(HttpServletResponse response, PrintWriter out, int cmNo, RedirectAttributes reAttrs,
-			@RequestParam(value="pageNum", required=false, defaultValue="1") int pageNum,
-			@RequestParam(value="type", required=false, defaultValue="null") String type,
-			@RequestParam(value="keyword", required=false, defaultValue="null") String keyword
-			) throws Exception {
+	@RequestMapping(value="/classMainDelete", method= RequestMethod.GET)
+	public String classMainDelete(HttpServletResponse response, 
+			@RequestParam(value="cmcode", required=false, defaultValue="null") String cmCode)
+			throws IOException{
 		
-		
-		boolean searchOption = (type.equals("null") 
-				|| keyword.equals("null")) ? false : true;
 		
 		//service를 이용해서 게시글을 삭제 
-		classMainService.classMainDelete(cmNo);
+		 classMainService.classMainDelete(cmCode);
+		 classMainService.classMainSubDelete(cmCode);
+		 
 		
-		reAttrs.addAttribute("searchOption", searchOption);
-		
-		if(searchOption) {
-			reAttrs.addAttribute("type", type);
-			reAttrs.addAttribute("keyword", keyword);
-		}
-		
-		reAttrs.addAttribute("pageNum", pageNum);
-		
-		return "rediret:classMainList";
+		return "redirect:classMainList";
 	}
 	
 	

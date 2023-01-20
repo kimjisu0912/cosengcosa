@@ -150,6 +150,11 @@ public class ClassMain {
 	public void setNum(int num) {
 		this.num = num;
 	}
+
+	public void setCsGroup(Object csGroup) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 	

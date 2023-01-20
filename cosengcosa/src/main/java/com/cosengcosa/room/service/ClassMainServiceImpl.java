@@ -96,11 +96,11 @@ public class ClassMainServiceImpl implements ClassMainService {
 	 * 메인강의 상세조회 서비스
 	 */
 	@Override
-	public Map<String, Object> getDetail(int cmNo, boolean b, String cmCode, String userid) {
+	public Map<String, Object> getDetail(int cmNo, boolean isCount, String cmCode, String userid) {
 		String payChk = "";
 		Map<String, Object> modelMap = new HashMap<String, Object>();
 		// 비로그인시도 상세화면 허용
-		ClassMain classMain = classMainDao.getDetail(cmNo, b);
+		ClassMain classMain = classMainDao.getDetail(cmNo, isCount);
 		String cmVideo = "";
 		int cmVideoChk = classMainDao.getDetailVideoChk(cmCode);
 		if(cmVideoChk > 0) {
@@ -150,20 +150,26 @@ public class ClassMainServiceImpl implements ClassMainService {
 	public void classMainUpdate(ClassMain classMain) {
 		classMainDao.classMainUpdate(classMain);
 	}
+
+
+
 	
-// classMainDao를 이용해 cmNo에 해당하는 게시글을 삭제 
+	
+// classMainDao를 이용해 cmCode에 해당하는 게시글을 삭제 
 	@Override
-	public void classMainDelete(int cmNo) {
+	public void classMainDelete(String cmCode) {
 		
-		classMainDao.classMainDelete(cmNo);
+		
+		classMainDao.classMainDelete(cmCode);
+		
+		
 	}
 
-	
-
-
-
-	
-
+	public void classMainSubDelete(String cmCode) {
+		
+		classMainDao.classMainSubDelete(cmCode);
+		
+	}
 	
 
 
