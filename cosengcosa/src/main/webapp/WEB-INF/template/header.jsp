@@ -3,8 +3,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  <!-- header row는 최대수치가 12분할이다-->
  	<div class="row border-bottom" id="global-header">
- 		<div class="col">
- 			<p><a href="main"><img src="resources/images/logo.jpg" class="mt-1"></a></p>
+ 		<div class="row">
+	 		<div class="col-10">
+	 			<p><a href="main"><img src="resources/images/logo.jpg" class="mt-1"></a></p>
+	 		</div>
+	 		<div class="col-2">
+	 		
+	 		</div>
  		</div>
  		<!-- nav 왼쪽 -->
  		<nav class="navbar navbar-expand-lg mainBk" >

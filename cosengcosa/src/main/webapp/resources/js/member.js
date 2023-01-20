@@ -87,7 +87,7 @@ $(function() {
 	
 	// 아이디 중복검사 새창에서 아이디 사용버튼 이벤트 처리
 	$("#btnIdCheckClose").on("click",function(){
-		var id = $(this).attr("data-id-value"); // attr()은 해당 태그의 속성이다
+		var id = $(this).attr("data-id-value"); 
 		
 		// 부모창에 도큐먼트에 해당폼의 아이디의 값에 id값을 넣어준다
 		opener.document.joinForm.id.value = id;
@@ -112,7 +112,6 @@ $(function() {
 			swal("","아이디는 5자 이상 입력해야 합니다.",'warning');
 			return false;
 		}
-		// toolbar 이후 부터 옵션임
 		window.open(url, "idChedk", "toolbar=no, location=no, status=no, menubar=no, width=500, height=400");
 	});
 	
@@ -135,11 +134,11 @@ $(function() {
 	
 	// 회원가입시 닉네임 중복검사 새창에서 이벤트 처리
 	$("#btnNickNameCheckClose").on("click",function(){
-		var nickname = $(this).attr("data-id-value"); // attr()은 해당 태그의 속성이다
+		var nickname = $(this).attr("data-id-value");
 		
-		// 부모창에 도큐먼트에 해당폼의 아이디의 값에 id값을 넣어준다
+		// 부모창에 도큐먼트에 해당폼의 닉네임의 값에 nickname값을 넣어준다
 		opener.document.joinForm.nickname.value = nickname;
-		// 아이디 체크 상태를 변경해준다.
+		// 닉네임 체크 상태를 변경해준다.
 		opener.document.joinForm.isNickNameCheck.value = true;
 		// 팝업창 닫자
 		window.close();
@@ -164,11 +163,11 @@ $(function() {
 	
 	// 회원정보 수정시 닉네임 중복검사 새창에서 이벤트 처리
 	$("#btnNickNameCheckClose2").on("click",function(){
-		var nickname = $(this).attr("data-id-value"); // attr()은 해당 태그의 속성이다
+		var nickname = $(this).attr("data-id-value"); 
 		
-		// 부모창에 도큐먼트에 해당폼의 아이디의 값에 id값을 넣어준다
+		// 부모창에 도큐먼트에 해당폼의 닉네임의 값에 nickname값을 넣어준다
 		opener.document.memberUpdateForm.nickname.value = nickname;
-		// 아이디 체크 상태를 변경해준다.
+		// 닉네임 체크 상태를 변경해준다.
 		opener.document.memberUpdateForm.isNickNameCheck.value = true;
 		// 팝업창 닫자
 		window.close();
@@ -186,20 +185,23 @@ $(function() {
 	$("#pass2").on("keyup", inputCharReplace); 
 	$("#emailId").on("keyup", inputCharReplace); 
 	$("#emailDomain").on("keyup", inputEmailDomainReplace); // inputCharReplace 호출
+	$("#birthY").on("keyup", inputNumberReplace);
+	$("#birthD").on("keyup", inputNumberReplace);
+	$("#tel2").on("keyup", inputNumberReplace);
+	$("#tel3").on("keyup", inputNumberReplace);
 	
 	// 생년월일 유효성 검사
-	$("#birthM").on("keyup", birthCheck);
 	$("#birthD").on("keyup", birthCheck);
 	
 	
 function birthCheck(){
+		
 	if($("#birthY").val().length < 4){
 		swal("","년도는 4자리 입니다", 'warning');
 		$("#birthY").focus();
+		return false;
 	};
-	if($("#birthM").val().length == 0){
-		swal("","월을 입력해주세요", 'warning');
-	};
+	
 }
 	
 	// 이메일 직접입력 선택입력 여부 체크
@@ -348,7 +350,16 @@ function inputEmailDomainReplace(){
 	}
 } 
 
-
+// 숫자만 입력되었는지 체크
+function inputNumberReplace(){
+	var regExp = /[^0-9]/g;
+	
+	if(regExp.test($(this).val())) {
+		swal("","숫자만 입력할 수 있습니다", 'warning');
+		$(this).val($(this).val().replace(regExp,"")); //잘몬된 부분만 지워라 replace()함수 사용
+		return;
+	}
+} 
 /* 회원 가입 폼과 회원정보 수정 폼의 유효성 검사를 하는 함수
  * 두 페이지에서 처리하는 코드가 중복되어 하나의 함수로 정의하였다. 
  **/

@@ -36,7 +36,7 @@
 							<div class="input-group mb-3">
 								<span class="input-group-text">* 아이디</span>
 							  	<input type="text" class="form-control" name="id" id="id">
-							  	<input type="button" class="btn btn-dark" id="btnOverlapId" value="중복확인">
+							  	<input type="button" class="btn btn-dark" id="btnOverlapId" value="중복확인" maxlength="18">
 							</div>	
 						</div>
 					</div>
@@ -44,7 +44,7 @@
 						<div class="col-8 offset-2">
 							<div class="input-group mb-3">
 								<span class="input-group-text">* 비밀번호</span>
-							  	<input type="password" class="form-control" name="pass1" id="pass1">
+							  	<input type="password" class="form-control" name="pass1" id="pass1" maxlength="18">
 							</div>				
 						</div>
 					</div>
@@ -62,7 +62,20 @@
 								<span class="input-group-text">* 생년월일</span>
 							  	<input type="text" class="form-control" name="birthY" id="birthY" maxlength="4">
 								<span class="input-group-text">년</span>
-							  	<input type="text" class="form-control" name="birthM" id="birthM" maxlength="2">
+							  	<select class="form-select" name="birthM" id="birthM">
+							  		<option value="01">1</option>
+							  		<option value="02">2</option>
+							  		<option value="03">3</option>
+							  		<option value="04">4</option>
+							  		<option value="05">5</option>
+							  		<option value="06">6</option>
+							  		<option value="07">7</option>
+							  		<option value="08">8</option>
+							  		<option value="09">9</option>
+							  		<option value="10">10</option>
+							  		<option value="11">11</option>
+							  		<option value="12">12</option>
+							  	</select>
 								<span class="input-group-text">월</span>
 							  	<input type="text" class="form-control" name="birthD" id="birthD" maxlength="2">
 								<span class="input-group-text">일</span>
@@ -74,34 +87,9 @@
 							<div class="input-group mb-3">
 								<span class="input-group-text">* 닉네임</span>
 							  	<input type="text" class="form-control" name="nickname" id="nickname">
-							  	<input type="button" class="btn btn-dark" id="btnOverlapNickName" value="중복확인">
+							  	<input type="button" class="btn btn-dark" id="btnOverlapNickName" value="중복확인" maxlength="12">
 							</div>					
 						</div>				
-					</div>
-					<div class="row my-3">
-						<div class="col-8 offset-2">
-							<div class="input-group mb-3">
-								<span class="input-group-text">* 우편번호</span>
-							  	<input type="text" class="form-control" name="zipcode" id="zipcode">
-							  	<input type="button" class="btn btn-dark" id="btnZipcode" value="우편번호 찾기">
-							</div>	
-						</div>
-					</div>
-					<div class="row my-3">
-						<div class="col-8 offset-2">
-							<div class="input-group mb-3">
-								<span class="input-group-text">* 기본주소</span>
-							  	<input type="text" class="form-control" name="address1" id="address1"  readonly>
-							</div>	
-						</div>	
-					</div>
-					<div class="row my-3">
-						<div class="col-8 offset-2">
-							<div class="input-group mb-3">
-								<span class="input-group-text">상세주소</span>
-							  	<input type="text" class="form-control" name="address2" id="address2">
-							</div>	
-						</div>
 					</div>
 					<div class="row my-3">
 						<div class="col-8 offset-2">
@@ -138,7 +126,33 @@
 							  	<input type="text" class="form-control" name="tel3" id="tel3" maxlength="4">
 							</div>
 						</div>
-					</div>			
+					</div>	
+					<div class="row my-3">
+						<div class="col-8 offset-2">
+							<div class="input-group mb-3">
+								<span class="input-group-text">* 우편번호</span>
+							  	<input type="text" class="form-control" name="zipcode" id="zipcode">
+							  	<input type="button" class="btn btn-dark" id="btnZipcode" value="우편번호 찾기">
+							</div>	
+						</div>
+					</div>
+					<div class="row my-3">
+						<div class="col-8 offset-2">
+							<div class="input-group mb-3">
+								<span class="input-group-text">* 기본주소</span>
+							  	<input type="text" class="form-control" name="address1" id="address1"  readonly>
+							</div>	
+						</div>	
+					</div>
+					<div class="row my-3">
+						<div class="col-8 offset-2">
+							<div class="input-group mb-3">
+								<span class="input-group-text">상세주소</span>
+							  	<input type="text" class="form-control" name="address2" id="address2">
+							</div>	
+						</div>
+					</div>
+							
 					<div class="row mb-3 mt-5">				
 						<div class="col-8 offset-2 text-end">
 							<input type="submit" value="가입하기" class="btn btn-dark">

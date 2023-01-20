@@ -7,17 +7,23 @@
  
 <!-- content -->
  <div class="row" id="global-content">
- 	<div class="col text-center">
-		<div class="row"> <!-- 베너 -->
-		</div> 
-		<div class="row my-5">
-			<h1>여기에 뭔가 있으면 좋겠다</h1>
-			<div class="row"></div>
-			<div class="row"></div>
+ 	<div class="col text-center mt-4">
+		<div class="row">
+			<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+				<div class="carousel-inner">
+					<div class="carousel-item active">
+						<img src="resources/images/slide1.jpg" class="d-block w-100" alt="...">
+					</div>
+					<div class="carousel-item">
+					  	<img src="resources/images/slide2.jpg" class="d-block w-100" alt="...">
+					</div>
+				</div>
+			</div>
 		</div> 
 		<div class="row my-3">
 			<div class="row text-start my-3">
-				<h3>코생코사 인기강의</h3>
+				<h6>수강생들이 추천하는</h6>
+				<h3 class="fw-bold">코생코사 인기강의</h3>
 			</div>
 			<div class="row">
 				<c:forEach var="r" items="${rList}" end="4" >
@@ -28,9 +34,11 @@
 							<div class="row mb-1"><a class="color-black dnone">${r.cmName}</a></div>
 							<div class="row">
 								<div class="col-6">
+								<c:if test="${r.cmStar ne 0 }">	
 									<c:forEach var="star" items="${list}" end="${r.cmStar - 1 }" >
 										<span class="fa fa-star checked"></span>
-									</c:forEach>	
+									</c:forEach>
+								</c:if>		
 									<c:forEach var="star" items="${list}" end="${4 - r.cmStar }">
 										<span class="fa fa-star "></span>
 									</c:forEach>
@@ -44,7 +52,8 @@
 		</div> 
 		<div class="row my-3">
 			<div class="row text-start my-3">
-				<h3>따끈따끈 신규강의</h3>
+				<h6>새로운 강의 새로운 직장</h6>
+				<h3 class="fw-bold">따끈따끈 신규강의</h3>
 			</div>
 			<div class="row">
 				<c:forEach var="d" items="${dList}" end="4">
@@ -69,14 +78,24 @@
 				</c:forEach>	
 			</div>
 		</div> 
+		
 		<div class="row my-5">
-			<h6>최근등록된 글</h6>
-			<div class="row"></div>
+			<div class="row text-start my-3">
+				<h3 class="fw-bold">인기 게시글</h3>
+			</div>
 			<div class="row">
+				<c:forEach var="s" items="${sList}" end="4">
+					<div class="col">
+						<div class="row">${s.sTitle }</div>
+						<div class="row">${s.sAskcontent}</div>
+					</div>
+				</c:forEach>	
 			</div>
 		</div> 
 		<div class="row my-5">
-			<h6>인기 게시글</h6>
+			<div class="row text-start my-3">
+				<h3 class="fw-bold">HOT 지식공유</h3>
+			</div>
 			<div class="row"></div>
 			<div class="row">
 			</div>

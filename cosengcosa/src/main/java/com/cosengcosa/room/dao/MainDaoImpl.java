@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.cosengcosa.room.domain.ClassMain;
+import com.cosengcosa.room.domain.FreeBoard;
+import com.cosengcosa.room.domain.Study;
 
 @Repository
 public class MainDaoImpl implements MainDao {
@@ -27,6 +29,16 @@ public class MainDaoImpl implements MainDao {
 	@Override
 	public List<ClassMain> getClassMainListR() {
 		return sqlSession.selectList(NAME_SPACE + ".getClassMainListR");
+	}
+
+	@Override
+	public List<Study> getStudyList() {
+		return sqlSession.selectList(NAME_SPACE + ".getStudyList");
+	}
+
+	@Override
+	public List<FreeBoard> getFreeBoardList() {
+		return sqlSession.selectList(NAME_SPACE + ".getFreeBoardList");
 	}
 
 }

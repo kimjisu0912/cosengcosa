@@ -47,6 +47,7 @@
 	            <label for="pass" class="col-form-label">비밀번호 :</label>
 	            <input type="password" class="form-control" id="userPass" name="userPass">
 	          </div>
+	          <div><a href="findForm">아이디 / 비밀번호 찾기</a></div>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>

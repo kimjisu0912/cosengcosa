@@ -1,8 +1,10 @@
 package com.cosengcosa.room.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletResponse;
@@ -13,7 +15,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.cosengcosa.room.domain.Basket;
 import com.cosengcosa.room.domain.Member;
 import com.cosengcosa.room.domain.MyClassMain;
 import com.cosengcosa.room.domain.MyClassSub;
@@ -22,11 +26,13 @@ import com.cosengcosa.room.domain.SubTitle;
 import com.cosengcosa.room.service.MyClassService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import sun.util.calendar.BaseCalendar.Date;
+
 @Controller
 public class MyClassController {
 	
 	@Autowired
-	private MyClassService myclassservice;
+	private MyClassService myClassService;
 	
 	// MyPage 메인 화면 호출 함수
 	@RequestMapping("/myClassMain")
@@ -36,17 +42,23 @@ public class MyClassController {
 		
 		String id = (String)session.getAttribute("userId");
 		
+		// 수강한 메인강의 개수
 		ObjectMapper mapper = new ObjectMapper();
-		
-		SubTitle count = myclassservice.getSubCount(id);
+		SubTitle count = myClassService.getSubCount(id);
 		
 		// {"JA":"", DB, JS, SP, BS, KT, HL, JQ, AJ}
 		String result = mapper.writeValueAsString(count);
 		
+		// 해당날짜에 수강완료한 서브강의 수
+		List<List<Object>> dataList = myClassService.getDoneCount(id);
+		String heatData = mapper.writeValueAsString(dataList);
+		
+		// 최근 수강한 강의 정보 가져오기
+		MyClassSub sub = myClassService.getRecentClass(id);
+		
 		model.addAttribute("result", result);
-		
-		//System.out.println(result);
-		
+		model.addAttribute("sub", sub);
+		model.addAttribute("heatData", heatData);
 		
 		
 		return "myClass/myClassMain";
@@ -58,7 +70,7 @@ public class MyClassController {
 		
 		String id = (String)session.getAttribute("userId");
 		
-		List<MyClassMain> mList = myclassservice.getMyClassMain(id);
+		List<MyClassMain> mList = myClassService.getMyClassMain(id);
 	
 		model.addAttribute("mList", mList);
 	
@@ -71,6 +83,10 @@ public class MyClassController {
 		
 		String id = (String)session.getAttribute("userId"); 
 		
+		List<Basket> bList = myClassService.getBasketList(id);
+		
+		model.addAttribute("bList", bList);
+		
 		return "myClass/myCart";
 	}
 	
@@ -80,11 +96,27 @@ public class MyClassController {
 		
 		String id = (String)session.getAttribute("userId");
 		
-		List<Pay> pList = myclassservice.getPayList(id);
+		List<Pay> pList = myClassService.getPayList(id);
 		
 		model.addAttribute("pList", pList);
 		
 		return "myClass/myPay";
 	}
+	
+	// 강의 수강시간 업데이트 함수
+	@RequestMapping("/getWatchTime.ajax")
+	@ResponseBody
+	public void updateWatchTime(HttpSession session, String id, String hCode, String wTime ) {
+		
+		id = (String) session.getAttribute("userId");
+		String str = wTime;
+		wTime = str.substring(0, str.indexOf("."));
+		//System.out.println(hCode);
+		//System.out.println(wTime);
+		
+		myClassService.updateWatchTime(id, hCode, wTime);
+		
+	}
+	
 	
 }

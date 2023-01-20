@@ -1,5 +1,10 @@
 package com.cosengcosa.room.service;
 
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.mail.HtmlEmail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -57,6 +62,7 @@ public class MemberServiceImpl implements MemberService {
 	public Member getMember(String id) {
 		return memberDao.getMember(id);
 	}
+	
 	
 	// 아이디 중복확인 메서드
 	@Override
@@ -122,5 +128,97 @@ public class MemberServiceImpl implements MemberService {
 		memberDao.updatePass(member);
 		
 	}
+	
+	// 아이디 찾기 메서드
+	@Override
+	public String findMemberId(String name, String tel) {
+		
+		return memberDao.findMemberId(name, tel);
+	}
+
+	// 이메일 발송 메서드
+	@Override
+	public void sendEmail(Member member, String div) throws Exception {
+		// Mail Server 설정
+		String charSet = "utf-8";
+		String hostSMTP = "smtp.gmail.com"; //네이버 이용시 smtp.naver.com
+		String hostSMTPid = "2023.dvtest@gmail.com";
+		String hostSMTPpwd = "tester2023";
+
+		// 보내는 사람 EMail, 제목, 내용
+		String fromEmail = "2023.dvtest@gmail.com";
+		String fromName = "코생코사";
+		String subject = "코생코사";
+		String msg = "비밀번호 찾기";
+
+		if(div.equals("findpw")) {
+			subject = "코생코사 임시 비밀번호 입니다.";
+			msg += "<div align='center' style='border:1px solid black; font-family:verdana'>";
+			msg += "<h3 style='color: blue;'>";
+			msg += member.getId() + "님의 임시 비밀번호 입니다. 비밀번호를 변경하여 사용하세요.</h3>";
+			msg += "<p>임시 비밀번호 : ";
+			msg += member.getPass() + "</p></div>";
+		}
+
+		// 받는 사람 E-Mail 주소
+		String mail = member.getEmail();
+		System.out.println("email : " + mail);
+		try {
+			HtmlEmail email = new HtmlEmail();
+			email.setDebug(true);
+			email.setCharset(charSet);
+			email.setSSL(true);
+			email.setHostName(hostSMTP);
+			email.setSmtpPort(465); //네이버 이용시 587
+
+			email.setAuthentication(hostSMTPid, hostSMTPpwd);
+			email.setTLS(true);
+			email.addTo(mail, charSet);
+			email.setFrom(fromEmail, fromName, charSet);
+			email.setSubject(subject);
+			email.setHtmlMsg(msg);
+			email.send();
+		} catch (Exception e) {
+			System.out.println("메일발송 실패 : " + e);
+		}
+		
+	}
+	
+	// 비밀번호 찾기 메서드
+	@Override
+	public void findMemberPass(HttpServletResponse response, Member member) throws Exception{
+		response.setContentType("text/html;charset=utf-8");
+		member = memberDao.getMember(member.getId());
+		PrintWriter out = response.getWriter();
+		
+		// 가입된 아이디가 없으면
+		if(memberDao.getMember(member.getId()) == null) {
+			out.print("등록되지 않은 아이디입니다.");
+			out.close();
+		}
+		// 가입된 이메일이 아니면
+		else if(!member.getEmail().equals(member.getEmail())) {
+			out.print("등록되지 않은 이메일입니다.");
+			out.close();
+		}else {
+			// 임시 비밀번호 생성
+			String pass = "";
+			for (int i = 0; i < 12; i++) {
+				pass += (char) ((Math.random() * 26) + 97);
+			}
+			member.setPass(passwordEncoder.encode(pass));;
+			// 비밀번호 변경
+			System.out.println("memberService 임시비밀번호 : " + pass);
+			memberDao.updatePass(member);
+			// 비밀번호 변경 메일 발송
+			sendEmail(member, "findMemberPass");
+
+			out.print("이메일로 임시 비밀번호를 발송하였습니다.");
+			out.close();
+		}
+		
+	}
+
+	
 
 }

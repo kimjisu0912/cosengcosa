@@ -112,6 +112,7 @@ public class MemberController {
 		
 		return "redirect:/main";
 	}
+	
 	// 회원가입 화면 호출
 	@RequestMapping("/join")
 	public String joinForm() {
@@ -129,7 +130,7 @@ public class MemberController {
 		member.setPass(pass1);
 		member.setBirth(birthY +"/" + birthD + "/" + birthD);
 		member.setEmail(emailId + "@" + emailDomain);
-		member.setTel(tel2 + "-" + tel2 + "-" + tel3);
+		member.setTel(tel1 + "-" + tel2 + "-" + tel3);
 				
 		
 
@@ -264,6 +265,44 @@ public class MemberController {
 			 **/
 			return map;
 		}
-
+		
+		// 아이디 비밀번호 찾기 페이지 요청 메서드
+		@RequestMapping("/findForm")
+		public String findMyInfo(Model model) {
+		
+			
+			return "member/findForm";
+		}
+		
+		// 아이디 찾기 메서드
+		@RequestMapping("/findIdResult")
+		public String findId(Model model, String name, String tel1, String tel2, String tel3) {
+			
+			String tel = tel1 + "-" + tel2 + "-" + tel3;
+			
+			String id = memberService.findMemberId(name, tel);
+			
+			System.out.println(id);
+			
+			model.addAttribute("id", id);
+			
+			return "member/findResultForm";
+		}
+		
+		// 비밀번호 찾기 메서드
+		@RequestMapping(value="/findPassResult",  method = RequestMethod.POST)
+		public String findPass(Model model, HttpServletResponse response, Member member, 
+								String id, String emailId, String emailDomain) throws Exception {
+			
+			String email = emailId + "@" + emailDomain;
+			
+			member = memberService.getMember(id);
+			
+			memberService.findMemberPass(response, member);
+			
+			
+			return "member/findForm";
+			
+		}
 
 }

@@ -26,12 +26,12 @@
 		<div class="row">
 			<nav class="navbar bg-light">
 			  <div class="container-fluid">
-			    <a class="navbar-brand fw-bold" s>${userId} 님이 수강하고싶은 강의</a>
+			    <a class="navbar-brand fw-bold" >${userId} 님이 수강하고싶은 강의</a>
 			  </div>
 			</nav>
 		</div>
-		<div class="row ms-5 mt-3">
-			<c:if test="${not empty cList  }">
+		<div class="row">
+			<div class="col ms-5 mt-3">
 			<table class="table table-borderless">
 				<thead>
 				  <tr>
@@ -41,25 +41,30 @@
 				    <th scope="col" class="fs-5">가격</th>
 				  </tr>
 				</thead>
-				<c:forEach var="pList" items="${cList}" >
+				<c:if test="${not empty bList  }">
+					<c:forEach var="b" items="${bList}" varStatus="status">
+						<tbody class="table-group-divider">
+						  <tr>
+						    <th scope="row">${status.count}</th>
+						    <td><a href="classMainDetail?cmNo=${b.cmNo }&cmCode=${b.baCmcode}">${b.baCname }</a></td>
+						    <td>${b.cmName}</td>
+						    <td>${b.baPrice}</td>
+						  </tr>
+						</tbody>
+					</c:forEach>
+				</c:if>
+				<c:if test="${empty bList }">
 					<tbody class="table-group-divider">
-					  <tr>
-					    <th scope="row">1</th>
-					    <td></td>
-					    <td></td>
-					    <td>@</td>
-					  </tr>
-					</tbody>
-				</c:forEach>
-			</table>
-			</c:if>
-		</div>
-		<c:if test="${empty cList }">
-		<div class="row text-center my-50 fs-3">
-		
-			장바구니에 담은 강의가 없습니다
-		</div>
-		</c:if>	  
+						<tr>
+						    <td colspan="2" class="text-center fs-3">
+						    	장바구니에 담은 강의가 없습니다
+						    </td>
+					    </tr>
+					 </tbody>
+				</c:if>	  
+				</table>
+			</div>
+		</div>		
 	</div>
 </div>
     

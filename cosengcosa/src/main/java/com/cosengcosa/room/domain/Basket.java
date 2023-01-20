@@ -5,19 +5,36 @@ public class Basket {
 	private int baNo;
 	private String baMid;
 	private String baName;
+	private String cmName;
 	private String baCmcode;
 	private String baCname;
 	private int baPrice;
+	private int cmNo;
 	
 	// 생성자
 	public Basket() {}
-	public Basket(int baNo, String baMid, String baName, String baCmcode, String baCname, int baPrice) {
+	public Basket(int baNo, String baMid, String baName, String baCmcode, String baCname, int baPrice, int cmNo, String cmName) {
 		this.baNo = baNo;
 		this.baMid = baMid;
 		this.baName = baName;
 		this.baCmcode = baCmcode;
 		this.baCname = baCname;
 		this.baPrice = baPrice;
+		this.cmNo = cmNo;
+		this.cmName = cmName;
+	}
+	
+	public String getCmName() {
+		return cmName;
+	}
+	public void setCmName(String cmName) {
+		this.cmName = cmName;
+	}
+	public int getCmNo() {
+		return cmNo;
+	}
+	public void setCmNo(int cmNo) {
+		this.cmNo = cmNo;
 	}
 	public int getBaNo() {
 		return baNo;

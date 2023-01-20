@@ -31,6 +31,7 @@
 	    ORDER BY cm_no DESC 
 	</select>
 	
+	<!-- 메인강의리스트 추천순으로 가져오기 -->
 	<select id="getClassMainListR" resultType="ClassMain" resultMap="classMainResultMap">
 		SELECT cm_no, cm_code, cm_title, cm_name, cm_content, cm_period, cm_price, cm_count, cm_recommend, cm_star, cm_yn, cs_video video
 	    FROM classmain, classsub 
@@ -39,6 +40,16 @@
 	    ORDER BY cm_recommend DESC  
 	</select>
 	
+	<!-- 지식공유 게시글 추천순으로 가져오기 -->
+	<select id="getStudyList" resultType="Study" resultMap="StudyResultMap">
+		SELECT 
+			s_No, s_title, s_error, s_askcontent, s_askimg, s_askid, s_open, s_cdate, s_count, s_recommend, s_yn
+		FROM
+			study
+		WHERE 
+			s_yn = 'Y'
+		ORDER BY s_recommend DESC	 	
+	</select>
 	
 	<resultMap id="classMainResultMap" type="ClassMain">
 		<id property="cmNo" column="cm_no" />
@@ -57,6 +68,23 @@
 		<result property="file1" column="file1" />
 		<result property="video" column="video" />
 		<result property="cmYn" column="cm_yn" />
+	</resultMap>
+	
+	<resultMap id="StudyResultMap" type="Study" >
+		<id property="sNo" column="s_no" />
+		<result property="sCount" column="s_count" />
+		<result property="sRecommend" column="s_recommend" />
+		<result property="sCode" column="s_code" />
+		<result property="sTitle" column="s_title" />
+		<result property="sError" column="s_error" />
+		<result property="sAskcontent" column="s_askcontent" />
+		<result property="sAskimg" column="s_askimg" />
+		<result property="sAskid" column="s_askid" />
+		<result property="sFile" column="s_file" />
+		<result property="sOpen" column="s_open" />
+		<result property="sClear" column="s_clear" />
+		<result property="sYn" column="s_yn" />
+		<result property="sCdate" column="s_cdate" />
 	</resultMap>
 </mapper>	
 

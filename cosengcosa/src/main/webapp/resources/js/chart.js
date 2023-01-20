@@ -5,6 +5,7 @@
 window.onload = function() { // 페이지 로드 시 실행
 	
 	drawChart();
+	drawHeatChart()
 }
 
 function drawChart () { 
@@ -61,3 +62,53 @@ option = { // 차트를 그리는데 활용 할 다양한 옵션 정의
     
 	myChart.setOption(option); // 차트 디스플레이
 } 
+
+function drawHeatChart () { 
+
+  var heatChart = echarts.init(document.getElementById('heatchart'));
+
+	option = {
+	  title: {
+	    top: 0,
+	    left: 'center',
+	    text: '나의 학습열정',
+	    textStyle: {
+	    fontSize: 30,
+	    fontStyle: "normal",
+	    fontWeight: "bolder"
+    	},
+	  },
+	  tooltip: {
+	  size: 5},
+	  visualMap: {
+	    min: 0,
+	    max: 20,
+	    type: 'piecewise',
+	    splitNumber: 10,
+	    orient: 'horizontal',
+	    left: 'center',
+	    top: 65,
+	    inRange: {
+	     color: ['#ffffff', '#330066']
+	    },
+	  },
+	  calendar: {
+	    top: 120,
+	    left: 30,
+	    right: 30,
+	    cellSize: ['auto', 20],
+	    range: '2023',
+	    itemStyle: {
+	      borderWidth: 0.5
+	    },
+	    yearLabel: { show: false }
+	  },
+	  series: {
+	    type: 'heatmap',
+	    coordinateSystem: 'calendar',
+	    data: heatData
+	  }
+	};
+        // 위에서 설정한 속성을 차트에 반영합니다.
+        heatChart.setOption(option);  
+};

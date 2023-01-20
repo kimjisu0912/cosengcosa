@@ -1,5 +1,7 @@
 package com.cosengcosa.room.service;
 
+import javax.servlet.http.HttpServletResponse;
+
 import com.cosengcosa.room.domain.Member;
 
 public interface MemberService {
@@ -19,6 +21,8 @@ public interface MemberService {
 	 **/
 	public Member getMember(String id);
 	
+	
+	
 	// 회원 가입시 DAO를 이용해 아이디 중복을 체크하는 메서드
 	public boolean overlapIdCheck(String id);
 	
@@ -36,5 +40,14 @@ public interface MemberService {
 	
 	// 비밀번호 수정 메서드
 	public void updatePass(Member member);
+	
+	// 아이디 찾기 메서드
+	public String findMemberId(String name, String tel);
+	
+	// 비밀번호 찾기 메서드
+	public void findMemberPass(HttpServletResponse response, Member member) throws Exception;
+	
+	// 이메일 발송 메서드
+	public void sendEmail(Member member, String div) throws Exception;
 
 }

@@ -27,6 +27,7 @@
 						<th>NO</th>
 						<th>강의제목</th>
 						<th>강의시간</th>
+						<th></th>
 					</tr>
  				</thead>
  				<tbody>
@@ -34,8 +35,13 @@
 				<c:forEach var="c" items="${csList }" varStatus="status">
 					<tr class="table-light">
 						<td>${status.count }</td>
-						<td><a href="#" data-bs-toggle="modal" data-bs-target="#myModal${status.count }" onclick="myModalkey('${status.count }')">${c.csTitle }</a></td>
+						<td><a href="#" data-bs-toggle="modal" data-bs-target="#myModal${status.count }" onclick="myModalkey('${status.count }', '${c.csCode}')">${c.csTitle }</a></td>
 						<td>${c.csRuntime }</td>
+				<c:forEach var="mys" items="${mysList}">
+					<c:if test="${c.csCode eq mys.mysCode }">
+						<td>수강완료<td>
+					</c:if>
+				</c:forEach>
 					</tr>
 				</c:forEach>
 				</c:if>
@@ -89,5 +95,6 @@
 	    </div>
 	</div> 
 </c:forEach>
+<input type="hidden" id="hcode" value="">
 <script src="resources/js/iframeApi.js"></script>
 <script src="resources/js/classSubModify.js"></script>

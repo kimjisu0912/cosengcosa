@@ -28,4 +28,10 @@ public interface MemberDao {
 	// 회원 비밀번호 수정 처리함수
 	public void updatePass(Member member);
 	
+	// 아이디 찾기 함수
+	public String findMemberId(String name, String tel);
+	
+	// 비밀번호 찾기 함수
+	public Member findMemberPass(Member member);
+	
 }

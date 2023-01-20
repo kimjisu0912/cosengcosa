@@ -77,6 +77,21 @@
 		WHERE m_id = #{id}
 	</update>
 	
+	<!-- 아이디 찾는 구문 -->
+	<select id="findId" parameterType="HashMap" resultType="String">
+		SELECT m_id
+		FROM member
+		WHERE m_name = #{name}
+		AND m_tel = #{tel}
+	</select>
+	
+	<!-- 비밀번호 찾는 구문 -->
+	<select id="findPass" parameterType="Member" resultType="Member">
+		SELECT *
+		FROM member
+		WHERE m_id = #{id}
+		AND m_email = #{email}
+	</select>
 	<resultMap id="MemberResultMap" type="Member">
 		<id property="mno" column="m_no" />
 		<result property="id" column="m_id" />

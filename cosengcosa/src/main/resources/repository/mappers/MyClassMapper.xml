@@ -32,7 +32,39 @@
 	AND mym_yn = 'Y'
 	AND cs_code = CONCAT(LOWER(mym_code),'_01')
 </select>
+<!--
+<select id="getMyClassMain" resultType="MyClassMain" resultMap="MyClassMainResultMap" parameterType="hashmap">
+	SELECT num, mym_no, mym_mid, mym_code, mym_title, mym_name, mym_sdate, mym_edate, mym_done, mym_yn, video 
+	FROM (SELECT num, mym_no, mym_mid, mym_code, mym_title, mym_name, mym_sdate, mym_edate, mym_done, mym_yn, video 
+	      FROM (SELECT rownum num, mym_no, mym_mid, mym_code, mym_title, mym_name, mym_sdate, mym_edate, mym_done, mym_yn, video
+	              FROM myclassmain, (SELECT cs_group, cs_code, cs_video video
+	                                FROM classsub)
+	              WHERE mym_mid = #{id} 
+	              AND mym_yn = 'Y'
+	              AND cs_code = CONCAT(LOWER(mym_code),'_01'))
+	      WHERE mym_title LIKE '%' || #{keyword} || '%'
+	      OR mym_name LIKE '%' || #{keyword} || '%')
+	WHERE num  <![CDATA[>=]]>#{startRow} AND num <![CDATA[<=]]>#{endRow}   
+</select>
+-->
 
+<!-- 수강강의 총 개수 -->
+<!--
+<select id="getMyClassMainTotal" resultType="int"  parameterType="hashmap">
+	SELECT COUNT(*) 
+	FROM
+		(SELECT num, mym_no, mym_mid, mym_code, mym_title, mym_name, mym_sdate, mym_edate, mym_done, mym_yn, video 
+		      FROM (SELECT rownum num, mym_no, mym_mid, mym_code, mym_title, mym_name, mym_sdate, mym_edate, mym_done, mym_yn, video
+		              FROM myclassmain, (SELECT cs_group, cs_code, cs_video video
+		                                FROM classsub)
+		              WHERE mym_mid = #{id} 
+		              AND mym_yn = 'Y'
+		              AND cs_code = CONCAT(LOWER(mym_code),'_01'))
+		      WHERE mym_title LIKE '%' || #{keyword} || '%'
+		      OR mym_name LIKE '%' || #{keyword} || '%')
+</select>
+-->
+		      
 <!-- 수강한 과목별 카운트 -->
 <select id="getSubCount" resultType="SubTitle">
 	SELECT 
@@ -81,12 +113,80 @@
 	WHERE p_mid = #{id}
 	ORDER BY p_cdate DESC
 </select>
+
+<!-- 장바구니 리스트 -->
+<select id="getBasketList" resultType="Basket">
+	SELECT cm_no cmNo, cm_name cmName, ba_cmcode baCmcode, ba_cname baCname, ba_price baPrice
+	FROM basket, classmain
+	WHERE ba_cmcode = cm_code	
+	AND ba_mid = #{id}
+</select>
+<!-- 날짜별 수강완료환 강의 수 카운트 -->
+<select id="getDoneCount" resultType="HeatData" parameterType="hashmap">
+	SELECT TO_CHAR(ddate, 'yyyy-MM-DD') ddate, COUNT(*) cnt
+	    FROM ( SELECT mys_ddate ddate
+	        FROM myclasssub
+	        WHERE mys_mid = #{id}
+	        AND mys_done = 'Y')
+	WHERE ddate <![CDATA[>=]]> #{start}
+	    AND ddate  <![CDATA[<=]]> #{end}
+	GROUP BY TO_CHAR(ddate, 'yyyy-MM-DD')
+	ORDER BY ddate
+</select>
+
+<!-- 서브강의 런타임 조회 -->
+<select id="getRunTime" resultType="string" parameterType="hashmap">
+	SELECT mys_runtime
+	FROM myclasssub
+	WHERE mys_mid = #{id}
+	AND mys_code = #{hCode}
+</select>
+
+<!-- 수강중인 서브강의 시청시간 업데이트 -->
+<update id="updateWatchTime" parameterType="hashmap">
+	UPDATE myclasssub
+	SET mys_watchtime = #{wTime}
+	WHERE mys_mid = #{id}
+	AND mys_code = #{hCode}
+	AND mys_done = 'N'
+</update>
+
+<!-- 시청시간이 90프로 이상이면 수강완료 처리 -->
+<update id="updateDone" parameterType="hashmap">
+	UPDATE myclasssub
+	SET mys_watchtime = #{wTime},
+		mys_done = 'Y',
+		mys_ddate = sysdate
+	WHERE mys_mid = #{id}
+	AND mys_code = #{hCode}
+	AND mys_done = 'N'
+</update>
+
+<!-- 가장최근 수강한 강의 -->
+<select id="getRecentClass"  resultType ="MyClassSub" resultMap="MyClassSubResultMap">
+	SELECT mys_mid, mys_code, mys_group, mys_title, mys_video, mys_ddate
+	FROM	(SELECT rownum, mys_mid, mys_code, mys_group, mys_title, mys_video, mys_ddate    
+			FROM  ( SELECT mys_mid, mys_code, mys_group, mys_title, mys_video, mys_ddate
+			        FROM myclasssub
+			        WHERE mys_mid = #{id}
+			        AND mys_done = 'Y'
+			        ORDER BY mys_ddate DESC) 
+			WHERE rownum = 1)
+	
+</select>
+
+<!-- 수강완료된 강의 조회 -->
+<select id="getDoneClass" resultType ="MyClassSub" resultMap="MyClassSubResultMap">
+	SELECT mys_code, mys_done
+	FROM myclasssub
+	WHERE mys_mid = #{id}
+	AND mys_done = 'Y'	
+</select>
 <!-- 
 <select id="getMyClassSub" parameterType="hashmap" resultType="MyClassSub" resultMap="MyClassSubResultMap">
 	SELECT mys_mid FROM myclasssub
 	WHERE mys_mid = #{id}
 	AND mys_yn = 'Y'
-	
 	AND mys_group = #{mymCode}
 </select>
  -->

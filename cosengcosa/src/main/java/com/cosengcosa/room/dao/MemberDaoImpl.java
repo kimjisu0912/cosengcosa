@@ -1,5 +1,8 @@
 package com.cosengcosa.room.dao;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -21,13 +24,11 @@ public class MemberDaoImpl implements MemberDao {
 	
 	private final String NAME_SPACE = "com.cosengcosa.room.mapper.MemberMapper";
 
-	
-
 	@Override
 	public Member getMember(String id) {
 		return sqlSession.selectOne(NAME_SPACE + ".getMember", id);
 	}
-
+	
 	@Override
 	public void addMember(Member member) {
 		sqlSession.insert(NAME_SPACE + ".addMember", member);
@@ -52,5 +53,25 @@ public class MemberDaoImpl implements MemberDao {
 	public void updatePass(Member member) {
 		sqlSession.update(NAME_SPACE + ".updatePass", member);
 	}
+	
+	// 아이디 찾기 메서드
+	@Override
+	public String findMemberId(String name, String tel) {
+		
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("name", name);
+		params.put("tel", tel);
+		
+		return sqlSession.selectOne(NAME_SPACE + ".findId", params);
+	}
+
+	@Override
+	public Member findMemberPass(Member member) {
+		return sqlSession.selectOne(NAME_SPACE + ".findPass", member);
+	}
+
+	
+	
+	// 비밀번호 찾기 메서드
 
 }

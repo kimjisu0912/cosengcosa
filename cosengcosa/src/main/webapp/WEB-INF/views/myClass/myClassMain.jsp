@@ -4,6 +4,9 @@
 <script>
 	var data = ${result};
 	console.log(data);
+	
+	var heatData = ${heatData};
+	console.log(heatData);
 </script>
 <div class="row my-3 py-2 subBk">
 	<h2 class="ms-5 fw-bold">MyPage</h2> 
@@ -29,38 +32,27 @@
 		<div class="row">
 			<nav class="navbar bg-light">
 			  <div class="container-fluid">
-			    <a class="navbar-brand fw-bold" >${userId}님 환영합니다</a>
+			    <a class="navbar-brand fw-bold" >${userId} 님 환영합니다</a>
 			  </div>
 			</nav>
 		</div>
-		<div class="row mt-3">
-			<div class="col-6">
-				<div class="row text-center"> 
-					<h4>최근 본 강의</h4> 
+		<div class="row mt-5">
+			<div class="col-6 text-center">
+				<div class="row"> 
+					<h4 class="fw-bold me-3">최근 본 강의</h4> 
 				</div>
-				<div class="row mt-3">
-					<div class="col">
-						<table class="table">
-							<thead>
-								<tr class="table">
-									<th>강의명</th>
-									<th>강사</th>
-									<th>수강기간</th>
-								</tr>		
-							</thead>
-						</table>
-						<div>
-						<h1>${count.JA}</h1>
-						<h1>${count.DB}</h1>
-						<h1>${count.JS}</h1>
-						<h1>${count.SP}</h1>
-						</div>
+				<div class="row mt-5 ms-5">
+					<div class="card" style="width: 90%;">
+					  <a href="classSubList?cmcode=${sub.mysGroup}"><img src="http://img.youtube.com/vi/${sub.mysVideo }/mqdefault.jpg" class="card-img-top" alt="..."></a>
+					  <div class="card-body">
+					    <h5 class="card-title"><a href="classSubList?cmcode=${sub.mysGroup}">${sub.mysTitle }</a></h5>
+					  </div>
 					</div>
 				</div>
 			</div>
 			<div class="col-6">
-				<div class="row text-center">
-					<h4>${userName}님의 기술스택</h4>
+				<div class="fw-bold row text-center">
+					<h3>${userName} 님의 기술스택</h3>
 				</div>
 				<div class="row">
 					<div id="chart" style="width: 100%; height:500px;"></div> 
@@ -69,14 +61,10 @@
 		</div>
 		<div class="row">
 			<div class="row">
-				<h2>나의 학습열정</h2>
-			</div>
-			<div class="row"">
-				<div class="myCal" style="width: 100% height:500px;"></div>
+				<div class="ms-5" id="heatchart" style="width: 100%; height:700px;"></div>
 			</div>
 		</div>
 	</div>
 </div>
 	<script src="resources/js/chart.js"></script><!-- echart  -->
-	<!-- <script src="resources/js/myCal.js"></script>echart  -->
 	<script src="resources/js/echarts.min.js"></script><!-- echart  -->

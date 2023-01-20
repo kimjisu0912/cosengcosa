@@ -3,6 +3,8 @@ package com.cosengcosa.room.dao;
 import java.util.List;
 
 import com.cosengcosa.room.domain.ClassMain;
+import com.cosengcosa.room.domain.FreeBoard;
+import com.cosengcosa.room.domain.Study;
 
 public interface MainDao {
 
@@ -18,4 +20,9 @@ public interface MainDao {
 	// 추천순으로 메인강의 조회
 	public List<ClassMain> getClassMainListR();
 
+	// 지식공유 게시글 추천순으로 리스트 조회 메서드
+	public List<Study> getStudyList();
+	
+	// 자유게시판 게시글 추천순으로 리스트 조회 메서드
+	public List<FreeBoard> getFreeBoardList();
 }

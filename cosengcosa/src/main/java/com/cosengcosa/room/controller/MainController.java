@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.cosengcosa.room.domain.ClassMain;
+import com.cosengcosa.room.domain.FreeBoard;
+import com.cosengcosa.room.domain.Study;
 import com.cosengcosa.room.service.MainService;
 
 /** 
@@ -33,6 +35,10 @@ public class MainController {
 		List<ClassMain> dList = mainService.getClassMainListD();
 		List<ClassMain> rList = mainService.getClassMainListR();
 		
+		// 게시글 리스트 가져오기
+		List<Study> sList = mainService.getStudyList();
+		//List<FreeBoard> fList = mainService.getFreeBoardList();
+		
 		// 별점 반복문을 위한 리스트
 		List<Integer> list = new ArrayList<>(5);
 		list.add(1);
@@ -44,6 +50,7 @@ public class MainController {
 		model.addAttribute("dList", dList);
 		model.addAttribute("rList", rList);
 		model.addAttribute("list", list);
+		model.addAttribute("sList", sList);
 		
 		return "main";
 	}
