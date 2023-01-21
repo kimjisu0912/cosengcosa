@@ -19,7 +19,7 @@ CREATE TABLE myclasssub(
         CONSTRAINT MYS_CSCODE_FK REFERENCES classsub(cs_code) 
         CONSTRAINT MYS_CSCODE_NN NOT NULL,		-- 서브강의코드
     mys_group VARCHAR2(8 CHAR)
-        --CONSTRAINT MYS_CODE_FK REFERENCES myclassmain(mym_code)
+       -- CONSTRAINT MYS_CODE_FK REFERENCES myclassmain(mym_code)
         CONSTRAINT MYS_GROUP_NN NOT NULL,        -- 강의그룹코드    
     mys_title VARCHAR2(100 CHAR) 
         CONSTRAINT MYS_CSTITLE_NN NOT NULL,		-- 서브강의명
@@ -35,8 +35,10 @@ CREATE TABLE myclasssub(
         CONSTRAINT MYS_SDATE_NN NOT NULL,		-- 시작일
     mys_edate TIMESTAMP 
         CONSTRAINT MYS_EDATE_NN NOT NULL, 		-- 종료일   
+    mys_ddate TIMESTAMP,                        -- 수강완료일
     mys_done CHAR(1) CHECK (mys_done IN('Y', 'N')) 
         CONSTRAINT MYS_DONE_NN NOT NULL,              -- 수강완료 여부
+        
     mys_yn CHAR(1) CHECK (mys_yn IN('Y', 'N'))
         CONSTRAINT MYS_YN_NN NOT NULL            -- 삭제유무
 );
@@ -46,9 +48,25 @@ commit;
 select * from classsub;
 
 select * from myclasssub
-where mys_mid = 'test01';
-SELECT mys_video FROM myclasssub
-	WHERE mys_mid = 'test01'
-	AND mys_yn = 'Y'
-	AND mys_group = 'JA01'
-    AND rownum = 1;
+
+-- 수강 완료가 되지 않은 서브강의 시간 업데이트    
+UPDATE myclasssub
+SET mys_watchtime = '100'
+WHERE mys_mid = 'test01'
+AND mys_code = 'ja03_01'
+AND mys_done = 'N';
+
+-- 시간비교해서 90프로 이상이면 mys_done 을 'Y'로 변경
+UPDATE myclasssub
+SET mys_done = 'Y'
+WHERE mys_mid = 'test01'
+AND mys_code = 'ja03_01'
+AND mys_done = 'N';
+
+-- 수강 완료하지 않은 강의 시간정보 가져오기
+SELECT mys_runtime runtime, mys_watchtime watchtime
+FROM myclasssub
+WHERE mys_mid = 'test01'
+AND mys_code = 'ja03_01'
+AND mys_done = 'N';
+
