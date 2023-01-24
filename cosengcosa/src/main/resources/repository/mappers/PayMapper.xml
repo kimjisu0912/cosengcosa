@@ -91,7 +91,6 @@
 			cm_count	AS cmCount,
 			cm_recommend AS cmRecommend,
 			cm_star		AS cmStar,
-			file1		AS file1,
 			video		AS	video
 		FROM 
 			classmain
