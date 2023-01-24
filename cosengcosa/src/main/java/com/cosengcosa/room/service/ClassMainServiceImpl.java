@@ -1,5 +1,7 @@
 package com.cosengcosa.room.service;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -133,6 +135,23 @@ public class ClassMainServiceImpl implements ClassMainService {
 			if(cnt.equals("0")) {	// 2-1. 결재가 한번도 없는 경우는 = N 리턴
 				payChk = "N";
 			}else { // 2-2. 결재가 한번 이상 있는 경우 한번 더 체크
+				
+				// 2-3. 결재날짜 체크 - 최신결재 날짜 + 수강기간 이 현재 날짜 보다 작으면 'N'으로 업데이트
+				// 그렇지 않으면 그냥 통과
+				int period = classMain.getCmPeriod(); // 수강기간
+				String payChkDay = classMainDao.payChkDay(cmCode, userid); // 결재날짜
+				// String to LocalDate
+				LocalDate ClassMainDay  = LocalDate.parse(payChkDay, DateTimeFormatter.ISO_DATE);
+				LocalDate endClassDay = ClassMainDay.plusMonths(period); // 강의 종료 날짜
+				LocalDate now = LocalDate.now(); // 현재날짜
+				// 날짜 비교
+				String pChk = "";
+				if(now.compareTo(endClassDay) > 0) {
+					// 결재상태 값 N으로 변경
+					pChk = "N";
+					classMainDao.updatePayChk(cmCode, userid, pChk);
+				}
+				
 				// 3. 결재상태 값 확인 (Y인지 N인지)
 				ClassMain cm = classMainDao.payChk(cmCode, userid);
 				payChk = cm.getPayChk();
