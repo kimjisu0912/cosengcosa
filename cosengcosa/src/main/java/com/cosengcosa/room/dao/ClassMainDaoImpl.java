@@ -176,7 +176,30 @@ public class ClassMainDaoImpl implements ClassMainDao {
 		
 	}
 
+	/*
+	 * 메인강의 결재 날자 체크
+	 */
+	@Override
+	public String payChkDay(String cmCode, String userid) {
+		// 받는 파라미터가 같은 타입이므로 String 사용함
+		Map<String, String> param = new HashMap<String, String>();
+		param.put("cmCode", cmCode);
+		param.put("userid", userid);
+		return sqlSession.selectOne(NAME_SPACE + ".payChkDay", param);
+	}
 
+	/*
+	 * 메인강의 결재 날자 변경
+	 */
+	@Override
+	public void updatePayChk(String cmCode, String userid, String pChk) {
+		// 받는 파라미터가 같은 타입이므로 String 사용함
+		Map<String, String> param = new HashMap<String, String>();
+		param.put("cmCode", cmCode);
+		param.put("userid", userid);
+		param.put("pChk", pChk);
+		sqlSession.update(NAME_SPACE + ".updatePayChk", param);
+	}
 
 	
 

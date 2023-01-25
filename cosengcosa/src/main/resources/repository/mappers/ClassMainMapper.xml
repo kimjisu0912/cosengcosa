@@ -103,6 +103,30 @@
 			WHERE ROWNUM = 1
 	</select>
 	
+	<!-- 메인강의 결재 날짜 조회(최신 1건만) -->
+	<select id="payChkDay" resultType="String">
+		SELECT pCdate
+			FROM (
+			    SELECT TO_CHAR(p_cdate, 'yyyy-MM-dd') as pCdate
+			    FROM pay
+			    WHERE
+			        p_cmcode = #{cmCode}
+			       AND p_mid = #{userid}
+			       ORDER BY p_cdate DESC
+			)
+		WHERE ROWNUM = 1
+	</select>
+	
+	<!-- 메인강의 결재 상태값 변경 -->
+	<update id="updatePayChk">
+		UPDATE
+			pay
+		SET p_chk = #{pChk}
+		WHERE
+			p_cmcode = #{cmCode}
+			AND p_mid = #{userid}
+	</update>
+	
 	<!-- 메인강의에 해당하는 서브강의 비디오id값 유무체크 -->
 	<select id="detailVideoChk" resultType="int">
 		SELECT COUNT(b.cs_video) as cmVideo FROM
