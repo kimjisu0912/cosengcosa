@@ -33,9 +33,7 @@
 						</div>
 						<div class="col-8">
 							<label for="text1" class="form-label">강의가격 : </label>
-							<input type="text" class="form-control" id="cmPrice" name="codeCheck" >
-							<div id="cmPrice"></div>
-							<input type="hidden" id="cmPrice" name="cmPrice" value="">
+							<input type="text" class="form-control" id="cmPrice" name="cmPrice" >
 						</div>
 						<div class="col-8">
 							<label for="text1" class="form-label">강의기간 : </label>

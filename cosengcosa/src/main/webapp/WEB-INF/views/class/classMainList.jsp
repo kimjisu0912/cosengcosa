@@ -2,9 +2,6 @@
     pageEncoding="UTF-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@page import="java.util.HashMap"%>
-
- 
  	<!-- content -->
  <div class="row" id="global-content">
  	<div class="row my-5 text-center">
@@ -44,7 +41,9 @@
  			<a href="classMainList" class="btn btn-outline-success">강의 리스트</a>
  		</div>
  		<div class="col-6 text-end">
+ 		<c:if test="${sessionScope.member.id =='admin'}">
  			<a href="classMainInsert" class="btn btn-outline-success">강의 등록</a>
+ 		</c:if>
  		</div>
  	</div>
  	</c:if>
@@ -53,7 +52,9 @@
  	<c:if test="${not searchOption }" >
 	 	<div class="row">
 	 		<div class="col text-end">
-	 			<a href="classMainInsert" class="btn btn-outline-success" >강의등록</a>
+	 			<c:if test="${sessionScope.member.id =='admin'}">
+	 				<a href="classMainInsert" class="btn btn-outline-success" >강의등록</a>
+	 			</c:if>
 	 		</div>
 	 	</div>
  	</c:if>
