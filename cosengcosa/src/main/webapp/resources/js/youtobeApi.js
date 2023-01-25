@@ -81,15 +81,17 @@ $.ajax({
 					  //console.log(vid);
 					  //console.log(title);
 					  var result = 
-	             		'<div class="col-5">'
-		             	+		'<div class="card border" style="width: 18rem;">'
+	             		'<div class="col-4">'
+		             	+		'<div class="card border" style="width: 13rem; height: 25rem;" >'
 		             	+			'<img src="https://img.youtube.com/vi/'+vid+'/0.jpg" class="card-img-top img-thumbnail">'
-			            + 			'<div class="card-body">'
+			            + 			'<div class="card-body text-bg-secondary">'
 			            + 				'<p class="card-text">'+title+'</p>'
 			            + 				'<p class="card-text">'+duration+'</p>'
 			            + 			'</div>'
 			            + 		'</div>'
-			            + 		'<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault'+i+'" value="'+vid+'">'
+			            +		'<div class="text-center mb-4 border text-bg-light" style="width: 13rem;">'
+			            + 			'<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault'+i+'" value="'+vid+'">'
+			            +		'</div>'
 			            +'</div>'
 			            i++;
 		             	 $('#view').append(result);
@@ -108,7 +110,7 @@ $.ajax({
 
 $(document).on("click", ".form-check-input", function() {
 	$("#hcsVideo").val($(this).val());
-	$("#csRuntime").val($(this).parent().children().children().children().next().html());
+	$("#csRuntime").val($(this).parent().parent().children().children().children().next().html());
 });
 
 
@@ -126,19 +128,19 @@ $(document).on("submit", "#classSubAddForm", function() {
 	var csruntime = $("#hcsRuntime").val();
 	
 	if(title.length <=0){
-		alert("강의 명을 입력해주세요");
+		swal("입력오류", "강의 이름을 입력해주세요",'warning');
 		return false;
 	}
 	if(cscontent.length <=0){
-		alert("강의 내용을 입력해주세요");
+		swal("입력오류", "강의 설명을 입력해주세요",'warning');
 		return false;
 	}
 	if(video.length <=0){
-		alert("영상을 선택해주세요");
+		swal("입력오류", "강의 영상을 검색 후 선택해주세요",'warning');
 		return false;
 	}
 	if(csruntime.length <=0){
-		alert("영상 시간을 입력해주세요");
+		swal("입력오류", "강의 영상 시간을 입력해주세요",'warning');
 		return false;
 	}
 	$("#classSubAddForm").attr("action", "classSubAdd");
@@ -162,19 +164,19 @@ $(document).on("submit", "#classSubForm", function() {
 	var csruntime = $("#hcsRuntime").val();
 	
 	if(title.length <=0){
-		alert("강의 명을 입력해주세요");
+		swal("입력오류", "강의 이름을 입력해주세요",'warning');
 		return false;
 	}
 	if(cscontent.length <=0){
-		alert("강의 내용을 입력해주세요");
+		swal("입력오류", "강의 설명을 입력해주세요",'warning');
 		return false;
 	}
 	if(video.length <=0){
-		alert("영상을 선택해주세요");
+		swal("입력오류", "강의 영상을 검색 후 선택해주세요",'warning');
 		return false;
 	}
 	if(csruntime.length <=0){
-		alert("영상 시간을 입력해주세요");
+		swal("입력오류", "강의 영상 시간을 입력해주세요",'warning');
 		return false;
 	}
 

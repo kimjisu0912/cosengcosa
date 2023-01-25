@@ -83,9 +83,9 @@
 			<input type="hidden" name="hcsRuntime" id="hcsRuntime" value=""/>
 			<div class="row mb-3 mt-3">				
 				<div class="col-8 offset-2">
-					<input type="submit" value="수정하기" class="btn btn-outline-primary">
-					<input type="button" value="삭제하기" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#myModal">
-					<input class="btn btn-outline-success" type="button" value="목록보기" onclick="location.href='classSubList?cmcode=${classSub.csGroup }'"/>
+					<input type="submit" value="수정하기" class="btn btn-warning">
+					<input type="button" value="삭제하기" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal">
+					<input class="btn btn-primary" type="button" value="목록보기" onclick="location.href='classSubList?cmcode=${classSub.csGroup }'"/>
 				</div>
 			</div>
 		</form>
@@ -110,7 +110,7 @@
 	        
 	        <!-- Modal footer -->
 	        <div class="modal-footer">
-	        	<a href="classSubDel?csCode=${classSub.csCode }&csGroup=${classSub.csGroup }" class="btn btn-primary">삭제하기</a>
+	        	<a href="classSubDel?csCode=${classSub.csCode }&csGroup=${classSub.csGroup }" class="btn btn-danger">삭제하기</a>
 	         	<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소하기</button>
 	        </div>
 	        

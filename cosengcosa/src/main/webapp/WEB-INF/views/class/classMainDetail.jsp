@@ -24,15 +24,20 @@
 				<div class="row">
 					<div class="col shadow p-3 mb-5 bg-body rounded">
 						<ul class="nav nav-pills justify-content-end">
-							<li class="nav-item">
-								<a type="button" class="btn btn-outline-success m-2" href="classSubAddForm?cmcode=${classMain.cmCode }">강의영상 등록</a>
-							</li>
-							<li class="nav-item">
-								<a type="button" class="btn btn-outline-success m-2" href="classMainModForm?cmNo=${classMain.cmNo }&cmcode=${classMain.cmCode }">수정</a>
-							</li>
-							<li class="nav-item">
-								<a type="button" class=" btn btn-outline-success m-2" href="classMainDelete?cmNo=${classMain.cmNo }&cmcode=${classMain.cmCode }">삭제</a>
-							</li>
+							<c:if test="${sessionScope.member.id =='admin'}">
+								<li class="nav-item">
+									<a type="button" class="btn btn-primary m-2" href="classSubList?cmcode=${classMain.cmCode }">강의영상 목록</a>
+								</li>
+								<li class="nav-item">
+									<a type="button" class="btn btn-dark m-2" href="classSubAddForm?cmcode=${classMain.cmCode }">강의영상 등록</a>
+								</li>
+								<li class="nav-item">
+									<a type="button" class="btn btn-warning m-2" href="classMainModForm?cmNo=${classMain.cmNo }&cmcode=${classMain.cmCode }">수정</a>
+								</li>
+								<li class="nav-item">
+									<a type="button" class=" btn btn-danger m-2" data-bs-toggle="modal" data-bs-target="#myModal">삭제</a>
+								</li>
+							</c:if>
 						</ul>
 			 		</div>
 		 		</div>
@@ -89,12 +94,13 @@
 								<div class="d-grid gap-3">
 									<a class="btn btn-outline-success bg-opacity-50" type="button" href="payAddForm?cmcode=${classMain.cmCode }">결재하기</a>
 									<c:if test="${baChk == 'N' }">
-									<a class="btn btn-outline-success bg-opacity-50" type="button" href="basketAdd?cmNo=${classMain.cmNo }&cmcode=${classMain.cmCode }">장바구니</a>
+									<a class="btn btn-outline-primary bg-opacity-50" type="button" href="basketAdd?cmNo=${classMain.cmNo }&cmcode=${classMain.cmCode }">장바구니</a>
 									</c:if>
 								</div>
 								<div class="button-group-center">
-									<a type="button" class="btn btn-link"><i class="bi bi-heart"></i> </a>
-									<a type="button" class="btn btn-default bi bi-share"><span class="glyphicon glyphicon-share-alt"></span></a>
+									<a type="button" class="btn btn-link" id="recommend"><i class="bi bi-heart"></i> </a>
+									<a type="button" class="btn btn-default bi bi-share" id="data-copy"><span class="glyphicon glyphicon-share-alt"></span></a>
+									<input type="hidden" id="data-area" class="data-area" value="">
 								</div>
 							</div>
 						</div>
@@ -113,4 +119,29 @@
 </div>
 
 
+<div class="modal fade" id="myModal" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true" role="dialog" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg modal-dialog-centered">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header bg-dark text-white">
+          <h4 class="modal-title"><i class="bi bi-exclamation-circle"></i>&nbsp;&nbsp;강의 삭제</h4>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body text-center">
+        	<i class="bi bi-exclamation-circle-fill"></i> &nbsp;&nbsp;' ${classMain.cmTitle} ' 을(를) 삭제 하시겠습니까?
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+        	<a href="classMainDelete?cmNo=${classMain.cmNo }&cmcode=${classMain.cmCode }" class="btn btn-danger">삭제하기</a>
+         	<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소하기</button>
+        </div>
+        
+      </div>
+    </div>
+</div>
 
+<script src="resources/js/classMainDetail.js"></script>

@@ -77,7 +77,8 @@
 			<input type="hidden" name="hcsRuntime" id="hcsRuntime" value=""/>
 			<div class="row mb-3 mt-3">				
 				<div class="col-8 offset-2">
-					<input type="submit" value="등록하기" class="btn btn-primary">
+					<input type="submit" value="등록하기" class="btn btn-dark">
+					<input class="btn btn-primary" type="button" value="목록보기" onclick="location.href='classSubList?cmcode=${cmcode }'"/>
 				</div>
 			</div>
 		</form>

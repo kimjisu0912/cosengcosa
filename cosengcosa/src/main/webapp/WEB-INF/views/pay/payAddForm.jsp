@@ -142,8 +142,8 @@
 			<input type="hidden" name="pPrice" id="pPrice" value="${classmain.cmPrice }"/>
 			<div class="row mb-3 mt-3">				
 				<div class="col-8 offset-2">
-					<input type="submit" value="결재하기" class="btn btn-primary">
-					<a href="javascript:window.history.back();" class="btn btn-primary">취소</a>
+					<input type="submit" value="결재하기" class="btn btn-dark">
+					<a href="javascript:window.history.back();" class="btn btn-secondary">취소</a>
 				</div>
 			</div>
 		</form>
