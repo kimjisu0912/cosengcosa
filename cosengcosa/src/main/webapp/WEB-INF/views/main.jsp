@@ -34,16 +34,16 @@
 							<div class="row mb-1"><a class="color-black dnone">${r.cmName}</a></div>
 							<div class="row">
 								<div class="col-6">
-								<c:if test="${r.cmStar ne 0 }">	
-									<c:forEach var="star" items="${list}" end="${r.cmStar - 1 }" >
-										<span class="fa fa-star checked"></span>
-									</c:forEach>
-								</c:if>		
-								<c:if test="${r.cmStar ne 5 }">
-									<c:forEach var="star" items="${list}" end="${4 - r.cmStar }">
-										<span class="fa fa-star "></span>
-									</c:forEach>
-								</c:if>  
+									<c:if test="${r.cmStar ne 0 }">	
+										<c:forEach var="star" items="${list}" end="${r.cmStar - 1 }" >
+											<span class="fa fa-star checked"></span>
+										</c:forEach>
+									</c:if>		
+									<c:if test="${r.cmStar ne 5 }">
+										<c:forEach var="star" items="${list}" end="${4 - r.cmStar }">
+											<span class="fa fa-star "></span>
+										</c:forEach>
+									</c:if>  
 								</div>
 								<div class="col-6 text-end"><span><i class="bi bi-hand-thumbs-up"></i> ${r.cmRecommend }</span></div>
 							</div>
@@ -66,12 +66,16 @@
 							<div class="row mb-1"><a class="color-black dnone"> ${d.cmName}</a></div>
 							<div class="row">
 								<div class="col-6">
-									<c:forEach var="star" items="${list}" end="${d.cmStar - 1 }" >
-										<span class="fa fa-star checked"></span>
-									</c:forEach>	
-									<c:forEach var="star" items="${list}" end="${4 - d.cmStar }">
-										<span class="fa fa-star "></span>
-									</c:forEach>
+									<c:if test="${d.cmStar ne 0}">
+										<c:forEach var="star" items="${list}" end="${d.cmStar - 1 }" >
+											<span class="fa fa-star checked"></span>
+										</c:forEach>
+									</c:if>
+									<c:if test="${d.cmStar ne 5}">		
+										<c:forEach var="star" items="${list}" end="${4 - d.cmStar }">
+											<span class="fa fa-star "></span>
+										</c:forEach>
+									</c:if>	
 								</div>
 								<div class="col-6 text-end"><span><i class="bi bi-hand-thumbs-up"></i> ${d.cmRecommend }</span></div>
 							</div>
