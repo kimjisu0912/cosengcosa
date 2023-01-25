@@ -74,8 +74,7 @@ public class FreeBoardDaolmpl implements FreeBoardDao {
 
 	@Override
 	public List<FreeBoardCmt> answerList(int no) {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectList(NAME_SPACE + ".freeBoardCmtList", no);
 	}
 
 	@Override
@@ -92,19 +91,19 @@ public class FreeBoardDaolmpl implements FreeBoardDao {
 
 	@Override
 	public void addReply(FreeBoardCmt cmt) {
-		// TODO Auto-generated method stub
+		sqlSession.insert(NAME_SPACE + ".addFreeCmt", cmt);	
 		
 	}
 
 	@Override
 	public void updateReply(FreeBoardCmt cmt) {
-		// TODO Auto-generated method stub
+		sqlSession.update(NAME_SPACE + ".updateFreeCmt", cmt);	
 		
 	}
 
 	@Override
 	public void deleteReply(int no) {
-		// TODO Auto-generated method stub
+		sqlSession.delete(NAME_SPACE + ".deleteFreeCmt", no);	
 		
 	}
 

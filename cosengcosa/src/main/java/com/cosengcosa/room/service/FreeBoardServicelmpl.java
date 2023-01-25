@@ -110,8 +110,7 @@ public class FreeBoardServicelmpl implements FreeBoardService {
 
 	@Override
 	public List<FreeBoardCmt> FreeBoardCmtList(int no) {
-		// TODO Auto-generated method stub
-		return null;
+		return freeBoardDao.answerList(no);
 	}
 
 	@Override
@@ -122,20 +121,17 @@ public class FreeBoardServicelmpl implements FreeBoardService {
 
 	@Override
 	public void addReply(FreeBoardCmt freeCmt) {
-		// TODO Auto-generated method stub
-		
+		freeBoardDao.addReply(freeCmt);
 	}
 
 	@Override
 	public void updateReply(FreeBoardCmt freeCmt) {
-		// TODO Auto-generated method stub
-		
+		freeBoardDao.updateReply(freeCmt);
 	}
 
 	@Override
 	public void deleteReply(int no) {
-		// TODO Auto-generated method stub
-		
+		freeBoardDao.deleteReply(no);
 	}
 
 }

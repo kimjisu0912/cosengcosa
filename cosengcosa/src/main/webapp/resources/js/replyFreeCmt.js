@@ -1,62 +1,10 @@
 // DOM(Document Object Model)이 준비 되었다면
 $(document).ready(function() {
 
-	// 추천/땡큐 Ajax
-	$("#Commend").click(function() {
-		
-		
-		$.ajax({			
-			url: "recommend.ajax",
-			
-			// type을 지정하지 않으면 get 방식 요청이다.
-			type: "post",
-			
-			// 파라미터로 보낼 데이터를 객체 리터럴로 지정하고 있다.
-			data : { sno : $("#sno").val()},
-
-			dataType: "json",
-			success: function(data) {
-				
-				var msg = "추천이";
-				alert(msg + " 반영 되었습니다.");
-			},
-			error: function(xhr, status, error) {
-				alert("error : " + xhr.statusText + ", " + status + ", " + error);
-			}
-		});
-	}).hover(function() {
-		$(this).css({cursor: "pointer"});
-	});	
-	
-	// 댓글 쓰기 메뉴에 마우스 호버(enter, out) 이벤트 처리 - 수정됨
-	$("#replyWrite").hover(function() {
-		$(this).css("cursor", "pointer");
-	});
-	
-	// 댓글 쓰기가 클릭되었을 때 이벤트 처리 - 추가됨
-	$(document).on("click", "#replyWrite", function() {
-		if($("#replyForm").css("display") == "block") {
-			
-			var $next = $(this).parent().next();
-			if(! $($next).is("#replyForm")) {
-				$("#replyForm").slideUp(300);
-			}
-			setTimeout(function(){
-				$("#replyForm").insertBefore("#replyTitle").slideDown(300);
-			}, 300);			
-		} else {
-			$("#replyForm").insertBefore("#replyTitle").slideDown(300);
-		}
-		
-		$("#replyForm").find("form")
-			.attr("id", "replyWriteForm").removeAttr("data-no");
-		$("#replyContent").val("");
-	});
-	
 	
 	$(document).on("click", "#replyWriteButton", function() {
 	
-		if($("#saAnswer").val().length <= 5) {
+		if($("#fcContent").val().length <= 5) {
 			alert("댓글은 5자 이상 입력해야 합니다.");
 			// Ajax 요청을 취소한다.
 			return false;
@@ -65,14 +13,16 @@ $(document).ready(function() {
 		// var params = $("#replyWriteForm").serialize();
 		
 		
-		var saNum = $("#saNum").val();
-		var saAnswerid = $("#saAnswerid").val();
-		var saAnswer = $("#saAnswer").val();
+		var fcNum = $("#fcNum").val();
+		var fcWriter = $("#fcWriter").val();
+		var fcContent = $("#fcContent").val();
+		
+		alert(fcNum + fcWriter + fcContent);
 		
 		$.ajax({
-			url: "replyWrite.ajax",
+			url: "replyWrite2.ajax",
 			type: "post",
-			data: {"saNum" : saNum, "saAnswerid" : saAnswerid, "saAnswer" : saAnswer},
+			data: {"fcNum" : fcNum, "fcWriter" : fcWriter, "fcContent" : fcContent},
 			dataType: "json",
 			success: function(resultData, status, xhr) {
 			
@@ -80,7 +30,7 @@ $(document).ready(function() {
 				console.log(resultData);
 				$.each(resultData, function(index, value) {					
 					// 날짜 데이터를 출력 포맷에 맞게 수정
-					var date = new Date(value.cdate);
+					var date = new Date(value.fcCdate);
 					var strDate = date.getFullYear() + "-" + ((date.getMonth() + 1 < 10) 
 							? "0" + (date.getMonth() + 1) : (date.getMonth() + 1)) + "-"  
 							+ date.getDate() + "-" + ((date.getHours() < 10) 
@@ -90,25 +40,25 @@ $(document).ready(function() {
 							? "0" + date.getSeconds() : date.getSeconds());				
 										
 					var result = 
-						"<tr class='reply_" + value.saNo + "'>" 
+						"<tr class='reply_" + value.fcNo + "'>" 
 						+ "<td>"
 						+ "	<div class='replyUser'>"
-						+ "		<span class='member'>" + value.saAnswerid + "</span>"
+						+ "		<span class='member'>" + value.fcWriter + "</span>"
 						+ "	</div>"
 						+ "	<div class='replyModify'>"
 						+ "		<span class='replyDate'>" + strDate + "</span>"
-						+ "		<a href='#' class='modifyReply' data-no='" + value.saNo + "'>"
+						+ "		<a href='#' class='modifyReply' data-no='" + value.fcNo + "'>"
 						+ "			<img src='resources/images/reply_btn_modify.gif' alt='댓글 수정하기'/>"
 						+ "		</a>"
-						+ "		<a href='#' class='deleteReply' data-no='" + value.saNo + "'>"
+						+ "		<a href='#' class='deleteReply' data-no='" + value.fcNo + "'>"
 						+ "			<img src='resources/images/reply_btn_delete.gif' alt='댓글 삭제하기'/>"
 						+ "		</a>"
-						+ "		<a href='javascript:reportReply('div_" + value.saNo + "');'>"
+						+ "		<a href='javascript:reportReply('div_" + value.fcNo + "');'>"
 						+ "			<img src='resources/images/reply_btn_notify.gif' alt='신고하기'/>"
 						+ "		</a>"
 						+ "	</div>"
-						+ "	<div class='replyContent' id='div_" + value.saNo + "'>"
-						+ "		<pre><span>" + value.saAnswer + "</span></pre>"
+						+ "	<div class='replyContent' id='div_" + value.fcNo + "'>"
+						+ "		<pre><span>" + value.fcContent + "</span></pre>"
 						+ "	</div>"
 						+ "</td>"
 					+ "</tr>";
@@ -116,7 +66,7 @@ $(document).ready(function() {
 					$("#replyTable").append(result);								
 				});				
 				// 댓글 쓰기가 완료되면 댓글 쓰기 폼을 숨긴다.
-				$("#replyForm").slideUp(300).add("#saAnswer").val("");
+				$("#replyForm").slideUp(300).add("#fcContent").val("");
 				
 				console.log("write : " + $("#replyForm").length);
 			},
@@ -163,7 +113,7 @@ $(document).ready(function() {
 		
 	$(document).on("click", "#replyUpdateButton", function() {	
 		
-		if($("#saAnswer").val().length <= 5) {
+		if($("#fcContent").val().length <= 5) {
 			alert("댓글은 5자 이상 입력해야 합니다.");
 			// Ajax 요청을 취소한다.
 			return false;
@@ -171,19 +121,19 @@ $(document).ready(function() {
 		
 		// var params = $(this).serialize() + "&no=" + $(this).attr("data-no");
 		
-		var saNum = $("#saNum").val();
-		var saAnswer = $("#saAnswer").val();
-		var saNo = $(".modifyReply").attr("data-no");
+		var fcNum = $("#fcNum").val();
+		var fcContent = $("#fcContent").val();
+		var fcNo = $(".modifyReply").attr("data-no");
 		
-		var params = "saNum=" + saNum  + "&saAnswer=" + saAnswer + "&saNo=" + saNo;
+		var params = "fcNum=" + fcNum  + "&fcContent=" + fcContent + "&fcNo=" + fcNo;
 		
 		alert(params);
 		var updateForm;
 		
 		$.ajax({
-			url: "replyUpdate.ajax",
+			url: "replyUpdate2.ajax",
 			type: "post",
-			data: {"saNum": saNum, "saAnswer" : saAnswer, "saNo" : saNo},
+			data: {"fcNum": fcNum, "fcContent" : fcContent, "fcNo" : fcNo},
 			dataType: "json",
 			success: function(resultData, status, xhr) {								
 	
@@ -196,7 +146,7 @@ $(document).ready(function() {
 				
 				$.each(resultData, function(index, value) {
 					// 날짜 데이터를 출력 포맷에 맞게 수정
-					var date = new Date(value.cdate);
+					var date = new Date(value.fcCdate);
 					var strDate = date.getFullYear() + "-" + ((date.getMonth() + 1 < 10) 
 							? "0" + (date.getMonth() + 1) : (date.getMonth() + 1)) + "-"  
 							+ date.getDate() + "-" + ((date.getHours() < 10) 
@@ -206,25 +156,25 @@ $(document).ready(function() {
 							? "0" + date.getSeconds() : date.getSeconds());			
 										
 					var result = 
-						"<tr class='reply_" + value.saNo + "'>" 
+						"<tr class='reply_" + value.fcNo + "'>" 
 						+ "<td>"
 						+ "	<div class='replyUser'>"
-						+ "		<span class='member'>" + value.saAnswerid + "</span>"
+						+ "		<span class='member'>" + value.fcWriter + "</span>"
 						+ "	</div>"
 						+ "	<div class='replyModify'>"
 						+ "		<span class='replyDate'>" + strDate + "</span>"
-						+ "		<a href='#' class='modifyReply' data-no='" + value.saNo + "'>"
+						+ "		<a href='#' class='modifyReply' data-no='" + value.fcNo + "'>"
 						+ "			<img src='resources/images/reply_btn_modify.gif' alt='댓글 수정하기'/>"
 						+ "		</a>"
-						+ "		<a href='#' class='deleteReply' data-no='" + value.saNo + "'>"
+						+ "		<a href='#' class='deleteReply' data-no='" + value.fcNo + "'>"
 						+ "			<img src='resources/images/reply_btn_delete.gif' alt='댓글 삭제하기'/>"
 						+ "		</a>"
-						+ "		<a href='javascript:reportReply('div_" + value.saNo + "');'>"
+						+ "		<a href='javascript:reportReply('div_" + value.fcNo + "');'>"
 						+ "			<img src='resources/images/reply_btn_notify.gif' alt='신고하기'/>"
 						+ "		</a>"
 						+ "	</div>"
-						+ "	<div class='replyContent' id='div_" + value.saNo + "'>"
-						+ "		<pre><span>" + value.saAnswer + "</span></pre>"
+						+ "	<div class='replyContent' id='div_" + value.fcNo + "'>"
+						+ "		<pre><span>" + value.fcContent + "</span></pre>"
 						+ "	</div>"
 						+ "</td>"
 					+ "</tr>";
@@ -240,7 +190,7 @@ $(document).ready(function() {
 				$updateForm.find("form")
 					.attr("id", "replyUpdateForm").removeAttr("data-no")
 					.end().css("display", "none").appendTo("article")
-					.find("#saAnswer").val("");
+					.find("#fcContent").val("");
 			},
 			error: function(xhr, status, error) {
 				alert("ajax 실패 : " + status + " - " + xhr.status);
@@ -252,15 +202,15 @@ $(document).ready(function() {
 	
 	$(document).on("click", ".deleteReply", function() {	
 		
-		var saNo = $(this).attr("data-no");
-		var saAnswerid = $(this).parent().prev().find(".member").text();
-		var saNum = $("#replyForm input[name=saNum]").val();
-		var result = confirm(saAnswerid + "님이 작성한 " + saNo +"번 댓글을 삭제하시겠습니까?");
+		var fcNo = $(this).attr("data-no");
+		var fcWriter= $(this).parent().prev().find(".member").text();
+		var fcNum = $("#replyForm input[name=fcNum]").val();
+		var result = confirm(fcWriter + "님이 작성한 " + fcNo +"번 댓글을 삭제하시겠습니까?");
 		
-		var params = "saNo=" + saNo + "&saNum=" + saNum;	
+		var params = "fcNo=" + fcNo + "&fcNum=" + fcNum;	
 		if(result) {
 			$.ajax({
-				url: "replyDelete.ajax",
+				url: "replyDelete2.ajax",
 				type: "post",
 				data: params,
 				dataType: "json",
@@ -286,25 +236,25 @@ $(document).ready(function() {
 								? "0" + date.getSeconds() : date.getSeconds());
 											
 						var result = 
-							"<tr class='reply_" + value.sano + "'>" 
+							"<tr class='reply_" + value.fcno + "'>" 
 							+ "<td>"
 							+ "	<div class='replyUser'>"
-							+ "		<span class='member'>" + value.saAnswerid + "</span>"
+							+ "		<span class='member'>" + value.fcWriter + "</span>"
 							+ "	</div>"
 							+ "	<div class='replyModify'>"
 							+ "		<span class='replyDate'>" + strDate + "</span>"
-							+ "		<a href='#' class='modifyReply' data-no='" + value.saNo + "'>"
+							+ "		<a href='#' class='modifyReply' data-no='" + value.fcNo + "'>"
 							+ "			<img src='resources/images/reply_btn_modify.gif' alt='댓글 수정하기'/>"
 							+ "		</a>"
-							+ "		<a href='#' class='deleteReply' data-no='" + value.saNo + "'>"
+							+ "		<a href='#' class='deleteReply' data-no='" + value.fcNo + "'>"
 							+ "			<img src='resources/images/reply_btn_delete.gif' alt='댓글 삭제하기'/>"
 							+ "		</a>"
-							+ "		<a href='javascript:reportReply('div_" + value.saNo + "');'>"
+							+ "		<a href='javascript:reportReply('div_" + value.fcNo + "');'>"
 							+ "			<img src='resources/images/reply_btn_notify.gif' alt='신고하기'/>"
 							+ "		</a>"
 							+ "	</div>"
-							+ "	<div class='replyContent' id='div_" + value.saNo + "'>"
-							+ "		<pre><span>" + value.saAnswer + "</span></pre>"
+							+ "	<div class='replyContent' id='div_" + value.fcNo + "'>"
+							+ "		<pre><span>" + value.fcContent + "</span></pre>"
 							+ "	</div>"
 							+ "</td>"
 						+ "</tr>";

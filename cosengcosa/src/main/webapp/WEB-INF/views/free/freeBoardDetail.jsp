@@ -74,7 +74,96 @@
 			</div>
 		</div>
 		
+		<!-- 댓글 -->
+		<div class="col"></div>
+		<div class="row justify-content-center">
+			<div class="col-8">
+			<table>
+			<tr>
+				<td colspan="4" class="replyHeader">
+				<div id="recommend">
+					<span id="replyWrite">
+						&nbsp;댓글쓰기
+					</span>	
+					
+					<div id="replyForm" >
+						<form name="replyWriteForm" id="replyWriteForm">				
+							<input type="hidden" name="fcNum" id="fcNum" value="${ freeBoard.fNo }"/>
+							<input type="hidden" name="fcWriter" id="fcWriter"
+								value="${ member.id }" />			
+							<table id="replyWriteTable">
+								<tr>
+									<td id="replyWriteTitle" colspan="2">
+										<span>악의적인 댓글은 예고 없이 삭제될 수 있으며 글쓰기 제한과 아이디 삭제 처리됩니다.</span>
+									</td>
+								</tr>
+								<tr>
+									<td id="replyWriteContent">
+										<textarea name="fcContent" id="fcContent" rows="4" cols="65"></textarea>
+									</td>
+									<td id="replyWriteImage">						
+										<input type="button" class="btn btn-info"
+											id="replyWriteButton" value="댓글입력" />
+									</td>
+									<td id="replyUpdateImage">						
+										<input type="submit" class="btn btn-info"
+											id="replyUpdateButton" value="댓글수정" />
+									</td>
+								</tr>
+							</table>
+						</form>	
+					</div>	
+			
+			
+				</div>
+				<div id="replyTitle"><h3>댓글</h3></div>
+				</td>
+			</tr>
+			<c:if test="${ empty freeBoardCmtList }" >
+			<tr id="replyList">
+				<td colspan="4">
+				<div id="notReply">
+					이 게시 글에 대한 댓글이 존재하지 않습니다.  
+				</div>			
+				</td>
+			</tr>
+			</c:if>
+			<c:if test="${ not empty freeBoardCmtList }" >
+			<tr id="replyList">
+				<td colspan="4">		
+				<table id="replyTable">
+					<c:forEach var="freeCmt" items="${ freeBoardCmtList }" >
+					<tr id="reply_${ freeCmt.fcNo }">
+						<td>									
+						<div class="replyUser">						
+							<span class="member">${ freeCmt.fcWriter}</span>	
+						</div>
+						<div class="replyModify">
+							<span class="reply_date">
+								<fmt:formatDate value="${ freeCmt.fcCdate}" 
+									pattern="yyyy-MM-dd HH:mm:ss" /></span>
+							<a href="#" class="modifyReply" data-no="${ freeCmt.fcNo }">
+								<img src="resources/images/reply_btn_modify.gif" alt="댓글 수정하기"/></a>
+							<a href="#" class=deleteReply data-no="${ freeCmt.fcNo }">
+								<img src="resources/images/reply_btn_delete.gif" alt="댓글 삭제하기"/></a>
+						</div>	
+						<div class="replyContent" id="div_${ freeCmt.fcNo }">
+							<pre><span>${ freeCmt.fcContent }</span></pre>
+						</div>
+						</td>
+					</tr>	
+					</c:forEach>
+				</table>				
+				</td>
+			</tr>	
+			</c:if>
+			</table>	
+			</div>
+		<div class="col-auto"></div>
+		</div>
+			
 		
 	</div>	
 </div>
 <script src="resources/js/boardCheck.js"></script>
+<script src="resources/js/replyFreeCmt.js"></script>

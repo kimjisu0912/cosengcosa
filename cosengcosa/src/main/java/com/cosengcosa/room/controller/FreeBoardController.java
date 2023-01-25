@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cosengcosa.room.domain.FreeBoard;
+import com.cosengcosa.room.domain.FreeBoardCmt;
 import com.cosengcosa.room.domain.Study;
 import com.cosengcosa.room.service.FreeBoardService;
 
@@ -70,12 +71,12 @@ public class FreeBoardController {
 		boolean searchOption = (type.equals("null") 
 				|| keyword.equals("null")) ? false : true; 		
 		
-		// List<StudyAnswer> freeBoardList = freeBoardService.freeBoardList(fno);
+		List<FreeBoardCmt> freeBoardCmtList = freeBoardService.FreeBoardCmtList(fno);
 		
 		FreeBoard freeBoard = freeBoardService.getFreeBoard(fno, true);
 		
 		model.addAttribute("freeBoard", freeBoard);
-		// model.addAttribute("freeBoardList", freeBoardList);
+		model.addAttribute("freeBoardCmtList", freeBoardCmtList);
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("searchOption", searchOption);
 		

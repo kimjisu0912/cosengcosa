@@ -84,6 +84,45 @@
 	
 	<!-- 댓글 -->
 	
+	<select id="freeBoardCmtList" resultType="FreeBoardCmt">
+		SELECT 
+   			fc_no AS fcNo,
+   			fc_num AS fcNum, 
+   			fc_content AS fcContent,
+   			fc_writer AS fcWriter,
+   			fc_cdate AS saCdate,
+   			fc_yn AS fc_Yn 
+		FROM 
+		    freeBoardCmt 
+		WHERE 
+		    fc_num = #{fcno} 
+		ORDER BY 
+		    fc_no DESC   
+	</select>
+	
+	
+	<insert id="addFreeCmt" parameterType="FreeBoardCmt">
+		INSERT INTO freeBoardCmt(fc_no, fc_num, fc_content, fc_writer, fc_cdate, fc_yn)
+		VALUES(freeBoardCmt_seq.NEXTVAL,#{fcNum}, #{fcContent}, #{fcWriter},  SYSDATE, #{fcYn})
+	</insert>
+	
+	<update id="updateFreeCmt" parameterType="FreeBoardCmt">
+		UPDATE freeBoardCmt
+			SET fc_content = #{fcContent}, 
+				fc_cdate = SYSDATE
+		WHERE fc_no = #{fcNo}
+	</update>
+	
+	<delete id="deleteFreeCmt">
+		DELETE FROM freeBoardCmt
+		WHERE fc_no = #{fcNo}
+	</delete>
+	
+	<delete id="deleteFreeCmtNum">
+		DELETE FROM freeBoardCmt
+		WHERE fc_num = #{fcNo}
+	</delete>
+	
 	<!-- Pay 클래스의 프로퍼티와 테이블의 컬럼을 맵핑하는 ResultMap -->
 	<resultMap id="FreeBoardResultMap" type="FreeBoard" >
 		<id property="fNo" column="f_no" />

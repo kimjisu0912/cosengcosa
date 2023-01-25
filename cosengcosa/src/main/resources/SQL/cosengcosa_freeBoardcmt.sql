@@ -32,14 +32,8 @@ DROP TABLE freeboardcmt;
 CREATE TABLE freeboardcmt(
 	fc_no NUMBER(8)
         CONSTRAINT FC_NO_PK PRIMARY KEY,
-    fc_fid  NUMBER(8)
+    fc_num  NUMBER(8)
         CONSTRAINT FC_FID_NN NOT NULL,
-    fc_grp  NUMBER(8)
-        CONSTRAINT FC_GRP_NN NOT NULL,
-    fc_grps  NUMBER(8)
-        CONSTRAINT FC_GRPS_NN NOT NULL,
-    fc_grpl  NUMBER(8)
-        CONSTRAINT FC_GRPL_NN NOT NULL,
     fc_writer VARCHAR2(10 CHAR)
         CONSTRAINT FC_WRI_FK REFERENCES member(m_id)
         CONSTRAINT FC_WRI_NN NOT NULL,

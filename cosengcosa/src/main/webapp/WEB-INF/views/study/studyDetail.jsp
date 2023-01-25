@@ -119,7 +119,7 @@
 					<tr id="reply_${ answer.saNo }">
 						<td>									
 						<div class="replyUser">						
-							<span class="member">${ member.id }</span>	
+							<span class="member">${ answer.saWriter  }</span>	
 						</div>
 						<div class="replyModify">
 							<span class="reply_date">

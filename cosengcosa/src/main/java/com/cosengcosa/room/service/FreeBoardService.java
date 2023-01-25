@@ -20,14 +20,14 @@ public interface FreeBoardService {
 	
 	
 	// 댓글
-	public abstract List<FreeBoardCmt> FreeBoardCmtList(int no);
+	public abstract List<FreeBoardCmt> FreeBoardCmtList(int fcno);
 	
-	public int recommend(int no);
+	public int recommend(int fcno);
 	
 	public void addReply(FreeBoardCmt freeCmt);
 	
 	public void updateReply(FreeBoardCmt freeCmt);
 	
-	public void deleteReply(int no);
+	public void deleteReply(int fcno);
 	
 }

@@ -4,17 +4,14 @@ import java.sql.Timestamp;
 
 public class FreeBoardCmt {
 
-	private int fcNo, fcFid, fcGrp, fcGrps, fcGrpl;
+	private int fcNo, fcNum;
 	private String fcWriter, fcContent, fcYn;
 	private Timestamp fcCdate;
 	
 	public FreeBoardCmt() {}
-	public FreeBoardCmt(int fc_no, int fc_fid, int fc_grp, int fc_grps, int fc_grpl, String fc_writer, String fc_content, String fc_yn,Timestamp fc_cdate) {
+	public FreeBoardCmt(int fc_no, int fc_num, String fc_writer, String fc_content, String fc_yn,Timestamp fc_cdate) {
 		this.fcNo = fc_no;
-		this.fcFid = fc_fid;
-		this.fcGrp = fc_grp;
-		this.fcGrps = fc_grps;
-		this.fcGrpl = fc_grpl;
+		this.fcNum = fc_num;
 		this.fcWriter = fc_writer;
 		this.fcContent = fc_content;
 		this.fcYn = fc_yn;
@@ -25,30 +22,6 @@ public class FreeBoardCmt {
 	}
 	public void setFcNo(int fcNo) {
 		this.fcNo = fcNo;
-	}
-	public int getFcFfid() {
-		return fcFid;
-	}
-	public void setFcFfid(int fcFfid) {
-		this.fcFid = fcFfid;
-	}
-	public int getFcGrp() {
-		return fcGrp;
-	}
-	public void setFcGrp(int fcGrp) {
-		this.fcGrp = fcGrp;
-	}
-	public int getFcGrps() {
-		return fcGrps;
-	}
-	public void setFcGrps(int fcGrps) {
-		this.fcGrps = fcGrps;
-	}
-	public int getFcGrpl() {
-		return fcGrpl;
-	}
-	public void setFcGrpl(int fcGrpl) {
-		this.fcGrpl = fcGrpl;
 	}
 	public String getFcWriter() {
 		return fcWriter;
@@ -73,6 +46,12 @@ public class FreeBoardCmt {
 	}
 	public void setFcCdate(Timestamp fcCdate) {
 		this.fcCdate = fcCdate;
+	}
+	public int getFcNum() {
+		return fcNum;
+	}
+	public void setFcNum(int fcNum) {
+		this.fcNum = fcNum;
 	}
 
 	
