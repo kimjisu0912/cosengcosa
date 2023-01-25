@@ -44,7 +44,7 @@
  			<a href="classMainList" class="btn btn-outline-success">강의 리스트</a>
  		</div>
  		<div class="col-6 text-end">
- 			<a href="classMainInsert" class="btn btn-outline-success">글쓰기</a>
+ 			<a href="classMainInsert" class="btn btn-outline-success">강의 등록</a>
  		</div>
  	</div>
  	</c:if>
@@ -53,7 +53,7 @@
  	<c:if test="${not searchOption }" >
 	 	<div class="row">
 	 		<div class="col text-end">
-	 			<a href="classMainInsert" class="btn btn-outline-success" >글쓰기</a>
+	 			<a href="classMainInsert" class="btn btn-outline-success" >강의등록</a>
 	 		</div>
 	 	</div>
  	</c:if>
