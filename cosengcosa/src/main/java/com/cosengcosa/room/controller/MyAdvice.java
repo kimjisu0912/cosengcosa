@@ -21,7 +21,7 @@ public class MyAdvice {
 		logger.error("Exception 발생 : {}", ex.getMessage());
 		model.addAttribute("msg", "죄송합니다 잠시 후 다시 시도해 주세요");
 		// 현재 세션을 종료하고 새로운 세션을 시작한다.
-		session.invalidate();
+		//session.invalidate();
 		
 		return "error/error";
 	}
@@ -32,7 +32,7 @@ public class MyAdvice {
 		logger.error("404 요청 발생", ex.getRequestURL());
 		model.addAttribute("msg", "그런 페이지는 존재하지 않습니다.");
 		// 현재 세션을 종료하고 새로운 세션을 시작한다.
-		session.invalidate();
+		//session.invalidate();
 		
 		return "error/error";
 	}
