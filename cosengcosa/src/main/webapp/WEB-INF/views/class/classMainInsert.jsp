@@ -9,42 +9,44 @@
 		     	<h2>수강페이지 등록 관리자</h2>
 		   	</div>
 		   	<form name="classMainAddForm" id="classMainAddForm" >
-		   	<div class="col-11 d-md-flex justify-content-md-end">
-		   		<input type="submit" class=" btn btn-outline-success m-2" value="등록">
-		   	</div>
 		   	
 			<div class="row justify-content-md-center">
 				<div class="col-10 shadow py-1 mb-4 ">
 					<div class="row justify-content-md-center ">
-						<div class="col-8">
-							<label for="text1" class="form-label">강의 이름 : </label>
+						<div class="col-8 mt-3">
+							<label for="text1" class="form-label">* 표시된 항목은 필수입력 사항 입니다. </label>
+						</div>
+						<div class="col-8 mt-3">
+							<label for="text1" class="form-label">* 강의 이름 : </label>
 							<input type="text" class="form-control" id="cmTitle" name="cmTitle" >
 						</div>
-
-						<div class="col-8">
-							<label for="text1" class="form-label">강의코드 : </label>
+						<div class="col-8 mt-3">
+							<label for="text1" class="form-label">* 강의코드 : </label>
 							<input type="text" class="form-control" id="cmCode" name="cmCode" >
 							<div id="codeCk"></div>
 							<input type="hidden" id="hCmCode" name="hCmCode" value="">
 						</div>
-						<div class="col-8">
-							<label for="text1" class="form-label">강의제공자 : </label>
+						<div class="col-8 mt-3">
+							<label for="text1" class="form-label">* 강의제공자 : </label>
 							<input type="text" class="form-control" id="cmName" name="cmName" >
 						</div>
-						<div class="col-8">
-							<label for="text1" class="form-label">강의가격 : </label>
+						<div class="col-8 mt-3">
+							<label for="text1" class="form-label">* 강의가격 : </label>
 							<input type="text" class="form-control" id="cmPrice" name="cmPrice" >
 						</div>
-						<div class="col-8">
-							<label for="text1" class="form-label">강의기간 : </label>
+						<div class="col-8 mt-3">
+							<label for="text1" class="form-label">* 강의기간 : </label>
 							<input type="text" class="form-control" id="cmPeriod" name="cmPeriod" >
 						</div>
-						<div class="col-8 m-2">
-							<label for="text1" class="form-label"> 내 용 : </label>
+						<div class="col-8 m-3">
+							<label for="text1" class="form-label">* 내 용 : </label>
 							<textarea class="form-control" id="cmContent" name="cmContent" rows="3"></textarea>
 						</div>
 					</div>
 				</div>
+				<div class="col-10 d-md-flex justify-content-md-start">
+		   			<input type="submit" class=" btn btn-outline-success m-2" value="등록">
+		   		</div>
 			</div>
 			</form>
 		</div>

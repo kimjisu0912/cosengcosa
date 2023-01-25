@@ -35,6 +35,35 @@ cmCode.blur(function(){
 
 
 
+// 입력폼 유효성 검사
+$("#cmCode").on("keyup", inputCharReplace); 
+$("#cmPrice").on("keyup", inputNumberReplace);
+$("#cmPeriod").on("keyup", inputNumberReplace);
+
+// 사용자 입력값이 영문 대소문자, 숫자 범위에 있는지 체크
+function inputCharReplace(){
+	var regExp = /[^A-Z0-9]/g; //// 키보드 키가 눌릴 떄 - 영문 대소문자, 숫자만 입력되도록 체크
+	// .test() > 모질라에서 만든 검증 함수
+	if(regExp.test($(this).val())) {
+		// [a-zA-Z0-9]
+		swal("","영문 대문자, 숫자만 입력 할 수 있습니다.", 'warning');
+		$(this).val($(this).val().replace(regExp,"")); //잘몬된 부분만 지워라 replace()함수 사용
+		return;
+	}
+} 
+
+// 숫자만 입력되었는지 체크
+function inputNumberReplace(){
+	var regExp = /[^0-9]/g;
+	
+	if(regExp.test($(this).val())) {
+		swal("","숫자만 입력할 수 있습니다", 'warning');
+		$(this).val($(this).val().replace(regExp,"")); //잘몬된 부분만 지워라 replace()함수 사용
+		return;
+	}
+} 
+
+
  // 메인강의 등록 이벤트
  $(document).on("submit", "#classMainAddForm", function() {
  
@@ -46,35 +75,6 @@ cmCode.blur(function(){
  	var cmPrice = $("#cmPrice").val();
  	var cmPeriod = $("#cmPeriod").val();
  	var cmContent = $("#cmContent").val();
-	
-	var codeCheck = RegExp(/^[A-Z0-9_]$/);
-	var payCheck = RegExp(/^[0-9]$/);
-	
-	
-	
-	
-	if(codeCheck.test($("#cmCode").val())){
-        alert("대문자, 숫자, 아래바(_)만 입력하실수 있습니다.");
-        $("#cmCode").val("");
-        $("#cmCode").focus();
-        return false;
-      }
-      
-	if(payCheck.test($("#cmPrice").val())){
-        alert("숫자만 입력하실수 있습니다.");
-        $("#cmPrice").val("");
-        $("#cmPrice").focus();
-        return false;
-      }
-      
-	if(payCheck.test($("#cmPrice").val())){
-        alert("숫자만 입력하실수 있습니다.");
-        $("#cmPrice").val("");
-        $("#cmPrice").focus();
-        return false;
-      }
-	
-//
 	
 	// 입력 유무 체크
 	if(cmTitle.length <=0){
@@ -165,4 +165,6 @@ cmCode.blur(function(){
 	$("#classMainModForm").submit();
 	
 });
+
+
 

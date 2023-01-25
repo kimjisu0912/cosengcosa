@@ -36,4 +36,36 @@
 	<view-controller path="/studyTest" view-name="studyTest" />
 	<view-controller path="/classMainInsert" view-name="class/classMainInsert" />
 	
+	<!-- 로그인 체크 인터셉터 설정 빈 -->
+	<beans:bean id="loginCheckInterceptor" 
+		class="com.cosengcosa.room.interceptor.LoginCheckInterceptor" />
+	<interceptors>
+		<interceptor>
+			<mapping path="/myClassMain"/>
+			<mapping path="/myClass"/>
+			<mapping path="/myCart"/>
+			<mapping path="/myPay"/>
+			<mapping path="/myInfo"/>
+			<mapping path="/basketList"/><!-- 500에러 테스트용 -->
+			<mapping path="/payList"/>
+			<mapping path="/classMainInsert"/>
+			<mapping path="/classMainAdd"/>
+			<mapping path="/classMainModForm"/>
+			<mapping path="/classMainUpdate"/>
+			<mapping path="/classMainDelete"/>
+			<mapping path="/writeForm"/>
+			<mapping path="/writefreeBoardForm"/>
+			<mapping path="/writeFormBoard"/>
+			<mapping path="/studyUpdate"/>
+			<mapping path="/freeBoardUpdate"/>
+			<mapping path="/boardUpdate"/>
+			<mapping path="/studyDelete"/>
+			<mapping path="/freeBoardDelete"/>
+			<mapping path="/boardDelete"/>
+			<mapping path="/classSub*"/>
+			<beans:ref bean="loginCheckInterceptor" />
+		</interceptor>
+	</interceptors>
+	
+	
 </beans:beans>
