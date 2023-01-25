@@ -115,8 +115,10 @@ public class FreeBoardServicelmpl implements FreeBoardService {
 
 	@Override
 	public int recommend(int no) {
-		// TODO Auto-generated method stub
-		return 0;
+		freeBoardDao.updateRecommend(no);
+		FreeBoard freeBoard = freeBoardDao.getRecommend(no);
+		
+		return no;
 	}
 
 	@Override

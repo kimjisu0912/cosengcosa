@@ -6,7 +6,7 @@
 <div class="row my-5" id="global-content">
 	<div class="col">
 		<form name="checkForm" id="checkForm">
-			<input type="hidden" name="fno" id="fno" value="${ freeBoard.fNo }"/>
+			<input type="hidden" name="fNo" id="fNo" value="${ freeBoard.fNo }"/>
 			<input type="hidden" name="grant" id="grant" value="${ member.grant }" />
 			<input type="hidden" name="pageNum" value="${ pageNum }" />
 			<input type="hidden" name="answerInput" id="answerInput"  />
@@ -31,7 +31,7 @@
 					<tbody>					
 						<tr>
 							<th class="table-secondary">제 목</th>
-							<td colspan="5">${ freeBoard.fTitle }</td>		
+							<td colspan=7">${ freeBoard.fTitle }</td>		
 						</tr>
 						<tr>
 							<th>글쓴이</th>
@@ -39,9 +39,13 @@
 							<th>작성일</th>
 							<td><fmt:formatDate value="${ freeBoard.fCdate }" 
 								pattern="yyyy-MM-dd HH:mm:ss" /></td>
+							<th>조회수</th>
+							<td>${ freeBoard.fCount}</td>
+							<th>추천수</th>
+							<td>${ freeBoard.fRecommend }</td>
 						</tr>
 						<tr>		
-							<td colspan="6">
+							<td colspan="8">
 								<div style="height: 500px;"><pre>${ freeBoard.fContent }</pre></div>
 							</td>
 						</tr>	
@@ -159,7 +163,9 @@
 			</c:if>
 			</table>	
 			</div>
-		<div class="col-auto"></div>
+		<div class="col-auto">
+			<input type="button" class="btn btn-primary" value="추천" id="Commend" />
+		</div>
 		</div>
 			
 		

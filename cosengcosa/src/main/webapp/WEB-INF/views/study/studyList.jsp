@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!-- content -->
 <div class="row my-5" id="global-content">
+		<div class="col-auto"></div>
 	<div class="col">
 		<div class="row text-center">
 			<div class="col">
@@ -19,14 +20,14 @@
 				</select>
 			</div>
 			<div class="col-4">
-				<input type="text" name="keyword" class="form-control"/>
+				<input type="text" name="keyword" id="keyword" class="form-control"/>
 			</div>
 			<div class="col-auto">
 				<input type="submit" value="검 색" class="btn btn-primary"/>
 			</div>
 		<c:if test="${ not searchOption }">
 				<div class="col-auto text-end">
-					<a href="writeForm" class="btn btn-outline-success">글쓰기</a>
+					<a href="writeForm" class="btn btn-outline-dark">글쓰기</a>
 				</div>
 		</c:if>
 		</form>
@@ -42,10 +43,10 @@
 			<%-- 검색 요청일 경우 일반 게시 글 리스트로 이동할 수 있도록 링크를 설정했다. --%>
 			<div class="row my-3">
 				<div class="col-6">
-					<a href="studyList" class="btn btn-outline-success">리스트</a>
+					<a href="studyList" class="btn btn-outline-dark">리스트</a>
 				</div>
 				<div class="col-6 text-end">
-					<a href="writeForm" class="btn btn-outline-success">글쓰기</a>
+					<a href="writeForm" class="btn btn-outline-dark">글쓰기</a>
 				</div>
 			</div>
 		</c:if>
@@ -194,6 +195,8 @@
 			</div>
 		</c:if>
 
-	</div>				
+	</div>		
+	<div class="col-auto"></div>		
 </div>
 
+<script src="resources/js/boardCheck.js"></script>   

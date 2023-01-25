@@ -69,6 +69,11 @@
 				
 	</insert>
 	
+	<update id="incrementReadCount">
+		UPDATE freeBoard
+			SET f_count = f_count + 1
+		WHERE f_no = #{fNo}
+	</update>
 	
 	<update id="updateFreeBoard" parameterType="FreeBoard">
 		UPDATE freeBoard 
@@ -95,11 +100,23 @@
 		FROM 
 		    freeBoardCmt 
 		WHERE 
-		    fc_num = #{fcno} 
+		    fc_num = #{fcNo} 
 		ORDER BY 
 		    fc_no DESC   
 	</select>
 	
+	<update id="updateRecommend">
+		UPDATE freeBoard
+			SET
+				f_recommend = f_recommend + 1
+		WHERE f_no = #{fNo}
+	</update>
+	
+	<select id="getRecommend" resultType="FreeBoard">
+		SELECT f_recommend
+		FROM freeBoard
+		WHERE f_no = #{fNo}
+	</select>
 	
 	<insert id="addFreeCmt" parameterType="FreeBoardCmt">
 		INSERT INTO freeBoardCmt(fc_no, fc_num, fc_content, fc_writer, fc_cdate, fc_yn)
@@ -129,6 +146,8 @@
 		<result property="fTitle" column="f_title" />
 		<result property="fContent" column="f_content" />
 		<result property="fWriter" column="f_writer" />
+		<result property="fCount" column="f_count" />
+		<result property="fRecommend" column="f_recommend" />
 		<result property="fCdate" column="f_cdate" />
 		<result property="fYn" column="f_yn" />
 	</resultMap>

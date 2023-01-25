@@ -51,7 +51,9 @@ public class RequestBoardDaolmpl implements RequestBoardDao {
 	@Override
 	public RequestBoard getBoard(int no, boolean isCount) {
 	
-		
+		if(isCount) { // 읽은 횟 수 증가
+			sqlSession.update(NAME_SPACE + ".incrementReadCount", no);
+		}
 		// getBoard 맵핑 구문을 호출하면서 게시 글 번호인 no를 파라미터로 지정했다.		 
 		return sqlSession.selectOne(NAME_SPACE + ".getBoard", no);
 	}

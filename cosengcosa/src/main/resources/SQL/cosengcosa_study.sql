@@ -18,7 +18,7 @@ CREATE TABLE study(
         CONSTRAINT S_NO_PK PRIMARY KEY, 	    -- 관리번호			        				  
     s_title VARCHAR2(50 CHAR)                   -- 글 제목
         CONSTRAINT S_TITLE_NN NOT NULL,
-    s_error VARCHAR2(50 CHAR)                  -- 오류코드
+    s_error VARCHAR2(500 CHAR)                  -- 오류코드
         CONSTRAINT S_ERR_NN NOT NULL,
     s_askcontent VARCHAR2(700 CHAR)            -- 글 내용
         CONSTRAINT S_CON_NN NOT NULL,

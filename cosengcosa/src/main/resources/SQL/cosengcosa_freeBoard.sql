@@ -39,6 +39,10 @@ CREATE TABLE freeboard(
     f_writer VARCHAR2(10 CHAR)                          -- 작성자
         CONSTRAINT F_WRI_FK REFERENCES member(m_id) -- 참조 테이블이 없음
         CONSTRAINT F_WRI_NN NOT NULL,
+    f_count NUMBER(8)                           -- 조회수
+        CONSTRAINT F_COUNT_NN NOT NULL,  
+    f_recommend NUMBER(8)                       -- 추천수
+        CONSTRAINT F_RECOM_NN NOT NULL,	
     f_cdate TIMESTAMP                                   -- 날짜
         CONSTRAINT F_DATE_NN NOT NULL,
     f_yn CHAR(1) CHECK (f_yn IN('Y', 'N'))              -- 살제유무
@@ -62,16 +66,16 @@ VALUES
 -- 테스트용 및 참고용
 -- 메인강의 테이블 값 입력
 -- 적당히 한 70번만 컨트롤 시프트 엔터로 하자
-INSERT INTO freeboard (f_no, f_title,f_content, f_writer , f_cdate, f_yn) 
-VALUES (freeboard_seq.NEXTVAL,  '오늘 설대입구 사람 엄청 많던데 뭔일임?', '설대입구에서 점심 먹으려는데 뭔놈의 사람이 이리 많냐 가는 곳마다 자리가 없음', 'test01', '2023-01-09-12:20:00', 'Y' );
-INSERT INTO freeboard (f_no,  f_title,f_content, f_writer , f_cdate, f_yn) 
-VALUES (freeboard_seq.NEXTVAL, '오늘 처음 파이썬 시작하는 사람입니다', '고인물들이여 꿀팁좀 알려주시오', 'test01', '2022-11-29-8:10:50', 'Y' );
-INSERT INTO freeboard (f_no, f_title,f_content, f_writer , f_cdate, f_yn) 
-VALUES (freeboard_seq.NEXTVAL, '곧 새해인데 다들 새해 복 많이 받으세요', '다들 새해에는 좋은 일만 가득 하기를...', 'test01', '2022-12-31-11:58:59', 'Y' );
-INSERT INTO freeboard (f_no, f_title,f_content, f_writer , f_cdate, f_yn) 
-VALUES (freeboard_seq.NEXTVAL,  '이번에 배우는 내용은 하나도 귀에 안들어온다 큰일이다', '비상비상 하나도 모르겠다 이거야', 'test01', '2023-01-07-15:21:50', 'Y' );
-INSERT INTO freeboard (f_no, f_title,f_content, f_writer , f_cdate, f_yn) 
-VALUES (freeboard_seq.NEXTVAL, '취업해야 하는데 추천 좀', '이제 취업준비하는데 좋은 회사 추천 좀', 'test01', '2023-01-31-12:20:50', 'Y' );
+INSERT INTO freeboard (f_no, f_title,f_content, f_writer ,f_count, f_recommend, f_cdate, f_yn) 
+VALUES (freeboard_seq.NEXTVAL,  '오늘 설대입구 사람 엄청 많던데 뭔일임?', '설대입구에서 점심 먹으려는데 뭔놈의 사람이 이리 많냐 가는 곳마다 자리가 없음', 'test01','20','10', '2023-01-09-12:20:00', 'Y' );
+INSERT INTO freeboard (f_no, f_title,f_content, f_writer ,f_count, f_recommend, f_cdate, f_yn) 
+VALUES (freeboard_seq.NEXTVAL, '오늘 처음 파이썬 시작하는 사람입니다', '고인물들이여 꿀팁좀 알려주시오', 'test01','50','23', '2022-11-29-8:10:50', 'Y' );
+INSERT INTO freeboard (f_no, f_title,f_content, f_writer ,f_count, f_recommend, f_cdate, f_yn) 
+VALUES (freeboard_seq.NEXTVAL, '곧 새해인데 다들 새해 복 많이 받으세요', '다들 새해에는 좋은 일만 가득 하기를...', 'test01','5','2', '2022-12-31-11:58:59', 'Y' );
+INSERT INTO freeboard (f_no, f_title,f_content, f_writer ,f_count, f_recommend, f_cdate, f_yn) 
+VALUES (freeboard_seq.NEXTVAL,  '이번에 배우는 내용은 하나도 귀에 안들어온다 큰일이다', '비상비상 하나도 모르겠다 이거야', 'test01', '15','10','2023-01-07-15:21:50', 'Y' );
+INSERT INTO freeboard (f_no, f_title,f_content, f_writer ,f_count, f_recommend, f_cdate, f_yn) 
+VALUES (freeboard_seq.NEXTVAL, '취업해야 하는데 추천 좀', '이제 취업준비하는데 좋은 회사 추천 좀', 'test01','17','5', '2023-01-31-12:20:50', 'Y' );
 
 commit;
 select * from freeboard ORDER BY f_no DESC;

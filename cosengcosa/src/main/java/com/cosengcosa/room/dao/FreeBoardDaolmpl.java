@@ -50,6 +50,11 @@ public class FreeBoardDaolmpl implements FreeBoardDao {
 
 	@Override
 	public FreeBoard getFreeBoard(int fno, boolean isCount) {
+		
+		if(isCount) { // 읽은 횟 수 증가
+			sqlSession.update(NAME_SPACE + ".incrementReadCount", fno);
+		}
+		
 		return sqlSession.selectOne(NAME_SPACE + ".getFreeBoard", fno);
 	}
 
@@ -79,14 +84,12 @@ public class FreeBoardDaolmpl implements FreeBoardDao {
 
 	@Override
 	public void updateRecommend(int no) {
-		// TODO Auto-generated method stub
-		
+		sqlSession.update(NAME_SPACE + ".updateRecommend", no);		
 	}
 
 	@Override
 	public FreeBoard getRecommend(int no) {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectOne(NAME_SPACE + ".getRecommend", no);
 	}
 
 	@Override

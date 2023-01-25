@@ -5,11 +5,11 @@ import java.sql.Timestamp;
 public class RequestBoard {
 
 	private int no;
-	private String code, title, content, writer, answer, open, yn;
+	private String code, title, content, writer, answer, open, yn, rCount;
 	private Timestamp cdate;
 	
 	public RequestBoard() {}
-	public RequestBoard(int r_no,String r_code,String r_title,String r_content,String r_writer,String r_answer,String r_open,String r_yn, Timestamp r_cdate) {
+	public RequestBoard(int r_no,String r_code,String r_title,String r_content,String r_writer,String r_answer,String r_open,String r_yn, Timestamp r_cdate, String r_count) {
 		this.no = r_no;
 		this.code = r_code;
 		this.title = r_title;
@@ -19,6 +19,7 @@ public class RequestBoard {
 		this.open = r_open;
 		this.yn = r_yn;
 		this.cdate = r_cdate;
+		this.rCount = r_count;
 	}
 	public int getNo() {
 		return no;
@@ -73,6 +74,12 @@ public class RequestBoard {
 	}
 	public void setCdate(Timestamp cdate) {
 		this.cdate = cdate;
+	}
+	public String getrCount() {
+		return rCount;
+	}
+	public void setrCount(String rCount) {
+		this.rCount = rCount;
 	}
 	
 	

@@ -29,8 +29,12 @@
 			    <textarea class="form-control" name="sAskcontent" id="content" rows="10" >${ study.sAskcontent }</textarea>
 	  		</div>
 	  		<div class="col-8 offset-md-2">
-			    <label for="sFile" class="form-label">이미지</label>
-			    <input type="file" class="form-control" name="qImg"  id="sFile" value="${ study.sFile }">
+			    <label for="img" class="form-label">이미지</label>
+			    <input type="file" class="form-control" name="qImg"  id="img" value="${ study.sAskimg }">
+	  		</div>	
+	  		<div class="col-8 offset-md-2">
+			    <label for="file" class="form-label">파일</label>
+			    <input type="file" class="form-control" name="qFile"  id="file" value="${ study.sFile }">
 	  		</div>	
 	  		<div class="col-8 offset-md-2 text-center mt-5">
 			   <input type="submit" value="수정하기" class="btn btn-primary"/>
@@ -41,4 +45,4 @@
 	</div>
 </div>    
     
-    
+<script src="resources/js/boardCheck.js"></script>    

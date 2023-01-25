@@ -87,6 +87,12 @@
             r_no = #{no}
 	</select>
 		
+	<update id="incrementReadCount">
+		UPDATE requestBoard
+			SET r_count = r_count + 1
+		WHERE r_no = #{no}
+	</update>
+		
 	<update id="updateBoard" parameterType="RequestBoard">
 		UPDATE requestBoard 
 			SET r_title = #{title}, r_content = #{content},	
@@ -114,6 +120,7 @@
 		<result property="content" column="r_content" />
 		<result property="writer" column="r_writer" />
 		<result property="answer" column="r_answer" />
+		<result property="rCount" column="r_count" />
 		<result property="open" column="r_open" />
 		<result property="yn" column="r_yn" />
 		<result property="cdate" column="r_cdate" />

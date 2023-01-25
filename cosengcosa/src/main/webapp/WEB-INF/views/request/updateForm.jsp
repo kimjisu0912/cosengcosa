@@ -8,7 +8,7 @@
 				<h2 class="fs-3 fw-bold">요청사항 수정하기</h2>
 			</div>
 		</div>  
-		<form name="updateForm" action="boardUp" id="updateForm" 
+		<form name="requestUpdateForm" action="boardUp" id="requestUpdateForm" 
 			class="row g-3 border-primary" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="no"  value="${board.no}" >
 		  	<div class="col-4 offset-md-2">
@@ -33,4 +33,4 @@
 	</div>
 </div>    
     
-    
+<script src="resources/js/boardCheck.js"></script>    

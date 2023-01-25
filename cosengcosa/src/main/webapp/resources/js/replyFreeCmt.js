@@ -2,6 +2,58 @@
 $(document).ready(function() {
 
 	
+	$("#Commend").click(function() {
+		
+		
+		$.ajax({			
+			url: "recommend2.ajax",
+			
+			// type을 지정하지 않으면 get 방식 요청이다.
+			type: "post",
+			
+			// 파라미터로 보낼 데이터를 객체 리터럴로 지정하고 있다.
+			data : { fNo : $("#fNo").val()},
+
+			dataType: "json",
+			success: function(data) {
+				
+				var msg = "추천이";
+				alert(msg + " 반영 되었습니다.");
+			},
+			error: function(xhr, status, error) {
+				alert("error : " + xhr.statusText + ", " + status + ", " + error);
+			}
+		});
+	}).hover(function() {
+		$(this).css({cursor: "pointer"});
+	});	
+	
+	// 댓글 쓰기 메뉴에 마우스 호버(enter, out) 이벤트 처리 - 수정됨
+	$("#replyWrite").hover(function() {
+		$(this).css("cursor", "pointer");
+	});
+	
+	// 댓글 쓰기가 클릭되었을 때 이벤트 처리 - 추가됨
+	$(document).on("click", "#replyWrite", function() {
+		if($("#replyForm").css("display") == "block") {
+			
+			var $next = $(this).parent().next();
+			if(! $($next).is("#replyForm")) {
+				$("#replyForm").slideUp(300);
+			}
+			setTimeout(function(){
+				$("#replyForm").insertBefore("#replyTitle").slideDown(300);
+			}, 300);			
+		} else {
+			$("#replyForm").insertBefore("#replyTitle").slideDown(300);
+		}
+		
+		$("#replyForm").find("form")
+			.attr("id", "replyWriteForm").removeAttr("data-no");
+		$("#replyContent").val("");
+	});
+	
+	
 	$(document).on("click", "#replyWriteButton", function() {
 	
 		if($("#fcContent").val().length <= 5) {

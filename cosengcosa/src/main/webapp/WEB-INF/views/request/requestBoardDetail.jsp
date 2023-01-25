@@ -31,7 +31,7 @@
 					<tbody>					
 						<tr>
 							<th class="table-secondary">제 목</th>
-							<td colspan="5">${ board.title }</td>		
+							<td colspan="7">${ board.title }</td>		
 						</tr>
 						<tr>
 							<th>글쓴이</th>
@@ -41,9 +41,11 @@
 								pattern="yyyy-MM-dd HH:mm:ss" /></td>
 							<th>문의 유형</th>		
 							<td>${ board.code }</td>
+							<th>조회수</th>		
+							<td>${ board.rCount }</td>
 						</tr>
 						<tr>		
-							<td colspan="6">
+							<td colspan="8">
 								<div style="height: 500px;"><pre>${ board.content }</pre></div>
 							</td>
 						</tr>	

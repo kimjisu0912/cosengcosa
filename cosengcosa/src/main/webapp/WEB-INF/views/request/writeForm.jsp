@@ -8,7 +8,7 @@
 				<h2 class="fs-3 fw-bold">지식공유 질문하기</h2>
 			</div>
 		</div>  
-		<form name="writeFormBoard" action="writeProcessBoard" id="writeFormBoard" 
+		<form name="requestWriteForm" action="writeProcessBoard" id="requestWriteForm" 
 			class="row g-3 border-primary" method="post" enctype="multipart/form-data">
 		  	<div class="col-4 offset-md-2">
 			    <label for="writer" class="form-label">작성자</label>
@@ -41,4 +41,4 @@
 	</div>
 </div>    
     
-    
+<script src="resources/js/boardCheck.js"></script>    

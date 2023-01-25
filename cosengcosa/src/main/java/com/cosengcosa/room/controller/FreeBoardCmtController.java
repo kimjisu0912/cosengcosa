@@ -19,9 +19,9 @@ public class FreeBoardCmtController {
 	
 	@RequestMapping("/recommend2.ajax")
 	@ResponseBody
-	public int recommend(int fcno) {
+	public int recommend(@RequestParam(value="fNo", required=false, defaultValue="1") int fNo) {
 		
-		return freeBoardService.recommend(fcno);		
+		return freeBoardService.recommend(fNo);		
 	}
 	
 	// 댓글 쓰기 요청을 처리하는 메서드

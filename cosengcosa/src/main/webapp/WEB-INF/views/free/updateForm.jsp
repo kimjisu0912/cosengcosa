@@ -8,7 +8,7 @@
 				<h2 class="fs-3 fw-bold">자유게시판 수정하기</h2>
 			</div>
 		</div>  
-		<form name="freeBoardUpdateForm" action="freeBoardUp" id="freeBoardUpdateForm" 
+		<form name="freeUpdateForm" action="freeBoardUp" id="freeUpdateForm" 
 			class="row g-3 border-primary" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="fno"  value="${freeBoard.fNo}" >
 		  	<div class="col-4 offset-md-2">
@@ -33,4 +33,4 @@
 	</div>
 </div>    
     
-    
+<script src="resources/js/boardCheck.js"></script>
