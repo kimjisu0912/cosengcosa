@@ -43,7 +43,7 @@
 									<c:forEach var="star" items="${list}" end="${4 - r.cmStar }">
 										<span class="fa fa-star "></span>
 									</c:forEach>
-								</c:if>
+								</c:if> 
 								</div>
 								<div class="col-6 text-end"><span><i class="bi bi-hand-thumbs-up"></i> ${r.cmRecommend }</span></div>
 							</div>
