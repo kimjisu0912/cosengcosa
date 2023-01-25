@@ -245,7 +245,7 @@ public class StudyController {
 	}
 	
 	// 삭제
-	@RequestMapping("/studyDelete1")
+	@RequestMapping("/studyDelete")
 	public String deleteStudy(HttpServletResponse response, 
 			PrintWriter out,  String pass,
 			RedirectAttributes reAttrs,
@@ -267,7 +267,15 @@ public class StudyController {
 		
 		
 		// BoardService 클래스를 이용해 게시판 테이블에서 게시 글을 수정한다.
+		System.out.println("1111");
+		
+		studyService.deleteReplyNum(sno);
+		
+		System.out.println("2222");
+		
 		studyService.deleteStudy(sno);
+		
+		System.out.println("3333");
 		
 		reAttrs.addAttribute("searchOption", searchOption);
 		

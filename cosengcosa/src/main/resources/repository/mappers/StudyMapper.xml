@@ -159,6 +159,11 @@
 		WHERE sa_no = #{sNo}
 	</delete>
 	
+	<delete id="deleteAnswerNum">
+		DELETE FROM studyAnswer
+		WHERE sa_num = #{sNo}
+	</delete>
+	
 	<!-- Pay 클래스의 프로퍼티와 테이블의 컬럼을 맵핑하는 ResultMap -->
 	<resultMap id="StudyResultMap" type="Study" >
 		<id property="sNo" column="s_no" />

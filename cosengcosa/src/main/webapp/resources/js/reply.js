@@ -162,10 +162,6 @@ $(document).ready(function() {
 	});
 		
 	$(document).on("click", "#replyUpdateButton", function() {	
-		alert("aasdniierj");
-		alert($("#saNum").val());
-		alert($("#saAnswer").val());
-		alert( $(".modifyReply").attr("data-no"));
 		
 		if($("#saAnswer").val().length <= 5) {
 			alert("댓글은 5자 이상 입력해야 합니다.");

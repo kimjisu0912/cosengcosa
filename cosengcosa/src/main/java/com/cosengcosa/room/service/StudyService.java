@@ -29,4 +29,6 @@ public interface StudyService {
 	public void updateReply(StudyAnswer answer);
 	
 	public void deleteReply(int no);
+	
+	public void deleteReplyNum(int no);
 }

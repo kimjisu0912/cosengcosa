@@ -112,5 +112,10 @@ public class StudyDaoImpl implements StudyDao {
 		sqlSession.delete(NAME_SPACE + ".deleteAnswer", no);		
 	}
 
+	@Override
+	public void deleteReplyNum(int no) {
+		sqlSession.delete(NAME_SPACE + ".deleteAnswerNum", no);		
+	}
+
 
 }

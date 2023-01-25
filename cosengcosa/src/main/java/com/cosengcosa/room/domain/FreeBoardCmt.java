@@ -4,95 +4,76 @@ import java.sql.Timestamp;
 
 public class FreeBoardCmt {
 
-	private int fc_no, fc_fid, fc_grp, fc_grps, fc_grpl;
-	private String fc_writer, fc_content, fc_yn;
-	private Timestamp fc_cdate;
+	private int fcNo, fcFid, fcGrp, fcGrps, fcGrpl;
+	private String fcWriter, fcContent, fcYn;
+	private Timestamp fcCdate;
 	
 	public FreeBoardCmt() {}
 	public FreeBoardCmt(int fc_no, int fc_fid, int fc_grp, int fc_grps, int fc_grpl, String fc_writer, String fc_content, String fc_yn,Timestamp fc_cdate) {
-		this.fc_no = fc_no;
-		this.fc_fid = fc_fid;
-		this.fc_grp = fc_grp;
-		this.fc_grps = fc_grps;
-		this.fc_grpl = fc_grpl;
-		this.fc_writer = fc_writer;
-		this.fc_content = fc_content;
-		this.fc_yn = fc_yn;
-		this.fc_cdate = fc_cdate;
+		this.fcNo = fc_no;
+		this.fcFid = fc_fid;
+		this.fcGrp = fc_grp;
+		this.fcGrps = fc_grps;
+		this.fcGrpl = fc_grpl;
+		this.fcWriter = fc_writer;
+		this.fcContent = fc_content;
+		this.fcYn = fc_yn;
+		this.fcCdate = fc_cdate;
+	}
+	public int getFcNo() {
+		return fcNo;
+	}
+	public void setFcNo(int fcNo) {
+		this.fcNo = fcNo;
+	}
+	public int getFcFfid() {
+		return fcFid;
+	}
+	public void setFcFfid(int fcFfid) {
+		this.fcFid = fcFfid;
+	}
+	public int getFcGrp() {
+		return fcGrp;
+	}
+	public void setFcGrp(int fcGrp) {
+		this.fcGrp = fcGrp;
+	}
+	public int getFcGrps() {
+		return fcGrps;
+	}
+	public void setFcGrps(int fcGrps) {
+		this.fcGrps = fcGrps;
+	}
+	public int getFcGrpl() {
+		return fcGrpl;
+	}
+	public void setFcGrpl(int fcGrpl) {
+		this.fcGrpl = fcGrpl;
+	}
+	public String getFcWriter() {
+		return fcWriter;
+	}
+	public void setFcWriter(String fcWriter) {
+		this.fcWriter = fcWriter;
+	}
+	public String getFcContent() {
+		return fcContent;
+	}
+	public void setFcContent(String fcContent) {
+		this.fcContent = fcContent;
+	}
+	public String getFcYn() {
+		return fcYn;
+	}
+	public void setFcYn(String fcYn) {
+		this.fcYn = fcYn;
+	}
+	public Timestamp getFcCdate() {
+		return fcCdate;
+	}
+	public void setFcCdate(Timestamp fcCdate) {
+		this.fcCdate = fcCdate;
 	}
 
-	public int getFc_no() {
-		return fc_no;
-	}
-
-	public void setFc_no(int fc_no) {
-		this.fc_no = fc_no;
-	}
-
-	public int getFc_fid() {
-		return fc_fid;
-	}
-
-	public void setFc_fid(int fc_fid) {
-		this.fc_fid = fc_fid;
-	}
-
-	public int getFc_grp() {
-		return fc_grp;
-	}
-
-	public void setFc_grp(int fc_grp) {
-		this.fc_grp = fc_grp;
-	}
-
-	public int getFc_grps() {
-		return fc_grps;
-	}
-
-	public void setFc_grps(int fc_grps) {
-		this.fc_grps = fc_grps;
-	}
-
-	public int getFc_grpl() {
-		return fc_grpl;
-	}
-
-	public void setFc_grpl(int fc_grpl) {
-		this.fc_grpl = fc_grpl;
-	}
-
-	public String getFc_writer() {
-		return fc_writer;
-	}
-
-	public void setFc_writer(String fc_writer) {
-		this.fc_writer = fc_writer;
-	}
-
-	public String getFc_content() {
-		return fc_content;
-	}
-
-	public void setFc_content(String fc_content) {
-		this.fc_content = fc_content;
-	}
-
-	public String getFc_yn() {
-		return fc_yn;
-	}
-
-	public void setFc_yn(String fc_yn) {
-		this.fc_yn = fc_yn;
-	}
-
-	public Timestamp getFc_cdate() {
-		return fc_cdate;
-	}
-
-	public void setFc_cdate(Timestamp fc_cdate) {
-		this.fc_cdate = fc_cdate;
-	}
-	
-	
 	
 }
