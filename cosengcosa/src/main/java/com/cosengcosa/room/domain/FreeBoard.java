@@ -4,67 +4,56 @@ import java.sql.Timestamp;
 
 public class FreeBoard {
 
-	private int f_no;
-	private String f_title, f_content, f_writer, f_yn; 
-	private Timestamp f_cdate;
+	private int fNo;
+	private String fTitle, fContent, fWriter, fYn; 
+	private Timestamp fCdate;
 	
 	public FreeBoard() {}
 	public FreeBoard(int f_no,String f_title,String f_content,String f_writer,String f_yn, Timestamp f_cdate) {
-		this.f_no = f_no;
-		this.f_title = f_title;
-		this.f_content = f_content;
-		this.f_writer = f_writer;
-		this.f_yn = f_yn;
-		this.f_cdate = f_cdate;
+		this.fNo = f_no;
+		this.fTitle = f_title;
+		this.fContent = f_content;
+		this.fWriter = f_writer;
+		this.fYn = f_yn;
+		this.fCdate = f_cdate;
 	}
-
-	public int getF_no() {
-		return f_no;
+	public int getfNo() {
+		return fNo;
 	}
-
-	public void setF_no(int f_no) {
-		this.f_no = f_no;
+	public void setfNo(int fNo) {
+		this.fNo = fNo;
 	}
-
-	public String getF_title() {
-		return f_title;
+	public String getfTitle() {
+		return fTitle;
 	}
-
-	public void setF_title(String f_title) {
-		this.f_title = f_title;
+	public void setfTitle(String fTitle) {
+		this.fTitle = fTitle;
 	}
-
-	public String getF_content() {
-		return f_content;
+	public String getfContent() {
+		return fContent;
 	}
-
-	public void setF_content(String f_content) {
-		this.f_content = f_content;
+	public void setfContent(String fContent) {
+		this.fContent = fContent;
 	}
-
-	public String getF_writer() {
-		return f_writer;
+	public String getfWriter() {
+		return fWriter;
 	}
-
-	public void setF_writer(String f_writer) {
-		this.f_writer = f_writer;
+	public void setfWriter(String fWriter) {
+		this.fWriter = fWriter;
 	}
-
-	public String getF_yn() {
-		return f_yn;
+	public String getfYn() {
+		return fYn;
 	}
-
-	public void setF_yn(String f_yn) {
-		this.f_yn = f_yn;
+	public void setfYn(String fYn) {
+		this.fYn = fYn;
 	}
-
-	public Timestamp getF_cdate() {
-		return f_cdate;
+	public Timestamp getfCdate() {
+		return fCdate;
 	}
-
-	public void setF_cdate(Timestamp f_cdate) {
-		this.f_cdate = f_cdate;
+	public void setfCdate(Timestamp fCdate) {
+		this.fCdate = fCdate;
 	}
 	
-
+	
+	
 }

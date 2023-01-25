@@ -19,6 +19,12 @@
 		$("#checkForm").submit();
 	});
 	
+	$("#detailUpdate3").on("click", function() {
+		
+		$("#checkForm").attr("action", "freeBoardUpdate");
+		$("#checkForm").submit();
+	});
+	
 	/* 게시 글 상세보기에서 게시 글 삭제 요청 처리
 	 * 아래와 같이 hidden 폼을 통해 post 방식으로 처리 할 수 있다.
 	 **/
@@ -32,6 +38,13 @@
 	$("#detailDelete2").on("click", function() {
 		
 		$("#checkForm").attr("action", "boardDelete");
+		$("#checkForm").attr("method", "post");
+		$("#checkForm").submit();
+	});
+	
+	$("#detailDelete3").on("click", function() {
+		
+		$("#checkForm").attr("action", "freeBoardDelete");
 		$("#checkForm").attr("method", "post");
 		$("#checkForm").submit();
 	});

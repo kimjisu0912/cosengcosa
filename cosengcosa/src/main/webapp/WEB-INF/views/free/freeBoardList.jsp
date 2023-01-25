@@ -38,10 +38,10 @@
 			<%-- 검색 요청일 경우 일반 게시 글 리스트로 이동할 수 있도록 링크를 설정했다. --%>
 			<div class="row my-3">
 				<div class="col-6">
-					<a href="boardList" class="btn btn-outline-success">리스트</a>
+					<a href="freeBoardList" class="btn btn-outline-success">리스트</a>
 				</div>
 				<div class="col-6 text-end">
-					<a href="writeForm" class="btn btn-outline-success">글쓰기</a>
+					<a href="writefreeBoardForm" class="btn btn-outline-success">글쓰기</a>
 				</div>
 			</div>
 		</c:if>
@@ -50,7 +50,7 @@
 		<c:if test="${ not searchOption }">
 			<div class="row my-3">
 				<div class="col text-end">
-					<a href="writeForm" class="btn btn-outline-success">글쓰기</a>
+					<a href="writefreeBoardForm" class="btn btn-outline-success">글쓰기</a>
 				</div>
 			</div>
 		</c:if>
@@ -64,7 +64,6 @@
 					<th>제목</th>
 					<th>작성자</th>
 					<th>작성일</th>
-					<th>조회수</th>
 				</tr>		
 					</thead>
 					<tbody class="text-secondary">
@@ -73,18 +72,17 @@
 						게시 글 상세보기로 링크를 적용할 때 type과 keyword 
 						파라미터를 적용해 링크를 설정한다. 
 					--%>	
-					<c:if test="${ searchOption and not empty boardList }">
-						<c:forEach var="b" items="${boardList}" varStatus="status">
+					<c:if test="${ searchOption and not empty freeBoardList }">
+						<c:forEach var="f" items="${freeBoardList}" varStatus="status">
 						<tr>
-							<td>${ b.no }</td>
+							<td>${ f.fNo }</td>
 							<td>
-								<a href="boardDetail?no=${b.no}&pageNum=${currentPage}
+								<a href="freeBoardDetail?fno=${f.fNo}&pageNum=${currentPage}
 								&type=${ type }&keyword=${ keyword }" 
-								class="text-decoration-none link-secondary">${ b.title }</a>
+								class="text-decoration-none link-secondary">${ f.fTitle }</a>
 							</td>
-							<td>${ b.writer }</td>
-							<td>${ b.regDate }</td>
-							<td>${ b.readCount }</td>
+							<td>${ f.fWriter }</td>
+							<td>${ f.fCdate }</td>
 						</tr>
 						</c:forEach>
 					</c:if>
@@ -94,29 +92,23 @@
 						게시 글 상세보기로 링크를 적용할 때 type과 keyword 
 						파라미터는 필요 없다. 
 					--%>
-					<c:if test="${ not searchOption and not empty boardList }">
-						<c:forEach var="b" items="${boardList}" varStatus="status">
+					<c:if test="${ not searchOption and not empty freeBoardList }">
+						<c:forEach var="f" items="${freeBoardList}" varStatus="status">
 						<tr>
-							<td>${ b.no }</td>
-							<td><a href="boardDetail?no=${b.no}&pageNum=${currentPage}" 
-								class="text-decoration-none link-secondary">${ b.title }</a></td>
-							<td>${ b.writer }</td>
-							<td>${ b.regDate }</td>
-							<td>${ b.readCount }</td>
+							<td>${ f.fNo }</td>
+							<td>
+								<a href="freeBoardDetail?fno=${f.fNo}&pageNum=${currentPage}
+								&type=${ type }&keyword=${ keyword }" 
+								class="text-decoration-none link-secondary">${ f.fTitle }</a>
+							</td>
+							<td>${ f.fWriter }</td>
+							<td>${ f.fCdate }</td>
 						</tr>
 						</c:forEach>
 					</c:if>
-					<%-- 검색 요청이면서 검색된 리스트가 존재하지 않을 경우 --%>
-					<c:if test="${ searchOption and empty boardList }">
-						<tr>
-							<td colspan="5" class="text-center">
-								"${ keyword }"가 포함된 게시 글이 존재하지 않습니다.
-							</td>
-						</tr>
-					</c:if>
 					
 					<%-- 일반 게시 글 리스트 요청이면서 게시 글 리스트가 존재하지 않을 경우 --%>
-					<c:if test="${ not searchOption and empty boardList }">
+					<c:if test="${ not searchOption and empty freeBoardList }">
 						<tr>
 							<td colspan="5" class="text-center">게시 글이 존재하지 않습니다.</td>
 						</tr>
@@ -127,7 +119,7 @@
 		</div>
 		
 		<!-- 검색 요청이면서 검색된 리스트가 존재할 경우 페이지네이션  -->
-		<c:if test="${ searchOption and not empty boardList }">
+		<c:if test="${ searchOption and not empty freeBoardList }">
 			<div class="row">
 				<div class="col">
 					<nav aria-label="Page navigation">
@@ -141,7 +133,7 @@
 					 	 --%>
 					  	<c:if test="${ startPage > pageGroup }">
 						    <li class="page-item">
-						      <a class="page-link" href="boardList?pageNum=${ startPage - pageGroup }
+						      <a class="page-link" href="freeBoardList?pageNum=${ startPage - pageGroup }
 						      &type=${ type }&keyword=${ keyword }">Pre</a>
 						    </li>
 					    </c:if>
@@ -154,7 +146,7 @@
 					    	</c:if>
 					    	<c:if test="${i != currentPage }">
 						    	<li class="page-item">
-						    		<a class="page-link" href="boardList?pageNum=${ i }&type=${ type }&keyword=${ keyword }">${i}</a>
+						    		<a class="page-link" href="freeBoardList?pageNum=${ i }&type=${ type }&keyword=${ keyword }">${i}</a>
 						    	</li>
 						    </c:if>					    
 					    </c:forEach>
@@ -168,7 +160,7 @@
 					 	 --%>
 						<c:if test="${ endPage < pageCount }">
 						    <li class="page-item">
-						      <a class="page-link" href="boardList?pageNum=${ startPage + pageGroup }
+						      <a class="page-link" href="freeBoardList?pageNum=${ startPage + pageGroup }
 						      &type=${ type }&keyword=${ keyword }">Next</a>
 						    </li>
 					  	</c:if>
@@ -179,7 +171,7 @@
 		</c:if>
 		
 		<!-- 일반 게시글 요청이면서 검색된 리스트가 존재할 경우 페이지네이션  -->
-		<c:if test="${ not searchOption and not empty boardList }">
+		<c:if test="${ not searchOption and not empty freeBoardList }">
 			<div class="row">
 				<div class="col">
 					<nav aria-label="Page navigation">
@@ -193,7 +185,7 @@
 					 	 --%>
 					  	<c:if test="${ startPage > pageGroup }">
 						    <li class="page-item">
-						      <a class="page-link" href="boardList?pageNum=${ startPage - pageGroup }">Pre</a>
+						      <a class="page-link" href="freeBoardList?pageNum=${ startPage - pageGroup }">Pre</a>
 						    </li>
 					    </c:if>
 					    
@@ -204,7 +196,7 @@
 					    	</li>
 					    	</c:if>
 					    	<c:if test="${i != currentPage }">
-						    	<li class="page-item"><a class="page-link" href="boardList?pageNum=${ i }">${i}</a></li>
+						    	<li class="page-item"><a class="page-link" href="freeBoardList?pageNum=${ i }">${i}</a></li>
 						    </c:if>					    
 					    </c:forEach>
 					    
@@ -217,7 +209,7 @@
 					 	 --%>
 						<c:if test="${ endPage < pageCount }">
 						    <li class="page-item">
-						      <a class="page-link" href="boardList?pageNum=${ startPage + pageGroup }">Next</a>
+						      <a class="page-link" href="freeBoardList?pageNum=${ startPage + pageGroup }">Next</a>
 						    </li>
 					  	</c:if>
 					  </ul>

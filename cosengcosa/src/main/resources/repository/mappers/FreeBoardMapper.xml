@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cosengcosa.room.mapper.FreeBoardMapper" >
+	
+	<select id="freeBoardList" resultType="FreeBoard" parameterType="hashmap">
+				    SELECT
+					    num, fNo,fTitle, fContent,fWriter,fYn,fCdate
+					FROM    
+					    (SELECT
+					        ROWNUM num, fNo,fTitle, fContent,fWriter,fYn,fCdate
+					    FROM 
+					        (SELECT
+					           f_no AS fNo,
+				                f_title AS fTitle,
+				                f_content AS fContent,
+				                f_writer AS fWriter,
+				                f_yn AS fYn,
+				                f_cdate As fCdate
+					        FROM
+				                freeBoard
+							WHERE
+				            f_yn = 'Y'
+				        ) freeBoard
+				        ORDER BY fNo DESC
+				    )
+			    	<where>
+						num <![CDATA[>=]]> #{startRow} AND num <![CDATA[<=]]> #{endRow}
+						<if test="type == 'title'">
+							AND fTitle LIKE '%' || #{keyword} || '%'
+						</if>
+						<if test="type == 'writer'">
+							AND fWriter LIKE '%' || #{keyword} || '%'
+						</if>
+					</where> 
+			    	
+			    
+	</select>
+	
+	<select id="getFreeBoardCount" resultType="int">
+		SELECT 
+		    COUNT(f_no) 
+		FROM 
+			freeBoard 
+		<where>
+			<if test="type == 'title'">
+				f_title LIKE '%' || #{keyword} || '%'
+			</if>				
+			<if test="type == 'writer'">
+				f_writer LIKE '%' || #{keyword} || '%'
+			</if>				
+		</where>
+	</select>
+	
+	<select id="getFreeBoard" resultType="FreeBoard" resultMap="FreeBoardResultMap">
+		SELECT 
+			* 
+		FROM freeBoard 
+		WHERE f_no = #{fNo}
+	</select>
+	
+	<!-- sAskimg -->
+	<insert id="insertFreeBoard" parameterType="FreeBoard"
+		useGeneratedKeys="false" keyProperty="fNo">
+		INSERT INTO freeBoard (f_no,f_title, f_content,f_writer,f_yn,f_cdate) 
+		
+		VALUES(freeBoard_seq.NEXTVAL, #{fTitle}, #{fContent}, #{fWriter}, #{fYn}, SYSDATE)
+				
+	</insert>
+	
+	
+	<update id="updateFreeBoard" parameterType="FreeBoard">
+		UPDATE freeBoard 
+			SET f_title = #{fTitle}, f_content = #{fContent}, 	
+				f_cdate = SYSDATE
+		WHERE f_no = #{fNo}
+	</update>
+	
+	<delete id="deleteFreeBoard">
+		DELETE FROM freeBoard
+		WHERE f_no = #{fNo}
+	</delete>
+	
+	<!-- 댓글 -->
+	
+	<!-- Pay 클래스의 프로퍼티와 테이블의 컬럼을 맵핑하는 ResultMap -->
+	<resultMap id="FreeBoardResultMap" type="FreeBoard" >
+		<id property="fNo" column="f_no" />
+		<result property="fTitle" column="f_title" />
+		<result property="fContent" column="f_content" />
+		<result property="fWriter" column="f_writer" />
+		<result property="fCdate" column="f_cdate" />
+		<result property="fYn" column="f_yn" />
+	</resultMap>
+</mapper>	
+
+

@@ -142,6 +142,11 @@ public class StudyServicelmpl implements StudyService {
 		studyDao.deleteReply(no);
 	}
 
+	@Override
+	public void deleteReplyNum(int no) {
+		studyDao.deleteReplyNum(no);
+	}
+
 	
 	
 	

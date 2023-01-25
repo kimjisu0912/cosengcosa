@@ -37,4 +37,6 @@ public interface StudyDao {
 
 	// DB에서 댓글 번호에 해당하는 댓글을 삭제하는 메서드
 	public void deleteReply(int no);
+	
+	public void deleteReplyNum(int no);
 }

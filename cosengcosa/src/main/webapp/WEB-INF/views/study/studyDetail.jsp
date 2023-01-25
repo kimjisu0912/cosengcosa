@@ -37,7 +37,7 @@
 				<!-- 수정, 삭제, 목록 버튼  -->
 				<div class="row my-3">
 					<div class="col text-center">			
-						<c:if test="${ study.sAskid == member.id }">
+						<c:if test='${ study.sAskid == member.id || member.grant == "A"}'>
 							<input class="btn btn-warning" type="button" id="detailUpdate1" value="수정하기"/>
 							&nbsp;&nbsp;<input class="btn btn-danger"  type="button" id="detailDelete1" value="삭제하기" />				
 						</c:if>
