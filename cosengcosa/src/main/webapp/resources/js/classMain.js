@@ -19,7 +19,7 @@ cmCode.blur(function(){
 			var result ="";
 			$("#hCmCode").val(ck);
 			if(ck > 0){
-				result = "<div class='text-danger'>사용할 수 없는 코드 입니다. 다른 코드를 입력 해주세요.</div>"
+				result = "<div class='text-danger' style=''background-color : >사용할 수 없는 코드 입니다. 다른 코드를 입력 해주세요.</div>"
 			}else{
 				result = "<div class='text-info'>사용 가능한 코드 입니다.</div>"
 			}
@@ -35,8 +35,6 @@ cmCode.blur(function(){
 
 
 
-
-
  // 메인강의 등록 이벤트
  $(document).on("submit", "#classMainAddForm", function() {
  
@@ -49,12 +47,41 @@ cmCode.blur(function(){
  	var cmPeriod = $("#cmPeriod").val();
  	var cmContent = $("#cmContent").val();
 	
+	var codeCheck = RegExp(/^[A-Z0-9_]$/);
+	var payCheck = RegExp(/^[0-9]$/);
+	
+	
+	
+	
+	if(codeCheck.test($("#cmCode").val())){
+        alert("대문자, 숫자, 아래바(_)만 입력하실수 있습니다.");
+        $("#cmCode").val("");
+        $("#cmCode").focus();
+        return false;
+      }
+      
+	if(payCheck.test($("#cmPrice").val())){
+        alert("숫자만 입력하실수 있습니다.");
+        $("#cmPrice").val("");
+        $("#cmPrice").focus();
+        return false;
+      }
+      
+	if(payCheck.test($("#cmPrice").val())){
+        alert("숫자만 입력하실수 있습니다.");
+        $("#cmPrice").val("");
+        $("#cmPrice").focus();
+        return false;
+      }
+	
+//
 	
 	// 입력 유무 체크
 	if(cmTitle.length <=0){
 		alert("강의 명을 입력해주세요");
 		return false;
 	}
+	
 	if(cmCode.length <=0){
 		alert("코드 명을 입력해주세요");
 		return false;
@@ -71,6 +98,8 @@ cmCode.blur(function(){
 		alert("가격을 입력해주세요");
 		return false;
 	}
+	
+	
 	if(cmPeriod.length <=0){
 		alert("기간을 입력해주세요. ");
 		return false;
@@ -79,6 +108,8 @@ cmCode.blur(function(){
 		alert("강의 설명에 대해서 입력해주세요");
 		return false;
 	}
+	
+	
 	
 	
 	$("#classMainAddForm").attr("action", "classMainAdd");
@@ -126,6 +157,8 @@ cmCode.blur(function(){
 		alert("강의 설명에 대해서 입력해주세요");
 		return false;
 	}
+	
+	
 
 	$("#classMainModForm").attr("action", "classMainUpdate");
 	$("#classMainModForm").attr("method", "post");
