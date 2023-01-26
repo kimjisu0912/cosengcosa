@@ -72,6 +72,9 @@
 										<c:if test="${rcdChk == 'N' }">
 											<i class="bi bi-heart" id="biHeart1"></i>
 										</c:if>
+										<c:if test="${empty rcdChk }">
+											<i class="bi bi-heart" id="biHeart2"></i>
+										</c:if>
 									 </a>
 									<a type="button" class="btn btn-default bi bi-share" id="data-copy1"><span class="glyphicon glyphicon-share-alt"></span></a>
 								</div>
@@ -111,6 +114,9 @@
 											<i class="bi bi-suit-heart-fill" id="biHeart2"></i>
 										</c:if>
 										<c:if test="${rcdChk == 'N' }">
+											<i class="bi bi-heart" id="biHeart2"></i>
+										</c:if>
+										<c:if test="${empty rcdChk }">
 											<i class="bi bi-heart" id="biHeart2"></i>
 										</c:if>
 									</a>
