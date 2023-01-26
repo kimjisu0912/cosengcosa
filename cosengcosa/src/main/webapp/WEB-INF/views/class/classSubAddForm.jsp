@@ -47,8 +47,17 @@
 			</div>
 			<div class="row my-3">
 				<div class="col-8 offset-2">
-					<label for="address2" class="form-label">* 강의영상 : </label>
-					<input type="text" name="inputname" id="inputname"><button id="apibutton">api</button>
+					<div class="row">
+						<div class="col-auto">
+							<label for="address2" class="form-label">* 강의영상 : </label>
+						</div>
+						<div class="col-auto">
+							<div class="input-group mb-3">
+								<input type="text" class="form-control" name="inputname" id="inputname">
+								<button class="btn btn-dark" id="apibutton">강의검색</button>
+							</div>
+						</div>
+					</div>
 					<div style="width: 100%; height: 350px; overflow: scroll;">
 						<div class="row" id="view">
 						</div>
