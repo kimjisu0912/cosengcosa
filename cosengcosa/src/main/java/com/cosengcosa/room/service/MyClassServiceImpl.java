@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 
 import com.cosengcosa.room.dao.MyClassDao;
 import com.cosengcosa.room.domain.Basket;
-import com.cosengcosa.room.domain.ClassMain;
 import com.cosengcosa.room.domain.HeatData;
 import com.cosengcosa.room.domain.MyClassMain;
 import com.cosengcosa.room.domain.MyClassSub;
@@ -26,17 +25,42 @@ public class MyClassServiceImpl implements MyClassService {
 	@Autowired
 	private MyClassDao myClassDao;
 	
+	
+	// 한페이지에 보여 줄 게ㅣ 글의 수
+	private static final int PAGE_SIZE = 10;
+	
+	// 한 페이지 페이지네이션
+	// [이전]123...8910 [다음]
+	private static final int PAGE_GROUP = 5;
+	
+	
 	// 메인강의 리스트 조회
 	@Override
-	public List<MyClassMain> getMyClassMain(String id) {
+	public List<MyClassMain> getMyClassMain(String id, String keyword, String done) {
 		
-		return myClassDao.getMyClassMain(id);
+		// 수강만료 된 강의 업데이트 처리
+		myClassDao.updateMainEdate(id);
+		myClassDao.updateSubEdate(id);
+		
+		return myClassDao.getMyClassMain(id, keyword, done);
+		
 	}
 
 	// 서브강의 리스트 조회 함수
 	@Override
 	public List<MyClassSub> getMyClassSub(String id, String mymCode) {
 		return myClassDao.getMyClassSub(id, mymCode);
+	}
+	
+	// 강의 진도율 계산 함수
+	@Override
+	public Double getProgress(String id, String group) {
+		
+		double total = myClassDao.subListCount(id, group);
+		double done = myClassDao.subListDoneCount(id, group);
+		double progress = done / total * 100;
+		
+		return progress;
 	}
 	
 	// 차트 표현 카운트 조회 함수
@@ -47,11 +71,56 @@ public class MyClassServiceImpl implements MyClassService {
 	
 	// 결제내역 리스트 조회 함수
 	@Override
-	public List<Pay> getPayList(String id) {
-		return myClassDao.getPayList(id);
+	public Map<String, Object> getPayList(String id, int pageNum) {
+		
+		// currentPage 현재페이지
+		int currentPage = pageNum;
+				
+		// 시작행
+		int startRow = (currentPage-1) * PAGE_SIZE +1;
+		
+		// 마지막행
+		int endRow = (startRow + PAGE_SIZE) -1;
+				
+		int listCount = myClassDao.getPayListCount(id);
+		
+		List<Pay> pList = myClassDao.getPayList(id, startRow, endRow);
+		
+		// 시작페이지
+		int startPage = (currentPage / PAGE_GROUP) * PAGE_GROUP + 1 
+				- (currentPage % PAGE_GROUP == 0 ? PAGE_GROUP : 0);
+		// 끝페이지
+		int endPage = startPage + PAGE_GROUP -1;
+		
+		// 전체 페이지수 계산
+		// 딱 떨어지면 좋지만 남는 페이지가 나올 수 가 있다 그걸 보정해줘야된다 예> 20페이지 하고 3row값이 남는경우
+		int pageCount = listCount / PAGE_SIZE
+				+ (listCount % PAGE_SIZE == 0? 0:1);
+		
+		if(endPage > pageCount) {
+			endPage = pageCount;
+		}
+		
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		modelMap.put("pList", pList);
+		modelMap.put("pageCount", pageCount);
+		modelMap.put("startPage", startPage);
+		modelMap.put("endPage", endPage);
+		modelMap.put("currentPage", currentPage);
+		modelMap.put("listCount", listCount);
+		modelMap.put("pageGroup", PAGE_GROUP);
+		
+		
+		return modelMap;
+	}
+	
+	// 결제내역 리스트 수 조회 함수
+	@Override
+	public int getPayListCount(String id) {
+		return myClassDao.getBasketListCount(id);
 	}
 
-
+	// 날짜별 수강완료 강의 수 카운트 함수
 	@Override
 	public List<List<Object>> getDoneCount(String id) {
 		
@@ -179,11 +248,59 @@ public class MyClassServiceImpl implements MyClassService {
 		
 		return myClassDao.getDoneClass(id);
 	}
-
+	
+	
+	// 장바구니 리스트 조회 함수
 	@Override
-	public List<Basket> getBasketList(String id) {
+	public Map<String, Object> getBasketList(String id, int pageNum) {
 		
-		return myClassDao.getBasketList(id);
+		// currentPage 현재페이지
+		int currentPage = pageNum;
+				
+		// 시작행
+		int startRow = (currentPage-1) * PAGE_SIZE +1;
+		
+		// 마지막행
+		int endRow = (startRow + PAGE_SIZE) -1;
+				
+		int listCount = myClassDao.getBasketListCount(id);
+		
+		List<Basket> bList = myClassDao.getBasketList(id, startRow, endRow);
+		
+		// 시작페이지
+		int startPage = (currentPage / PAGE_GROUP) * PAGE_GROUP + 1 
+				- (currentPage % PAGE_GROUP == 0 ? PAGE_GROUP : 0);
+		// 끝페이지
+		int endPage = startPage + PAGE_GROUP -1;
+		
+		// 전체 페이지수 계산
+		// 딱 떨어지면 좋지만 남는 페이지가 나올 수 가 있다 그걸 보정해줘야된다 예> 20페이지 하고 3row값이 남는경우
+		int pageCount = listCount / PAGE_SIZE
+				+ (listCount % PAGE_SIZE == 0? 0:1);
+		
+		if(endPage > pageCount) {
+			endPage = pageCount;
+		}
+		
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		modelMap.put("bList", bList);
+		modelMap.put("pageCount", pageCount);
+		modelMap.put("startPage", startPage);
+		modelMap.put("endPage", endPage);
+		modelMap.put("currentPage", currentPage);
+		modelMap.put("listCount", listCount);
+		modelMap.put("pageGroup", PAGE_GROUP);
+		
+		return modelMap;
 	}
+
+	// 장바구니 리스트 수 조회 함수
+	@Override
+	public int getBasketListCount(String id) {
+		
+		return  myClassDao.getBasketListCount(id);
+	}
+
+	
 
 }

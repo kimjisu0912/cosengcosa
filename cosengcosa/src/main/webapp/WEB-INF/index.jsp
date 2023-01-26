@@ -22,10 +22,14 @@
 	
   </head>
   <body>
+  	<div class="container-fluid">
+		<%@ include file="template/header.jsp" %>
+  	</div>
 	 <div class="container">
-	<%@ include file="template/header.jsp" %>
-	<jsp:include page="${ param.body }" />
-	<%@ include file="template/footer.jsp" %>
+		<jsp:include page="${ param.body }" />
+	</div>
+	<div class="container-fluid">
+		<%@ include file="template/footer.jsp" %>
 	</div>
 	 <script src="resources/bootstrap/bootstrap.bundle.min.js"></script>
 

@@ -84,7 +84,7 @@
 				</c:forEach>	
 			</div>
 		</div> 
-		
+		<!--
 		<div class="row my-5">
 			<div class="row text-start my-3">
 				<h3 class="fw-bold">인기 게시글</h3>
@@ -106,6 +106,6 @@
 			<div class="row">
 			</div>
 		</div> 
+	-->
 	</div>	
-	
  </div><!-- end global content -->

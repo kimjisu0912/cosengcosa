@@ -3,6 +3,7 @@ package com.cosengcosa.room.dao;
 import java.util.List;
 
 import com.cosengcosa.room.domain.ClassMain;
+import com.cosengcosa.room.domain.ClassSub;
 import com.cosengcosa.room.domain.Pay;
 
 /**
@@ -28,7 +29,11 @@ public interface PayDao {
 	// 결재에 필요한 강의(메인)정보 메소드
 	public abstract ClassMain getClassMainInfo(String cmcode);
 	
+	// 결재에 필요한 강의(서브)정보 메소드
+	public abstract List<ClassSub> getClassSubInfo(String cmcode);
+		
 	// 결재처리 메소드
 	public abstract void insertPay(Pay pay);
+	
 	
 }

@@ -24,11 +24,16 @@
 	
 	<!-- 아이디로 회원정보 조회하는 맵핑 구문 -->
 	<select id="getMember" resultType="Member" resultMap="MemberResultMap">
-		SELECT * FROM member WHERE m_id = #{id}
+		SELECT * 
+		FROM member 
+		WHERE m_id = #{id}
+		AND m_yn = 'Y'
 	</select>
-	<!--  -->
+	<!-- 닉네임으로 회원정보 조회하는 맵핑 구문 -->
 	<select id="getNickname" resultType="Member" resultMap="MemberResultMap">
-		SELECT * FROM member WHERE m_nickname = #{nickname}
+		SELECT * 
+		FROM member 
+		WHERE m_nickname = #{nickname}
 	</select>
 	
 	<!-- 회원 정보를 추가하는 맵핑 구문  -->
@@ -45,13 +50,6 @@
 	
 	<!--
 		회원 테이블에서 id에 해당하는 비밀번호를 가져오는 맵핑 구문
-	
-		아래는 DAO 클래스의 memberPassCheck(int no, String pass)
-		메서드에서 사용하는 맵핑 구문으로 DAO에서 회원 id에 해당하는 비밀번호를 
-		조회할 때 selectOne() 메서드의 두 번째 인수로 기본형인 id를 지정했기
-		때문에 parameterType은 생략할 수 있다.
-				
-		SQL문의 조건에 사용할 파라미터는 아래와 같이 #{} 로 감싸서 지정하면 된다. 
 	-->
 	<select id="memberPassCheck" resultType="String">
 		SELECT 
@@ -77,21 +75,20 @@
 		WHERE m_id = #{id}
 	</update>
 	
-	<!-- 아이디 찾는 구문 -->
-	<select id="findId" parameterType="HashMap" resultType="String">
-		SELECT m_id
-		FROM member
-		WHERE m_name = #{name}
-		AND m_tel = #{tel}
-	</select>
+	<!-- 회원탈퇴 처리 맵핑 구문 -->
+	<update id="deleteMember">
+		UPDATE member
+			SET m_yn = 'N'
+		WHERE m_id = #{id}
+	</update>
 	
-	<!-- 비밀번호 찾는 구문 -->
-	<select id="findPass" parameterType="Member" resultType="Member">
+	<!-- 아이디 찾는 구문 -->
+	<select id="findId" resultType="Member" resultMap="MemberResultMap">
 		SELECT *
 		FROM member
-		WHERE m_id = #{id}
-		AND m_email = #{email}
+		WHERE m_name = #{name}
 	</select>
+	
 	<resultMap id="MemberResultMap" type="Member">
 		<id property="mno" column="m_no" />
 		<result property="id" column="m_id" />

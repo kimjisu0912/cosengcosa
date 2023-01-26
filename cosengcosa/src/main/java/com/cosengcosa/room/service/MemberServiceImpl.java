@@ -1,6 +1,8 @@
 package com.cosengcosa.room.service;
 
 import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -42,11 +44,7 @@ public class MemberServiceImpl implements MemberService {
 		if(m == null) {
 			return result;
 		}
-		/* 로그인 성공
-		 * BCryptPasswordEncoder 객체의 matches 메소드를 이용해 암호가 맞는지 확인
-		 * matches() 메소드의 첫 번 인수로 인코딩이 않된 문자열, 두 번째 인수로 인코딩된 
-		 * 문자열을 지정하면 두 문자열의 원본 데이터가 같을 경우 true를 반환해 준다.
-		 **/		
+			
 		if(passwordEncoder.matches(pass, m.getPass())) {
 			result = 1;
 			
@@ -91,12 +89,7 @@ public class MemberServiceImpl implements MemberService {
 	public boolean memberPassCheck(String id, String pass) {
 		String dbPass = memberDao.memberPassCheck(id, pass);		
 		boolean result = false;		
-
-		/* 비밀번호가 맞으면 true를 반환하도록 작성한다.
-		 * BCryptPasswordEncoder 객체의 matches 메소드를 이용해 암호가 맞는지 확인
-		 * matches() 메소드의 첫 번 인수로 인코딩이 않된 문자열, 두 번째 인수로 인코딩된 
-		 * 문자열을 지정하면 두 문자열의 원본 데이터가 같을 경우 true를 반환해 준다.
-		 **/		
+		
 		if(passwordEncoder.matches(pass, dbPass)) {
 			result = true;	
 		}
@@ -128,14 +121,42 @@ public class MemberServiceImpl implements MemberService {
 		memberDao.updatePass(member);
 		
 	}
+
+	// 회원 탈퇴 처리 메서드
+	@Override
+	public void deleteMember(String id) {
+		memberDao.deleteMember(id);
+	}
+
 	
 	// 아이디 찾기 메서드
 	@Override
-	public String findMemberId(String name, String tel) {
+	public int findMemberIdChk(String name, String email) {		
 		
-		return memberDao.findMemberId(name, tel);
+		Member member = memberDao.findMemberId(name);
+		int result = -1;
+		
+		if(member == null) {
+			return result;
+		}
+		
+		if(member.getEmail().equals(email)) {
+			result = 1;
+		} else {
+			result = 0;
+		}
+		
+		return result;
+	}
+	
+	// 이름으로 멤버 조회 메서드
+	@Override
+	public Member findMemberId(String name) {
+		
+		return memberDao.findMemberId(name);
 	}
 
+	/**
 	// 이메일 발송 메서드
 	@Override
 	public void sendEmail(Member member, String div) throws Exception {
@@ -183,26 +204,23 @@ public class MemberServiceImpl implements MemberService {
 		}
 		
 	}
-	
-	// 비밀번호 찾기 메서드
+	**/
+
 	@Override
-	public void findMemberPass(HttpServletResponse response, Member member) throws Exception{
-		response.setContentType("text/html;charset=utf-8");
-		member = memberDao.getMember(member.getId());
-		PrintWriter out = response.getWriter();
+	public Map<String, Object> findMemberPass(String id, String email){
 		
-		// 가입된 아이디가 없으면
-		if(memberDao.getMember(member.getId()) == null) {
-			out.print("등록되지 않은 아이디입니다.");
-			out.close();
+		Member member = memberDao.getMember(id);
+		
+		String pass = "";
+		
+		int result = -1;
+		
+		if(member == null) {
+			result = -1;
 		}
-		// 가입된 이메일이 아니면
-		else if(!member.getEmail().equals(member.getEmail())) {
-			out.print("등록되지 않은 이메일입니다.");
-			out.close();
-		}else {
-			// 임시 비밀번호 생성
-			String pass = "";
+		
+		if(member.getEmail().equals(email)) {
+			
 			for (int i = 0; i < 12; i++) {
 				pass += (char) ((Math.random() * 26) + 97);
 			}
@@ -210,15 +228,19 @@ public class MemberServiceImpl implements MemberService {
 			// 비밀번호 변경
 			System.out.println("memberService 임시비밀번호 : " + pass);
 			memberDao.updatePass(member);
-			// 비밀번호 변경 메일 발송
-			sendEmail(member, "findMemberPass");
-
-			out.print("이메일로 임시 비밀번호를 발송하였습니다.");
-			out.close();
+			
+			result = 1;
+			
+		} else {
+			result = 0;
 		}
 		
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		modelMap.put("result", result);
+		modelMap.put("pass", pass);
+		
+		
+		
+		return modelMap;
 	}
-
-	
-
 }

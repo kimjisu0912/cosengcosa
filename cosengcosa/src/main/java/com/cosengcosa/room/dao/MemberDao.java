@@ -10,28 +10,31 @@ public interface MemberDao {
 	 * 
 	 */
 	
-	// 회원정보 조회 함수
+	// 회원정보 조회 메서드
 	public Member getMember(String id);
 	
-	// 회원가입 처리합수
+	// 회원가입 처리 메서드
 	public void addMember(Member member);
 	
-	// 회원정보 수정 처리함수
+	// 회원정보 수정 처리 메서드
 	public void updateMember(Member member);
 	
-	// 회원 비밀번호 확인 함수
+	// 회원 비밀번호 확인 메서드
 	public String memberPassCheck(String id, String pass);
 	
-	// 회원 닉네임 조회 함수
+	// 회원 닉네임 조회 메서드
 	public Member getNickName(String nickname);
 
-	// 회원 비밀번호 수정 처리함수
+	// 회원 비밀번호 수정 처리 메서드
 	public void updatePass(Member member);
 	
-	// 아이디 찾기 함수
-	public String findMemberId(String name, String tel);
+	// 회원 탈퇴 처리 메서드
+	public void deleteMember(String id);
 	
-	// 비밀번호 찾기 함수
+	// 아이디 찾기 메서드
+	public Member findMemberId(String name);
+	
+	// 비밀번호 찾기 메서드
 	public Member findMemberPass(Member member);
 	
 }

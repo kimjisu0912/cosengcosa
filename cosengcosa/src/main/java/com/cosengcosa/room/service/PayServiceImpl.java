@@ -9,8 +9,10 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cosengcosa.room.dao.MyClassDao;
 import com.cosengcosa.room.dao.PayDao;
 import com.cosengcosa.room.domain.ClassMain;
+import com.cosengcosa.room.domain.ClassSub;
 import com.cosengcosa.room.domain.Pay;
 
 /**
@@ -29,6 +31,9 @@ public class PayServiceImpl implements PayService{
 	public void setPayDao(PayDao payDao) {
 		this.payDao = payDao;
 	}
+	
+	@Autowired
+	private MyClassDao myClassDao;
 	
 	// 한페이지에 보여 줄 게ㅣ 글의 수
 	private static final int PAGE_SIZE = 10;
@@ -139,5 +144,15 @@ public class PayServiceImpl implements PayService{
 	@Override
 	public void insertPay(Pay pay) {
 		payDao.insertPay(pay);
+		
+		String id = pay.getpMid();
+		ClassMain classMain = payDao.getClassMainInfo(pay.getpCmcode());
+		int period = classMain.getCmPeriod();
+		List<ClassSub> classSub = payDao.getClassSubInfo(pay.getpCmcode());
+		
+		for(int i = 0; i < classSub.size(); i++){
+			myClassDao.insertMyClassSub(id, period, classSub.get(i));
+		}
+		myClassDao.insertMyClassMain(id, classMain);
 	}
 }

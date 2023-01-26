@@ -60,45 +60,57 @@ public class MyClassController {
 		model.addAttribute("sub", sub);
 		model.addAttribute("heatData", heatData);
 		
-		
 		return "myClass/myClassMain";
 	}
 	
 	// 내 강의실 화면 호출 함수
 	@RequestMapping("/myClass")
-	public String myclassmain(Model model, HttpSession session) {
+	public String myclassmain(Model model, HttpSession session, 
+			@RequestParam(value="keyword", required=false, defaultValue="") String keyword, 
+			@RequestParam(value="done", required=false, defaultValue="N") String done) {
 		
 		String id = (String)session.getAttribute("userId");
+		List<MyClassMain> mList = myClassService.getMyClassMain(id, keyword, done);
 		
-		List<MyClassMain> mList = myClassService.getMyClassMain(id);
+		for(int i = 0; i < mList.size(); i++) {
+			String group = mList.get(i).getMymCode();
+			Double progress = myClassService.getProgress(id, group);
+			
+			mList.get(i).setProgress(progress);
+		}
 	
 		model.addAttribute("mList", mList);
-	
+		model.addAttribute("keyword", keyword);
+		model.addAttribute("done", done);
+		
 		return "myClass/myClass";
 	}
 	
+
 	// 장바구니 화면 호출 함수
 	@RequestMapping("/myCart")
-	public String myCart(Model model, HttpSession session) {
+	public String myCart(Model model, HttpSession session,
+			@RequestParam(value="pageNum", required=false, defaultValue="1") int pageNum) {
 		
 		String id = (String)session.getAttribute("userId"); 
 		
-		List<Basket> bList = myClassService.getBasketList(id);
+		Map<String, Object> modelMap = myClassService.getBasketList(id, pageNum);
 		
-		model.addAttribute("bList", bList);
+		model.addAllAttributes(modelMap);
 		
 		return "myClass/myCart";
 	}
 	
 	// 결제내역 화면 호출 함수
 	@RequestMapping("/myPay")
-	public String myPay(Model model, HttpSession session) {
+	public String myPay(Model model, HttpSession session,
+			@RequestParam(value="pageNum", required=false, defaultValue="1") int pageNum) {
 		
 		String id = (String)session.getAttribute("userId");
 		
-		List<Pay> pList = myClassService.getPayList(id);
+		Map<String, Object> modelMap = myClassService.getPayList(id, pageNum);
 		
-		model.addAttribute("pList", pList);
+		model.addAllAttributes(modelMap);
 		
 		return "myClass/myPay";
 	}

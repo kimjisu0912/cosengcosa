@@ -10,6 +10,7 @@ public class Basket {
 	private String baCname;
 	private int baPrice;
 	private int cmNo;
+	int num;
 	
 	// 생성자
 	public Basket() {}
@@ -24,6 +25,13 @@ public class Basket {
 		this.cmName = cmName;
 	}
 	
+	
+	public int getNum() {
+		return num;
+	}
+	public void setNum(int num) {
+		this.num = num;
+	}
 	public String getCmName() {
 		return cmName;
 	}

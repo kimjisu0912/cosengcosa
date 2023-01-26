@@ -173,7 +173,70 @@ $(function() {
 		window.close();
 	});
 	
+	// 아이디 비밀번호 찾기
+	// 아이디 찾기 라디오버튼이 선택되면 아이디 찾기 폼 보여주기
+	$("input[type='radio'][id='findId']").on('click', function(){
 	
+			$("#findIdFrm").removeClass('d-none');
+			$("#findPassFrm").addClass('d-none');
+	
+	});
+	// 비밀번호 찾기 라디오버튼이 선택되면 비밀번호 찾기 폼 보여주기
+	$("input[type='radio'][id='findPass']").on('click', function(){
+		
+			$("#findPassFrm").removeClass('d-none');
+			$("#findIdFrm").addClass('d-none');
+			
+	});
+		
+	// 아이디 찾기 폼이 전송되면 결과 태그 보여주기
+	$("#findIdForm").on("submit", function(){
+		var name = $("#name").val();
+		var emailId = $("#emailId").val(); 
+		var emailDomain = $("#emailDomain").val(); 
+		var email = emailId + "@" + emailDomain;
+		
+		if(name.length == 0) {		
+		swal("입력오류","이름을 입력해주세요",'warning');
+		return false;
+		}	
+		
+		if(emailId.length == 0) {		
+		swal("입력오류","이메일 아이디를 입력해주세요",'warning');
+		return false;
+		}	
+		
+		if(emailDomain.length == 0) {		
+			swal("입력오류","이메일 도메인을 입력해주세요",'warning');
+			return false;
+		}		
+	
+	});
+	
+	// 비밀번호 찾기 폼이 전송되면 결과 태그 보여주기
+	$("#findPassForm").on("submit", function(){
+	
+		var id = $("#id").val();
+		var emailId = $("#emailId2").val(); 
+		var emailDomain = $("#emailDomain2").val(); 
+		var email = emailId + "@" + emailDomain;
+		
+		if(id.length == 0) {		
+			swal("입력오류","아이디를 입력해주세요",'warning');
+			return false;
+		}
+		
+		if(emailId.length == 0) {		
+		swal("입력오류","이메일 아이디를 입력해주세요",'warning');
+		return false;
+		}	
+		
+		if(emailDomain.length == 0) {		
+			swal("입력오류","이메일 도메인을 입력해주세요",'warning');
+			return false;
+		}			
+	
+	});
 	
 	// 우편번호 찾기 이벤트 처리
 	$("#btnZipcode").click(findZipcode); // findZipcode 호출
@@ -184,7 +247,9 @@ $(function() {
 	$("#pass1").on("keyup", inputCharReplace); 
 	$("#pass2").on("keyup", inputCharReplace); 
 	$("#emailId").on("keyup", inputCharReplace); 
+	$("#emailId2").on("keyup", inputCharReplace); 
 	$("#emailDomain").on("keyup", inputEmailDomainReplace); // inputCharReplace 호출
+	$("#emailDomain2").on("keyup", inputEmailDomainReplace); // inputCharReplace 호출
 	$("#birthY").on("keyup", inputNumberReplace);
 	$("#birthD").on("keyup", inputNumberReplace);
 	$("#tel2").on("keyup", inputNumberReplace);
@@ -226,6 +291,32 @@ function birthCheck(){
 		}else if(str == "구글"){
 			$("#emailDomain").val("gmail.com"); // 해당 이메일 주소 입력하고 readonly로 설정
 			$("#emailDomain").prop("readonly", true) 
+		}
+		
+	});
+	
+	// 이메일 직접입력 선택입력 여부 체크
+	$("#selectDomain2").on("change",function(){
+		// jquery는 이벤트 핸들러인 function() 안의 this는 주체를 가린다
+		//console.log($(this).val() + " : " + $(this).text());
+		
+		var str = $(this).val();
+		
+		if(str == "직접입력"){
+			$("#emailDomain2").val(""); // 직접입력이므로 비워주고
+			$("#emailDomain2").prop("readonly", false) // prop()2.0버전 이상, attr() 3.0대 > checked, selected, readonly등 한개짜리 줄 수 있다 
+		}else if(str == "네이버"){
+			$("#emailDomain2").val("naver.com"); // 해당 이메일 주소 입력하고 readonly로 설정
+			$("#emailDomain2").prop("readonly", true) 
+		}else if(str == "다음"){
+			$("#emailDomain2").val("daum.net"); // 해당 이메일 주소 입력하고 readonly로 설정
+			$("#emailDomain2").prop("readonly", true) 
+		}else if(str == "한메일"){
+			$("#emailDomain2").val("hanmail.net"); // 해당 이메일 주소 입력하고 readonly로 설정
+			$("#emailDomain2").prop("readonly", true) 
+		}else if(str == "구글"){
+			$("#emailDomain2").val("gmail.com"); // 해당 이메일 주소 입력하고 readonly로 설정
+			$("#emailDomain2").prop("readonly", true) 
 		}
 		
 	});

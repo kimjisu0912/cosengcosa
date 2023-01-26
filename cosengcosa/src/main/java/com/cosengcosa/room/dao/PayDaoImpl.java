@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.cosengcosa.room.domain.ClassMain;
+import com.cosengcosa.room.domain.ClassSub;
 import com.cosengcosa.room.domain.Pay;
 
 /**
@@ -89,7 +90,16 @@ public class PayDaoImpl implements PayDao {
 	public ClassMain getClassMainInfo(String cmcode) {
 		return sqlSession.selectOne(NAME_SPACE + ".getClassMainInfo", cmcode);
 	}
+	
+	/*
+	 * 결재에 필요한 강의(메인)정보 메소드
+	 */
+	@Override
+	public List<ClassSub> getClassSubInfo(String cmcode) {
+		return sqlSession.selectList(NAME_SPACE + ".getClassSubInfo", cmcode);
+	}
 
+	
 	/*
 	 * 결재처리 메소드
 	 */
@@ -97,5 +107,6 @@ public class PayDaoImpl implements PayDao {
 	public void insertPay(Pay pay) {
 		sqlSession.insert(NAME_SPACE + ".insertPay", pay);
 	}
+
 
 }

@@ -16,7 +16,7 @@
 			  <a class="nav-link fbk fs-3" href="myClass">내 강의실</a>
 			  <a class="nav-link disabled fs-5 fw-bold">수강신청 관리</a>
 			  <a class="nav-link fbk fs-3" href="myCart">장바구니</a>
-			  <a class="nav-link fbk fs-3" href="myPay">신청내역</a>
+			  <a class="nav-link fbk fs-3" href="myPay">결제내역</a>
 			  <a class="nav-link disabled fs-5 fw-bold">설정</a>
 			  <a class="nav-link fbk fs-3" href="myInfo">회원정보</a>
 			</nav>
@@ -144,6 +144,34 @@
 					<div class="col-8 offset-2">	
 						<div class="text-center mb-5">
 							<input type="submit" value="비밀번호 변경하기" class="btn btn-warning">
+						</div>
+					</div>				
+				</div>			
+			</form>	
+			</div>
+		</div>
+		<div class="row border my-3">
+			<div class="row my-3 text-center">
+				<h4 >계정탈퇴</h4>
+			</div>
+			<div class="row text-center">
+				<p class="fs-6 text-danger">※ 계정 탈퇴 시 결제하신 모든 강의는 수강하실 수 없습니다.</p>
+			</div>
+			<div class="row mb-10">
+			<form id="deleteMember" action="deleteMember" method="post">
+				<input type="hidden" name="id" id="id" value="${userId}"/>
+				<div class="row my-3">
+					<div class="col-8 offset-2">
+						<div class="input-group mb-3">
+							<span class="input-group-text">* 비밀번호</span>
+						  	<input type="password" class="form-control" name="pass" id="pass">
+						</div>	
+					</div>				
+				</div>
+				<div class="row my-3">
+					<div class="col-8 offset-2">	
+						<div class="text-center mb-5">
+							<input type="submit" value="탈퇴하기" class="btn btn-danger">
 						</div>
 					</div>				
 				</div>			

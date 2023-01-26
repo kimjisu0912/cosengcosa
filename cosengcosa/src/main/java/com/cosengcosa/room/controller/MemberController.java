@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,18 +47,12 @@ public class MemberController {
 		if(result == -1) {
 			response.setContentType("text/html; charset=utf-8");
 			PrintWriter out = response.getWriter();
+			
 			out.println("<script>");
 			out.println("	alert('존재하지 않는 아이디 입니다.');");
 			out.println("	history.back();");
 			out.println("</script>");
-			
-			/* 컨트롤러에서 null을 반환하거나 메서드의 반환 타입이 void일 경우
-			 * Writer나 OutputStream을 이용해 응답 결과를 직접 작성할 수 있다.
-			 * DispatcherServlet을 경유해 리소스 자원에 접근하는 경우에
-			 * 자바스크립트의 history.back()은 약간의 문제를 일으킬 수 있다.
-			 * history 객체를 이용하는 경우 서버로 요청을 보내는 것이 아니라
-			 * 브라우저의 접속 이력에서 이전 페이지로 이동되기 때문에 발생한다. 
-			 **/
+		
 			return null;
 			
 		} else if(result == 0) {
@@ -71,42 +66,19 @@ public class MemberController {
 			return null;
 		}
 		
-		
 		Member member = memberService.getMember(id);
 		session.setAttribute("isLogin", true);	
 		
-		/* 클래스 레벨에 @SessionAttributes("member") 애노테이션을
-		 * 지정하고 컨트롤러의 메서드에서 아래와 같이 동일한 이름으로 모델에
-		 * 추가하면 스프링이 세션 영역에 데이터를 저장해 준다.
-		 **/ 
 		model.addAttribute("member", member);
 		session.setAttribute("userName", member.getName());
 		session.setAttribute("userId", member.getId());
-		
-		System.out.println("member.name : " + member.getName());
-
-		/* 클라이언트 요청을 처리한 후 리다이렉트 해야할 경우 아래와 같이 redirect:
-		 * 접두어를 붙여 뷰 이름을 반환하면 된다. 뷰 이름에 redirect 접두어가 붙으면
-		 * HttpServletResponse를 사용해서 지정한 경로로 Redirect 된다. 
-		 * redirect 접두어 뒤에 경로를 지정할 때 "/"로 시작하면 ContextRoot를
-		 * 기준으로 절대 경로 방식으로 Redirect 된다. "/"로 시작하지 않으면 현재 
-		 * 경로를 기준으로 상대 경로로 Redirect 된다. 또한 다른 사이트로 Redirect
-		 * 되기를 원한다면 redirect:http://사이트 주소를 지정한다.
-		 * 
-		 * 로그인이 성공하면 메인페이지로 리다이렉트 된다.
-		 **/		
+				
 		return "redirect:main";
 	}
 	// 로그아웃 처리
 	@RequestMapping("/logout")
 	public String logout(SessionStatus sessionStatus, HttpSession session) {	
-		
-		/* 세션 영역에서 객체를 삭제
-		 * 세션 영역에서만 삭제되고 모델에는 삭제되지 않는다.
-		 * 세션을 다시 시작하지 않기 때문에 세션이 계속해서 유지된다.
-		 **/
-		//sessionStatus.setComplete();
-		
+
 		// 현재 세션을 종료하고 새로운 세션을 시작한다.
 		session.invalidate();
 		
@@ -153,11 +125,6 @@ public class MemberController {
 		model.addAttribute("id", id);
 		model.addAttribute("overlap", overlap);
 		
-		/* 회원 가입 폼에서 아이디 중복확인 버튼을 클릭하면 새창으로 뷰가 보이게
-		 * 해야 하므로 뷰 이름을 반환 할 때 "forward:" 접두어를 사용했다. 
-		 * "forwrad:" 접두어가 있으면 뷰 리졸버 설정에 지정한 prefix, suffix를
-		 * 적용하지 않고 "forwrad:" 뒤에 붙인 뷰 페이지로 포워딩 된다. 
-		 **/
 		return "forward:WEB-INF/views/member/overlapIdCheck.jsp";
 	}	
 		
@@ -185,14 +152,9 @@ public class MemberController {
 			member.setTel(tel1 + "-" + tel2 + "-" + tel3);
 		}				
 			
-		// MemberService를 통해서 회원 수정 폼에서 들어온 데이터를 DB에서 수정한다.
 		memberService.updateMember(member);		
 		System.out.println("memberUpdateResult : " + member.getId());
 	
-		/* 클래스 레벨에 @SessionAttributes({"member"}) 
-		 * 애노테이션을 지정하고 컨트롤러의 메서드에서 아래와 같이 동일한 
-		 * 이름으로 모델에 추가하면 스프링이 세션 영역에 데이터를 저장해 준다.
-		 **/ 
 		model.addAttribute("member", member);
 		
 		return "redirect:myInfo";
@@ -202,6 +164,20 @@ public class MemberController {
 	@RequestMapping("/overlapNickNameCheck")	
 	public String overlapNickNameCheck(Model model, String nickname) {		
 		
+		// 회원 아이디 중복 여부 확인
+		boolean overlap = memberService.overlapNickNameCheck(nickname);
+		
+		// model에 id와 회원 아이디 중복 여부를 저장 한다. 
+		model.addAttribute("nickname", nickname);
+		model.addAttribute("overlap", overlap);
+		
+		return "forward:WEB-INF/views/member/overlapNickNameCheck.jsp";
+	}	
+	
+	// 회원수정시 닉네임 중복 체크 요청을 처리하는 메서드
+	@RequestMapping("/overlapNickNameCheck2")	
+	public String overlapNickNameCheck2(Model model, String nickname) {		
+		
 		// 회원 아이디 중복 여부를 받아온다.
 		boolean overlap = memberService.overlapNickNameCheck(nickname);
 		
@@ -209,100 +185,179 @@ public class MemberController {
 		model.addAttribute("nickname", nickname);
 		model.addAttribute("overlap", overlap);
 		
-		/* 회원 가입 폼에서 아이디 중복확인 버튼을 클릭하면 새창으로 뷰가 보이게
-		 * 해야 하므로 뷰 이름을 반환 할 때 "forward:" 접두어를 사용했다. 
-		 * "forwrad:" 접두어가 있으면 뷰 리졸버 설정에 지정한 prefix, suffix를
-		 * 적용하지 않고 "forwrad:" 뒤에 붙인 뷰 페이지로 포워딩 된다. 
-		 **/
-		return "forward:WEB-INF/views/member/overlapNickNameCheck.jsp";
-	}	
+		return "forward:WEB-INF/views/member/overlapNickNameCheck2.jsp";
+	}
+		
+	// 비밀번호 수정 처리 메서드
+	@RequestMapping("/passUpdate")
+	public String passUpdate(Model model, Member member, String id, String pass1) {
+		
+		member.setPass(pass1);
+		memberService.updatePass(member);
+		
+		model.addAttribute("member", member);
+		
+		return "redirect:myInfo";
+	}
+		
+	// 회원정보 수정에서 비밀번호 수정시 현재 비밀번호 확인하는 메서드
+	@RequestMapping("/passCheck.ajax")
+	@ResponseBody
+	public Map<String, Boolean> memberPassCheck(String id, String pass) {
+		
+		boolean result = memberService.memberPassCheck(id, pass);
+		Map<String, Boolean> map = new HashMap<String, Boolean>();
+		map.put("result", result);
+		
+		return map;
+	}
 	
-	// 회원수정시 닉네임 중복 체크 요청을 처리하는 메서드
-		@RequestMapping("/overlapNickNameCheck2")	
-		public String overlapNickNameCheck2(Model model, String nickname) {		
-			
-			// 회원 아이디 중복 여부를 받아온다.
-			boolean overlap = memberService.overlapNickNameCheck(nickname);
-			
-			// model에 id와 회원 아이디 중복 여부를 저장 한다. 
-			model.addAttribute("nickname", nickname);
-			model.addAttribute("overlap", overlap);
-			
-			/* 회원 가입 폼에서 아이디 중복확인 버튼을 클릭하면 새창으로 뷰가 보이게
-			 * 해야 하므로 뷰 이름을 반환 할 때 "forward:" 접두어를 사용했다. 
-			 * "forwrad:" 접두어가 있으면 뷰 리졸버 설정에 지정한 prefix, suffix를
-			 * 적용하지 않고 "forwrad:" 뒤에 붙인 뷰 페이지로 포워딩 된다. 
-			 **/
-			return "forward:WEB-INF/views/member/overlapNickNameCheck2.jsp";
+	// 회원탈퇴 요청 처리 메서드
+	@RequestMapping("/deleteMember")
+	public void deleteMember(HttpSession session, HttpServletResponse response, String id, String pass) 
+				throws ServletException, IOException {
+		
+		//비밀번호 확인
+		boolean result = memberService.memberPassCheck(id, pass);
+		
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		
+		if(result == true) {
+			memberService.deleteMember(id);
+			session.invalidate();
+			out.println("<script>");
+			out.println("	alert('그 동안 코생코사를 이용해주셔서 감사합니다');");
+			out.println("	location.href='main'");
+			out.println("</script>");
+		} else {
+			out.println("<script>");
+			out.println("	alert('비밀번호가 맞지 않습니다');");
+			out.println("	history.back();");
+			out.println("</script>");
 		}
-		// 비밀번호 수정 처리 메서드
-		@RequestMapping("/passUpdate")
-		public String passUpdate(Model model, Member member, String id, String pass1) {
+	}
+	
+	
+	// 아이디 비밀번호 찾기 페이지 요청 메서드
+	@RequestMapping("/findForm")
+	public String findMyInfo() {
+	
+		return "member/findForm";
+	}
+	
+	// 아이디 찾기 메서드
+	@RequestMapping("/findIdResult")
+	@ResponseBody
+	public void findId(HttpServletResponse response, 
+			Member member, String name, String emailId, String emailDomain) throws ServletException, IOException {
+		
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		
+		String email = emailId + "@" + emailDomain;
+		System.out.println(name);
+		System.out.println(email);
+		int result = memberService.findMemberIdChk(name, email);
+		System.out.println(result);
+		
+		if(result == 1) {
+			member = memberService.findMemberId(name);
+			out.println("<script>");
+			out.println("	alert('회원님의 아이디는 " + member.getId() + " 입니다.');");
+			out.println("	history.back();");
+			out.println("</script>");
+		} else if(result == 0) {
+			out.println("<script>");
+			out.println("	alert('입력하신 이메일이 회원정보화 일치하지 않습니다.');");
+			out.println("	history.back();");
+			out.println("</script>");
+		} else {
+			out.println("<script>");
+			out.println("	alert('아이디가 존재하지 않습니다.');");
+			out.println("	history.back();");
+			out.println("</script>");
+		}
+	}
+/**	
+	// 비밀번호 찾기 메서드
+	@RequestMapping("/findPassResult")
+	@ResponseBody
+	public void findPass(Model model, HttpServletResponse response, Member member,
+			String id, String emailId2, String emailDomain2)
+			throws ServletException, IOException {
+		
+		String email = emailId2 + "@" + emailDomain2;
+		String tempPass = "";
+		
+		member = memberService.getMember(id);
+		
+		memberService.findMemberPass(response, member);
+		
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		
+		if(member != null) {
 			
-			member.setPass(pass1);
-			memberService.updatePass(member);
+			if(member.getEmail().equals(email)) {
+				
+				tempPass = memberService.findMemberPass(response, member);;
+				System.out.println(tempPass);
+				out.println("<script>");
+				out.println("	alert('임시 비밀번호는" + tempPass +" 입니다.\n 로그인 후 비밀번호를 변경해주세요!');");
+				out.println("	location.href='main'");
+				out.println("</script>");
+				return;
+				
+			} else {
+				out.println("<script>");
+				out.println("	alert('입력하신 이메일이 회원정보화 일치하지 않습니다.');");
+				out.println("	history.back();");
+				out.println("</script>");
+				return;
+			}
 			
-			model.addAttribute("member", member);
-			
-			return "redirect:myInfo";
+		} else {
+			out.println("<script>");
+			out.println("	alert('해당 아이디가 존재하지 않습니다.');");
+			out.println("	history.back();");
+			out.println("</script>");
 		}
 		
-		// 회원정보 수정에서 비밀번호 수정시 현재 비밀번호 확인하는 메서드
-		@RequestMapping("/passCheck.ajax")
-		@ResponseBody
-		public Map<String, Boolean> memberPassCheck(String id, String pass) {
-			
-			boolean result = memberService.memberPassCheck(id, pass);
-			Map<String, Boolean> map = new HashMap<String, Boolean>();
-			map.put("result", result);
-			
-			/* MappingJackson2HttpMessageConverter에 의해서
-			 * Map 객체가 아래와 같이 json 형식으로 변환된다.
-			 * 
-			 * {
-			 * 		"result": 0 또는 "result": 2
-			 * }
-			 **/
-			return map;
+	}
+	**/
+	
+	// 비밀번호 찾기 메서드
+	@RequestMapping("/findPassResult")
+	public void findPass(HttpServletResponse response, 
+						Model model,	String id, String emailId2, String emailDomain2) throws ServletException, IOException {
+		
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		
+		String email = emailId2 + "@" + emailDomain2;
+		
+		Map<String, Object> modelMap = memberService.findMemberPass(id, email);
+		
+		int result = (int) modelMap.get("result");
+		String pass = (String) modelMap.get("pass");
+		System.out.println(result);
+		if(result == 1) {
+			out.println("<script>");
+			out.println("	alert('임시 비밀번호는 " + pass + " 입니다. 로그인 후 비밀번호를 변경해주세요!');");
+			out.println("	location.href='main'");
+			out.println("</script>");
+		} else if(result == 0) {
+			out.println("<script>");
+			out.println("	alert('입력하신 이메일이 회원정보와 일치하지 않습니다.');");
+			out.println("	history.back();");
+			out.println("</script>");
+		} else {
+			out.println("<script>");
+			out.println("	alert('해당 아이디가 존재하지 않습니다.');");
+			out.println("	history.back();");
+			out.println("</script>");
 		}
 		
-		// 아이디 비밀번호 찾기 페이지 요청 메서드
-		@RequestMapping("/findForm")
-		public String findMyInfo(Model model) {
-		
-			
-			return "member/findForm";
-		}
-		
-		// 아이디 찾기 메서드
-		@RequestMapping("/findIdResult")
-		public String findId(Model model, String name, String tel1, String tel2, String tel3) {
-			
-			String tel = tel1 + "-" + tel2 + "-" + tel3;
-			
-			String id = memberService.findMemberId(name, tel);
-			
-			System.out.println(id);
-			
-			model.addAttribute("id", id);
-			
-			return "member/findResultForm";
-		}
-		
-		// 비밀번호 찾기 메서드
-		@RequestMapping(value="/findPassResult",  method = RequestMethod.POST)
-		public String findPass(Model model, HttpServletResponse response, Member member, 
-								String id, String emailId, String emailDomain) throws Exception {
-			
-			String email = emailId + "@" + emailDomain;
-			
-			member = memberService.getMember(id);
-			
-			memberService.findMemberPass(response, member);
-			
-			
-			return "member/findForm";
-			
-		}
-
+	}	
 }

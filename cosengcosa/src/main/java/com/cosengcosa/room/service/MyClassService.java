@@ -19,20 +19,28 @@ public interface MyClassService {
 	 */
 	
 	// 메인 강의리스트 조회 함수
-	public List<MyClassMain> getMyClassMain(String id);
-	//public Map<String, Object> getMyClassMain(String id, int pageNum, String keyword);
+	public List<MyClassMain> getMyClassMain(String id, String keyword, String done);
 	
 	// 서브강의 리스트 조회 함수
 	public List<MyClassSub> getMyClassSub(String id, String mymCode);
+	
+	// 서브강의 진도율 계산 함수
+	public Double getProgress(String id, String group);
 	
 	// 차트 표현 카운트 조회 함수
 	public SubTitle getSubCount(String id);
 	
 	// 결제내역 리스트 조회 함수
-	public List<Pay> getPayList(String id);
+	public Map<String, Object> getPayList(String id, int pageNum);
+	
+	// 결제내역 리스트 수 조회 함수
+	public int getPayListCount(String id);
 	
 	// 장바구니 리스트 조회 함수
-	public List<Basket> getBasketList(String id);
+	public Map<String, Object> getBasketList(String id, int pageNum);
+	
+	// 장바구니 리스트 수 조회 함수
+	public int getBasketListCount(String id);
 	
 	// 수강 강의 데이터 조회 함수
 	public List<List<Object>> getDoneCount(String id);

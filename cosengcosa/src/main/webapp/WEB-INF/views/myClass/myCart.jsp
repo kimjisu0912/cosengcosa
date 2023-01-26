@@ -64,6 +64,39 @@
 				</c:if>	  
 				</table>
 			</div>
+		</div>
+		<div class="row">
+			<nav aria-label="Page navigation">
+			  <ul class="pagination justify-content-center">
+			  <!-- 이전 페이지 그룹이 존재 -->
+			  	<c:if test="${startPage > pageGroup }">
+				    <li class="page-item">
+				     	<a class="page-link" href="myCart?pageNum=${startPage - pageGroup}">Prev</a>
+				    </li>
+			    </c:if>
+			    <!-- 페이지네이션 -->
+			    <c:forEach var="i" begin="${startPage}" end="${endPage}">
+			     	<!-- 현재 페이지인 경우 -->
+ 					<c:if test="${i == currentPage}">
+ 						<li class="page-item active">
+				    		<span class="page-link" >${i}</span>
+				    	</li>
+ 					</c:if>
+ 					<!-- 현재 페이지가 아닌 경우 -->
+ 					<c:if test="${i != currentPage}">
+				    	<li class="page-item">
+				    		<a class="page-link" href="myCart?pageNum=${i}">${i}</a>
+				    	</li>
+			    	</c:if>
+				</c:forEach>
+			    <!-- 다음 페이지 그룹이 존재 -->
+			    <c:if test="${pageCount > endPage}">
+				    <li class="page-item">
+				     	<a class="page-link" href="myCart?pageNum=${startPage + pageGroup}">Next</a>
+				    </li>
+			    </c:if>
+			  </ul>
+			</nav>
 		</div>		
 	</div>
 </div>

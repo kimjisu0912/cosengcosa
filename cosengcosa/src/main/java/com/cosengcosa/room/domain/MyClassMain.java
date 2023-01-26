@@ -8,6 +8,8 @@ public class MyClassMain {
 	private String mymMid, mymCode, mymTitle, mymName, mymDone, mymYN, image;
 	private Timestamp mymSdate, mymEdate;
 	private String sdate, edate;
+	private int num;
+	private Double progress;
 	
 	
 	public String getSdate() {
@@ -104,6 +106,19 @@ public class MyClassMain {
 		this.mymEdate = mymEdate;
 		setEdate();
 	}
+	public int getNum() {
+		return num;
+	}
+	public void setNum(int num) {
+		this.num = num;
+	}
+	public Double getProgress() {
+		return progress;
+	}
+	public void setProgress(Double progress) {
+		this.progress = progress;
+	}
+	
 	
 	
 }
