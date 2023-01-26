@@ -8,6 +8,7 @@
 		<form name="checkForm" id="checkForm">
 			<input type="hidden" name="sno" id="sno" value="${study.sNo }"/>
 			<input type="hidden" name="pageNum" value="${ pageNum }" />
+			<input type="hidden" name="memberId" id="memberId" value="${ member.id }" />
 
 			<%-- 
 				검색 리스트에서 들어온 요청일 경우 다시 keyword에 해당하는 
@@ -61,50 +62,51 @@
 			
 			
 			<!-- 댓글 -->
-			<div>
-			<div>
-				<div colspan="4" class="replyHeader">
-				<div id="recommend">
+			<c:if test='${ member.grant == "T" || member.grant == "A" }'>
+			
+			
+			<div class="row  justify-content-center">
+				<div class="replyHeader">
+				<div id="recommend" class="col text-center">
 					<span id="replyWrite" class="fs-5 fw-bold">
 						&nbsp;댓글쓰기
 					</span>	
 					
 					<div id="replyForm" >
-						<form name="replyWriteForm" id="replyWriteForm">				
+						<form name="replyWriteForm" id="replyWriteForm" >				
 							<input type="hidden" name="saNum" id="saNum" value="${ study.sNo }"/>
 							<input type="hidden" name="saAnswerid" id="saAnswerid"
 								value="${ member.id }" />			
 							<div id="replyWriteTable">
-								<div>
-									<div id="replyWriteTitle" colspan="2">
-										<span>악의적인 댓글은 예고 없이 삭제될 수 있으며 글쓰기 제한과 아이디 삭제 처리됩니다.</span>
-									</div>
-								</div>
-								<div class="row">
-									<div id="replyWriteContent" class="col">
+								<div class="row  justify-content-center">
+									<div id="replyWriteContent" class="col text-center">
 										<textarea name="saAnswer" id="saAnswer" rows="4" cols="65"></textarea>
 									</div>
-									<div id="replyWriteImage" class=" col-auto">						
-										<input type="button" class="btn btn-info"
-											id="replyWriteButton" value="댓글입력" />
-									</div>
-									<div id="replyUpdateImage" class="col-auto">						
-										<input type="submit" class="btn btn-info"
-											id="replyUpdateButton" value="댓글수정" 0/>
+									<div class=" row  justify-content-center">
+										<div id="replyWriteImage" class=" col-auto">						
+											<input type="button" class="btn btn-info"
+												id="replyWriteButton" value="댓글입력" />
+										</div>
+										<div id="replyUpdateImage" class="col-auto">						
+											<input type="submit" class="btn btn-info"
+												id="replyUpdateButton" value="댓글수정" />
+										</div>
 									</div>
 								</div>
 							</div>
 						</form>	
 					</div>	
-			
-			
 				</div>
-				<div id="replyTitle"><span class="fw-bold fs-4">댓글</span></div>
 				</div>
 			</div>
+			
+			</c:if>
+			
+			<div class="bg-light rounded my-4" >
+			<div id="replyTitle"><span class="fw-bold fs-4">댓글</span></div>
 			<c:if test="${ empty answerList }" >
 			<div id="replyList">
-				<div colspan="4">
+				<div>
 				<div id="notReply">
 					이 게시 글에 대한 댓글이 존재하지 않습니다.  
 				</div>			
@@ -113,27 +115,27 @@
 			</c:if>
 			<c:if test="${ not empty answerList }" >
 			<div id="replyList">
-				<div colspan="4">		
+				<div>		
 				<div id="replyTable">
 					<c:forEach var="answer" items="${ answerList }" >
 					<div id="reply_${ answer.saNo }">
 						<div>									
 						<div class="replyUser">						
-							<span class="member">${ answer.saWriter  }</span>	
+							<span class="member fs-5" id="member">${ answer.saAnswerid }</span>	
 						</div>
 						<div class="replyModify">
 							<span class="reply_date">
 								<fmt:formatDate value="${ answer.saCdate}" 
 									pattern="yyyy-MM-dd HH:mm:ss" /></span>
-							<a href="#" class="modifyReply" data-no="${ answer.saNo }">
-								<img src="resources/images/reply_btn_modify.gif" alt="댓글 수정하기"/></a>
-							<a href="#" class=deleteReply data-no="${ answer.saNo }">
-								<img src="resources/images/reply_btn_delete.gif" alt="댓글 삭제하기"/></a>
-							<a href="javascript:reportReply('${ answer.saNo }')">
-								<img src="resources/images/reply_btn_notify.gif" alt="신고하기"/></a>
+							<c:if test='${ member.grant == "T" || member.grant == "A" }'>
+								<a href="#" class="modifyReply" data-no="${ answer.saNo }">
+									<img src="resources/images/reply_btn_modify.gif" alt="댓글 수정하기"/></a>
+								<a href="#" class=deleteReply data-no="${ answer.saNo }">
+									<img src="resources/images/reply_btn_delete.gif" alt="댓글 삭제하기"/></a>
+							</c:if>
 						</div>	
 						<div class="replyContent" id="div_${ answer.saNo }">
-							<pre><span>${ answer.saAnswer }</span></pre>
+							<pre><span class="fs-5">${ answer.saAnswer }</span></pre>
 						</div>
 						</div>
 					</div>	
@@ -143,10 +145,7 @@
 			</div>	
 			</c:if>
 			</div>	
-			
-			
-			
-			
+		
 			</div>	
 			
 			<!-- 추천, 이미지, 파일 버튼 -->

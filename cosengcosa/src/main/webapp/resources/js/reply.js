@@ -80,7 +80,7 @@ $(document).ready(function() {
 				console.log(resultData);
 				$.each(resultData, function(index, value) {					
 					// 날짜 데이터를 출력 포맷에 맞게 수정
-					var date = new Date(value.cdate);
+					var date = new Date(value.saCdate);
 					var strDate = date.getFullYear() + "-" + ((date.getMonth() + 1 < 10) 
 							? "0" + (date.getMonth() + 1) : (date.getMonth() + 1)) + "-"  
 							+ date.getDate() + "-" + ((date.getHours() < 10) 
@@ -90,28 +90,19 @@ $(document).ready(function() {
 							? "0" + date.getSeconds() : date.getSeconds());				
 										
 					var result = 
-						"<tr class='reply_" + value.saNo + "'>" 
-						+ "<td>"
+						"<div class='reply_" + value.saNo + "'>" 
+						+ "<div>"
 						+ "	<div class='replyUser'>"
 						+ "		<span class='member'>" + value.saAnswerid + "</span>"
 						+ "	</div>"
 						+ "	<div class='replyModify'>"
 						+ "		<span class='replyDate'>" + strDate + "</span>"
-						+ "		<a href='#' class='modifyReply' data-no='" + value.saNo + "'>"
-						+ "			<img src='resources/images/reply_btn_modify.gif' alt='댓글 수정하기'/>"
-						+ "		</a>"
-						+ "		<a href='#' class='deleteReply' data-no='" + value.saNo + "'>"
-						+ "			<img src='resources/images/reply_btn_delete.gif' alt='댓글 삭제하기'/>"
-						+ "		</a>"
-						+ "		<a href='javascript:reportReply('div_" + value.saNo + "');'>"
-						+ "			<img src='resources/images/reply_btn_notify.gif' alt='신고하기'/>"
-						+ "		</a>"
 						+ "	</div>"
 						+ "	<div class='replyContent' id='div_" + value.saNo + "'>"
 						+ "		<pre><span>" + value.saAnswer + "</span></pre>"
 						+ "	</div>"
-						+ "</td>"
-					+ "</tr>";
+						+ "</div>"
+					+ "</div>";
 					
 					$("#replyTable").append(result);								
 				});				
@@ -130,7 +121,15 @@ $(document).ready(function() {
 	});
 	
 	
-	$(document).on("click", ".modifyReply", function() {	
+	$(document).on("click", ".modifyReply", function() {
+		// 아이디 검사	
+		/*
+		alert($("#memberId").val() + " --- "+ $("#member").text())
+		
+		if($("#memberId").val() != $(".replyUser").val()){
+			return false;
+		}
+		*/
 		
 		// 현재 수정하기가 클릭된 부모 요소의 다음 형제 요소를 구한다.
 		var $next = $(this).parent().next();
@@ -162,6 +161,8 @@ $(document).ready(function() {
 	});
 		
 	$(document).on("click", "#replyUpdateButton", function() {	
+		
+
 		
 		if($("#saAnswer").val().length <= 5) {
 			alert("댓글은 5자 이상 입력해야 합니다.");
@@ -206,8 +207,8 @@ $(document).ready(function() {
 							? "0" + date.getSeconds() : date.getSeconds());			
 										
 					var result = 
-						"<tr class='reply_" + value.saNo + "'>" 
-						+ "<td>"
+						"<div class='reply_" + value.saNo + "'>" 
+						+ "<div>"
 						+ "	<div class='replyUser'>"
 						+ "		<span class='member'>" + value.saAnswerid + "</span>"
 						+ "	</div>"
@@ -219,15 +220,12 @@ $(document).ready(function() {
 						+ "		<a href='#' class='deleteReply' data-no='" + value.saNo + "'>"
 						+ "			<img src='resources/images/reply_btn_delete.gif' alt='댓글 삭제하기'/>"
 						+ "		</a>"
-						+ "		<a href='javascript:reportReply('div_" + value.saNo + "');'>"
-						+ "			<img src='resources/images/reply_btn_notify.gif' alt='신고하기'/>"
-						+ "		</a>"
 						+ "	</div>"
 						+ "	<div class='replyContent' id='div_" + value.saNo + "'>"
 						+ "		<pre><span>" + value.saAnswer + "</span></pre>"
 						+ "	</div>"
-						+ "</td>"
-					+ "</tr>";
+						+ "</div>"
+					+ "</div>";
 					
 					// 댓글 테이블의 기존 내용을 삭제하고 다시 추가한다.
 					$("#replyTable").append(result);					
@@ -251,6 +249,8 @@ $(document).ready(function() {
 	});
 	
 	$(document).on("click", ".deleteReply", function() {	
+		
+		
 		
 		var saNo = $(this).attr("data-no");
 		var saAnswerid = $(this).parent().prev().find(".member").text();
@@ -298,9 +298,6 @@ $(document).ready(function() {
 							+ "		</a>"
 							+ "		<a href='#' class='deleteReply' data-no='" + value.saNo + "'>"
 							+ "			<img src='resources/images/reply_btn_delete.gif' alt='댓글 삭제하기'/>"
-							+ "		</a>"
-							+ "		<a href='javascript:reportReply('div_" + value.saNo + "');'>"
-							+ "			<img src='resources/images/reply_btn_notify.gif' alt='신고하기'/>"
 							+ "		</a>"
 							+ "	</div>"
 							+ "	<div class='replyContent' id='div_" + value.saNo + "'>"

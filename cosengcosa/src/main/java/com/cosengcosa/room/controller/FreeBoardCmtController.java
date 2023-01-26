@@ -29,7 +29,6 @@ public class FreeBoardCmtController {
 	@ResponseBody
 	public List<FreeBoardCmt> addAnswer(FreeBoardCmt freeCmt, String fcYn) {
 		
-		System.out.println("1111");
 		
 		fcYn = "Y";
 		
@@ -37,7 +36,6 @@ public class FreeBoardCmtController {
 		// 새로운 댓글을 등록한다.
 		freeBoardService.addReply(freeCmt);
 		
-		System.out.println("2222");
 		return freeBoardService.FreeBoardCmtList(freeCmt.getFcNum());
 	}
 	

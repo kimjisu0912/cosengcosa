@@ -3,16 +3,30 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!-- content -->
+<form name="searchForm" id="searchForm" action="#">
 <div class="row my-5" id="global-content">
-		<div class="col-auto"></div>
+		<div class="col-2">
+			<div class="p-4 mb-3 bg-light rounded " style="position: fixed;">
+				<div class="fs-3 fw-bold my-1">인기 주제</div>
+				<div>
+          			<input type="submit" class="btn btn-dark m-1" id="java" value="Java">
+        	  		<input type="submit" class="btn btn-dark m-1" id="spring" value="Spring">
+				</div>
+				<div>
+    	      		<input type="submit" class="btn btn-dark m-1" id="javas" value="JavaScript">
+				</div>
+				<div>
+	          		<input type="submit" class="btn btn-dark m-1" id="python" value="Python">
+				</div>
+        	</div>
+		</div>
 	<div class="col">
 		<div class="row text-center">
 			<div class="col">
 				<h2 class="fs-3 fw-bold">지식공유</h2>
 			</div>
 		</div>  		
-		<form name="searchForm" id="searchForm" action="#" 
-			class="row justify-content-center my-3">
+		<div class="row justify-content-center my-3">
 			<div class="col-auto">
 				<select name="type" class="form-select">
 					<option value="title">제목</option>
@@ -30,7 +44,8 @@
 					<a href="writeForm" class="btn btn-outline-dark">글쓰기</a>
 				</div>
 		</c:if>
-		</form>
+		</div>
+		
 			
 		<!-- 검색 요청일 경우 아래를 화면에 표시 -->	
 		<c:if test="${ searchOption }">			
@@ -86,12 +101,12 @@
 					--%>
 						<c:if test="${ not searchOption and not empty studyList }">
 							<c:forEach var="s" items="${studyList}" varStatus="status">
-								<div class="row  justify-content-center">
-										<div class="inline-block col-8 my-3  shadow border-bottom border-info" style="height: 150px;">
+								<div class="  m-0 p-0">
+										<div class="inline-block col my-3  shadow border-bottom border-info" style="height: 150px;">
 											<div>
-												<div><a class=" text-reset text-decoration-none" href="studyDetail?no=${s.sNo}&pageNum=${currentPage}" ><span class="fw-bold fs-4">${ s.sTitle }</span></a></div>
-												<div class="mt-2"><span class="fw-bold fs-6">오류코드 : </span>${ s.sError }</div>
-												<div class="mt-5"><span class="fw-lighter fs-8">${ s.sAskid } ${ s.sCdate } ${ s.sCount } ${ s.sRecommend }</span></div>
+												<div><a class=" text-reset text-decoration-none mx-2" href="studyDetail?no=${s.sNo}&pageNum=${currentPage}" ><span class="fw-bold fs-4">${ s.sTitle }</span></a></div>
+												<div class="mt-2 mx-2"><span class="fw-bold fs-6">오류코드 : </span>${ s.sError }</div>
+												<div class="mt-5 mx-2"><span class="fw-lighter fs-8">${ s.sAskid } ${ s.sCdate } ${ s.sCount } ${ s.sRecommend }</span></div>
 											</div>
 										</div>
 								</div>
@@ -196,7 +211,7 @@
 		</c:if>
 
 	</div>		
-	<div class="col-auto"></div>		
+	<div class="col-2"></div>		
 </div>
-
+</form>
 <script src="resources/js/boardCheck.js"></script>   

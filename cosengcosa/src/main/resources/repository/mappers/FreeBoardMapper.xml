@@ -95,7 +95,7 @@
    			fc_num AS fcNum, 
    			fc_content AS fcContent,
    			fc_writer AS fcWriter,
-   			fc_cdate AS saCdate,
+   			fc_cdate AS fcCdate,
    			fc_yn AS fc_Yn 
 		FROM 
 		    freeBoardCmt 

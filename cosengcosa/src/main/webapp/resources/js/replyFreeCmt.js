@@ -69,7 +69,6 @@ $(document).ready(function() {
 		var fcWriter = $("#fcWriter").val();
 		var fcContent = $("#fcContent").val();
 		
-		alert(fcNum + fcWriter + fcContent);
 		
 		$.ajax({
 			url: "replyWrite2.ajax",

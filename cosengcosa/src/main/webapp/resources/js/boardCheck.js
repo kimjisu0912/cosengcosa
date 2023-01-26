@@ -240,7 +240,7 @@
 			return false;
 		}
 	});
-	
+	/*
 	$("#searchForm").on("submit", function(){
 		if($("#keyword").val().length <= 0) {
 			swal("내용이 입력되지 않았습니다.\n내용을 입력해주세요", "warning");
@@ -248,7 +248,7 @@
 			return false;
 		}
 	});
-	
+	*/
 	$("#answertext").on("click", function(){
 		var grant = $("#grant").val();
 		
@@ -257,4 +257,21 @@
 			return false;
 		}
 	}); 
+	
+	$("#java").on("click", function(){
+		$("#keyword").attr("value", "java");
+	});
+	
+	$("#spring").on("click", function(){
+		$("#keyword").attr("value", "spring");
+	});
+	
+	$("#javas").on("click", function(){
+		$("#keyword").attr("value", "javascript");
+	});
+	
+	$("#python").on("click", function(){
+		$("#keyword").attr("value", "python");
+	});
+	
 });
