@@ -80,13 +80,13 @@
 					--%>	
 						<c:if test="${ searchOption and not empty studyList }">
 							<c:forEach var="s" items="${studyList}" varStatus="status">
-								<div class="row  justify-content-center">
-										<div class="inline-block col-8 my-3  shadow border-bottom border-info" style="height: 150px;">
+								<div class="row  justify-content-center ">
+										<div class="inline-block col my-3  shadow border-bottom border-info" style="height: auto;">
 											<div>
 												<div><a class=" text-reset text-decoration-none" href="studyDetail?no=${s.sNo}&pageNum=${currentPage}
 												&type=${ type }&keyword=${ keyword }" ><span class="fw-bold fs-4">${ s.sTitle }</span></a></div>
 												<div><span class="fw-bold fs-6">오류코드 : </span>${ s.sError }</div>
-												<div><span class="fw-lighter fs-8">${ s.sAskid } ${ s.sCdate } ${ s.sCount } ${ s.sRecommend }</span></div>
+												<div><span class="fw-lighter fs-8"><span class="bold">${ s.sAskid }</span> ${ s.sCdate } ${ s.sCount } ${ s.sRecommend }</span></div>
 											</div>
 										</div>
 								</div>
@@ -102,11 +102,11 @@
 						<c:if test="${ not searchOption and not empty studyList }">
 							<c:forEach var="s" items="${studyList}" varStatus="status">
 								<div class="  m-0 p-0">
-										<div class="inline-block col my-3  shadow border-bottom border-info" style="height: 150px;">
+										<div class="inline-block col my-3  shadow border-bottom border-info" style="height: auto;">
 											<div>
 												<div><a class=" text-reset text-decoration-none mx-2" href="studyDetail?no=${s.sNo}&pageNum=${currentPage}" ><span class="fw-bold fs-4">${ s.sTitle }</span></a></div>
 												<div class="mt-2 mx-2"><span class="fw-bold fs-6">오류코드 : </span>${ s.sError }</div>
-												<div class="mt-5 mx-2"><span class="fw-lighter fs-8">${ s.sAskid } ${ s.sCdate } ${ s.sCount } ${ s.sRecommend }</span></div>
+												<div class="mt-5 mx-2"><span class="fw-lighter fs-8"><span class="bold">${ s.sAskid }</span> ${ s.sCdate } ${ s.sCount } ${ s.sRecommend }</span></div>
 											</div>
 										</div>
 								</div>

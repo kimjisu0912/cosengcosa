@@ -23,17 +23,18 @@
 							WHERE
 				            f_yn = 'Y'
 				        ) freeBoard
-				        ORDER BY fNo DESC
-				    )
 			    	<where>
-						num <![CDATA[>=]]> #{startRow} AND num <![CDATA[<=]]> #{endRow}
 						<if test="type == 'title'">
-							AND fTitle LIKE '%' || #{keyword} || '%'
+							fTitle LIKE '%' || #{keyword} || '%'
 						</if>
 						<if test="type == 'writer'">
-							AND fWriter LIKE '%' || #{keyword} || '%'
+							fWriter LIKE '%' || #{keyword} || '%'
 						</if>
 					</where> 
+				        ORDER BY fNo DESC
+				    )
+				    WHERE
+						num <![CDATA[>=]]> #{startRow} AND num <![CDATA[<=]]> #{endRow}
 			    	
 			    
 	</select>

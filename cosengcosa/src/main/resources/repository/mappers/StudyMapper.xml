@@ -33,18 +33,19 @@
 		               		ORDER BY
                                 s_no DESC
 				       ) study
+			    	<where>
+						<if test="type == 'title'">
+							sTitle LIKE '%' || #{keyword} || '%' 
+						</if>
+						<if test="type == 'writer'">
+							sAskid LIKE '%' || #{keyword} || '%' 
+						</if>
+					</where> 
 				       ORDER BY 
 			        		sNo DESC 	
 			    	)
-			    	<where>
+			    	WHERE
 						num <![CDATA[>=]]> #{startRow} AND num <![CDATA[<=]]> #{endRow}
-						<if test="type == 'title'">
-							AND sTitle LIKE '%' || #{keyword} || '%'
-						</if>
-						<if test="type == 'writer'">
-							AND sAskid LIKE '%' || #{keyword} || '%'
-						</if>
-					</where> 
 			    	
 			    
 	</select>

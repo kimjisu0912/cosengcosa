@@ -85,7 +85,7 @@
 			<div class="text-success">
 				<hr class="border border-primary  ">
 			</div>
-		<div class="row justify-content-center"  style="background-color: lightGray;">
+		<div class="row justify-content-center rounded"  style="background-color: lightGray;">
 			<div class="col-8">
 				<h3 class="fw-semibold">답변</h3>
 				<textarea class="form-control my-3" id="answertext"  rows="3" readonly>${ board.answer }</textarea>

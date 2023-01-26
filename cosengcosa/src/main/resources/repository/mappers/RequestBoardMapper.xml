@@ -30,18 +30,19 @@
 		               		 ORDER BY
                                  r_no DESC
 				       ) requestBoard
+			    	<where>
+						<if test="type == 'title'">
+							title LIKE '%' || #{keyword} || '%'
+						</if>
+						<if test="type == 'writer'">
+							writer LIKE '%' || #{keyword} || '%'
+						</if>
+					</where> 
 				       ORDER BY 
 			        		no DESC 	
 			    	)
-			    	<where>
+			    	WHERE
 						num <![CDATA[>=]]> #{startRow} AND num <![CDATA[<=]]> #{endRow}
-						<if test="type == 'title'">
-							AND title LIKE '%' || #{keyword} || '%'
-						</if>
-						<if test="type == 'writer'">
-							AND writer LIKE '%' || #{keyword} || '%'
-						</if>
-					</where> 
 			    	
 			    
 	</select>
