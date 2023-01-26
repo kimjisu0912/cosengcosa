@@ -50,7 +50,7 @@
             classmain a, classsub b
        <where>
 			cm_yn = 'Y'
-	 		<if test="type=='cmtitle'">
+	 		<if test="type=='cmname'">
 	 			AND a.cm_title LIKE '%' || #{keyword} || '%'
 	 		</if>
 	 		AND a.cm_code = b.cs_group
