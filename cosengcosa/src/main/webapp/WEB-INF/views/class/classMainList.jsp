@@ -66,7 +66,7 @@
 			<c:if test="${searchOption and not empty classMainList }">
 				<c:forEach var="c" items="${classMainList }" varStatus="status">
 					<div class="col-md-4 col-lg-3 order-md-last ">
-						<div class="card shadow-sm">
+						<div class="card shadow-sm m-2">
 							<div class="card-body">
 								<div class="row">
 									<img src="http://img.youtube.com/vi/${c.csVideo }/mqdefault.jpg"></img>
@@ -87,7 +87,7 @@
 			<c:if test="${not searchOption and not empty classMainList }">
 				<c:forEach var="c" items="${classMainList }" varStatus="status">
 					<div class="col-md-4 col-lg-3 order-md-last ">
-						<div class="card shadow-sm">
+						<div class="card shadow-sm m-2">
 							<div class="card-body">
 								<div class="row">
 									<img src="http://img.youtube.com/vi/${c.csVideo }/mqdefault.jpg"></img>
