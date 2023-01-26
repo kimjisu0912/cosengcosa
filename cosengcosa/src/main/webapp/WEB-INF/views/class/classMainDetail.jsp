@@ -43,7 +43,8 @@
 		 		</div>
 			</div>
 		</div>
-		
+		<input type="hidden" id="recommendCode" value="${classMain.cmCode }"><!-- 추천 -->
+		<input type="hidden" id="data-area" class="data-area" value=""><!-- url -->
 		<div class="row">
 			<div class="col-8">
 				<iframe width="850" height="480" src="https://www.youtube.com/embed/${cmVideo }" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -64,8 +65,10 @@
 									<a class="btn btn-outline-success" type="button" href="classSubList?cmcode=${classMain.cmCode }">수강하기</a>
 								</div>
 								<div class="button-group-center">
-									<a type="button" class="btn btn-link"><i class="bi bi-heart"></i> </a>
-									<a type="button" class="btn btn-default bi bi-share"><span class="glyphicon glyphicon-share-alt"></span></a>
+									<a type="button" class="btn btn-link" id="recommend1">
+										<i class="bi bi-heart" id="biHeart1"></i>
+									 </a>
+									<a type="button" class="btn btn-default bi bi-share" id="data-copy1"><span class="glyphicon glyphicon-share-alt"></span></a>
 								</div>
 							</div>
 						</div>
@@ -98,9 +101,8 @@
 									</c:if>
 								</div>
 								<div class="button-group-center">
-									<a type="button" class="btn btn-link" id="recommend"><i class="bi bi-heart"></i> </a>
-									<a type="button" class="btn btn-default bi bi-share" id="data-copy"><span class="glyphicon glyphicon-share-alt"></span></a>
-									<input type="hidden" id="data-area" class="data-area" value="">
+									<a type="button" class="btn btn-link" id="recommend2"><i class="bi bi-heart" id="biHeart2"></i> </a>
+									<a type="button" class="btn btn-default bi bi-share" id="data-copy2"><span class="glyphicon glyphicon-share-alt"></span></a>
 								</div>
 							</div>
 						</div>
