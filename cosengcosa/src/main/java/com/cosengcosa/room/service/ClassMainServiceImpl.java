@@ -228,9 +228,5 @@ public class ClassMainServiceImpl implements ClassMainService {
 		
 	}
 
-	
-	
-
-
 
 }

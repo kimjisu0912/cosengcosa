@@ -6,25 +6,23 @@
 <div class="row py-2">
 	<div class="col">
 		<div class="row">
-			
 			<div class="py-2 text-center">
 				<h2><span class=" col-12 bg-light">강의 리스트</span></h2>
 			</div>
-			
+	
 			<!-- 검색 요청인 경우 출력 -->
 			<c:if test="${searchOption }" >
-			<div class="row">
-				<div class="col-6 text-start">
-					<a href="classMainList" class="btn btn-outline-success">강의 리스트</a>
+				<div class="row">
+					<div class="col-6 text-start">
+						<a href="classMainList" class="btn btn-outline-success">강의 리스트</a>
+					</div>
+					<div class="col-6 text-end">
+						<c:if test="${sessionScope.member.id =='admin'}">
+							<a href="classMainInsert" class="btn btn-outline-success">강의 등록</a>
+						</c:if>
+					</div>
 				</div>
-				<div class="col-6 text-end">
-				<c:if test="${sessionScope.member.id =='admin'}">
-					<a href="classMainInsert" class="btn btn-outline-success">강의 등록</a>
-				</c:if>
-				</div>
-			</div>
 			</c:if>
-		
 			<!-- 일반 요청인 경우 -->
 			<c:if test="${not searchOption }" >
 				<div class="row">
@@ -42,7 +40,7 @@
 						<select name="type" class="form-select">
 							<option value="cmname">강의제목</option>
 							<option value="cmcode">과목</option> 
-							 <option value="content">내용</option>
+							<option value="content">내용</option>
 						</select>
 					</div>
 					<div class="col-4">
@@ -61,30 +59,7 @@
 					</div>
 				</c:if>
 			</div>
-			<!-- 왼쪽 리스트 -->
-			<ul class="nav nav-tabs ">
-				<li class="nav-item">
-					<a class="nav-link active" data-bs-toggle="tab" aria-current="page" href="#">HTML/CSS</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" data-bs-toggle="tab" href="#">JavaScript</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" data-bs-toggle="tab" href="#">Java</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" data-bs-toggle="tab" href="#">Spring Boot</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" data-bs-toggle="tab" href="#">JQuery</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" data-bs-toggle="tab" href="#">Ajax</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" data-bs-toggle="tab" href="#">Kotlin</a>
-				</li>
-			</ul>
+			
 			
 		<table class="table my-3  table-hover">
 			<!-- 검색요청에서 게시글이 있는 경우 -->
@@ -145,11 +120,11 @@
 	</div>
 			<!-- pageing -->
 	<div class="row mt-3">
- 		<div class="col">
- 		
- 		<!-- 검색 요청인 경우 -->
- 		<c:if test="${searchOption and not empty classMainList }">
- 		<nav aria-label="Page navigation">
+		<div class="col">
+		
+		<!-- 검색 요청인 경우 -->
+		<c:if test="${searchOption and not empty classMainList }">
+		<nav aria-label="Page navigation">
 			  <ul class="pagination justify-content-center">
 			  <!-- 이전 페이지 그룹이 존재 -->
 			  	<c:if test="${startPage > pageGroup }">
@@ -187,35 +162,35 @@
  		<!-- 일반 요청인 경우 -->
  		<c:if test="${not searchOption and not empty classMainList }">
 	 		<nav aria-label="Page navigation">
-			  <ul class="pagination justify-content-center">
-			  <!-- 이전 페이지 그룹이 존재 -->
-			  	<c:if test="${startPage > pageGroup }">
-				    <li class="page-item">
-				     	<a class="page-link" href="classMainList?pageNum=${startPage - pageGroup}">Prev</a>
-				    </li>
-			    </c:if>
-			    <!-- 페이지네이션 -->
-			    <c:forEach var="i" begin="${startPage}" end="${endPage}">
-			     	<!-- 현재 페이지인 경우 -->
+				<ul class="pagination justify-content-center">
+				<!-- 이전 페이지 그룹이 존재 -->
+					<c:if test="${startPage > pageGroup }">
+						<li class="page-item">
+							<a class="page-link" href="classMainList?pageNum=${startPage - pageGroup}">Prev</a>
+						</li>
+					</c:if>
+				<!-- 페이지네이션 -->
+				<c:forEach var="i" begin="${startPage}" end="${endPage}">
+					<!-- 현재 페이지인 경우 -->
  					<c:if test="${i == currentPage}">
  						<li class="page-item active">
-				    		<span class="page-link" >${i}</span>
-				    	</li>
+							<span class="page-link" >${i}</span>
+						</li>
  					</c:if>
  					<!-- 현재 페이지가 아닌 경우 -->
  					<c:if test="${i != currentPage}">
-				    	<li class="page-item">
-				    		<a class="page-link" href="classMainList?pageNum=${i}">${i}</a>
-				    	</li>
-			    	</c:if>
+						<li class="page-item">
+							<a class="page-link" href="classMainList?pageNum=${i}">${i}</a>
+						</li>
+					</c:if>
 				</c:forEach>
-			    <!-- 다음 페이지 그룹이 존재 -->
-			    <c:if test="${pageCount > endPage}">
-				    <li class="page-item">
-				     	<a class="page-link" href="classMainList?pageNum=${startPage+pageGroup}">Next</a>
-				    </li>
-			    </c:if>
-			  </ul>
+				<!-- 다음 페이지 그룹이 존재 -->
+					<c:if test="${pageCount > endPage}">
+						<li class="page-item">
+							<a class="page-link" href="classMainList?pageNum=${startPage+pageGroup}">Next</a>
+						</li>
+					</c:if>
+				</ul>
 			</nav>
 		</c:if>
  		</div>

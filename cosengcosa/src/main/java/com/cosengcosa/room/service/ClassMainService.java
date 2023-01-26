@@ -34,35 +34,4 @@ public interface ClassMainService {
 	
 	public abstract void classMainSubDelete(String cmCode);
 
-	
-
-	
-	
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-
-
-	
-
-
-
-	/* public abstract ClassMain getDelete(int cmNo, boolean b); */
-
-	
-
-	
 }

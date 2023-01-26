@@ -87,9 +87,7 @@ public class ClassMainController {
 		model.addAttribute("searchOption", searchOption);
 		model.addAttribute("pageNum", searchOption);
 		
-		
-		 
-		
+
 		return "/class/classMainDetail";
 	}
 	
@@ -196,6 +194,5 @@ public class ClassMainController {
 		return "redirect:classMainList";
 	}
 	
-	
-	
+
 }
