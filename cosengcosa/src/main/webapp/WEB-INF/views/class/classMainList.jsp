@@ -14,11 +14,11 @@
 			<c:if test="${searchOption }" >
 				<div class="row">
 					<div class="col-6 text-start">
-						<a href="classMainList" class="btn btn-outline-success">강의 리스트</a>
+						<a href="classMainList" class="btn btn-outline-dark">강의 리스트</a>
 					</div>
 					<div class="col-6 text-end">
 						<c:if test="${sessionScope.member.id =='admin'}">
-							<a href="classMainInsert" class="btn btn-outline-success">강의 등록</a>
+							<a href="classMainInsert" class="btn btn-dark">강의 등록</a>
 						</c:if>
 					</div>
 				</div>
@@ -28,7 +28,7 @@
 				<div class="row">
 					<div class="col text-end">
 						<c:if test="${sessionScope.member.id =='admin'}">
-							<a href="classMainInsert" class="btn btn-outline-success" >강의등록</a>
+							<a href="classMainInsert" class="btn btn-dark" >강의등록</a>
 						</c:if>
 					</div>
 				</div>
