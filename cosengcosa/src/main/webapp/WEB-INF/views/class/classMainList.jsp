@@ -72,7 +72,7 @@
 									<img src="http://img.youtube.com/vi/${c.csVideo }/mqdefault.jpg"></img>
 								</div>
 								<div class="my-3">
-									<a href="classMainDetail?cmNo=${c.cmNo }&cmCode=${c.cmCode }&pageNum=${currentPage}&type=${type}&keyword=${keyword}">${c.cmTitle }</>
+									<a href="classMainDetail?cmNo=${c.cmNo }&cmCode=${c.cmCode }&pageNum=${currentPage}&type=${type}&keyword=${keyword}">${c.cmTitle }</a>
 									<div>영상제공자 : ${c.cmName }</div>
 									<div>가격 : ${c.cmPrice }</div>
 									<div>평점 : ${c.cmStar }</div>
