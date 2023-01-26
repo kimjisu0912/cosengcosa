@@ -73,7 +73,7 @@
 	 		classmain
 	 	<where>
 			cm_yn = 'Y'
-	 		<if test="type=='cmtitle'">
+	 		<if test="type=='cmname'">
 	 			AND cm_title LIKE '%' || #{keyword} || '%'
 	 		</if>
 	 	</where>
