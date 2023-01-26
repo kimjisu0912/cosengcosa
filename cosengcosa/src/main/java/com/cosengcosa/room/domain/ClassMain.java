@@ -25,6 +25,7 @@ public class ClassMain {
 	private String cmYn;
 	private String payChk;
 	private String cmVideo;
+	private String csVideo;
 	private int num;
 	
 	// 생성자
@@ -32,7 +33,7 @@ public class ClassMain {
 	
 	public ClassMain(int cmNo, String cmCode, String cmTitle, String cmName, String cmContent,Timestamp cmSdate, Timestamp cmEdate,
 			 int cmPrice, int cmCount, int cmRecommend, int cmStar,int cmPeriod, String file1, String video, String cmYn, String  payChk,
-			 String cmVideo, int num) {
+			 String cmVideo, String csVideo, int num) {
 		this.cmNo = cmNo;
 		this.cmCode = cmCode;
 		this.cmTitle = cmTitle;
@@ -48,6 +49,7 @@ public class ClassMain {
 		this.cmYn = cmYn;
 		this.payChk = payChk;
 		this.cmVideo = cmVideo;
+		this.csVideo = csVideo;
 		this.num = num;
 	}
 	public int getCmNo() {
@@ -142,7 +144,12 @@ public class ClassMain {
 	public void setCmVideo(String cmVideo) {
 		this.cmVideo = cmVideo;
 	}
-
+	public String getCsVideo() {
+		return csVideo;
+	}
+	public void setCsVideo(String csVideo) {
+		this.csVideo = csVideo;
+	}
 	public int getNum() {
 		return num;
 	}

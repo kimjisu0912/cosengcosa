@@ -179,6 +179,9 @@ public class ClassMainController {
 		return "redirect:classMainList";
 	}
 	
+	/*
+	 * 메인강의 삭제
+	 */
 	@RequestMapping(value="/classMainDelete", method= RequestMethod.GET)
 	public String classMainDelete(HttpServletResponse response, 
 			@RequestParam(value="cmcode", required=false, defaultValue="null") String cmCode)

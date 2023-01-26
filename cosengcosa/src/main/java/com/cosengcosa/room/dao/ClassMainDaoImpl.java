@@ -105,9 +105,6 @@ public class ClassMainDaoImpl implements ClassMainDao {
 	@Override
 	public ClassMain getDetail(int cmNo, boolean isCount) {
 		
-		/*
-		 * if(isCount) { sqlSession.update(NAME_SPACE + ".incrementRoadCount", cmNo); }
-		 */
 		
 		return sqlSession.selectOne(NAME_SPACE + ".getDetail", cmNo) ;
 	}
@@ -139,6 +136,10 @@ public class ClassMainDaoImpl implements ClassMainDao {
 		return sqlSession.selectOne(NAME_SPACE + ".cmCodeCount", cmCode);
 	}
 	
+	
+	/*
+	 * 메인강의 추가시 호출되는 메소드 
+	 */
 	@Override
 	public void classMainInsert(ClassMain classMain) {
 		
@@ -146,6 +147,9 @@ public class ClassMainDaoImpl implements ClassMainDao {
 		
 	}
 	
+	/*
+	 * 메인강의 수정시 호출되는 메소드 
+	 */
 	@Override
 	public void classMainUpdate(ClassMain classMain) {
 		
@@ -164,6 +168,9 @@ public class ClassMainDaoImpl implements ClassMainDao {
 		return sqlSession.selectOne(NAME_SPACE + ".detailVideoChk", cmCode);
 	}
 
+	/*
+	 * 메인강의 삭제 요청시 확인 메소드
+	 */
 	@Override
 	public void classMainDelete(String cmCode) {
 		sqlSession.update(NAME_SPACE + ".classMainDelete", cmCode);
@@ -203,46 +210,6 @@ public class ClassMainDaoImpl implements ClassMainDao {
 
 	
 
-
-	
-
 		
-	}
-
-	
-
-
-	
-
-
-
-	
-
-
-	
-
-
-
-	
-
-	
-
-
-
-	
-
-	
-	
-	
-
-
-	
-
-	
-
-
-	
-	
-
-
+}
 

@@ -37,7 +37,7 @@ public class ClassMainServiceImpl implements ClassMainService {
 	}
 	
 	// 한페이지에 보여 줄 게ㅣ 글의 수
-	private static final int PAGE_SIZE = 10;
+	private static final int PAGE_SIZE = 8;
 	
 	// 한 페이지 페이지네이션
 	// [이전]123...8910 [다음]
