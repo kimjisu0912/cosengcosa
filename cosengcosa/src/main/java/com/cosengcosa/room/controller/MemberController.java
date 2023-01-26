@@ -52,7 +52,6 @@ public class MemberController {
 			out.println("	alert('존재하지 않는 아이디 입니다.');");
 			out.println("	history.back();");
 			out.println("</script>");
-		
 			return null;
 			
 		} else if(result == 0) {
@@ -60,9 +59,8 @@ public class MemberController {
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
 			out.println("	alert('비밀번호가 틀렸습니다.');");
-			out.println("	location.href='loginForm'");
+			out.println("	history.back();");
 			out.println("</script>");
-			
 			return null;
 		}
 		

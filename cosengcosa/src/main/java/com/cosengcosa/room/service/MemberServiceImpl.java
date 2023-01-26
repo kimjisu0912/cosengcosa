@@ -96,12 +96,6 @@ public class MemberServiceImpl implements MemberService {
 		return result;
 	}
 
-	// 회원 비밀번호 수정 메서드
-	@Override
-	public void updateMember(Member member) {
-		memberDao.updateMember(member);
-	}
-
 	// 닉네임 중복확인 메서드
 	@Override
 	public boolean overlapNickNameCheck(String nickname) {
@@ -112,6 +106,13 @@ public class MemberServiceImpl implements MemberService {
 		}
 		return true;
 	}
+	
+	// 회원정보 수정 메서드
+	@Override
+	public void updateMember(Member member) {
+		memberDao.updateMember(member);
+	}
+
 
 	// 비밀번호 변경 메서드
 	@Override
@@ -156,6 +157,46 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.findMemberId(name);
 	}
 
+	
+	// 비밀번호 찾기 메서드
+	@Override
+	public Map<String, Object> findMemberPass(String id, String email){
+		
+		Member member = memberDao.getMember(id);
+		
+		String pass = "";
+		
+		int result = -1;
+		
+		if(member == null) {
+			result = -1;
+		}
+		
+		if(member.getEmail().equals(email)) {
+			
+			for (int i = 0; i < 12; i++) {
+				pass += (char) ((Math.random() * 26) + 97);
+			}
+			member.setPass(passwordEncoder.encode(pass));;
+			// 비밀번호 변경
+			System.out.println("memberService 임시비밀번호 : " + pass);
+			memberDao.updatePass(member);
+			
+			result = 1;
+			
+		} else {
+			result = 0;
+		}
+		
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		modelMap.put("result", result);
+		modelMap.put("pass", pass);
+		
+		
+		
+		return modelMap;
+	}
+	
 	/**
 	// 이메일 발송 메서드
 	@Override
@@ -205,42 +246,4 @@ public class MemberServiceImpl implements MemberService {
 		
 	}
 	**/
-
-	@Override
-	public Map<String, Object> findMemberPass(String id, String email){
-		
-		Member member = memberDao.getMember(id);
-		
-		String pass = "";
-		
-		int result = -1;
-		
-		if(member == null) {
-			result = -1;
-		}
-		
-		if(member.getEmail().equals(email)) {
-			
-			for (int i = 0; i < 12; i++) {
-				pass += (char) ((Math.random() * 26) + 97);
-			}
-			member.setPass(passwordEncoder.encode(pass));;
-			// 비밀번호 변경
-			System.out.println("memberService 임시비밀번호 : " + pass);
-			memberDao.updatePass(member);
-			
-			result = 1;
-			
-		} else {
-			result = 0;
-		}
-		
-		Map<String, Object> modelMap = new HashMap<String, Object>();
-		modelMap.put("result", result);
-		modelMap.put("pass", pass);
-		
-		
-		
-		return modelMap;
-	}
 }

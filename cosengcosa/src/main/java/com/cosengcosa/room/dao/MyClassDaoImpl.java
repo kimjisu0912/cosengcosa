@@ -30,7 +30,7 @@ public class MyClassDaoImpl implements MyClassDao {
 	
 	private final String NAME_SPACE = "com.cosengcosa.room.mapper.MyClassMapper";
 	
-	// 메인 결제강의 추가 함수
+	// 메인 결제강의 추가
 	@Override
 	public void insertMyClassMain(String id, ClassMain classMain) {
 		
@@ -46,7 +46,7 @@ public class MyClassDaoImpl implements MyClassDao {
 		sqlSession.insert(NAME_SPACE + ".insertMyClassMain", params);
 	}
 	
-	// 서브 결제강의 추가 함수
+	// 서브 결제강의 추가 
 	@Override
 	public void insertMyClassSub(String id, int period, ClassSub classSub) {
 		
@@ -63,7 +63,7 @@ public class MyClassDaoImpl implements MyClassDao {
 		sqlSession.insert(NAME_SPACE + ".insertMyClassSub", params);
 	}
 	
-	// 메인강의 조회 처리함수
+	// 메인강의 조회 처리
 	@Override
 	public List<MyClassMain> getMyClassMain(String id, String keyword, String done) {
 		
@@ -75,7 +75,8 @@ public class MyClassDaoImpl implements MyClassDao {
 		System.out.println("order : " + done);
 		return sqlSession.selectList(NAME_SPACE + ".getMyClassMain", params);
 	}
-	// 서브강의 조회 처리함수
+	
+	// 서브강의 조회 처리
 	@Override
 	public List<MyClassSub> getMyClassSub(String id, String mymCode) {
 		
@@ -86,31 +87,13 @@ public class MyClassDaoImpl implements MyClassDao {
 		return sqlSession.selectList(NAME_SPACE + ".getMyClassSub", params);
 	}
 	
-	// 과목별 수강 강의수 카운트 함수
+	// 과목별 수강 강의수 조회
 	@Override
 	public SubTitle getSubCount(String id) {
 		return sqlSession.selectOne(NAME_SPACE + ".getSubCount", id);
 	}
 	
-	// 결제내역 리스트 조회 함수
-	@Override
-	public List<Pay> getPayList(String id, int startRow, int endRow) {
-		
-		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("id", id);
-		params.put("startRow", startRow);
-		params.put("endRow", endRow);
-		return sqlSession.selectList(NAME_SPACE + ".getPayList", params);
-	}
-	
-	// 결제내역 리스트 수 조회 함수
-	@Override
-	public int getPayListCount(String id) {
-		
-		return sqlSession.selectOne(NAME_SPACE + ".getPayListCount", id);
-	}
-	
-	// 수강강의 총 개수 카운트 함수
+	// 수강강의 총 개수 조회
 	@Override
 	public int getMyClassMainTotal(String id, String keyword) {
 		
@@ -121,6 +104,8 @@ public class MyClassDaoImpl implements MyClassDao {
 		return sqlSession.selectOne(NAME_SPACE + ".getMyClassMainTotal", params);
 	}
 	
+	
+	// 날짜별 수강완료 강의 수 조회
 	@Override
 	public List<HeatData> getDoneCount(String start, String end, String id) {
 		
@@ -133,7 +118,20 @@ public class MyClassDaoImpl implements MyClassDao {
 		return sqlSession.selectList(NAME_SPACE + ".getDoneCount", params);
 	}
 	
-	// 강의 시청시간 업데이트 함수
+	// 가장 최근 수강한 강의 조회 
+	@Override
+	public MyClassSub getRecentClass(String id) {
+		return sqlSession.selectOne(NAME_SPACE + ".getRecentClass", id);
+	}
+	
+	// 수강완료한 강의 조회 
+	@Override
+	public List<MyClassSub> getDoneClass(String id) {
+		return sqlSession.selectList(NAME_SPACE + ".getDoneClass", id);
+	}
+	
+	
+	// 강의 시청시간 업데이트 
 	@Override
 	public void updateWatchTime(String id, String hCode, String wTime) {
 		
@@ -146,7 +144,7 @@ public class MyClassDaoImpl implements MyClassDao {
 		
 	}
 	
-	// 강의 시청시간 업데이트 및 수강완료 처리 함수
+	// 강의 시청시간 업데이트 및 수강완료 처리
 	@Override
 	public void updateDone(String id, String hCode, String wTime) {
 		
@@ -158,7 +156,7 @@ public class MyClassDaoImpl implements MyClassDao {
 		sqlSession.update(NAME_SPACE + ".updateDone", params);
 		
 	}
-	// 강의 런타임 조회 함수
+	// 강의 런타임 조회 
 	@Override
 	public String getRunTime(String id, String hCode) {
 		
@@ -169,19 +167,25 @@ public class MyClassDaoImpl implements MyClassDao {
 		return sqlSession.selectOne(NAME_SPACE + ".getRunTime", params);
 	}
 	
-	// 가장 최근 수강한 강의 조회 함수
+	// 결제내역 리스트 조회 
 	@Override
-	public MyClassSub getRecentClass(String id) {
-		return sqlSession.selectOne(NAME_SPACE + ".getRecentClass", id);
+	public List<Pay> getPayList(String id, int startRow, int endRow) {
+		
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("id", id);
+		params.put("startRow", startRow);
+		params.put("endRow", endRow);
+		return sqlSession.selectList(NAME_SPACE + ".getPayList", params);
 	}
-	
-	// 수강완료한 강의 조회 함수
+
+	// 결제내역 리스트 수 조회
 	@Override
-	public List<MyClassSub> getDoneClass(String id) {
-		return sqlSession.selectList(NAME_SPACE + ".getDoneClass", id);
+	public int getPayListCount(String id) {
+		
+		return sqlSession.selectOne(NAME_SPACE + ".getPayListCount", id);
 	}
-	
-	// 장바구니 리스트 조회 함수
+
+	// 장바구니 리스트 조회
 	@Override
 	public List<Basket> getBasketList(String id, int startRow, int endRow) {
 		Map<String, Object> params = new HashMap<String, Object>();
@@ -191,7 +195,7 @@ public class MyClassDaoImpl implements MyClassDao {
 		return sqlSession.selectList(NAME_SPACE + ".getBasketList", params);
 	}
 	
-	// 장바구니 리스트 수 조회 함수
+	// 장바구니 리스트 수 조회 
 	@Override
 	public int getBasketListCount(String id) {
 
