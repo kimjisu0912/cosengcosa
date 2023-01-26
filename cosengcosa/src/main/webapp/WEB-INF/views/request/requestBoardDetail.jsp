@@ -3,8 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!-- content -->
-<div class="row my-5" id="global-content">
-	<div class="col">
+<div class="row my-5 justify-content-center" id="global-content">
+	<div class="col-auto"></div>
+	<div class="col-8">
 		<form name="checkForm" id="checkForm">
 			<input type="hidden" name="no" id="no" value="${ board.no }"/>
 			<input type="hidden" name="grant" id="grant" value="${ member.grant }" />
@@ -92,5 +93,6 @@
 		</div>
 		
 	</div>	
+	<div class="col-auto"></div>
 </div>
 <script src="resources/js/boardCheck.js"></script>

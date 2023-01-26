@@ -61,11 +61,11 @@
 			
 			
 			<!-- 댓글 -->
-			<table>
-			<tr>
-				<td colspan="4" class="replyHeader">
+			<div>
+			<div>
+				<div colspan="4" class="replyHeader">
 				<div id="recommend">
-					<span id="replyWrite">
+					<span id="replyWrite" class="fs-5 fw-bold">
 						&nbsp;댓글쓰기
 					</span>	
 					
@@ -74,50 +74,50 @@
 							<input type="hidden" name="saNum" id="saNum" value="${ study.sNo }"/>
 							<input type="hidden" name="saAnswerid" id="saAnswerid"
 								value="${ member.id }" />			
-							<table id="replyWriteTable">
-								<tr>
-									<td id="replyWriteTitle" colspan="2">
+							<div id="replyWriteTable">
+								<div>
+									<div id="replyWriteTitle" colspan="2">
 										<span>악의적인 댓글은 예고 없이 삭제될 수 있으며 글쓰기 제한과 아이디 삭제 처리됩니다.</span>
-									</td>
-								</tr>
-								<tr>
-									<td id="replyWriteContent">
+									</div>
+								</div>
+								<div class="row">
+									<div id="replyWriteContent" class="col">
 										<textarea name="saAnswer" id="saAnswer" rows="4" cols="65"></textarea>
-									</td>
-									<td id="replyWriteImage">						
+									</div>
+									<div id="replyWriteImage" class=" col-auto">						
 										<input type="button" class="btn btn-info"
 											id="replyWriteButton" value="댓글입력" />
-									</td>
-									<td id="replyUpdateImage">						
+									</div>
+									<div id="replyUpdateImage" class="col-auto">						
 										<input type="submit" class="btn btn-info"
 											id="replyUpdateButton" value="댓글수정" 0/>
-									</td>
-								</tr>
-							</table>
+									</div>
+								</div>
+							</div>
 						</form>	
 					</div>	
 			
 			
 				</div>
-				<div id="replyTitle"><h3>댓글</h3></div>
-				</td>
-			</tr>
+				<div id="replyTitle"><span class="fw-bold fs-4">댓글</span></div>
+				</div>
+			</div>
 			<c:if test="${ empty answerList }" >
-			<tr id="replyList">
-				<td colspan="4">
+			<div id="replyList">
+				<div colspan="4">
 				<div id="notReply">
 					이 게시 글에 대한 댓글이 존재하지 않습니다.  
 				</div>			
-				</td>
-			</tr>
+				</div>
+			</div>
 			</c:if>
 			<c:if test="${ not empty answerList }" >
-			<tr id="replyList">
-				<td colspan="4">		
-				<table id="replyTable">
+			<div id="replyList">
+				<div colspan="4">		
+				<div id="replyTable">
 					<c:forEach var="answer" items="${ answerList }" >
-					<tr id="reply_${ answer.saNo }">
-						<td>									
+					<div id="reply_${ answer.saNo }">
+						<div>									
 						<div class="replyUser">						
 							<span class="member">${ answer.saWriter  }</span>	
 						</div>
@@ -135,14 +135,14 @@
 						<div class="replyContent" id="div_${ answer.saNo }">
 							<pre><span>${ answer.saAnswer }</span></pre>
 						</div>
-						</td>
-					</tr>	
+						</div>
+					</div>	
 					</c:forEach>
-				</table>				
-				</td>
-			</tr>	
+				</div>				
+				</div>
+			</div>	
 			</c:if>
-			</table>	
+			</div>	
 			
 			
 			
