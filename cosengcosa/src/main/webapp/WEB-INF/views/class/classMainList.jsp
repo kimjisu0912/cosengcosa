@@ -67,7 +67,7 @@
 				<c:forEach var="c" items="${classMainList }" varStatus="status">
 					<div class="col-md-4 col-lg-3 order-md-last ">
 						<div class="card shadow-sm m-2">
-							<div class="card-body">
+							<div class="card-body" style="weight:150px; height:450px;">
 								<div class="row">
 									<img src="http://img.youtube.com/vi/${c.csVideo }/mqdefault.jpg"></img>
 								</div>
@@ -88,7 +88,7 @@
 				<c:forEach var="c" items="${classMainList }" varStatus="status">
 					<div class="col-md-4 col-lg-3 order-md-last ">
 						<div class="card shadow-sm m-2">
-							<div class="card-body">
+							<div class="card-body" style="weight:150px; height:320px;">
 								<div class="row">
 									<img src="http://img.youtube.com/vi/${c.csVideo }/mqdefault.jpg"></img>
 								</div>
