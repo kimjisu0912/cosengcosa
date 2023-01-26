@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cosengcosa.room.dao.ClassMainDao;
+import com.cosengcosa.room.dao.RecommendDao;
 import com.cosengcosa.room.domain.ClassMain;
 
 
@@ -26,6 +27,10 @@ public class ClassMainServiceImpl implements ClassMainService {
 	// 메인강의DAO 생성자 생성
 	@Autowired
 	private ClassMainDao classMainDao;
+	
+	// 추천이력DAO 생성자 생성
+	@Autowired
+	private RecommendDao recommendDao;
 	
 	public void setClassMainDao(ClassMainDao classMainDao) {
 		this.classMainDao = classMainDao;
@@ -101,7 +106,7 @@ public class ClassMainServiceImpl implements ClassMainService {
 	public Map<String, Object> getDetail(int cmNo, boolean isCount, String cmCode, String userid) {
 		String baChk = "N";
 		String payChk = "";
-		
+		String rcdChk = "";
 		Map<String, Object> modelMap = new HashMap<String, Object>();
 		// 비로그인시도 상세화면 허용
 		ClassMain classMain = classMainDao.getDetail(cmNo, isCount);
@@ -155,13 +160,23 @@ public class ClassMainServiceImpl implements ClassMainService {
 				// 3. 결재상태 값 확인 (Y인지 N인지)
 				ClassMain cm = classMainDao.payChk(cmCode, userid);
 				payChk = cm.getPayChk();
+			} // end 결제 관련
+			
+			
+			// 4. 추천이력 조회
+			int rcdNum = recommendDao.recommendCount(cmCode, userid);
+			if(rcdNum > 0) {
+				rcdChk = "Y";
+			}else {
+				rcdChk = "N";
 			}
-		}
-		
+
+		} // end 로그인 관련 
 		
 		modelMap.put("classMain", classMain);
 		modelMap.put("baChk", baChk);
 		modelMap.put("payChk", payChk);
+		modelMap.put("rcdChk", rcdChk);
 		modelMap.put("cmVideo", cmVideo);
 		
 		return modelMap;

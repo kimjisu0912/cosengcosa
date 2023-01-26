@@ -66,7 +66,12 @@
 								</div>
 								<div class="button-group-center">
 									<a type="button" class="btn btn-link" id="recommend1">
-										<i class="bi bi-heart" id="biHeart1"></i>
+										<c:if test="${rcdChk == 'Y' }">
+											<i class="bi bi-suit-heart-fill" id="biHeart1"></i>
+										</c:if>
+										<c:if test="${rcdChk == 'N' }">
+											<i class="bi bi-heart" id="biHeart1"></i>
+										</c:if>
 									 </a>
 									<a type="button" class="btn btn-default bi bi-share" id="data-copy1"><span class="glyphicon glyphicon-share-alt"></span></a>
 								</div>
@@ -101,7 +106,14 @@
 									</c:if>
 								</div>
 								<div class="button-group-center">
-									<a type="button" class="btn btn-link" id="recommend2"><i class="bi bi-heart" id="biHeart2"></i> </a>
+									<a type="button" class="btn btn-link" id="recommend2">
+										<c:if test="${rcdChk == 'Y' }">
+											<i class="bi bi-suit-heart-fill" id="biHeart2"></i>
+										</c:if>
+										<c:if test="${rcdChk == 'N' }">
+											<i class="bi bi-heart" id="biHeart2"></i>
+										</c:if>
+									</a>
 									<a type="button" class="btn btn-default bi bi-share" id="data-copy2"><span class="glyphicon glyphicon-share-alt"></span></a>
 								</div>
 							</div>
