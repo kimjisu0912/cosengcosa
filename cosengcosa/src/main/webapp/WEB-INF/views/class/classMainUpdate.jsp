@@ -51,8 +51,8 @@
 					</div>
 				</div>
 				<div class="col-10 d-md-flex justify-content-md-start">
-		   			<input type="submit" class=" btn btn-outline-success m-2" value="수정">
-		   		</div>
+					<input type="submit" class=" btn btn-outline-success m-2" value="수정">
+				</div>
 			</div>
 			</form>
 		</div>
