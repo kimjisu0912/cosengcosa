@@ -12,7 +12,6 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cosengcosa.room.domain.Study;
@@ -54,13 +52,16 @@ public class StudyController {
 			@RequestParam(value="type", required=false, defaultValue="null") String type,
 			@RequestParam(value="keyword", required=false, defaultValue="null") String keyword) {
 		
+		// 지식공유 리스트 Map에 담기
 		Map<String, Object> modelMap = 
 				studyService.studyList(pageNum, type, keyword);
 		
+		// 보내기
 		model.addAllAttributes(modelMap);
 		
 		return "/study/studyList";
 	}
+	
 	// 상세 페이지 
 	@RequestMapping("/studyDetail")
 	public String studyDetail(Model model, int no, 
@@ -71,13 +72,17 @@ public class StudyController {
 			@RequestParam(value="keyword", required=false,
 					defaultValue="null") String keyword) throws Exception {
 		
+		// 검색인 경우
 		boolean searchOption = (type.equals("null") 
 				|| keyword.equals("null")) ? false : true; 		
 		
+		// 답변리스트 데이터 가져오기
 		List<StudyAnswer> answerList = studyService.answerList(no);
 		
+		// 지식공유 데이터 가져오기
 		Study study = studyService.getStudy(no, true);
 		
+		// 모델에 저장
 		model.addAttribute("study", study);
 		model.addAttribute("answerList", answerList);
 		model.addAttribute("pageNum", pageNum);
@@ -89,6 +94,7 @@ public class StudyController {
 			model.addAttribute("keyword", keyword);
 		}
 		
+		// 파일이 있는 경우 모델에 저장
 		if(study.getsFile() != null) {
 			model.addAttribute("fileName", 
 				URLEncoder.encode(study.getsFile(), "utf-8"));
@@ -114,13 +120,12 @@ public class StudyController {
 			) 
 					throws IOException {		
 		
-		System.out.println("originName : " + multipartFile.getOriginalFilename());
-		System.out.println("name : " + multipartFile.getName());	
-		
+		// 기본값 지정
 		sOpen = "Y"; 
 		sClear = "Y"; 
 		sYn = "Y"; 
 		
+		// 데이터 저장
 		Study study= new Study();
 		study.setsTitle(sTitle);
 		study.setsError(sError);
@@ -130,6 +135,7 @@ public class StudyController {
 		study.setsClear(sClear);
 		study.setsYn(sYn);
 		
+		// 파일이 존재하면 저장
 		if(!multipartFile.isEmpty()) { // 업로드된 파일 데이터가 존재하면
 			
 			// Request 객체를 이용해 파일이 저장될 실제 경로를 구한다.
@@ -141,7 +147,6 @@ public class StudyController {
 					uid.toString() + "_" + multipartFile.getOriginalFilename();
 			
 			File file = new File(filePath, saveName);
-			System.out.println("insertStudy - newName : " + file.getName());			
 			
 			// 업로드 되는 파일을 upload 폴더로 저장한다.
 			multipartFile.transferTo(file);
@@ -160,7 +165,6 @@ public class StudyController {
 					uid.toString() + "_" + multipartFile2.getOriginalFilename();
 			
 			File file = new File(filePath, saveName);
-			System.out.println("insertStudy - newName : " + file.getName());			
 			
 			// 업로드 되는 파일을 upload 폴더로 저장한다.
 			multipartFile2.transferTo(file);
@@ -168,6 +172,7 @@ public class StudyController {
 			study.setsFile(saveName);
 		}
 		
+		// 서비스의 등록으로 보내기
 		studyService.insertStudy(study);
 				
 		
@@ -192,14 +197,18 @@ public class StudyController {
 			@RequestParam(value="sFile", required=false,
 			defaultValue="null") String sFile) throws Exception {
 		
+		// 검색인 경우
 		boolean searchOption = (type.equals("null") 
 				|| keyword.equals("null")) ? false : true; 
 		
+		// 지식공유 데이터 가져오기
 		Study study = studyService.getStudy(sno, false);
 		
+		// 데이터 저장
 		study.setsAskimg(sAskimg);
 		study.setsFile(sFile);
 		
+		// 모델에 저장
 		model.addAttribute("study", study);
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("searchOption", searchOption);
@@ -228,15 +237,13 @@ public class StudyController {
 			@RequestParam(value="qImg", required=false) MultipartFile multipartFile,
 			@RequestParam(value="qFile", required=false) MultipartFile multipartFile2) throws IOException {		
 		
-		// BoardService 클래스를 이용해 게시판 테이블에서 비밀번호가 맞는지 체크한다. 
 		
-		// 비밀번호가 맞지 않으면
-		
-		
+		// 검색인 경우
 		boolean searchOption = (type.equals("null") 
 				|| keyword.equals("null")) ? false : true; 
 		
-		if(!multipartFile.isEmpty()) { // 업로드된 파일 데이터가 존재하면
+		// 업로드된 파일 데이터가 존재하면
+		if(!multipartFile.isEmpty()) { 
 			
 			// Request 객체를 이용해 파일이 저장될 실제 경로를 구한다.
 			String filePath = 
@@ -247,7 +254,6 @@ public class StudyController {
 					uid.toString() + "_" + multipartFile.getOriginalFilename();
 			
 			File file = new File(filePath, saveName);
-			System.out.println("insertStudy - newName : " + file.getName());			
 			
 			// 업로드 되는 파일을 upload 폴더로 저장한다.
 			multipartFile.transferTo(file);
@@ -266,7 +272,6 @@ public class StudyController {
 					uid.toString() + "_" + multipartFile2.getOriginalFilename();
 			
 			File file = new File(filePath, saveName);
-			System.out.println("insertStudy - newName : " + file.getName());			
 			
 			// 업로드 되는 파일을 upload 폴더로 저장한다.
 			multipartFile2.transferTo(file);
@@ -274,7 +279,7 @@ public class StudyController {
 			study.setsFile(saveName);
 		}
 		
-		// BoardService 클래스를 이용해 게시판 테이블에서 게시 글을 수정한다.
+		// StudyService 클래스를 이용해 게시판 테이블에서 게시 글을 수정한다.
 		studyService.updateStudy(study);
 		
 		
@@ -288,7 +293,6 @@ public class StudyController {
 		}
 		
 		reAttrs.addAttribute("pageNum", pageNum);		
-		//reAttrs.addFlashAttribute("test", "1회용 파라미터 받음 - test");
 		return "redirect:studyList";
 	}
 	
@@ -306,19 +310,15 @@ public class StudyController {
 			@RequestParam(value="keyword", required=false,
 				defaultValue="null") String keyword) throws Exception {
 		
-		// BoardService 클래스를 이용해 게시판 테이블에서 비밀번호가 맞는지 체크한다. 
-		System.out.println(sno+ "asdasdsad");
-		// 비밀번호가 맞지 않으면
-		
+		// 검색인 경우
 		boolean searchOption = (type.equals("null") 
 				|| keyword.equals("null")) ? false : true; 
 		
 		
-		// BoardService 클래스를 이용해 게시판 테이블에서 게시 글을 수정한다.
-		
+		// 답변 먼저 삭제
 		studyService.deleteReplyNum(sno);
 		
-		
+		// 게시글삭제
 		studyService.deleteStudy(sno);
 		
 		
@@ -326,32 +326,12 @@ public class StudyController {
 		
 		// 검색 요청이면 type과 keyword를 모델에 저장한다.
 		if(searchOption) {
-			
-			/* Redirect 되는 경우 주소 끝에 파라미터를 지정해 GET방식의 파라미터로
-			 * 전송할 수 있지만 스프링프레임워크가 지원하는 RedirectAttributs객체를
-			 * 이용하면 한 번만 사용할 임시 데이터와 지속적으로 사용할 파라미터를 구분해
-			 * 지정할 수 있다.
-			 * 
-			 * 게시 글 상세 보기 요청을 처리하는 boardDetail() 메서드에서 뷰 페이지에서
-			 * 링크에 사용할 keyword를 java.net 패키지의 URLEncoder 클래스를
-			 * 이용해 수동으로 인코딩한 후 모델에 담아 뷰 페이지로 전달하였다.
-			 * 
-			 * 리다이렉트 될 때 필요한 파라미터를 스프링이 제공하는 RedirectAttributs의
-			 * addAttribute() 메서드를 사용해 파라미터를 지정하면 자동으로 주소 뒤에 
-			 * 요청 파라미터로 추가되며 파라미터에 한글이 포함되는 경우 URLEncoding을
-			 * java.net 패키지의 URLEncoder 클래스를 이용해 인코딩 해줘야 하지만
-			 * web.xml에서 스프링프레임워크가 지원하는 CharacterEncodingFilter를
-			 * 설정했기 때문에 Filter에 의해 UTF-8로 인코딩 되어 클라이언트로 응답된다.
-			 * 
-			 * 아래는 검색 리스트로 Redirect 되면서 같이 보내야할 keyword와 type을
-			 * RedirectAttributs를 이용해 파라미터로 전달하는 예이다. 
-			 **/			
+						
 			reAttrs.addAttribute("type", type);
 			reAttrs.addAttribute("keyword", keyword);			
 		}
 		
 		reAttrs.addAttribute("pageNum", pageNum);
-		//reAttrs.addFlashAttribute("test", "1회용 파라미터 받음 - test");
 		return "redirect:studyList";
 	}
 	
@@ -362,13 +342,11 @@ public class StudyController {
 			HttpServletResponse response) throws Exception {
 
 		String fileName = request.getParameter("fileName");
-		System.out.println("fileName : " + fileName);		
 		
 		String filePath = 
 				request.getServletContext().getRealPath(DEFAULT_PATH);
 		
 		File file = new File(filePath, fileName);
-		System.out.println("file.getName() : " + file.getName());
 		
 		// 응답 데이터에 파일 다운로드 관련 컨텐츠 타입 설정이 필요하다.
 		response.setContentType("application/download; charset=UTF-8");
@@ -376,7 +354,6 @@ public class StudyController {
 		
 		// 한글 파일명을 클라이언트로 바로 내려 보내기 때문에 URLEncoding이 필요하다. 		
 		fileName = URLEncoder.encode(file.getName(), "UTF-8");
-		System.out.println("다운로드 fileName : " + fileName);
 		
 		// 전송되는 파일 이름을 한글 그대(원본파일 이름 그대로)로 보내주기 위한 설정이다.
 		response.setHeader("Content-Disposition", 

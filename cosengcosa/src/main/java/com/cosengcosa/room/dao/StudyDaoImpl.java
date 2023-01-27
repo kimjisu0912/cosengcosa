@@ -27,7 +27,8 @@ public class StudyDaoImpl implements StudyDao {
 	public void setSqlSession(SqlSessionTemplate sqlSession) {
 		this.sqlSession = sqlSession;
 		}
-
+	
+	// 지식공유 리스트
 	@Override
 	public List<Study> studyList(int startRow, int endRow, int num, String type, String keyword) {
 		
@@ -42,6 +43,8 @@ public class StudyDaoImpl implements StudyDao {
 		
 		return sqlSession.selectList(NAME_SPACE + ".studyList", param);
 	}
+	
+	// 번호에 맞는 리스트 값
 	@Override
 	public Study getStudy(int no, boolean isCount) {
 		
@@ -54,6 +57,7 @@ public class StudyDaoImpl implements StudyDao {
 		return sqlSession.selectOne(NAME_SPACE + ".getStudy", no);
 	}
 	
+	// 총 개수
 	@Override
 	public int getStudyCount(String type, String keyword) {
 		
@@ -63,55 +67,63 @@ public class StudyDaoImpl implements StudyDao {
 		
 		return sqlSession.selectOne(NAME_SPACE + ".getStudyCount", params);
 	}
-
+	
+	// 등록
 	@Override
 	public void insertStudy(Study study) {
 		sqlSession.insert(NAME_SPACE + ".insertStudy", study);
 	}
 
+	// 수정
 	@Override
 	public void updateStudy(Study study) {
 		sqlSession.update(NAME_SPACE + ".updateStudy", study);		
 	}
 
+	// 삭제
 	@Override
 	public void deleteStudy(int sno) {
 		sqlSession.delete(NAME_SPACE + ".deleteStudy", sno);		
 	}
 
+	// 답변 리스트
 	@Override
 	public List<StudyAnswer> answerList(int no) {
 		return sqlSession.selectList(NAME_SPACE + ".answerList", no);
 	}
 
+	// 추천수 
 	@Override
 	public void updateRecommend(int no) {
 		
-		
 		sqlSession.update(NAME_SPACE + ".updateRecommend", no);
-		
 	}
 
+	// 추천수
 	@Override
 	public Study getRecommend(int no) {
 		return sqlSession.selectOne(NAME_SPACE + ".getRecommend", no);
 	}
 
+	// 답변 등록
 	@Override
 	public void addReply(StudyAnswer answer) {
 		sqlSession.insert(NAME_SPACE + ".addAnswer", answer);		
 	}
-
+	
+	// 답변 수정
 	@Override
 	public void updateReply(StudyAnswer answer) {
 		sqlSession.update(NAME_SPACE + ".updateAnswer", answer);		
 	}
 
+	// 답변 삭제
 	@Override
 	public void deleteReply(int no) {
 		sqlSession.delete(NAME_SPACE + ".deleteAnswer", no);		
 	}
 
+	// 게시글에 전체 답변 삭제
 	@Override
 	public void deleteReplyNum(int no) {
 		sqlSession.delete(NAME_SPACE + ".deleteAnswerNum", no);		

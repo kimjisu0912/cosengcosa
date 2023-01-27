@@ -6,10 +6,10 @@
 	
 	<select id="freeBoardList" resultType="FreeBoard" parameterType="hashmap">
 				    SELECT
-					    num, fNo,fTitle, fContent,fWriter,fYn,fCdate
+					    num, fNo,fTitle, fContent,fWriter,fYn,fCdate,fCount,fRecommend
 					FROM    
 					    (SELECT
-					        ROWNUM num, fNo,fTitle, fContent,fWriter,fYn,fCdate
+					        ROWNUM num, fNo,fTitle, fContent,fWriter,fYn,fCdate,fCount,fRecommend
 					    FROM 
 					        (SELECT
 					           f_no AS fNo,
@@ -17,11 +17,15 @@
 				                f_content AS fContent,
 				                f_writer AS fWriter,
 				                f_yn AS fYn,
-				                f_cdate As fCdate
+				                f_cdate As fCdate,
+				                f_count AS fCount,
+				                f_recommend AS fRecommend
 					        FROM
 				                freeBoard
 							WHERE
-				            f_yn = 'Y'
+				            	f_yn = 'Y'
+				            ORDER BY
+                                f_no DESC
 				        ) freeBoard
 			    	<where>
 						<if test="type == 'title'">
@@ -64,9 +68,9 @@
 	<!-- sAskimg -->
 	<insert id="insertFreeBoard" parameterType="FreeBoard"
 		useGeneratedKeys="false" keyProperty="fNo">
-		INSERT INTO freeBoard (f_no,f_title, f_content,f_writer,f_yn,f_cdate) 
+		INSERT INTO freeBoard (f_no,f_title, f_content,f_writer,f_yn,f_cdate, f_count, f_recommend) 
 		
-		VALUES(freeBoard_seq.NEXTVAL, #{fTitle}, #{fContent}, #{fWriter}, #{fYn}, SYSDATE)
+		VALUES(freeBoard_seq.NEXTVAL, #{fTitle}, #{fContent}, #{fWriter}, #{fYn}, SYSDATE, #{fCount}, #{fRecommend})
 				
 	</insert>
 	
@@ -84,7 +88,7 @@
 	</update>
 	
 	<delete id="deleteFreeBoard">
-		DELETE FROM freeBoard
+		DELETE FROM freeboard
 		WHERE f_no = #{fNo}
 	</delete>
 	

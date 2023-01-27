@@ -6,11 +6,11 @@
 	
 	<select id="boardList" resultType="RequestBoard" parameterType="hashmap">
 		    SELECT
-			    num, no, code, title, content, writer, answer, open, cdate, yn
+			    num, no, code, title, content, writer, answer, rCount,open, cdate, yn
 			FROM    
 			    (
 				    SELECT
-				       ROWNUM num, no, code, title, content, writer, answer, open, cdate, yn
+				       ROWNUM num, no, code, title, content, writer, answer, rCount,open, cdate, yn
 				    FROM 
 				        (
 				            SELECT
@@ -20,6 +20,7 @@
 				                r_content AS content,
 				                r_writer AS writer, 
 				                r_answer AS answer,
+				                r_count AS rCount,
 				                r_open AS open,
 				                r_cdate AS cdate,
 				                r_yn AS yn

@@ -39,7 +39,7 @@
 							<td>${ board.writer }</td>
 							<th>작성일</th>
 							<td><fmt:formatDate value="${ board.cdate }" 
-								pattern="yyyy-MM-dd HH:mm:ss" /></td>
+								pattern="yyyy-MM-dd" /></td>
 							<th>문의 유형</th>		
 							<td>${ board.code }</td>
 							<th>조회수</th>		
@@ -47,7 +47,7 @@
 						</tr>
 						<tr>		
 							<td colspan="8">
-								<div style="height: 500px;"><pre>${ board.content }</pre></div>
+								<div style="height: 500px;"><pre class="text-wrap">${ board.content }</pre></div>
 							</td>
 						</tr>	
 					</tbody>

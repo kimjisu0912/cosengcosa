@@ -99,12 +99,14 @@ public class FreeBoardController {
 		@RequestMapping(value="/writeProcessFreeBoard", method=RequestMethod.POST)
 		public String insertFreeBoard(
 				HttpServletRequest request,
-				String fTitle, String fWriter, String fContent, String fYn
+				String fTitle, String fWriter, String fContent, String fYn, String fCount, String fRecommend
 				// @RequestParam(value="qimg", required=false) MultipartFile multipartFile,
 				// @RequestParam(value="sFile", required=false) MultipartFile multipartFile2
 				) 
-						throws IOException {		
+						throws IOException {
 			
+			fRecommend = "0";
+			fCount = "0";
 			fYn = "Y"; 
 			
 			FreeBoard freeBoard= new FreeBoard();
@@ -112,6 +114,8 @@ public class FreeBoardController {
 			freeBoard.setfContent(fContent);
 			freeBoard.setfWriter(fWriter);
 			freeBoard.setfYn(fYn);
+			freeBoard.setfCount(fCount);
+			freeBoard.setfRecommend(fRecommend);
 			
 			/*
 			if(!multipartFile.isEmpty()) { // 업로드된 파일 데이터가 존재하면
@@ -247,7 +251,7 @@ public class FreeBoardController {
 		public String deleteFreeBoard(HttpServletResponse response, 
 				PrintWriter out,  String pass,
 				RedirectAttributes reAttrs,
-				@RequestParam(value="fno", required=false, 
+				@RequestParam(value="fNo", required=false, 
 				defaultValue="1") int fno,
 				@RequestParam(value="pageNum", required=false, 
 					defaultValue="1") int pageNum,
@@ -266,30 +270,12 @@ public class FreeBoardController {
 			// BoardService 클래스를 이용해 게시판 테이블에서 게시 글을 수정한다.
 			freeBoardService.deleteFreeBoard(fno);
 			
+			
 			reAttrs.addAttribute("searchOption", searchOption);
 			
 			// 검색 요청이면 type과 keyword를 모델에 저장한다.
 			if(searchOption) {
-				
-				/* Redirect 되는 경우 주소 끝에 파라미터를 지정해 GET방식의 파라미터로
-				 * 전송할 수 있지만 스프링프레임워크가 지원하는 RedirectAttributs객체를
-				 * 이용하면 한 번만 사용할 임시 데이터와 지속적으로 사용할 파라미터를 구분해
-				 * 지정할 수 있다.
-				 * 
-				 * 게시 글 상세 보기 요청을 처리하는 boardDetail() 메서드에서 뷰 페이지에서
-				 * 링크에 사용할 keyword를 java.net 패키지의 URLEncoder 클래스를
-				 * 이용해 수동으로 인코딩한 후 모델에 담아 뷰 페이지로 전달하였다.
-				 * 
-				 * 리다이렉트 될 때 필요한 파라미터를 스프링이 제공하는 RedirectAttributs의
-				 * addAttribute() 메서드를 사용해 파라미터를 지정하면 자동으로 주소 뒤에 
-				 * 요청 파라미터로 추가되며 파라미터에 한글이 포함되는 경우 URLEncoding을
-				 * java.net 패키지의 URLEncoder 클래스를 이용해 인코딩 해줘야 하지만
-				 * web.xml에서 스프링프레임워크가 지원하는 CharacterEncodingFilter를
-				 * 설정했기 때문에 Filter에 의해 UTF-8로 인코딩 되어 클라이언트로 응답된다.
-				 * 
-				 * 아래는 검색 리스트로 Redirect 되면서 같이 보내야할 keyword와 type을
-				 * RedirectAttributs를 이용해 파라미터로 전달하는 예이다. 
-				 **/			
+						
 				reAttrs.addAttribute("type", type);
 				reAttrs.addAttribute("keyword", keyword);			
 			}
