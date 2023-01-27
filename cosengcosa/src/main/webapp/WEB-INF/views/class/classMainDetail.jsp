@@ -58,7 +58,7 @@
 						<div class="row">
 							<div>
 								<strong class="my-0"><h2><fmt:formatNumber type="number" maxFractionDigits="3" value="${classMain.cmPrice }"/>원</h2></strong>
-								<p class="text-muted fs-4"><fmt:formatNumber type="number" maxFractionDigits="3" value="${classMain.cmPrice/5 }"/>원/ ${classMain.cmPeriod}개월</p>
+								<p class="text-muted fs-4"><fmt:formatNumber type="number" maxFractionDigits="3" value="${classMain.cmPrice / classMain.cmPeriod}"/>원/ 1 개월</p>
 							</div>
 							<div class="d-grid gap-3">
 								<a class="btn btn-outline-success" type="button" href="classSubList?cmcode=${classMain.cmCode }">수강하기</a>
@@ -97,7 +97,7 @@
 						<div class="row">
 							<div>
 								<strong class="my-0"><h2><fmt:formatNumber type="number" maxFractionDigits="3" value="${classMain.cmPrice }"/>원</h2></strong>
-								<p class="text-muted fs-4"><fmt:formatNumber type="number" maxFractionDigits="3" value="${classMain.cmPrice /5}"/>원/ ${classMain.cmPeriod}개월</p>
+								<p class="text-muted fs-4"><fmt:formatNumber type="number" maxFractionDigits="3" value="${classMain.cmPrice / classMain.cmPeriod}"/>원/ 1 개월</p>
 							</div>
 							<div class="d-grid gap-3">
 								<a class="btn btn-outline-success bg-opacity-50" type="button" href="payAddForm?cmcode=${classMain.cmCode }">결재하기</a>
