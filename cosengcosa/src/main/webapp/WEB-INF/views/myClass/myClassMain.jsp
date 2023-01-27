@@ -9,7 +9,7 @@
 	console.log(heatData);
 </script>
 <div class="row my-3 py-2 subBk">
-	<h2 class="ms-5 fw-bold">MyPage</h2> 
+	<h3 class="ms-5 fw-bold">MyPage</h3> 
 </div>
 <div class="row">
 	<div class="col-2 ps-0 pe-3">
@@ -52,7 +52,7 @@
 			</div>
 			<div class="col-6">
 				<div class="fw-bold row text-center">
-					<h3>${userName} 님의 기술스택</h3>
+					<h3>나의 기술스택</h3>
 				</div>
 				<div class="row">
 					<div id="chart" style="width: 100%; height:500px;"></div> 

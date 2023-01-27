@@ -28,13 +28,19 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import sun.util.calendar.BaseCalendar.Date;
 
+/**
+ * 내강의실 컨트롤러
+ * @author 김동영
+ *
+ */
+
 @Controller
 public class MyClassController {
 	
 	@Autowired
 	private MyClassService myClassService;
 	
-	// MyPage 메인 화면 호출 함수
+	// MyPage 메인 화면 호출 
 	@RequestMapping("/myClassMain")
 	public String myClassMain( Model model, Member member,
 			HttpSession session, HttpServletResponse response) 
@@ -63,15 +69,18 @@ public class MyClassController {
 		return "myClass/myClassMain";
 	}
 	
-	// 내 강의실 화면 호출 함수
+	// 내 강의실 화면 호출 
 	@RequestMapping("/myClass")
 	public String myclassmain(Model model, HttpSession session, 
 			@RequestParam(value="keyword", required=false, defaultValue="") String keyword, 
 			@RequestParam(value="done", required=false, defaultValue="N") String done) {
 		
 		String id = (String)session.getAttribute("userId");
+		
+		// 수강중인 메인강의 리스트 가져오기
 		List<MyClassMain> mList = myClassService.getMyClassMain(id, keyword, done);
 		
+		// myClassService에서 계산된 학습률 리스트에 담아주기
 		for(int i = 0; i < mList.size(); i++) {
 			String group = mList.get(i).getMymCode();
 			Double progress = myClassService.getProgress(id, group);
@@ -87,7 +96,7 @@ public class MyClassController {
 	}
 	
 
-	// 장바구니 화면 호출 함수
+	// 장바구니 화면 호출 
 	@RequestMapping("/myCart")
 	public String myCart(Model model, HttpSession session,
 			@RequestParam(value="pageNum", required=false, defaultValue="1") int pageNum) {
@@ -101,7 +110,7 @@ public class MyClassController {
 		return "myClass/myCart";
 	}
 	
-	// 결제내역 화면 호출 함수
+	// 결제내역 화면 호출 
 	@RequestMapping("/myPay")
 	public String myPay(Model model, HttpSession session,
 			@RequestParam(value="pageNum", required=false, defaultValue="1") int pageNum) {
@@ -115,7 +124,7 @@ public class MyClassController {
 		return "myClass/myPay";
 	}
 	
-	// 강의 수강시간 업데이트 함수
+	// 강의 수강시간 업데이트 
 	@RequestMapping("/getWatchTime.ajax")
 	@ResponseBody
 	public void updateWatchTime(HttpSession session, String id, String hCode, String wTime ) {
@@ -123,12 +132,9 @@ public class MyClassController {
 		id = (String) session.getAttribute("userId");
 		String str = wTime;
 		wTime = str.substring(0, str.indexOf("."));
-		//System.out.println(hCode);
-		//System.out.println(wTime);
 		
 		myClassService.updateWatchTime(id, hCode, wTime);
 		
 	}
-	
 	
 }

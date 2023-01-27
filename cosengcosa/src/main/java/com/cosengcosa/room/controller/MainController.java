@@ -25,9 +25,8 @@ public class MainController {
 	
 	@Autowired
 	private MainService mainService;
-	/*
-	 * 메인화면 호출
-	 */
+	
+	// 메인화면 호출 
 	@RequestMapping(value={"/main", "/Main"}, method=RequestMethod.GET)
 	public String mainView(Model model) {
 		
@@ -37,7 +36,7 @@ public class MainController {
 		
 		// 게시글 리스트 가져오기
 		List<Study> sList = mainService.getStudyList();
-		//List<FreeBoard> fList = mainService.getFreeBoardList();
+		List<FreeBoard> fList = mainService.getFreeBoardList();
 		
 		// 별점 반복문을 위한 리스트
 		List<Integer> list = new ArrayList<>(5);
@@ -51,9 +50,9 @@ public class MainController {
 		model.addAttribute("rList", rList);
 		model.addAttribute("list", list);
 		model.addAttribute("sList", sList);
+		model.addAttribute("fList", fList);
 		
 		return "main";
 	}
-	
 	
 }

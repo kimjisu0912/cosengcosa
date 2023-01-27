@@ -22,9 +22,16 @@ import com.cosengcosa.room.domain.SubTitle;
 @Service
 public class MyClassServiceImpl implements MyClassService {
 
+	/**
+	 * 내강의실 서비스
+	 * @author 김동영
+	 * 
+	 */
+	
 	@Autowired
 	private MyClassDao myClassDao;
 	
+	// 페이징 처리를 위한 변수
 	private static final int PAGE_SIZE = 10;
 	private static final int PAGE_GROUP = 5;
 	
@@ -46,36 +53,30 @@ public class MyClassServiceImpl implements MyClassService {
 		return myClassDao.getMyClassSub(id, mymCode);
 	}
 	
-	// 강의 진도율 계산 
-	@Override
-	public Double getProgress(String id, String group) {
-		
-		double total = myClassDao.subListCount(id, group);
-		double done = myClassDao.subListDoneCount(id, group);
-		double progress = done / total * 100;
-		
-		return progress;
-	}
-	
-	// 차트 표현 카운트 조회 
+	// 과목별 수강 강의 수 조회(pie chart 데이터) 
 	@Override
 	public SubTitle getSubCount(String id) {
 		return myClassDao.getSubCount(id);
 	}
 	
-	// 날짜별 수강완료 강의 수 카운트
+	// 해당년도 날짜 별 수강완료 서브강의 수 조회(Heat Map 데이터) 
 	@Override
 	public List<List<Object>> getDoneCount(String id) {
 		
 		Calendar cal = Calendar.getInstance();
-		// 2023-01-01
+		
 		String year = String.valueOf(cal.get(Calendar.YEAR));
 		String start = String.valueOf(cal.get(Calendar.YEAR)) + "-" + "01-01";		
 		String end = String.valueOf(cal.get(Calendar.YEAR)) + "-" + "12-31";
 		
+		// 해당년도 1월 1일부터 12월 31일까지 데이터 가져오기
 		List<HeatData> heatDataList = myClassDao.getDoneCount(start, end, id);
 		Map<String, Integer> dataMap = new HashMap<String, Integer>();
 		
+		/* 
+		 	1월 1일 부터 12월 31일 까지 날짜를 2023-01-01 형식으로 만들어 키값으로 넣어주고
+			모든 데이터를 0으로 초기화 한다.
+		*/
 		int monthDay = 0;
 		
 		for(int month = 1; month <= 12; month++) {
@@ -100,7 +101,10 @@ public class MyClassServiceImpl implements MyClassService {
 			}				
 		}
 				
-		// Map 데이터 수정
+		/* 
+		 	Map 데이터 수정 
+		  	데이터베이스에서 해당날짜에 조회된 데이터가 있으면 수정해준다. 
+		 */
 		for(int i = 0; i < heatDataList.size(); i++) {
 			
 			HeatData hData = heatDataList.get(i);
@@ -109,6 +113,7 @@ public class MyClassServiceImpl implements MyClassService {
 			dataMap.put(key, hData.getCnt());
 		}		
 		
+		// Map을 List에 담아준다
 		List<List<Object>> dataList = new ArrayList<List<Object>>();		
 		Set<String> keySet = dataMap.keySet();
 		
@@ -119,7 +124,7 @@ public class MyClassServiceImpl implements MyClassService {
 			dataList.add(dList);
 		}		
 		
-		int cnt = 0;
+		// 리스트의 순서를 날짜순으로 정렬해준다
 		for(int i = 0; i < dataList.size() - 1; i++) {
 			
 			for(int j = 0; j < dataList.size() - 1 - i; j++) {
@@ -136,7 +141,8 @@ public class MyClassServiceImpl implements MyClassService {
 		}
 		return dataList;
 	}
-
+	
+	
 	// 최근 시청강의 조회 
 	@Override
 	public MyClassSub getRecentClass(String id) {
@@ -146,7 +152,6 @@ public class MyClassServiceImpl implements MyClassService {
 	// 강의 시청시간 업데이트
 	@Override
 	public void updateWatchTime(String id, String hCode, String wTime) {
-		
 		// 런타임 조회하기
 		String sRuntime = myClassDao.getRunTime(id, hCode);
 		String sMin = sRuntime.split(":")[0];
@@ -158,18 +163,23 @@ public class MyClassServiceImpl implements MyClassService {
 		
 		// 시청시간이 90프로 이상일때는 수강완료 처리
 		if(wtime / runtime >= 0.9) {
-			
 			myClassDao.updateDone(id, hCode, wTime);
 			
 		} else { // 시청시간이 90프로 미만일 때는 시청시간 업데이트 만
-			
 			myClassDao.updateWatchTime(id, hCode, wTime);
 		}
-		
 	}
 
-	
-
+	// 강의 진도율 계산 
+	@Override
+	public Double getProgress(String id, String group) {
+		
+		double total = myClassDao.subListCount(id, group);
+		double done = myClassDao.subListDoneCount(id, group);
+		double progress = done / total * 100;
+		
+		return progress;
+	}
 	
 	// 수강완료한 강의 조회
 	@Override
@@ -205,7 +215,6 @@ public class MyClassServiceImpl implements MyClassService {
 		modelMap.put("currentPage", currentPage);
 		modelMap.put("listCount", listCount);
 		modelMap.put("pageGroup", PAGE_GROUP);
-		
 		
 		return modelMap;
 	}

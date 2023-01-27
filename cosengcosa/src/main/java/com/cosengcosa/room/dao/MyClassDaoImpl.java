@@ -71,8 +71,6 @@ public class MyClassDaoImpl implements MyClassDao {
 		params.put("id", id);
 		params.put("keyword", keyword);
 		params.put("done", done);
-		System.out.println("keyword : " + keyword);
-		System.out.println("order : " + done);
 		return sqlSession.selectList(NAME_SPACE + ".getMyClassMain", params);
 	}
 	
@@ -87,7 +85,7 @@ public class MyClassDaoImpl implements MyClassDao {
 		return sqlSession.selectList(NAME_SPACE + ".getMyClassSub", params);
 	}
 	
-	// 과목별 수강 강의수 조회
+	// 과목별 수강 강의 수 조회(pie chart 데이터)
 	@Override
 	public SubTitle getSubCount(String id) {
 		return sqlSession.selectOne(NAME_SPACE + ".getSubCount", id);
@@ -104,8 +102,7 @@ public class MyClassDaoImpl implements MyClassDao {
 		return sqlSession.selectOne(NAME_SPACE + ".getMyClassMainTotal", params);
 	}
 	
-	
-	// 날짜별 수강완료 강의 수 조회
+	// 해당년도 날짜 별 수강완료 서브강의 수 조회(Heat Map 데이터) 
 	@Override
 	public List<HeatData> getDoneCount(String start, String end, String id) {
 		
@@ -130,7 +127,6 @@ public class MyClassDaoImpl implements MyClassDao {
 		return sqlSession.selectList(NAME_SPACE + ".getDoneClass", id);
 	}
 	
-	
 	// 강의 시청시간 업데이트 
 	@Override
 	public void updateWatchTime(String id, String hCode, String wTime) {
@@ -141,7 +137,6 @@ public class MyClassDaoImpl implements MyClassDao {
 		params.put("wTime", wTime);
 		
 		sqlSession.update(NAME_SPACE + ".updateWatchTime", params);
-		
 	}
 	
 	// 강의 시청시간 업데이트 및 수강완료 처리
@@ -154,7 +149,6 @@ public class MyClassDaoImpl implements MyClassDao {
 		params.put("wTime", wTime);
 		
 		sqlSession.update(NAME_SPACE + ".updateDone", params);
-		
 	}
 	// 강의 런타임 조회 
 	@Override
@@ -175,6 +169,7 @@ public class MyClassDaoImpl implements MyClassDao {
 		params.put("id", id);
 		params.put("startRow", startRow);
 		params.put("endRow", endRow);
+		
 		return sqlSession.selectList(NAME_SPACE + ".getPayList", params);
 	}
 
@@ -183,35 +178,43 @@ public class MyClassDaoImpl implements MyClassDao {
 	public int getPayListCount(String id) {
 		
 		return sqlSession.selectOne(NAME_SPACE + ".getPayListCount", id);
+		
 	}
 
 	// 장바구니 리스트 조회
 	@Override
 	public List<Basket> getBasketList(String id, int startRow, int endRow) {
+		
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("id", id);
 		params.put("startRow", startRow);
 		params.put("endRow", endRow);
+		
 		return sqlSession.selectList(NAME_SPACE + ".getBasketList", params);
 	}
 	
 	// 장바구니 리스트 수 조회 
 	@Override
 	public int getBasketListCount(String id) {
-
+		
 		return sqlSession.selectOne(NAME_SPACE + ".getBasketListCount", id);
+		
 	}
 	
 	// 메인강의 수강기간 만료 업데이트
 	@Override
 	public void updateMainEdate(String id) {
+		
 		sqlSession.update(NAME_SPACE + ".updateMainEdate", id);
+		
 	}
 	
 	// 서브강의 수강기간 만료 업데이트
 	@Override
 	public void updateSubEdate(String id) {
+		
 		sqlSession.update(NAME_SPACE + ".updateSubEdate", id);
+		
 	}
 	
 	// 서브강의 수 조회 
@@ -228,6 +231,7 @@ public class MyClassDaoImpl implements MyClassDao {
 	// 수강완료한 서브강의 수 조회
 	@Override
 	public int subListDoneCount(String id, String group) {
+		
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("id", id);
 		params.put("group", group);

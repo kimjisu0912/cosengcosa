@@ -51,6 +51,16 @@
 		ORDER BY s_recommend DESC	 	
 	</select>
 	
+	<select id="getFreeBoardList" resultType="FreeBoard" resultMap="FreeBoardResultMap">
+		SELECT
+			f_no, f_title, f_content, f_writer, f_count, f_recommend, f_cdate, f_yn 
+		FROM
+			freeBoard
+		WHERE
+			f_yn = 'Y'
+		ORDER BY f_count DESC	       
+	</select>
+	
 	<resultMap id="classMainResultMap" type="ClassMain">
 		<id property="cmNo" column="cm_no" />
 		<result property="cmId" column="cm_id" />
@@ -86,6 +96,18 @@
 		<result property="sYn" column="s_yn" />
 		<result property="sCdate" column="s_cdate" />
 	</resultMap>
+	
+	<resultMap id="FreeBoardResultMap" type="FreeBoard" >
+		<id property="fNo" column="f_no" />
+		<result property="fTitle" column="f_title" />
+		<result property="fContent" column="f_content" />
+		<result property="fWriter" column="f_writer" />
+		<result property="fCount" column="f_count" />
+		<result property="fRecommend" column="f_recommend" />
+		<result property="fCdate" column="f_cdate" />
+		<result property="fYn" column="f_yn" />
+	</resultMap>
+	
 </mapper>	
 
 

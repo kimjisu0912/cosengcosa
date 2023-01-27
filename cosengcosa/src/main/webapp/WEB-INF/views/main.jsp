@@ -21,7 +21,7 @@
 			</div>
 		</div> 
 		<div class="row my-3">
-			<div class="row text-start my-3">
+			<div class="row text-start mt-5 mb-3">
 				<h6>수강생들이 추천하는</h6>
 				<h3 class="fw-bold">코생코사 인기강의</h3>
 			</div>
@@ -73,7 +73,7 @@
 									</c:if>
 									<c:if test="${d.cmStar ne 5}">		
 										<c:forEach var="star" items="${list}" end="${4 - d.cmStar }">
-											<span class="fa fa-star "></span>
+											<span class="fa fa-star"></span>
 										</c:forEach>
 									</c:if>	
 								</div>
@@ -84,28 +84,37 @@
 				</c:forEach>	
 			</div>
 		</div> 
-		<!--
+		<div class="row mt-3 mb-5">
+			<div class="row text-start my-3">
+				<h3 class="fw-bold">HOT 지식공유</h3>
+			</div>
+			<div class="row">
+				<c:forEach var="s" items="${sList}" end="4">
+					<div class="card text-bg-light me-1" style="max-width: 17rem;">
+						<div class="card-header">추천 ${s.sRecommend}</div>
+						<div class="card-body">
+							<h5 class="card-title">${s.sTitle}</h5>
+						</div>
+					    <div class="mb-3"><a href="studyDetail?no=${s.sNo}" class="card-link">자세히보기</a></div>
+					</div>
+				</c:forEach>	
+			</div>
+		</div>
 		<div class="row my-5">
 			<div class="row text-start my-3">
 				<h3 class="fw-bold">인기 게시글</h3>
 			</div>
 			<div class="row">
-				<c:forEach var="s" items="${sList}" end="4">
-					<div class="col">
-						<div class="row">${s.sTitle }</div>
-						<div class="row">${s.sAskcontent}</div>
+				<c:forEach var="f" items="${fList}" end="4">
+					<div class="card text-bg-light me-1" style="max-width: 17rem;">
+						<div class="card-header">조회 ${f.fCount}</div>
+						<div class="card-body">
+							<h5 class="card-title">${f.fTitle}</h5>
+						</div>
+						<div class="mb-3"><a href="freeBoardDetail?fno=${f.fNo}" class="card-link">자세히보기</a></div>
 					</div>
 				</c:forEach>	
 			</div>
-		</div> 
-		<div class="row my-5">
-			<div class="row text-start my-3">
-				<h3 class="fw-bold">HOT 지식공유</h3>
-			</div>
-			<div class="row"></div>
-			<div class="row">
-			</div>
-		</div> 
-	-->
+		</div>
 	</div>	
  </div><!-- end global content -->

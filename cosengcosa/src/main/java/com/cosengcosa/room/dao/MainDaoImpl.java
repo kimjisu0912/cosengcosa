@@ -10,6 +10,12 @@ import com.cosengcosa.room.domain.ClassMain;
 import com.cosengcosa.room.domain.FreeBoard;
 import com.cosengcosa.room.domain.Study;
 
+	/** 
+	 * 메인페이지 DAO
+	 * @author 김동영
+	 * 
+	 */
+
 @Repository
 public class MainDaoImpl implements MainDao {
 
@@ -18,24 +24,26 @@ public class MainDaoImpl implements MainDao {
 	
 	private final String NAME_SPACE = "com.cosengcosa.room.mapper.MainMapper";
 	
-	// 등록순서로 메인강의 리스트 조회 메서드
+	// 등록순서로 메인강의 조회
 	@Override
 	public List<ClassMain> getClassMainListD() {
 		
 		return sqlSession.selectList(NAME_SPACE + ".getClassMainListD");
 	}
 	
-	// 등록순서로 메인강의 리스트 조회 메서드
+	// 추천순으로 메인강의 조회
 	@Override
 	public List<ClassMain> getClassMainListR() {
 		return sqlSession.selectList(NAME_SPACE + ".getClassMainListR");
 	}
 
+	// 지식공유 게시글 추천수 순으로 리스트 조회
 	@Override
 	public List<Study> getStudyList() {
 		return sqlSession.selectList(NAME_SPACE + ".getStudyList");
 	}
-
+	
+	// 자유게시판 게시글 조회수 순으로 리스트 조회 
 	@Override
 	public List<FreeBoard> getFreeBoardList() {
 		return sqlSession.selectList(NAME_SPACE + ".getFreeBoardList");

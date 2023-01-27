@@ -32,16 +32,16 @@
 			<div class="col-6 text-end">
 				<ul class="nav nav-pills justify-content-start">
 					<li class="nav-item">
-						<a class="nav-link fwh fs-4" href="classMainList">강의</a>
+						<a class="nav-link fwh fs-5" href="classMainList">강의</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link fwh fs-4" href="studyList">지식공유</a>
+						<a class="nav-link fwh fs-5" href="studyList">지식공유</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link fwh fs-4" href="freeBoardList">자유게시판</a>
+						<a class="nav-link fwh fs-5" href="freeBoardList">자유게시판</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link fwh fs-4" href="requestBoardList">요청사항</a>
+						<a class="nav-link fwh fs-5" href="requestBoardList">요청사항</a>
 					</li>
 				</ul>
 			</div>
@@ -56,19 +56,19 @@
 					</li>
 			     -->
 					<li class="nav-item"><!-- 클래스로 이용해서 사용 -->
-						<a class="nav-link fwh fs-4"  
+						<a class="nav-link fwh fs-5"  
 						${not sessionScope.isLogin ? "href='#' data-bs-toggle='modal' data-bs-target='#lgoinModal'" : "href='logout'"}><!-- 로그인상태값에 따라 모달창 출력유무 -->
 							${sessionScope.isLogin ? "로그아웃" : "로그인" }
 						</a>
 					</li>
 					<c:if test="${sessionScope.isLogin }">	
 						<li class="nav-item">
-							<a class="nav-link fwh fs-4" href="myClassMain"><i class="bi bi-person-lines-fill"></i> MY</a>
+							<a class="nav-link fwh fs-5" href="myClassMain"><i class="bi bi-person-lines-fill"></i> MY</a>
 						</li>
 					</c:if>	
 					<c:if test="${not sessionScope.isLogin }">
 						<li class="nav-item">
-							<a class="nav-link fwh fs-4" href="join">회원가입</a>
+							<a class="nav-link fwh fs-5" href="join">회원가입</a>
 						</li>
 					</c:if>
 				</ul>

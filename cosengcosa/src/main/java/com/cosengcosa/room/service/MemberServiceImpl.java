@@ -1,12 +1,8 @@
 package com.cosengcosa.room.service;
 
-import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.commons.mail.HtmlEmail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -20,11 +16,7 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private MemberDao memberDao;
 	
-	/* 회원 비밀번호에 대한 암호화 인코딩관련 스프링 시큐리티의 PasswordEncoder
-	 * 회원 로그인 요청시 DB 테이블에 암호화 인코딩되어 저장된 비밀번호와 사용자가
-	 * 입력한 일반 문자열 비밀번호를 비교하는데 사용되고 회원 가입과 회원 정보 수정에서
-	 * 사용자가 입력한 비밀번호를 암호화 인코딩하여 저장하는데도 사용된다.
-	 **/
+	// 비밀번호 암호화
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 	
@@ -32,7 +24,7 @@ public class MemberServiceImpl implements MemberService {
 		this.memberDao = memberDao;
 	}
 	
-	// 로그인 처리 메서드
+	// 로그인 처리 
 	@Override
 	public int login(String id, String pass) {
 		
@@ -55,14 +47,14 @@ public class MemberServiceImpl implements MemberService {
 		return result;
 	}
 
-	// 회원조회 메서드
+	// 아이디로 회원정보 조회
 	@Override
 	public Member getMember(String id) {
 		return memberDao.getMember(id);
 	}
 	
 	
-	// 아이디 중복확인 메서드
+	// 아이디 중복확인
 	@Override
 	public boolean overlapIdCheck(String id) {
 		Member member = memberDao.getMember(id);
@@ -73,18 +65,16 @@ public class MemberServiceImpl implements MemberService {
 		return true;
 	}
 	
-	// 회원가입 메서드
+	// 회원가입 처리
 	@Override
 	public void addMember(Member member) {
 		// BCryptPasswordEncoder 객체를 이용해 비밀번호를 암호화한 후 저장
 		member.setPass(passwordEncoder.encode(member.getPass()));
 		
-		System.out.println(member.getPass());
 		memberDao.addMember(member);
-
 	}
 
-	// 회원 비밀번호 확인 메서드
+	// 회원 정보 수정 시에 기존 비밀번호가 맞는지 확인
 	@Override
 	public boolean memberPassCheck(String id, String pass) {
 		String dbPass = memberDao.memberPassCheck(id, pass);		
@@ -96,7 +86,7 @@ public class MemberServiceImpl implements MemberService {
 		return result;
 	}
 
-	// 닉네임 중복확인 메서드
+	// 회원가입, 회원정보 수정 시에 닉네임 중복확인
 	@Override
 	public boolean overlapNickNameCheck(String nickname) {
 		Member member = memberDao.getNickName(nickname);
@@ -107,14 +97,14 @@ public class MemberServiceImpl implements MemberService {
 		return true;
 	}
 	
-	// 회원정보 수정 메서드
+	// 회원정보 수정 
 	@Override
 	public void updateMember(Member member) {
 		memberDao.updateMember(member);
 	}
 
 
-	// 비밀번호 변경 메서드
+	// 비밀번호 변경
 	@Override
 	public void updatePass(Member member) {
 		member.setPass(passwordEncoder.encode(member.getPass()));
@@ -123,14 +113,14 @@ public class MemberServiceImpl implements MemberService {
 		
 	}
 
-	// 회원 탈퇴 처리 메서드
+	// 회원 탈퇴 처리 
 	@Override
 	public void deleteMember(String id) {
 		memberDao.deleteMember(id);
 	}
 
 	
-	// 아이디 찾기 메서드
+	// 아이디 찾기
 	@Override
 	public int findMemberIdChk(String name, String email) {		
 		
@@ -150,7 +140,7 @@ public class MemberServiceImpl implements MemberService {
 		return result;
 	}
 	
-	// 이름으로 멤버 조회 메서드
+	// 이름으로 회원정보 조회 
 	@Override
 	public Member findMemberId(String name) {
 		
@@ -158,41 +148,41 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	
-	// 비밀번호 찾기 메서드
+	// 비밀번호 찾기 
 	@Override
 	public Map<String, Object> findMemberPass(String id, String email){
 		
 		Member member = memberDao.getMember(id);
 		
 		String pass = "";
-		
 		int result = -1;
 		
+		// 아이디로 조회되는 회원이 없을때
 		if(member == null) {
 			result = -1;
 		}
 		
+		// 이메일이 회원정보와 일치할 때
 		if(member.getEmail().equals(email)) {
 			
+			// 임시비밀번호 생성
 			for (int i = 0; i < 12; i++) {
 				pass += (char) ((Math.random() * 26) + 97);
 			}
 			member.setPass(passwordEncoder.encode(pass));;
-			// 비밀번호 변경
-			System.out.println("memberService 임시비밀번호 : " + pass);
+			// 임시 비밀번호로 회원 비밀번호 변경
 			memberDao.updatePass(member);
 			
 			result = 1;
 			
-		} else {
+		} else { // 이메일이 회원정보와 일치하지 않을때
 			result = 0;
 		}
 		
+		// 회원조회 결과값(result)와 임시비밀번호(pass)를 반환해준다
 		Map<String, Object> modelMap = new HashMap<String, Object>();
 		modelMap.put("result", result);
 		modelMap.put("pass", pass);
-		
-		
 		
 		return modelMap;
 	}

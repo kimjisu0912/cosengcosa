@@ -1,17 +1,14 @@
 /**
  * myPageMain Chart 관련 js
  */
-
 window.onload = function() { // 페이지 로드 시 실행
-	
 	drawChart();
 	drawHeatChart()
 }
 
 function drawChart () { 
-
-	var myChart = echarts.init(document.getElementById('chart')); // echarts init 메소드로 id=chart인 DIV에 차트 초기화
-
+	// echarts init 메소드로 id=chart인 DIV에 차트 초기화
+	var myChart = echarts.init(document.getElementById('chart')); 
 option = { // 차트를 그리는데 활용 할 다양한 옵션 정의
 	tooltip: {
 	    trigger: 'item'
@@ -64,9 +61,7 @@ option = { // 차트를 그리는데 활용 할 다양한 옵션 정의
 } 
 
 function drawHeatChart () { 
-
   var heatChart = echarts.init(document.getElementById('heatchart'));
-
 	option = {
 	  title: {
 	    top: 0,

@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>    
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <div class="row my-3 py-2 subBk">
-	<h2 class="ms-5 fw-bold">회원정보</h2>
+	<h3 class="ms-5 fw-bold">회원정보</h3>
 </div>
 <div class="row">
 	<div class="col-2  ps-0 pe-3">
@@ -24,7 +24,7 @@
 	</div>
 	<div class="col-10">
 		<div class="row text-center my-3"> <!-- 헤더 -->
-			<h2>${userName}님의 정보</h2>
+			<h3>${userName}님의 정보</h3>
 		</div>
 		<!-- 회원정보 -->
 		<div class="row border my-3"> 

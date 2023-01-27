@@ -28,6 +28,7 @@ import com.cosengcosa.room.service.MemberService;
  * @author 김동영
  *
  */
+
 @Controller
 @SessionAttributes("member")
 public class MemberController {
@@ -35,7 +36,7 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
-	// 로그인 처리 함수
+	// 로그인 처리 
 	@RequestMapping(value="/login", method=RequestMethod.POST)	
 	public String login(Model model, @RequestParam("userId") String id, 
 			@RequestParam("userPass") String pass, 
@@ -102,24 +103,19 @@ public class MemberController {
 		member.setEmail(emailId + "@" + emailDomain);
 		member.setTel(tel1 + "-" + tel2 + "-" + tel3);
 				
-		
-
-		// MemberService를 통해서 회원 가입 폼에서 들어온 데이터를 DB에 저장한다.
 		memberService.addMember(member);
 		System.out.println("joinResult : " + member.getName());
 		
-		// 로그인 폼으로 리다이렉트 시킨다.
 		return "redirect:main";
 	}
 	
-	// 회원가입 폼에서 들어오는 중복 아이디 체크 요청을 처리하는 메서드
+	// 회원가입 폼에서 들어오는 중복 아이디 체크 요청 처리
 	@RequestMapping("/overlapIdCheck")	
 	public String overlapIdCheck(Model model, String id) {		
 		
-		// 회원 아이디 중복 여부를 받아온다.
+		// 회원 아이디 중복 여부확인
 		boolean overlap = memberService.overlapIdCheck(id);
 		
-		// model에 id와 회원 아이디 중복 여부를 저장 한다. 
 		model.addAttribute("id", id);
 		model.addAttribute("overlap", overlap);
 		
@@ -127,7 +123,6 @@ public class MemberController {
 	}	
 		
 	// 회원정보 보기 요청처리 함수
-	
 	@RequestMapping("/myInfo")
 	public String myInfo(Model model, HttpSession session) {		
 		
@@ -158,35 +153,33 @@ public class MemberController {
 		return "redirect:myInfo";
 	}
 		
-	// 회원가입시 닉네임 중복 체크 요청을 처리하는 메서드
+	// 회원가입시 닉네임 중복 체크 요청 처리
 	@RequestMapping("/overlapNickNameCheck")	
 	public String overlapNickNameCheck(Model model, String nickname) {		
 		
-		// 회원 아이디 중복 여부 확인
+		// 회원 닉네임 중복 여부 확인
 		boolean overlap = memberService.overlapNickNameCheck(nickname);
 		
-		// model에 id와 회원 아이디 중복 여부를 저장 한다. 
 		model.addAttribute("nickname", nickname);
 		model.addAttribute("overlap", overlap);
 		
 		return "forward:WEB-INF/views/member/overlapNickNameCheck.jsp";
 	}	
 	
-	// 회원수정시 닉네임 중복 체크 요청을 처리하는 메서드
+	// 회원수정시 닉네임 중복 체크 요청 처리
 	@RequestMapping("/overlapNickNameCheck2")	
 	public String overlapNickNameCheck2(Model model, String nickname) {		
 		
-		// 회원 아이디 중복 여부를 받아온다.
+		// 회원 닉네임 중복 여부를 받아온다.
 		boolean overlap = memberService.overlapNickNameCheck(nickname);
 		
-		// model에 id와 회원 아이디 중복 여부를 저장 한다. 
 		model.addAttribute("nickname", nickname);
 		model.addAttribute("overlap", overlap);
 		
 		return "forward:WEB-INF/views/member/overlapNickNameCheck2.jsp";
 	}
 		
-	// 비밀번호 수정 처리 메서드
+	// 비밀번호 수정 처리 
 	@RequestMapping("/passUpdate")
 	public String passUpdate(Model model, Member member, String id, String pass1) {
 		
@@ -198,7 +191,7 @@ public class MemberController {
 		return "redirect:myInfo";
 	}
 		
-	// 회원정보 수정에서 비밀번호 수정시 현재 비밀번호 확인하는 메서드
+	// 회원정보 비밀번호 수정시 현재 비밀번호 확인
 	@RequestMapping("/passCheck.ajax")
 	@ResponseBody
 	public Map<String, Boolean> memberPassCheck(String id, String pass) {
@@ -210,7 +203,7 @@ public class MemberController {
 		return map;
 	}
 	
-	// 회원탈퇴 요청 처리 메서드
+	// 회원탈퇴 요청 처리
 	@RequestMapping("/deleteMember")
 	public void deleteMember(HttpSession session, HttpServletResponse response, String id, String pass) 
 				throws ServletException, IOException {
@@ -225,7 +218,7 @@ public class MemberController {
 			memberService.deleteMember(id);
 			session.invalidate();
 			out.println("<script>");
-			out.println("	alert('그 동안 코생코사를 이용해주셔서 감사합니다');");
+			out.println("	alert('그동안 코생코사를 이용해주셔서 감사합니다');");
 			out.println("	location.href='main'");
 			out.println("</script>");
 		} else {
@@ -237,14 +230,14 @@ public class MemberController {
 	}
 	
 	
-	// 아이디 비밀번호 찾기 페이지 요청 메서드
+	// 아이디 비밀번호 찾기 페이지 요청
 	@RequestMapping("/findForm")
 	public String findMyInfo() {
 	
 		return "member/findForm";
 	}
 	
-	// 아이디 찾기 메서드
+	// 아이디 찾기
 	@RequestMapping("/findIdResult")
 	@ResponseBody
 	public void findId(HttpServletResponse response, 
@@ -267,7 +260,7 @@ public class MemberController {
 			out.println("</script>");
 		} else if(result == 0) {
 			out.println("<script>");
-			out.println("	alert('입력하신 이메일이 회원정보화 일치하지 않습니다.');");
+			out.println("	alert('입력하신 이메일이 회원정보와 일치하지 않습니다.');");
 			out.println("	history.back();");
 			out.println("</script>");
 		} else {
@@ -277,54 +270,7 @@ public class MemberController {
 			out.println("</script>");
 		}
 	}
-/**	
-	// 비밀번호 찾기 메서드
-	@RequestMapping("/findPassResult")
-	@ResponseBody
-	public void findPass(Model model, HttpServletResponse response, Member member,
-			String id, String emailId2, String emailDomain2)
-			throws ServletException, IOException {
-		
-		String email = emailId2 + "@" + emailDomain2;
-		String tempPass = "";
-		
-		member = memberService.getMember(id);
-		
-		memberService.findMemberPass(response, member);
-		
-		response.setContentType("text/html; charset=utf-8");
-		PrintWriter out = response.getWriter();
-		
-		if(member != null) {
-			
-			if(member.getEmail().equals(email)) {
-				
-				tempPass = memberService.findMemberPass(response, member);;
-				System.out.println(tempPass);
-				out.println("<script>");
-				out.println("	alert('임시 비밀번호는" + tempPass +" 입니다.\n 로그인 후 비밀번호를 변경해주세요!');");
-				out.println("	location.href='main'");
-				out.println("</script>");
-				return;
-				
-			} else {
-				out.println("<script>");
-				out.println("	alert('입력하신 이메일이 회원정보화 일치하지 않습니다.');");
-				out.println("	history.back();");
-				out.println("</script>");
-				return;
-			}
-			
-		} else {
-			out.println("<script>");
-			out.println("	alert('해당 아이디가 존재하지 않습니다.');");
-			out.println("	history.back();");
-			out.println("</script>");
-		}
-		
-	}
-	**/
-	
+
 	// 비밀번호 찾기 메서드
 	@RequestMapping("/findPassResult")
 	public void findPass(HttpServletResponse response, 

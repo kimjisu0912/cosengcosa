@@ -32,8 +32,7 @@
 		<%@ include file="template/footer.jsp" %>
 	</div>
 	 <script src="resources/bootstrap/bootstrap.bundle.min.js"></script>
-
-	<!-- Modal 정적 백드롭을 static으로 설정하면, 배경을 클릭해도 모달은 닫히지 않습니다.(data-bs-backdrop="static" data-bs-keyboard="false") -->
+	<!-- 로그인 모달 창 -->
 	<div class="modal fade" id="lgoinModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	  <div class="modal-dialog">
 	    <div class="modal-content">
@@ -48,7 +47,7 @@
 	            <input type="text" class="form-control" id="userId" name="userId">
 	          </div>
 	          <div class="mb-3">
-	            <label for="pass" class="col-form-label">비밀번호 :</label>
+	            <label for="userPass" class="col-form-label">비밀번호 :</label>
 	            <input type="password" class="form-control" id="userPass" name="userPass">
 	          </div>
 	          <div><a href="findForm">아이디 / 비밀번호 찾기</a></div>

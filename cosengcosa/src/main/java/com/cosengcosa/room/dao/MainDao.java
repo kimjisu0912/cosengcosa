@@ -9,7 +9,7 @@ import com.cosengcosa.room.domain.Study;
 public interface MainDao {
 
 	/** 
-	 * 메인페이지 DAO
+	 * 메인페이지 DAO 인터페이스
 	 * @author 김동영
 	 * 
 	 */
@@ -20,9 +20,9 @@ public interface MainDao {
 	// 추천순으로 메인강의 조회
 	public List<ClassMain> getClassMainListR();
 
-	// 지식공유 게시글 추천순으로 리스트 조회 메서드
+	// 지식공유 게시글 추천수 순으로 리스트 조회 
 	public List<Study> getStudyList();
 	
-	// 자유게시판 게시글 추천순으로 리스트 조회 메서드
+	// 자유게시판 게시글 조회수 순으로 리스트 조회 
 	public List<FreeBoard> getFreeBoardList();
 }

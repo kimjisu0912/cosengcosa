@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <div class="row my-3 py-2 subBk">
-	<h2 class="ms-5 fw-bold">내 강의실</h2>
+	<h3 class="ms-5 fw-bold">내 강의실</h3>
 </div>
 <div class="row">
 	<div class="col-2 ps-0 pe-3">
@@ -66,11 +66,12 @@
 					<div class="col-4 mb-5" >	
 						<div class="text-center">
 							<div class="row"><a href="classSubList?cmcode=${m.mymCode}"><img width="260px"  height="170px" src="http://img.youtube.com/vi/${m.image }/mqdefault.jpg"></a></div>
-							<div class="row mt-3"><a href="classSubList?cmcode=${m.mymCode}" class="fbk px-4">${m.mymTitle }</a></div>
+							<div class="row mt-3" style="height: 40px;"><a href="classSubList?cmcode=${m.mymCode}" class="fbk px-4">${m.mymTitle }</a></div>
 							<div class="row my-1"><a class="color-black dnone px-4">수강기간 : ${m.sdate} ~ ${m.edate}</a></div>
-							<div class="row my-1"><p>학습률 : <fmt:formatNumber value="${m.progress}" pattern="0"/>%</p></div>
-							
-						</div>	
+							<div class="progress mx-5">
+	 							<div class="progress-bar" role="progressbar" aria-label="Example with label" style="width:  <fmt:formatNumber value="${m.progress}" pattern="0"/>%;" aria-valuenow=" <fmt:formatNumber value="${m.progress}" pattern="0"/>" aria-valuemin="0" aria-valuemax="100"> <fmt:formatNumber value="${m.progress}" pattern="0"/>%</div>
+							</div>
+					</div>	
 					</div>
 				</c:forEach>	
 			</c:if>

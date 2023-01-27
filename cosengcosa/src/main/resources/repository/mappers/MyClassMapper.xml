@@ -23,13 +23,17 @@
 <mapper namespace="com.cosengcosa.room.mapper.MyClassMapper" >	
 <!-- 결제된 메인강의 추가 맵핑 구문 -->
 <insert id="insertMyClassMain"  parameterType="hashmap">
-	INSERT INTO myclassmain (mym_no, mym_mid, mym_code, mym_title, mym_name, mym_period, mym_price, mym_sdate, mym_edate, mym_done, mym_yn) 
-	VALUES (myclassmain_seq.NEXTVAL, #{id}, #{cmCode}, #{cmTitle}, #{cmName}, #{cmPeriod}, #{cmPrice}, sysdate, ADD_MONTHS(sysdate, #{cmPeriod}), 'N', 'Y')
+	INSERT INTO myclassmain (mym_no, mym_mid, mym_code, mym_title, mym_name, mym_period, 
+								mym_price, mym_sdate, mym_edate, mym_done, mym_yn) 
+	VALUES (myclassmain_seq.NEXTVAL, #{id}, #{cmCode}, #{cmTitle}, #{cmName}, #{cmPeriod}, 
+			#{cmPrice}, sysdate, ADD_MONTHS(sysdate, #{cmPeriod}), 'N', 'Y')
 </insert>
 <!-- 결제된 서브강의 추가 맵핑 구문-->
 <insert id="insertMyClassSub"  parameterType="hashmap">
-	INSERT INTO myclasssub (mys_no, mys_mid, mys_code, mys_group, mys_title, mys_content, mys_video, mys_runtime, mys_watchtime, mys_sdate, mys_edate, mys_ddate, mys_done, mys_yn) 
-	VALUES (myclasssub_seq.NEXTVAL, #{id}, #{csCode}, #{csGroup}, #{csTitle}, #{csContent}, #{csVideo}, #{csRuntime}, '0', sysdate, ADD_MONTHS(sysdate, #{period}), null,'N', 'Y')
+	INSERT INTO myclasssub (mys_no, mys_mid, mys_code, mys_group, mys_title, mys_content,
+							 mys_video, mys_runtime, mys_watchtime, mys_sdate, mys_edate, mys_ddate, mys_done, mys_yn) 
+	VALUES (myclasssub_seq.NEXTVAL, #{id}, #{csCode}, #{csGroup}, #{csTitle}, #{csContent}, #{csVideo}, 
+			#{csRuntime}, '0', sysdate, ADD_MONTHS(sysdate, #{period}), null,'N', 'Y')
 </insert>
 <!-- 수강중인 메인강의 조회 맵핑 구문-->
 <select id="getMyClassMain" resultType="MyClassMain" resultMap="MyClassMainResultMap" parameterType="hashmap">
@@ -65,28 +69,14 @@
 	SET mys_yn = 'N'
 	WHERE mys_edate <![CDATA[<=]]> SYSTIMESTAMP 
 </update>
-<!--
-<select id="getMyClassMain" resultType="MyClassMain" resultMap="MyClassMainResultMap" parameterType="hashmap">
-	SELECT num, mym_no, mym_mid, mym_code, mym_title, mym_name, mym_sdate, mym_edate, mym_done, mym_yn, video 
-	FROM (SELECT num, mym_no, mym_mid, mym_code, mym_title, mym_name, mym_sdate, mym_edate, mym_done, mym_yn, video 
-	      FROM (SELECT rownum num, mym_no, mym_mid, mym_code, mym_title, mym_name, mym_sdate, mym_edate, mym_done, mym_yn, video
-	              FROM myclassmain, (SELECT cs_group, cs_code, cs_video video
-	                                FROM classsub)
-	              WHERE mym_mid = #{id} 
-	              AND mym_yn = 'Y'
-	              AND cs_code = CONCAT(LOWER(mym_code),'_01'))
-	      WHERE mym_title LIKE '%' || #{keyword} || '%'
-	      OR mym_name LIKE '%' || #{keyword} || '%')
-	WHERE num  <![CDATA[>=]]>#{startRow} AND num <![CDATA[<=]]>#{endRow}   
-</select>
--->
 
 <!-- 수강강의 총 개수 -->
 <select id="getMyClassMainTotal" resultType="int"  parameterType="hashmap">
 	SELECT COUNT(*) 
 	FROM
 		(SELECT num, mym_no, mym_mid, mym_code, mym_title, mym_name, mym_sdate, mym_edate, mym_done, mym_yn, video 
-		      FROM (SELECT rownum num, mym_no, mym_mid, mym_code, mym_title, mym_name, mym_sdate, mym_edate, mym_done, mym_yn, video
+		      FROM (SELECT rownum num, mym_no, mym_mid, mym_code, mym_title, mym_name, mym_sdate, mym_edate, 
+		      				mym_done, mym_yn, video
 		              FROM myclassmain, (SELECT cs_group, cs_code, cs_video video
 		                                FROM classsub)
 		              WHERE mym_mid = #{id} 
@@ -234,14 +224,7 @@
 	WHERE mys_mid = #{id}
 	AND mys_done = 'Y'	
 </select>
-<!-- 
-<select id="getMyClassSub" parameterType="hashmap" resultType="MyClassSub" resultMap="MyClassSubResultMap">
-	SELECT mys_mid FROM myclasssub
-	WHERE mys_mid = #{id}
-	AND mys_yn = 'Y'
-	AND mys_group = #{mymCode}
-</select>
- -->
+
  <!-- 서브강의 수 조회 -->
  <select id="subListCount" resultType="int" parameterType="hashmap">
  	SELECT COUNT(*) FROM myclasssub
