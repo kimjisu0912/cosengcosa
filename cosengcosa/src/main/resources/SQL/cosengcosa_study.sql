@@ -23,7 +23,7 @@ CREATE TABLE study(
     s_askcontent VARCHAR2(700 CHAR)            -- 글 내용
         CONSTRAINT S_CON_NN NOT NULL,
     s_askimg VARCHAR2(100 CHAR),                -- 이미지
-    s_askid VARCHAR2(8 CHAR)                    -- 질문자 아이디
+    s_askid VARCHAR2(18 CHAR)                    -- 질문자 아이디
         CONSTRAINT S_AID_FK REFERENCES member(m_id)  --member 테이블이 없음
         CONSTRAINT S_AID_NN NOT NULL,
     s_count NUMBER(8)                           -- 조회수
@@ -60,7 +60,7 @@ CREATE TABLE studyAnswer(
         CONSTRAINT SA_NUM_NN NOT NULL,
     sa_answer VARCHAR2(700 CHAR),               -- 답변
     sa_answerimg VARCHAR2(100 CHAR),
-    sa_answerid VARCHAR2(8 CHAR)                 -- 답변자 아이디
+    sa_answerid VARCHAR2(18 CHAR)                 -- 답변자 아이디
         CONSTRAINT SA_ANID_FK REFERENCES member(m_id),
     sa_cdate TIMESTAMP                           -- 등록일자
         CONSTRAINT SA_DATE_NN NOT NULL

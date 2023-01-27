@@ -34,7 +34,7 @@ CREATE TABLE freeboardcmt(
         CONSTRAINT FC_NO_PK PRIMARY KEY,
     fc_num  NUMBER(8)
         CONSTRAINT FC_FID_NN NOT NULL,
-    fc_writer VARCHAR2(10 CHAR)
+    fc_writer VARCHAR2(18 CHAR)
         CONSTRAINT FC_WRI_FK REFERENCES member(m_id)
         CONSTRAINT FC_WRI_NN NOT NULL,
     fc_content VARCHAR2(700 CHAR)

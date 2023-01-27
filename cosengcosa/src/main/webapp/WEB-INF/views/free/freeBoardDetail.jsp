@@ -169,7 +169,7 @@
 		
 	</div>	
 		<div class="col-auto mt-4">
-			<input type="button" class="btn btn-primary" value="추천" id="Commend" />
+			<button type="button" class="btn btn-danger"  id="Commend" ><i class="bi bi-suit-heart"></i></button>
 		</div>
 </div>
 <script src="resources/js/boardCheck.js"></script>

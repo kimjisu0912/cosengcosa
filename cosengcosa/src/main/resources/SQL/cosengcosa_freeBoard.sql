@@ -36,7 +36,7 @@ CREATE TABLE freeboard(
         CONSTRAINT F_TITLE_NN NOT NULL,
     f_content VARCHAR2(700 CHAR)                        -- 내용
         CONSTRAINT F_CON_NN NOT NULL,
-    f_writer VARCHAR2(10 CHAR)                          -- 작성자
+    f_writer VARCHAR2(18 CHAR)                          -- 작성자
         CONSTRAINT F_WRI_FK REFERENCES member(m_id) -- 참조 테이블이 없음
         CONSTRAINT F_WRI_NN NOT NULL,
     f_count NUMBER(8)                           -- 조회수

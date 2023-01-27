@@ -39,7 +39,7 @@ CREATE TABLE requestboard(
         CONSTRAINT R_TITLE_NN NOT NULL,
     r_content VARCHAR2(700 CHAR)
         CONSTRAINT R_CON_NN NOT NULL,
-    r_writer VARCHAR2(10 CHAR)
+    r_writer VARCHAR2(18 CHAR)
         CONSTRAINT R_WRI_FK REFERENCES member(m_id)
         CONSTRAINT R_WRI_NN NOT NULL,
     r_answer VARCHAR2(700 CHAR),
