@@ -9,7 +9,7 @@
 			<div class="py-2 text-center">
 				<h2><span class=" col-12 bg-light">강의 리스트</span></h2>
 			</div>
-	
+	 
 			<!-- 검색 요청인 경우 출력 -->
 			<c:if test="${searchOption }" >
 				<div class="row">
