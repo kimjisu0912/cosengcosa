@@ -97,7 +97,7 @@
 						<div class="row">
 							<div>
 								<strong class="my-0"><h2>${classMain.cmPrice }원</h2></strong>
-								<p class="text-muted fs-4">${classMain.cmPrice/5 }/ ${classMain.cmPeriod}개월</p>
+								<p class="text-muted fs-4">${classMain.cmPrice/5 }원/ ${classMain.cmPeriod}개월</p>
 							</div>
 							<div class="d-grid gap-3">
 								<a class="btn btn-outline-success bg-opacity-50" type="button" href="payAddForm?cmcode=${classMain.cmCode }">결재하기</a>
