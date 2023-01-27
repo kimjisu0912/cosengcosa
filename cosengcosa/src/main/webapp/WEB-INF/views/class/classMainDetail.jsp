@@ -21,10 +21,10 @@
 						<div class="text-start"></div>
 					</div>
 				</div>
-				<div class="row">
-					<div class="col shadow p-3 mb-5 bg-body rounded">
-						<ul class="nav nav-pills justify-content-end">
-							<c:if test="${sessionScope.member.id =='admin'}">
+				<div class="row my-2">
+					<c:if test="${sessionScope.member.id =='admin'}">
+						<div class="col ">
+							<ul class="nav nav-pills justify-content-end">
 								<li class="nav-item">
 									<a type="button" class="btn btn-primary m-2" href="classSubList?cmcode=${classMain.cmCode }">강의영상 목록</a>
 								</li>
@@ -37,10 +37,10 @@
 								<li class="nav-item">
 									<a type="button" class=" btn btn-danger m-2" data-bs-toggle="modal" data-bs-target="#myModal">삭제</a>
 								</li>
-							</c:if>
-						</ul>
-			 		</div>
-		 		</div>
+							</ul>
+				 		</div>
+		 			</c:if>
+			 	</div>
 			</div>
 		</div>
 		<input type="hidden" id="recommendCode" value="${classMain.cmCode }"><!-- 추천 -->
