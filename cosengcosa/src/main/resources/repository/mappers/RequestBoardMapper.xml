@@ -72,10 +72,10 @@
 	<!-- sAskimg -->
 	<insert id="insertBoard" parameterType="RequestBoard"
 		useGeneratedKeys="false" keyProperty="no">
-		INSERT INTO requestBoard (r_no, r_code, r_title, r_content, r_writer , r_answer, r_open, r_cdate, r_yn) 
+		INSERT INTO requestBoard (r_no, r_code, r_title, r_content, r_writer , r_answer, r_count, r_open, r_cdate, r_yn) 
 		
 		VALUES(requestBoard_seq.NEXTVAL,  #{code}, #{title}, #{ content}, 
-			#{writer}, #{answer, jdbcType=VARCHAR}, #{open}, SYSDATE, #{yn,jdbcType=VARCHAR} )
+			#{writer}, #{answer, jdbcType=VARCHAR},#{rCount}, #{open}, SYSDATE, #{yn,jdbcType=VARCHAR} )
 				
 	</insert>
 	

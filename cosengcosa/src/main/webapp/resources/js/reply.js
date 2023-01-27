@@ -17,8 +17,6 @@ $(document).ready(function() {
 			dataType: "json",
 			success: function(data) {
 				
-				var msg = "추천이";
-				alert(msg + " 반영 되었습니다.");
 			},
 			error: function(xhr, status, error) {
 				alert("error : " + xhr.statusText + ", " + status + ", " + error);

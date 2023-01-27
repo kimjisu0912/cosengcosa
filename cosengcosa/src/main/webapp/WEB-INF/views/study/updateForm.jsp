@@ -30,11 +30,11 @@
 	  		</div>
 	  		<div class="col-8 offset-md-2">
 			    <label for="img" class="form-label">이미지</label>
-			    <input type="file" class="form-control" name="qImg"  id="img" value="${ study.sAskimg }">
+			    <input type="file" class="form-control" name="qImg"  id="img" ${ study.sAskimg } />
 	  		</div>	
 	  		<div class="col-8 offset-md-2">
 			    <label for="file" class="form-label">파일</label>
-			    <input type="file" class="form-control" name="qFile"  id="file" value="${ study.sFile }">
+			    <input type="file" class="form-control" name="qFile"  id="file" ${ study.sFile } />
 	  		</div>	
 	  		<div class="col-8 offset-md-2 text-center mt-5">
 			   <input type="submit" value="수정하기" class="btn btn-primary"/>

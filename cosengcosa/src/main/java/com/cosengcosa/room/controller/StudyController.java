@@ -186,12 +186,19 @@ public class StudyController {
 			@RequestParam(value="type", required=false,  
 					defaultValue="null") String type,
 			@RequestParam(value="keyword", required=false,
-					defaultValue="null") String keyword) throws Exception {
+					defaultValue="null") String keyword,
+			@RequestParam(value="sAskimg", required=false,
+			defaultValue="null") String sAskimg,
+			@RequestParam(value="sFile", required=false,
+			defaultValue="null") String sFile) throws Exception {
 		
 		boolean searchOption = (type.equals("null") 
 				|| keyword.equals("null")) ? false : true; 
 		
 		Study study = studyService.getStudy(sno, false);
+		
+		study.setsAskimg(sAskimg);
+		study.setsFile(sFile);
 		
 		model.addAttribute("study", study);
 		model.addAttribute("pageNum", pageNum);
@@ -211,13 +218,15 @@ public class StudyController {
 	public String studyUp(HttpServletResponse response, 
 			PrintWriter out, Study study,
 			RedirectAttributes reAttrs, 
+			HttpServletRequest request,
 			@RequestParam(value="pageNum", required=false, 
 					defaultValue="1") int pageNum,
 			@RequestParam(value="type", required=false,  
 					defaultValue="null") String type,
 			@RequestParam(value="keyword", required=false,
 					defaultValue="null") String keyword,
-			@RequestParam(value="qImg", required=false) MultipartFile multipartFile) throws IOException {		
+			@RequestParam(value="qImg", required=false) MultipartFile multipartFile,
+			@RequestParam(value="qFile", required=false) MultipartFile multipartFile2) throws IOException {		
 		
 		// BoardService 클래스를 이용해 게시판 테이블에서 비밀번호가 맞는지 체크한다. 
 		
@@ -227,8 +236,47 @@ public class StudyController {
 		boolean searchOption = (type.equals("null") 
 				|| keyword.equals("null")) ? false : true; 
 		
+		if(!multipartFile.isEmpty()) { // 업로드된 파일 데이터가 존재하면
+			
+			// Request 객체를 이용해 파일이 저장될 실제 경로를 구한다.
+			String filePath = 
+					request.getServletContext().getRealPath(DEFAULT_PATH);
+			
+			UUID uid = UUID.randomUUID();
+			String saveName = 
+					uid.toString() + "_" + multipartFile.getOriginalFilename();
+			
+			File file = new File(filePath, saveName);
+			System.out.println("insertStudy - newName : " + file.getName());			
+			
+			// 업로드 되는 파일을 upload 폴더로 저장한다.
+			multipartFile.transferTo(file);
+			
+			study.setsAskimg(saveName);
+		}
+		
+		if(!multipartFile2.isEmpty()) { // 업로드된 파일 데이터가 존재하면
+			
+			// Request 객체를 이용해 파일이 저장될 실제 경로를 구한다.
+			String filePath = 
+					request.getServletContext().getRealPath(DEFAULT_PATH);
+			
+			UUID uid = UUID.randomUUID();
+			String saveName = 
+					uid.toString() + "_" + multipartFile2.getOriginalFilename();
+			
+			File file = new File(filePath, saveName);
+			System.out.println("insertStudy - newName : " + file.getName());			
+			
+			// 업로드 되는 파일을 upload 폴더로 저장한다.
+			multipartFile2.transferTo(file);
+			
+			study.setsFile(saveName);
+		}
+		
 		// BoardService 클래스를 이용해 게시판 테이블에서 게시 글을 수정한다.
 		studyService.updateStudy(study);
+		
 		
 		reAttrs.addAttribute("searchOption", searchOption);
 		

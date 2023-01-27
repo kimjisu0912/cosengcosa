@@ -153,10 +153,11 @@ public class RequestBoardController {
 	@RequestMapping(value="/writeProcessBoard", method=RequestMethod.POST)
 	public String insertBoard(
 			HttpServletRequest request,
-			String title, String writer, String content, String open, String yn, String code
+			String title, String writer, String content, String open, String yn, String code,String rCount
 			) 
 					throws IOException {		
 		
+		rCount = "0";
 		open = "N";
 		yn = "Y";
 		
@@ -165,6 +166,7 @@ public class RequestBoardController {
 		board.setCode(code);
 		board.setWriter(writer);
 		board.setContent(content);
+		board.setrCount(rCount);
 		board.setOpen(open);
 		board.setYn(yn);
 			

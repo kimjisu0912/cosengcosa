@@ -9,6 +9,8 @@
 			<input type="hidden" name="sno" id="sno" value="${study.sNo }"/>
 			<input type="hidden" name="pageNum" value="${ pageNum }" />
 			<input type="hidden" name="memberId" id="memberId" value="${ member.id }" />
+			<input type="hidden" name="sAskimg" id="sAskimg" value="${ study.sAskimg }" />
+			<input type="hidden" name="sFile" id="sFile" value="${ study.sFile }" />
 
 			<%-- 
 				검색 리스트에서 들어온 요청일 경우 다시 keyword에 해당하는 
@@ -148,12 +150,38 @@
 		
 			</div>	
 			
+			
+			
+			
+			
+			
+			
+			
 			<!-- 추천, 이미지, 파일 버튼 -->
 			<div class="col">
-				<input type="button" class="btn btn-primary" value="추천" id="Commend" />
+				<button type="button" class="btn btn-danger"  id="Commend" ><i class="bi bi-suit-heart"></i></button>
 				<c:if test="${ not empty study.sAskimg }">
-					<input type="button" class="btn btn-primary" value="이미지"
-					onclick="location.href='resources/upload/${ study.sAskimg }'" />
+					
+					<!-- Button trigger modal -->
+				<input type="button" class="btn  btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" value="이미지">
+				
+				<!-- Modal -->
+				<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				  <div class="modal-dialog modal-lg ">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <h1 class="modal-title fs-5" id="exampleModalLabel">오류 이미지</h1>
+				        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				      </div>
+				      <div class="modal-body">
+				        <img src="resources/upload/${ study.sAskimg }" style="width: 766px; height: auto;">
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+				      </div>
+				    </div>
+				  </div>
+				</div>
 				</c:if>
 				<c:if test="${ not empty study.sFile }">
 					<input type="button" class="btn btn-primary" value="파일" 

@@ -91,28 +91,20 @@ $(document).ready(function() {
 							? "0" + date.getSeconds() : date.getSeconds());				
 										
 					var result = 
-						"<tr class='reply_" + value.fcNo + "'>" 
-						+ "<td>"
+					
+					 "<div class='reply_" + value.fcNo + "'>" 
+						+ "<div>"
 						+ "	<div class='replyUser'>"
 						+ "		<span class='member'>" + value.fcWriter + "</span>"
 						+ "	</div>"
 						+ "	<div class='replyModify'>"
 						+ "		<span class='replyDate'>" + strDate + "</span>"
-						+ "		<a href='#' class='modifyReply' data-no='" + value.fcNo + "'>"
-						+ "			<img src='resources/images/reply_btn_modify.gif' alt='댓글 수정하기'/>"
-						+ "		</a>"
-						+ "		<a href='#' class='deleteReply' data-no='" + value.fcNo + "'>"
-						+ "			<img src='resources/images/reply_btn_delete.gif' alt='댓글 삭제하기'/>"
-						+ "		</a>"
-						+ "		<a href='javascript:reportReply('div_" + value.fcNo + "');'>"
-						+ "			<img src='resources/images/reply_btn_notify.gif' alt='신고하기'/>"
-						+ "		</a>"
 						+ "	</div>"
 						+ "	<div class='replyContent' id='div_" + value.fcNo + "'>"
 						+ "		<pre><span>" + value.fcContent + "</span></pre>"
 						+ "	</div>"
-						+ "</td>"
-					+ "</tr>";
+						+ "</div>"
+					+ "</div>";
 					
 					$("#replyTable").append(result);								
 				});				
@@ -122,7 +114,7 @@ $(document).ready(function() {
 				console.log("write : " + $("#replyForm").length);
 			},
 			error: function(xhr, status, error) {
-				alert("ajax 실패 : " + status + " - " + xhr.status);
+				alert("로그인을 해주세요!!");
 			}
 		});
 		
@@ -207,28 +199,19 @@ $(document).ready(function() {
 							? "0" + date.getSeconds() : date.getSeconds());			
 										
 					var result = 
-						"<tr class='reply_" + value.fcNo + "'>" 
-						+ "<td>"
+						"<div class='reply_" + value.fcNo + "'>" 
+						+ "<div>"
 						+ "	<div class='replyUser'>"
 						+ "		<span class='member'>" + value.fcWriter + "</span>"
 						+ "	</div>"
 						+ "	<div class='replyModify'>"
 						+ "		<span class='replyDate'>" + strDate + "</span>"
-						+ "		<a href='#' class='modifyReply' data-no='" + value.fcNo + "'>"
-						+ "			<img src='resources/images/reply_btn_modify.gif' alt='댓글 수정하기'/>"
-						+ "		</a>"
-						+ "		<a href='#' class='deleteReply' data-no='" + value.fcNo + "'>"
-						+ "			<img src='resources/images/reply_btn_delete.gif' alt='댓글 삭제하기'/>"
-						+ "		</a>"
-						+ "		<a href='javascript:reportReply('div_" + value.fcNo + "');'>"
-						+ "			<img src='resources/images/reply_btn_notify.gif' alt='신고하기'/>"
-						+ "		</a>"
 						+ "	</div>"
 						+ "	<div class='replyContent' id='div_" + value.fcNo + "'>"
 						+ "		<pre><span>" + value.fcContent + "</span></pre>"
 						+ "	</div>"
-						+ "</td>"
-					+ "</tr>";
+						+ "</div>"
+					+ "</div>";
 					
 					// 댓글 테이블의 기존 내용을 삭제하고 다시 추가한다.
 					$("#replyTable").append(result);					
@@ -287,28 +270,19 @@ $(document).ready(function() {
 								? "0" + date.getSeconds() : date.getSeconds());
 											
 						var result = 
-							"<tr class='reply_" + value.fcno + "'>" 
-							+ "<td>"
+							"<div class='reply_" + value.fcno + "'>" 
+							+ "<div>"
 							+ "	<div class='replyUser'>"
 							+ "		<span class='member'>" + value.fcWriter + "</span>"
 							+ "	</div>"
 							+ "	<div class='replyModify'>"
 							+ "		<span class='replyDate'>" + strDate + "</span>"
-							+ "		<a href='#' class='modifyReply' data-no='" + value.fcNo + "'>"
-							+ "			<img src='resources/images/reply_btn_modify.gif' alt='댓글 수정하기'/>"
-							+ "		</a>"
-							+ "		<a href='#' class='deleteReply' data-no='" + value.fcNo + "'>"
-							+ "			<img src='resources/images/reply_btn_delete.gif' alt='댓글 삭제하기'/>"
-							+ "		</a>"
-							+ "		<a href='javascript:reportReply('div_" + value.fcNo + "');'>"
-							+ "			<img src='resources/images/reply_btn_notify.gif' alt='신고하기'/>"
-							+ "		</a>"
 							+ "	</div>"
 							+ "	<div class='replyContent' id='div_" + value.fcNo + "'>"
 							+ "		<pre><span>" + value.fcContent + "</span></pre>"
 							+ "	</div>"
-							+ "</td>"
-						+ "</tr>";
+							+ "</div>"
+						+ "</div>";
 						
 						// 댓글 테이블의 기존 내용을 삭제하고 다시 추가한다.
 						$("#replyTable").append(result);					

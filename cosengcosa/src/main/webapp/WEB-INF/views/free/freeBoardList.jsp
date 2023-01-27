@@ -4,7 +4,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!-- content -->
 <div class="row my-5" id="global-content">
-	<div class="col">
+	<div class="col"></div>
+	<div class="col-8">
 		<div class="row text-center">
 			<div class="col">
 				<h2 class="fs-3 fw-bold">자유게시판</h2>
@@ -219,5 +220,6 @@
 		</c:if>
 		
 	</div>
+	<div class="col"></div>
 </div>
 <script src="resources/js/boardCheck.js"></script>   
