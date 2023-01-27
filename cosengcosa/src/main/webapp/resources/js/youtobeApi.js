@@ -82,15 +82,15 @@ $.ajax({
 					  //console.log(title);
 					  var result = 
 	             		'<div class="col-4">'
-		             	+		'<div class="card border" style="width: 13rem; height: 25rem;" >'
+		             	+		'<div class="card border-dark shadow" style="width: 13rem; height: 25rem;" >'
 		             	+			'<img src="https://img.youtube.com/vi/'+vid+'/0.jpg" class="card-img-top img-thumbnail">'
 			            + 			'<div class="card-body text-bg-secondary">'
 			            + 				'<p class="card-text">'+title+'</p>'
 			            + 				'<p class="card-text">'+duration+'</p>'
 			            + 			'</div>'
 			            + 		'</div>'
-			            +		'<div class="text-center mb-4 border text-bg-light" style="width: 13rem;">'
-			            + 			'<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault'+i+'" value="'+vid+'">'
+			            +		'<div class="text-center mb-4 text-bg-light shadow" style="width: 13rem;">'
+			            + 			'<input class="form-check-input border-dark" type="radio" name="flexRadioDefault" id="flexRadioDefault'+i+'" value="'+vid+'">'
 			            +		'</div>'
 			            +'</div>'
 			            i++;

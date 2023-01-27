@@ -71,7 +71,7 @@
 							<label for="emailId" class="form-label">* 강의시간 : </label>
 						</div>
 						<div class="col-auto">
-							<input type="text" class="form-control" name="csRuntime" id="csRuntime">
+							<input type="text" class="form-control text-bg-secondary" name="csRuntime" id="csRuntime" readonly>
 						</div>
 					</div>
 				</div>	
