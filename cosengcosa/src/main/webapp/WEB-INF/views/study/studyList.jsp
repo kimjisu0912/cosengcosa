@@ -5,7 +5,7 @@
 <!-- content -->
 <form name="searchForm" id="searchForm" action="#">
 <div class="row my-5" id="global-content">
-		<div class="col-2">
+		<div class="col-auto">
 			<div class="p-4 mb-3 bg-light rounded " style="position: fixed;">
 				<div class="fs-3 fw-bold my-1">인기 주제</div>
 				<div>
@@ -56,11 +56,11 @@
 			</div> 
 			
 			<%-- 검색 요청일 경우 일반 게시 글 리스트로 이동할 수 있도록 링크를 설정했다. --%>
-			<div class="row my-3">
-				<div class="col-6">
+			<div class="row justify-content-center my-3">
+				<div class="col-4">
 					<a href="studyList" class="btn btn-outline-dark">리스트</a>
 				</div>
-				<div class="col-6 text-end">
+				<div class="col-4 text-end">
 					<a href="writeForm" class="btn btn-outline-dark">글쓰기</a>
 				</div>
 			</div>
@@ -80,15 +80,16 @@
 					--%>	
 						<c:if test="${ searchOption and not empty studyList }">
 							<c:forEach var="s" items="${studyList}" varStatus="status">
-								<div class="row  justify-content-center ">
-										<div class="inline-block col my-3  shadow border-bottom border-info" style="height: auto;">
+								<div class="row  m-0 p-0">
+									<div class="col"></div>
+										<div class=" col-8 my-3  shadow border-bottom border-info" style="height: auto;">
 											<div>
-												<div><a class=" text-reset text-decoration-none" href="studyDetail?no=${s.sNo}&pageNum=${currentPage}
-												&type=${ type }&keyword=${ keyword }" ><span class="fw-bold fs-4">${ s.sTitle }</span></a></div>
-												<div><span class="fw-bold fs-6">오류코드 : </span>${ s.sError }</div>
-												<div><span class="fw-lighter fs-8"><span class="bold">${ s.sAskid }</span> ${ s.sCdate } ${ s.sCount } ${ s.sRecommend }</span></div>
+												<div><a class=" text-reset text-decoration-none mx-2" href="studyDetail?no=${s.sNo}&pageNum=${currentPage}" ><span class="fw-bold fs-4">${ s.sTitle }</span></a></div>
+												<div class="mt-2 mx-2 text-truncate"><span class="fw-bold fs-6 ">오류코드 : </span>${ s.sError }</div>
+												<div class="mt-5 mx-2"><span class="fw-lighter fs-8"><span class="fw-bold">${ s.sAskid }</span> <fmt:formatDate value="${ s.sCdate }" pattern="yyyy-MM-dd"/> ${ s.sCount } ${ s.sRecommend }</span></div>
 											</div>
 										</div>
+										<div class="col"></div>
 								</div>
 							</c:forEach>
 						</c:if>
@@ -101,16 +102,17 @@
 					--%>
 						<c:if test="${ not searchOption and not empty studyList }">
 							<c:forEach var="s" items="${studyList}" varStatus="status">
-								<div class="  m-0 p-0">
-										<div class="inline-block col my-3  shadow border-bottom border-info" style="height: auto;">
+								<div class="row  m-0 p-0">
+									<div class="col"></div>
+										<div class="inline-block col-8 my-3  shadow border-bottom border-info" style="height: auto;">
 											<div>
 												<div><a class=" text-reset text-decoration-none mx-2" href="studyDetail?no=${s.sNo}&pageNum=${currentPage}" ><span class="fw-bold fs-4">${ s.sTitle }</span></a></div>
-												<div class="mt-2 mx-2"><span class="fw-bold fs-6">오류코드 : </span>${ s.sError }</div>
-												<div class="mt-5 mx-2"><span class="fw-lighter fs-8"><span class="bold">${ s.sAskid }</span> ${ s.sCdate } ${ s.sCount } ${ s.sRecommend }</span></div>
+												<div class="mt-2 mx-2 text-truncate"><span class="fw-bold fs-6 ">오류코드 : </span>${ s.sError }</div>
+												<div class="mt-5 mx-2"><span class="fw-lighter fs-8"><span class="fw-bold">${ s.sAskid }</span> <fmt:formatDate value="${ s.sCdate }" pattern="yyyy-MM-dd"/> ${ s.sCount } ${ s.sRecommend }</span></div>
 											</div>
 										</div>
+										<div class="col"></div>
 								</div>
-								<!-- <div class="col"></div> -->
 							</c:forEach>
 						</c:if>
 					
@@ -211,7 +213,7 @@
 		</c:if>
 
 	</div>		
-	<div class="col-2"></div>		
+	<div class="col-auto"></div>		
 </div>
 </form>
 <script src="resources/js/boardCheck.js"></script>   

@@ -84,7 +84,7 @@
 								class="text-decoration-none link-secondary">${ b.title }</a>
 							</td>
 							<td>${ b.writer }</td>
-							<td>${ b.cdate }</td>
+							<td><fmt:formatDate value="${ b.cdate }" pattern="yyyy-MM-dd"/></td>
 							<c:if test='${ b.open == "Y"}'>
 								<td>해결</td>
 							</c:if>
@@ -107,7 +107,7 @@
 							<td><a href="requestBoardDetail?no=${b.no}&pageNum=${currentPage}" 
 								class="text-decoration-none link-secondary">${ b.title }</a></td>
 							<td>${ b.writer }</td>
-							<td>${ b.cdate }</td>
+							<td><fmt:formatDate value="${ b.cdate }" pattern="yyyy-MM-dd"/></td>
 							<c:if test='${ b.yn == "Y"}'>
 								<td>해결</td>
 							</c:if>

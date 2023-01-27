@@ -83,7 +83,7 @@
 								class="text-decoration-none link-secondary">${ f.fTitle }</a>
 							</td>
 							<td>${ f.fWriter }</td>
-							<td>${ f.fCdate }</td>
+							<td><fmt:formatDate value="${ f.fCdate }" pattern="yyyy-MM-dd"/></td>
 						</tr>
 						</c:forEach>
 					</c:if>
@@ -103,7 +103,7 @@
 								class="text-decoration-none link-secondary">${ f.fTitle }</a>
 							</td>
 							<td>${ f.fWriter }</td>
-							<td>${ f.fCdate }</td>
+							<td><fmt:formatDate value="${ f.fCdate }" pattern="yyyy-MM-dd"/></td>
 						</tr>
 						</c:forEach>
 					</c:if>

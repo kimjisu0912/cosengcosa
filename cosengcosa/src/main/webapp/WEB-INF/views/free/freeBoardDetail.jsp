@@ -28,32 +28,35 @@
 		</div> 
 		<div class="row my-3">
 			<div class="col">
-				<table class="table table-bordered" >
+				<table class="table table-bordered " >
 					<tbody>					
 						<tr>
 							<th class="table-secondary">제 목</th>
-							<td colspan=7">${ freeBoard.fTitle }</td>		
+							<td colspan="7" >${ freeBoard.fTitle }</td>		
 						</tr>
 						<tr>
 							<th>글쓴이</th>
 							<td>${ freeBoard.fWriter }</td>
 							<th>작성일</th>
 							<td><fmt:formatDate value="${ freeBoard.fCdate }" 
-								pattern="yyyy-MM-dd HH:mm:ss" /></td>
+								pattern="yyyy-MM-dd" /></td>
 							<th>조회수</th>
 							<td>${ freeBoard.fCount}</td>
 							<th>추천수</th>
 							<td>${ freeBoard.fRecommend }</td>
 						</tr>
 						<tr>		
-							<td colspan="8">
-								<div style="height: 500px;"><pre>${ freeBoard.fContent }</pre></div>
+							<td colspan="8" >
+								<div style="height: 500px;" >
+									<div><pre >${ freeBoard.fContent }</pre></div>
+								</div>
 							</td>
-						</tr>	
+						</tr>	     
 					</tbody>
 				</table>
 			</div>
 		</div>
+		
 		<div class="row my-3">
 			<div class="col text-center">	
 			<c:if test="${ not empty member.id }">

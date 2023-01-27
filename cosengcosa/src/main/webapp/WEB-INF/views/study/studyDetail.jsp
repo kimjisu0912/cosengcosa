@@ -29,12 +29,12 @@
 				<div class="border-bottom border-info">
 					<div class="fs-3">${ study.sTitle }</div>
 					<div class="my-2 ">${ study.sAskid }</div>
-					<div class="my-2 ">작성일 ${ study.sCdate } &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;조회수 ${ study.sCount } 
+					<div class="my-2 ">작성일 <fmt:formatDate value="${ study.sCdate }" pattern="yyyy-MM-dd"/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;조회수 ${ study.sCount } 
 					&nbsp;&nbsp; 추천수 ${ study.sRecommend }</div>
 				</div>
 				<div style="height: 500px;">
 					<div class="mt-4">오류코드 : ${ study.sError }</div>
-					<div class="mt-3"><pre>${ study.sAskcontent }</pre></div>
+					<div class="mt-3"><pre class="text-wrap">${ study.sAskcontent }</pre></div>
 				</div>
 				<div class="border-bottom border-info"></div>
 				<!-- 수정, 삭제, 목록 버튼  -->
