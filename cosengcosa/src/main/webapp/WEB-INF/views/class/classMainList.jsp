@@ -195,5 +195,5 @@
 		</c:if>
  		</div>
  		</div>
-	</div>
+	</div>   
 </div><!-- end global content -->
