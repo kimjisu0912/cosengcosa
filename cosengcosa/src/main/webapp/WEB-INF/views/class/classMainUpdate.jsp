@@ -13,7 +13,7 @@
 	<div class="col ">
 		<div class="container ">
 		   	<div class="shadow-lg p-3 mb-5  bg-warning text-dark bg-opacity-25 text-start">
-		     	<h2>수강페이지 등록 관리자</h2>
+		     	<h2>수강페이지 수정 관리자</h2>
 		   	</div>
 		   	<form name="classMainModForm" id="classMainModForm" >
 			<div class="row justify-content-md-center">
@@ -51,7 +51,7 @@
 					</div>
 				</div>
 				<div class="col-10 d-md-flex justify-content-md-start">
-		   			<input type="submit" class=" btn btn-outline-success m-2" value="등록">
+		   			<input type="submit" class=" btn btn-outline-success m-2" value="수정">
 		   		</div>
 			</div>
 			</form>
