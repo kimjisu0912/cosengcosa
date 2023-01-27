@@ -88,17 +88,19 @@
 				<c:forEach var="c" items="${classMainList }" varStatus="status">
 					<div class="col-md-4 col-lg-3 order-md-last ">
 						<div class="card shadow-sm m-2">
-							<div class="card-body" style="weight:150px; height:320px;">
-								<div class="row">
-									<img src="http://img.youtube.com/vi/${c.csVideo }/mqdefault.jpg"></img>
+							<a href="classMainDetail?cmNo=${c.cmNo }&cmCode=${c.cmCode }&pageNum=${currentPage}">
+								<div class="card-body" style="weight:150px; height:320px;">
+									<div class="row">
+										<img src="http://img.youtube.com/vi/${c.csVideo }/mqdefault.jpg"></img>
+									</div>
+									<div class="my-3">
+				 						<div>${c.cmTitle }</div>
+				 						<div>영상제공자 : ${c.cmName }</div>
+				 						<div>가격 : <fmt:formatNumber type="number" maxFractionDigits="3" value="${c.cmPrice/5 }"/></div>
+				 						<div>평점 : ${c.cmStar }</div>
+									</div>
 								</div>
-								<div class="my-3">
-			 						<a href="classMainDetail?cmNo=${c.cmNo }&cmCode=${c.cmCode }&pageNum=${currentPage}">${c.cmTitle }</>
-			 						<div>영상제공자 : ${c.cmName }</div>
-			 						<div>가격 : <fmt:formatNumber type="number" maxFractionDigits="3" value="${c.cmPrice/5 }"/></div>
-			 						<div>평점 : ${c.cmStar }</div>
-								</div>
-							</div>
+							</a>
 						</div>
 					</div>
 				</c:forEach>
