@@ -140,14 +140,10 @@
 	
 	<!-- 서브강의 비디오id 가져오기 -->
 	<select id="detailVideo" resultType="ClassMain" parameterType="HashMap">
-		SELECT b.cs_video as cmVideo FROM
-			classmain a,
-			classsub b
+		SELECT video as cmVideo FROM
+			classmain a
 		WHERE
-			a.cm_code = b.cs_group
-			AND a.cm_code = #{cmCode}
-			AND b.cs_code = (SELECT MIN(cs_code) FROM classsub
-			WHERE cs_group = #{cmCode})
+			cm_code = #{cmCode}
 	</select>
 	
 	 <!-- 메인강의 상세조회 -->

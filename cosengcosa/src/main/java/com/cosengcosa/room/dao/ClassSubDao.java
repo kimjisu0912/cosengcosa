@@ -30,7 +30,14 @@ public interface ClassSubDao {
 	
 	// 서브강의 수정 요청 시 호출되는 메소드
 	public abstract void updateClassSub(ClassSub classSub);
+	// 서브강의 비디오값 요청 시 호출되는 메소드
+	public abstract String getSubVideo(String cmCode);
+	// 메인강의 비디오값 요청 시 호출되는 메소드
+	public abstract String getMainVideo(String cmCode);
+		
 	
 	// 서브강의 삭제 요청 시 호출되는 메소드
 	public abstract void deleteClassSub(ClassSub classSub);
+	// 서브강의 삭제유무 y인 카운터 확인 요청 시 호출되는 메소드
+	public abstract int getSubVideoCount(String cmCode);
 }

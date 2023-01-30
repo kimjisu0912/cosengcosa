@@ -86,6 +86,15 @@ public class ClassSubServiceImpl implements ClassSubService {
 	@Override
 	public void updateClassSub(ClassSub classSub) {
 		classSubDao.updateClassSub(classSub);
+		String cmCode = classSub.getCsGroup();
+		// 서브강의 비디오값과 메인강의 비디오값이 같지않을 경우
+		// 서브강의 비디오값을 메인강의 비디오값에 업데이트
+		String subVideo = classSubDao.getSubVideo(cmCode);
+		String mainVideo = classSubDao.getMainVideo(cmCode);
+		if(!subVideo.equals(mainVideo)) {
+			classSubDao.updateClassMainVideo(cmCode, subVideo);
+		}
+	
 	}
 
 	/*
@@ -94,6 +103,14 @@ public class ClassSubServiceImpl implements ClassSubService {
 	@Override
 	public void deleteClassSub(ClassSub classSub) {
 		classSubDao.deleteClassSub(classSub);
+		String cmCode = classSub.getCsGroup();
+		// 서브강의 삭제유무가 y인 카운터가 0이면
+		// 메인강의 비디오값을 v로 업데이트
+		int cnt = classSubDao.getSubVideoCount(cmCode);
+		if(cnt < 1) {
+			String voide = "v";
+			classSubDao.updateClassMainVideo(cmCode, voide);
+		}
 	}
 
 }

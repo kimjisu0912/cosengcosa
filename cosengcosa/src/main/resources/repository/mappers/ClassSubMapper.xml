@@ -62,6 +62,7 @@
     		cs_code = #{cscode}
 	</select>
 	
+	<!-- 서브강의 수정 -->
 	<update id="updateClassSub" parameterType="ClassSub">
 		UPDATE
 		    classsub
@@ -74,6 +75,24 @@
 		    cs_code = #{csCode}
 	</update>
 	
+	<!-- 서브강의 비디오값 조회 -->
+	<select id="getSubVideo" resultType="String">
+		SELECT cs_video AS csVideo
+		FROM classsub
+		WHERE
+		cs_code = (
+		SELECt MIN(cs_code)FROM classsub
+		WHERE cs_group = #{cmCode}
+		)
+	</select>
+	
+	<!-- 메인강의 비디오값 조회 -->
+	<select id="getMainVideo" resultType="String">
+		SELECT video
+		FROM classmain
+		WHERE cm_code = #{cmCode}
+	</select>
+	
 	<update id="deleteClassSub" parameterType="ClassSub">
 		UPDATE
 		    classsub
@@ -82,6 +101,13 @@
 		WHERE
 		    cs_code = #{csCode}
 	</update>
+	
+	<!-- 서브강의 삭제 갯수 조회 -->
+	<select id="getSubVideoCount" resultType="int">
+		SELECT COUNT(*) FROM classsub
+		WHERE cs_yn ='Y'
+		AND cs_group = #{cmCode}
+	</select>
 	
 	<resultMap id="classSubResultMap" type="ClassSub">
 		<id property="csNo" column="cs_no" />

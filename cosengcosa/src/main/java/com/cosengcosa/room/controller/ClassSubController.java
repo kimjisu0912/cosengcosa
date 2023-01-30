@@ -158,6 +158,7 @@ public class ClassSubController {
 		
 		ClassSub classSub = new ClassSub();
 		classSub.setCsCode(csCode);
+		classSub.setCsGroup(csGroup);
 		classSub.setCsYn("N");
 		
 		classSubService.deleteClassSub(classSub);

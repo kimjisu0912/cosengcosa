@@ -87,6 +87,22 @@ public class ClassSubDaoImpl implements ClassSubDao {
 	public void updateClassSub(ClassSub classSub) {
 		sqlSession.update(NAME_SPACE + ".updateClassSub", classSub);
 	}
+	
+	/*
+	 * 서브강의 비디오값 요청 시 호출되는 메소드
+	 */
+	@Override
+	public String getSubVideo(String cmCode) {
+		return sqlSession.selectOne(NAME_SPACE + ".getSubVideo", cmCode);
+	}
+
+	/*
+	 * 메인강의 비디오값 요청 시 호출되는 메소드
+	 */
+	@Override
+	public String getMainVideo(String cmCode) {
+		return sqlSession.selectOne(NAME_SPACE + ".getMainVideo", cmCode);
+	}
 
 	/*
 	 * 서브강의 삭제 요청 시 호출되는 메소드
@@ -95,6 +111,16 @@ public class ClassSubDaoImpl implements ClassSubDao {
 	public void deleteClassSub(ClassSub classSub) {
 		sqlSession.update(NAME_SPACE + ".deleteClassSub", classSub);
 	}
+
+	/*
+	 * 서브강의 삭제유무 y인 카운터 확인 요청 시 호출되는 메소드
+	 */
+	@Override
+	public int getSubVideoCount(String cmCode) {
+		return sqlSession.selectOne(NAME_SPACE + ".getSubVideoCount", cmCode);
+	}
+
+	
 
 	
 	
