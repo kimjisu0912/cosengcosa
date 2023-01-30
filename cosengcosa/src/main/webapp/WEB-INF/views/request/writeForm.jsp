@@ -13,7 +13,7 @@
 		  	<div class="col-4 offset-md-2">
 			    <label for="writer" class="form-label">작성자</label>
 			    <input type="text" class="form-control" name="writer"  id="writer" 
-			    	placeholder="작성자를 입력해 주세요" value="${ member.id }" readonly>
+			    	placeholder="작성자를 입력해 주세요" value="${ Session.member.id }" readonly>
 	  		</div>
 	  		<div class="col-4 ">
 			    <label for="code" class="form-label">문의 유형</label>

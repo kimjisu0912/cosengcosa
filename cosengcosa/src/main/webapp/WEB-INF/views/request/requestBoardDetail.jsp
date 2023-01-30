@@ -8,7 +8,7 @@
 	<div class="col-8">
 		<form name="checkForm" id="checkForm">
 			<input type="hidden" name="no" id="no" value="${ board.no }"/>
-			<input type="hidden" name="grant" id="grant" value="${ member.grant }" />
+			<input type="hidden" name="grant" id="grant" value="${ Session.member.grant }" />
 			<input type="hidden" name="pageNum" value="${ pageNum }" />
 			<input type="hidden" name="answerInput" id="answerInput"  />
 
@@ -56,12 +56,12 @@
 		</div>
 		<div class="row my-3">
 			<div class="col text-center">	
-			<c:if test="${ not empty member.id }">
-				<c:if test='${ board.writer == member.id || member.grant == "A"}'>			
+			<c:if test="${ not empty Session.member.id }">
+				<c:if test='${ board.writer == Session.member.id || Session.member.grant == "A"}'>			
 					<input class="btn btn-warning" type="button" id="detailUpdate2" value="수정하기"/>
 					&nbsp;&nbsp;<input class="btn btn-danger"  type="button" id="detailDelete2" value="삭제하기" />
 				</c:if>
-				<c:if test='${ member.grant == "A" }'>
+				<c:if test='${ Session.member.grant == "A" }'>
 					&nbsp;&nbsp;<input class="btn btn-info" type="button" id="detailAnswer" value="답변달기"/>
 				</c:if>				
 			</c:if>
