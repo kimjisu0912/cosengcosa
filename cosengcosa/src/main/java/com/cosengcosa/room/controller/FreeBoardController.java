@@ -117,46 +117,7 @@ public class FreeBoardController {
 			freeBoard.setfCount(fCount);
 			freeBoard.setfRecommend(fRecommend);
 			
-			/*
-			if(!multipartFile.isEmpty()) { // 업로드된 파일 데이터가 존재하면
-				
-				// Request 객체를 이용해 파일이 저장될 실제 경로를 구한다.
-				String filePath = 
-						request.getServletContext().getRealPath(DEFAULT_PATH);
-				
-				UUID uid = UUID.randomUUID();
-				String saveName = 
-						uid.toString() + "_" + multipartFile.getOriginalFilename();
-				
-				File file = new File(filePath, saveName);
-				System.out.println("insertStudy - newName : " + file.getName());			
-				
-				// 업로드 되는 파일을 upload 폴더로 저장한다.
-				multipartFile.transferTo(file);
-				
-				study.setsAskimg(saveName);
-			}
-			*/
-			/*
-			if(!multipartFile2.isEmpty()) { // 업로드된 파일 데이터가 존재하면
-				
-				// Request 객체를 이용해 파일이 저장될 실제 경로를 구한다.
-				String filePath = 
-						request.getServletContext().getRealPath(DEFAULT_PATH);
-				
-				UUID uid = UUID.randomUUID();
-				String saveName = 
-						uid.toString() + "_" + multipartFile2.getOriginalFilename();
-				
-				File file = new File(filePath, saveName);
-				System.out.println("insertStudy - newName : " + file.getName());			
-				
-				// 업로드 되는 파일을 upload 폴더로 저장한다.
-				multipartFile2.transferTo(file);
-				
-				study.setsFile(saveName);
-			}
-			*/
+			
 			
 			freeBoardService.insertFreeBoard(freeBoard);
 					

@@ -31,6 +31,7 @@
 				<select name="type" class="form-select">
 					<option value="title">제목</option>
 					<option value="writer">작성자</option>
+					<option value="error">에러코드</option>
 				</select>
 			</div>
 			<div class="col-4">

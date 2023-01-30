@@ -40,6 +40,9 @@
 						<if test="type == 'writer'">
 							sAskid LIKE '%' || #{keyword} || '%' 
 						</if>
+						<if test="type == 'error'">
+							sError LIKE '%' || #{keyword} || '%' 
+						</if>
 					</where> 
 				       ORDER BY 
 			        		sNo DESC 	

@@ -100,6 +100,16 @@ VALUES (study_seq.NEXTVAL, 'spring에서 파일업로드 기능을 구현하다�
 INSERT INTO study (s_no, s_title, s_error, s_askcontent, s_askimg, s_askid, s_count, s_recommend, s_file, s_open, s_clear, s_cdate, s_yn) 
 VALUES (study_seq.NEXTVAL, 'spring에서 데이터를 보내던 도중 int 형태가 bigdecimal 맞지 않다고 오류가 납니다','no constructor found in com.cosengcosa.room.domain.studyanswer matching [java.math.bigdecimal, java.math.bigdecimal, java.lang.string, java.lang.string, java.lang.string, oracle.sql.timestamp]',  '저런 테이블은 만든적이 없는데 어디서 부터 문제인지 감도 안 잡힙니다 살려주세요 ㅠㅠ  ', null, 'test01', 70,56,null,'Y','Y','2023-01-26 18:45:36','Y');
 
+INSERT INTO study (s_no, s_title, s_error, s_askcontent, s_askimg, s_askid, s_count, s_recommend, s_file, s_open, s_clear, s_cdate, s_yn) 
+VALUES (study_seq.NEXTVAL, '서버가, 해당 요청을 충족시키지 못하게 하는 예기치 않은 조건을 맞닥뜨렸습니다.','Handler processing failed; nested exception is java.lang.Error: Unresolved compilation problem:',  '컨트롤이랑 서비스 맵퍼는 아닌거 같은데 어디가 문제인지 모르겠어요ㅠㅠ', null, 'test02', 200,200,null,'Y','Y','2023-01-16 8:25:56','Y');
+INSERT INTO study (s_no, s_title, s_error, s_askcontent, s_askimg, s_askid, s_count, s_recommend, s_file, s_open, s_clear, s_cdate, s_yn) 
+VALUES (study_seq.NEXTVAL, '404 Not Found 인데 모르겠습니다.',' Optional int parameter sno is present but cannot be translated into a null value due to being declared as a primitive type.',  '댓글의 정보를 ajax로 넘겨주고 있고 controller가 못 찾는거 봐서는 ajax인데 어디가 틀린지 모르겠어요.', null, 'test02', 300,300,null,'Y','Y','2023-01-10 18:55:00','Y');
+INSERT INTO study (s_no, s_title, s_error, s_askcontent, s_askimg, s_askid, s_count, s_recommend, s_file, s_open, s_clear, s_cdate, s_yn) 
+VALUES (study_seq.NEXTVAL, '이제 처음 입문했는데 oracle 설치부터 막힘...','없음',  'oracle 설치는 했는데 실행도중 확장 실패했다면서 실행이 안되요', null, 'test01', 400,400,null,'Y','Y','2021-11-21 19:15:10','Y');
+INSERT INTO study (s_no, s_title, s_error, s_askcontent, s_askimg, s_askid, s_count, s_recommend, s_file, s_open, s_clear, s_cdate, s_yn) 
+VALUES (study_seq.NEXTVAL,'게시판을 만들기 중 SQL문법이 틀려서 나는 오류','bad sql grammar nested exception is java.sql.','어디서 오류가 나는지는 알겠지만 올바른 문법을 모르겠습니다. 게시글 순서도 이상한 순서로 나오네요ㅠ',null,'test02',450,450, null,'Y','Y','2022-12-29 18:23:50','Y');
+INSERT INTO study (s_no, s_title, s_error, s_askcontent, s_askimg, s_askid, s_count, s_recommend, s_file, s_open, s_clear, s_cdate, s_yn) 
+VALUES (study_seq.NEXTVAL,'파일을 다운받게 하고 싶은데 폴더가 계속 사라져서 오류가 나네요...','없음','컨트롤러에서 나는 오류인지 어디서 나는 오류인지 모르겠는데 폴더 자체가 사라져서 경로가 없다고 오류가 나네요', null,'test02',500,500,null,'Y','Y','2023-01-19 15:36:20','Y');
 
 commit;
 select * from study ORDER BY s_no ASC;
