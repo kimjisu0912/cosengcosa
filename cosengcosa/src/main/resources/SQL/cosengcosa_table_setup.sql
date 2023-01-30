@@ -1,0 +1,33 @@
+
+-- sql 테이블 삭제 순서
+-- 장바구니(cosengcosa_basket)
+-- 결재(cosengcosa_pay)
+-- 자유게시판답변(cosengcosa_freeBoardcmt)
+-- 자유게시판(cosengcosa_freeBoard)
+-- 추천이력(cosengcosa_recommend)
+-- 요청사항(cosengcosa_requestBoard)
+-- 지식공유 응답(cosengcosa_study)
+-- 지식공유 메인(cosengcosa_study)
+-- 내강의 서브(cosengcosa_myClassSub)
+-- 내강의 메인(cosengcosa_myClassMain)
+-- 강의 서브(cosengcosa_classSub)
+-- 강의 메인(cosengcosa_classMain)
+-- 회원(cosengcosa_member)
+
+-- =======================================================
+-- sql 테이블 생성 순서
+-- 회원(cosengcosa_member)
+-- 강의 메인(cosengcosa_classMain)
+-- 강의 서브(cosengcosa_classSub)
+-- 강의 서브 데이터(cosengcosa_classSubData)
+-- 내강의 메인(cosengcosa_myClassMain) >> 데이터 입력은 특정아이디 있어야함
+-- 내강의 서브(cosengcosa_myClassSub)
+-- 내강의 서브 데이터(cosengcosa_myClassSubData) >> 특정아이디 있어야함
+-- 지식공유 메인(cosengcosa_study)
+-- 지식공유 응답(cosengcosa_study)
+-- 요청사항(cosengcosa_requestBoard)
+-- 추천이력(cosengcosa_recommend)
+-- 자유게시판(cosengcosa_freeBoard)
+-- 자유게시판답변(cosengcosa_freeBoardcmt)
+-- 결재(cosengcosa_pay)
+-- 장바구니(cosengcosa_basket)
