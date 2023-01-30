@@ -9,7 +9,7 @@ CREATE TABLE member(
         CONSTRAINT MB_PASS_NN NOT NULL,
     m_name VARCHAR2(10 CHAR)  
         CONSTRAINT MB_NAME_NN NOT NULL,
-    m_nickname VARCHAR2(10)    
+    m_nickname VARCHAR2(30)    
         CONSTRAINT MB_NICK_UK UNIQUE
         CONSTRAINT MB_NICK_NN NOT NULL,
     m_tel VARCHAR2(13 CHAR)

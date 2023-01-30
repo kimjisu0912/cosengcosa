@@ -32,7 +32,7 @@
 		<!-- 분류 및 검색  -->
 		<div class="row mt-3">
 			<div class="col-2">
-				<label for="keyword" class="ms-1 mb-1">기술</label>
+				<label for="keyword" class="ms-1 mb-1">정렬</label>
 				<select name="keyword" id="keyword" class="form-select">
 					<option value="" <c:if test="${keyword eq ''}">selected="selected"</c:if>>과목</option>
 					<option value="JA" <c:if test="${keyword eq 'JA'}">selected="selected"</c:if>>Java</option>
