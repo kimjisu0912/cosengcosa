@@ -90,6 +90,7 @@ public class FreeBoardServicelmpl implements FreeBoardService {
 
 	@Override
 	public FreeBoard getFreeBoard(int fno, boolean isCount) {
+		System.out.println(fno);
 		return freeBoardDao.getFreeBoard(fno, isCount);
 	}
 

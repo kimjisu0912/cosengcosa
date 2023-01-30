@@ -87,6 +87,19 @@ VALUES (freeboard_seq.NEXTVAL, '저 내일 면접보는데 꿀팁 좀 알려주�
 INSERT INTO freeboard (f_no, f_title,f_content, f_writer , f_cdate, f_yn, f_count, f_recommend) 
 VALUES (freeboard_seq.NEXTVAL, 'db는 mysql이 좋아요? 아님 oracle이 좋아요?', '혼자서 가볍게 연습하고 싶은데 뭐가 좋은지 모르겠어ㅡ.ㅡ 장단점 좀 알려주',  'test02', '2023-01-18-18:41:32', 'Y' ,'100','100');
 
+
+INSERT INTO freeboard (f_no, f_title,f_content, f_writer , f_cdate, f_yn, f_count, f_recommend) 
+VALUES (freeboard_seq.NEXTVAL, 'db는 mysql이 좋아요? 아님 oracle이 좋아요?', '혼자서 가볍게 연습하고 싶은데 뭐가 좋은지 모르겠어ㅡ.ㅡ 장단점 좀 알려주',  'test02', '2023-01-18-18:41:32', 'Y' ,'100','100');
+INSERT INTO freeboard (f_no, f_title,f_content, f_writer , f_cdate, f_yn, f_count, f_recommend) 
+VALUES (freeboard_seq.NEXTVAL, '여러분은 어떤 프로그램 써요?', '전 이클립스로 하고 있는데 추천하고 싶은 프로그램이 있나요?',  'test01', '2023-01-10', 'Y' ,'110','110');
+INSERT INTO freeboard (f_no, f_title,f_content, f_writer , f_cdate, f_yn, f_count, f_recommend) 
+VALUES (freeboard_seq.NEXTVAL, '백앤드 개발자 5년차는 얼마가 적당한가요?', '딱히 찾아보지도 않고 한 회사만 있어가지구 잘 모르겠네요ㅠ',  'test01', '2023-01-26', 'Y' ,'120','120');
+INSERT INTO freeboard (f_no, f_title,f_content, f_writer , f_cdate, f_yn, f_count, f_recommend) 
+VALUES (freeboard_seq.NEXTVAL, '프론트 앤드가 좋나요? 백앤드가 좋나요?', '둘다 그럭저럭인데 어느걸 지원해야하는지...',  'test01', '2023-01-29', 'Y' ,'130','130');
+INSERT INTO freeboard (f_no, f_title,f_content, f_writer , f_cdate, f_yn, f_count, f_recommend) 
+VALUES (freeboard_seq.NEXTVAL, '혼자서 java 독학하려면 어떤 책이 좋나여?', '이제 막 입문이라서 너무 어려운 책은 제외해주세요',  'test01', '2023-01-06', 'Y' ,'140','140');
+
+
 commit;
 select * from freeboard ORDER BY f_no DESC;
 

@@ -106,7 +106,7 @@
 	<update id="updateStudy" parameterType="Study">
 		UPDATE study 
 			SET s_title = #{sTitle}, s_askcontent = #{sAskcontent}, s_error = #{sError},	
-				s_cdate = SYSDATE, s_askimg = #{sAskimg}, s_file = #{sFile}
+				s_cdate = SYSDATE, s_askimg = #{sAskimg, jdbcType=VARCHAR}, s_file = #{sFile, jdbcType=VARCHAR}
 		WHERE s_no = #{sNo}
 	</update>
 	

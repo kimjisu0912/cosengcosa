@@ -62,7 +62,7 @@
 		SELECT 
 			* 
 		FROM freeBoard 
-		WHERE f_no = #{fNo}
+		WHERE f_no = #{fno}
 	</select>
 	
 	<!-- sAskimg -->

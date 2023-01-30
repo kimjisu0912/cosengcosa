@@ -129,7 +129,7 @@ public class FreeBoardController {
 		@RequestMapping(value="/freeBoardUpdate")
 		public String updateFreeBoard(Model model, HttpServletResponse response, 
 				PrintWriter out, String pass,
-				@RequestParam(value="fno", required=false, 
+				@RequestParam(value="fNo", required=false, 
 				defaultValue="1") int fno,
 				@RequestParam(value="pageNum", required=false, 
 						defaultValue="1") int pageNum,
@@ -142,6 +142,8 @@ public class FreeBoardController {
 					|| keyword.equals("null")) ? false : true; 
 			
 			FreeBoard freeBoard = freeBoardService.getFreeBoard(fno, false);
+			
+			System.out.println(freeBoard.getfContent());
 			
 			model.addAttribute("freeBoard", freeBoard);
 			model.addAttribute("pageNum", pageNum);
@@ -182,14 +184,12 @@ public class FreeBoardController {
 			
 			freeBoard.setfNo(fNo);
 			
-			System.out.println("1111");
 			
 			System.out.println(freeBoard.getfContent());
 			
 			// BoardService 클래스를 이용해 게시판 테이블에서 게시 글을 수정한다.
 			freeBoardService.updateFreeBoard(freeBoard);
 			
-			System.out.println("4444");
 			System.out.println(freeBoard.getfContent());
 			
 			reAttrs.addAttribute("searchOption", searchOption);

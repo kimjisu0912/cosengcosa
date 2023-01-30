@@ -65,10 +65,6 @@ public class FreeBoardDaolmpl implements FreeBoardDao {
 
 	@Override
 	public void updateFreeBoard(FreeBoard freeBoard) {
-		System.out.println("3333");
-		System.out.println(freeBoard.getfNo());
-		System.out.println(freeBoard.getfTitle());
-		System.out.println(freeBoard.getfContent());
 		sqlSession.update(NAME_SPACE + ".updateFreeBoard",freeBoard);
 	}
 
