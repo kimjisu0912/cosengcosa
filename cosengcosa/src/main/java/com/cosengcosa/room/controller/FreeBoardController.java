@@ -23,6 +23,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cosengcosa.room.domain.FreeBoard;
 import com.cosengcosa.room.domain.FreeBoardCmt;
+import com.cosengcosa.room.domain.Member;
 import com.cosengcosa.room.domain.Study;
 import com.cosengcosa.room.service.FreeBoardService;
 
@@ -69,7 +70,10 @@ public class FreeBoardController {
 			@RequestParam(value="keyword", required=false,
 					defaultValue="null") String keyword) throws Exception {
 		
-		session.getAttribute("userId");
+		String userid = (String) session.getAttribute("userId");
+		
+		Member member = new Member();
+		member.setId(userid);
 		
 		boolean searchOption = (type.equals("null") 
 				|| keyword.equals("null")) ? false : true; 		
@@ -79,6 +83,7 @@ public class FreeBoardController {
 		FreeBoard freeBoard = freeBoardService.getFreeBoard(fno, true);
 		
 		model.addAttribute("freeBoard", freeBoard);
+		model.addAttribute("member", member);
 		model.addAttribute("freeBoardCmtList", freeBoardCmtList);
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("searchOption", searchOption);

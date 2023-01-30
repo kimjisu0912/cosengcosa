@@ -8,7 +8,7 @@
 		<form name="checkForm" id="checkForm">
 			<input type="hidden" name="sno" id="sno" value="${study.sNo }"/>
 			<input type="hidden" name="pageNum" value="${ pageNum }" />
-			<input type="hidden" name="memberId" id="memberId" value="${ sessionScope.member.id }" />
+			<input type="hidden" name="memberId" id="memberId" value="${ member.id }" />
 			<input type="hidden" name="sAskimg" id="sAskimg" value="${ study.sAskimg }" />
 			<input type="hidden" name="sFile" id="sFile" value="${ study.sFile }" />
 
@@ -40,7 +40,7 @@
 				<!-- 수정, 삭제, 목록 버튼  -->
 				<div class="row my-3">
 					<div class="col text-center">			
-						<c:if test='${ study.sAskid == sessionScope.member.id || sessionScope.member.grant == "A"}'>
+						<c:if test='${ study.sAskid == member.id || member.grant == "A"}'>
 							<input class="btn btn-warning" type="button" id="detailUpdate1" value="수정하기"/>
 							&nbsp;&nbsp;<input class="btn btn-danger"  type="button" id="detailDelete1" value="삭제하기" />				
 						</c:if>
@@ -64,7 +64,7 @@
 			
 			
 			<!-- 댓글 -->
-			<c:if test='${ sessionScope.member.grant == "T" || sessionScope.member.grant == "A" }'>
+			<c:if test='${ member.grant == "T" || member.grant == "A" }'>
 			
 			
 			<div class="row  justify-content-center">
@@ -78,7 +78,7 @@
 						<form name="replyWriteForm" id="replyWriteForm" >				
 							<input type="hidden" name="saNum" id="saNum" value="${ study.sNo }"/>
 							<input type="hidden" name="saAnswerid" id="saAnswerid"
-								value="${ sessionScope.member.id }" />			
+								value="${ member.id }" />			
 							<div id="replyWriteTable">
 								<div class="row  justify-content-center">
 									<div id="replyWriteContent" class="col text-center">
@@ -129,7 +129,7 @@
 							<span class="reply_date">
 								<fmt:formatDate value="${ answer.saCdate}" 
 									pattern="yyyy-MM-dd HH:mm:ss" /></span>
-							<c:if test='${ (sessionScope.member.id == answer.saAnswerid && sessionScope.member.grant == "T") || sessionScope.member.grant == "A" }'>
+							<c:if test='${ (member.id == answer.saAnswerid && member.grant == "T") || member.grant == "A" }'>
 								<a href="#" class="modifyReply" data-no="${ answer.saNo }">
 									<img src="resources/images/reply_btn_modify.gif" alt="댓글 수정하기"/></a>
 								<a href="#" class=deleteReply data-no="${ answer.saNo }">
@@ -159,7 +159,7 @@
 			
 			<!-- 추천, 이미지, 파일 버튼 -->
 			<div class="col">
-				<c:if test="${ not empty sessionScope.member.id }">
+				<c:if test="${ not empty member.id }">
 					<button type="button" class="btn btn-danger"  id="Commend" ><i class="bi bi-suit-heart"></i></button>
 				</c:if>
 				<c:if test="${ not empty study.sAskimg }">

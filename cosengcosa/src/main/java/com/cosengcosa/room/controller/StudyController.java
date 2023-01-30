@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.cosengcosa.room.domain.Member;
 import com.cosengcosa.room.domain.Study;
 import com.cosengcosa.room.domain.StudyAnswer;
 import com.cosengcosa.room.service.StudyService;
@@ -73,7 +74,7 @@ public class StudyController {
 			@RequestParam(value="keyword", required=false,
 					defaultValue="null") String keyword) throws Exception {
 		
-		session.getAttribute("userId");
+		String userid = (String) session.getAttribute("userId");
 		
 		// 검색인 경우
 		boolean searchOption = (type.equals("null") 
@@ -85,8 +86,12 @@ public class StudyController {
 		// 지식공유 데이터 가져오기
 		Study study = studyService.getStudy(no, true);
 		
+		Member member = new Member();
+				member.setId(userid);
+		
 		// 모델에 저장
 		model.addAttribute("study", study);
+		model.addAttribute("member", member);
 		model.addAttribute("answerList", answerList);
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("searchOption", searchOption);

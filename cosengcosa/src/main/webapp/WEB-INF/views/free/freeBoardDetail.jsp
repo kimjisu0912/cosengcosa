@@ -8,7 +8,7 @@
 	<div class="col-8">
 		<form name="checkForm" id="checkForm">
 			<input type="hidden" name="fNo" id="fNo" value="${ freeBoard.fNo }"/>
-			<input type="hidden" name="grant" id="grant" value="${ sessionScope.member.grant }" />
+			<input type="hidden" name="grant" id="grant" value="${  member.grant }" />
 			<input type="hidden" name="pageNum" value="${ pageNum }" />
 			<input type="hidden" name="answerInput" id="answerInput"  />
 
@@ -59,8 +59,8 @@
 		
 		<div class="row my-3">
 			<div class="col text-center">	
-			<c:if test="${ not empty sessionScope.member.id }">
-				<c:if test='${ freeBoard.fWriter == sessionScope.member.id || sessionScope.member.grant == "A"}'>			
+			<c:if test="${ not empty  member.id }">
+				<c:if test='${ freeBoard.fWriter ==  member.id ||  member.grant == "A"}'>			
 					<input class="btn btn-warning" type="button" id="detailUpdate3" value="수정하기"/>
 					&nbsp;&nbsp;<input class="btn btn-danger"  type="button" id="detailDelete3" value="삭제하기" />
 				</c:if>
@@ -100,7 +100,7 @@
 						<form name="replyWriteForm" id="replyWriteForm" >				
 							<input type="hidden" name="fcNum" id="fcNum" value="${ freeBoard.fNo }"/>
 							<input type="hidden" name="fcWriter" id="fcWriter"
-								value="${ sessionScope.member.id }" />			
+								value="${  member.id }" />			
 							<div id="replyWriteTable">
 								<div class="row  justify-content-center">
 									<div id="replyWriteContent" class="col text-center">
@@ -150,7 +150,7 @@
 							<span class="reply_date">
 								<fmt:formatDate value="${ freeCmt.fcCdate}" 
 									pattern="yyyy-MM-dd HH:mm:ss" /></span>
-							<c:if test='${ sessionScope.member.id == freeCmt.fcWriter || sessionScope.member.grant == "A" }'>
+							<c:if test='${  member.id == freeCmt.fcWriter ||  member.grant == "A" }'>
 								<a href="#" class="modifyReply" data-no="${ freeCmt.fcNo  }">
 									<img src="resources/images/reply_btn_modify.gif" alt="댓글 수정하기"/></a>
 								<a href="#" class=deleteReply data-no="${ freeCmt.fcNo }">

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.cosengcosa.room.domain.Member;
 import com.cosengcosa.room.domain.RequestBoard;
 import com.cosengcosa.room.service.RequestBoardService;
 
@@ -65,11 +66,15 @@ public class RequestBoardController {
 		boolean searchOption = (type.equals("null") 
 				|| keyword.equals("null")) ? false : true; 		
 		
-		session.getAttribute("userId");
+		String userid = (String) session.getAttribute("userId");
+		
+		Member member = new Member();
+		member.setId(userid);
 		
 		RequestBoard board = requestBoardService.getBoard(no, true);
 		
 		model.addAttribute("board", board);
+		model.addAttribute("member", member);
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("searchOption", searchOption);
 		
