@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -53,7 +54,7 @@ public class RequestBoardController {
 	}
 	
 	@RequestMapping("/requestBoardDetail")
-	public String studyDetail(Model model, int no, 
+	public String studyDetail(Model model, int no, HttpSession session,
 			@RequestParam(value="pageNum", required=false, 
 					defaultValue="1") int pageNum,
 			@RequestParam(value="type", required=false,  
@@ -64,6 +65,7 @@ public class RequestBoardController {
 		boolean searchOption = (type.equals("null") 
 				|| keyword.equals("null")) ? false : true; 		
 		
+		session.getAttribute("userId");
 		
 		RequestBoard board = requestBoardService.getBoard(no, true);
 		

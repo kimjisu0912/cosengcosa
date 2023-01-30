@@ -12,6 +12,7 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -64,13 +65,15 @@ public class StudyController {
 	
 	// 상세 페이지 
 	@RequestMapping("/studyDetail")
-	public String studyDetail(Model model, int no, 
+	public String studyDetail(Model model, int no,  HttpSession session,
 			@RequestParam(value="pageNum", required=false, 
 					defaultValue="1") int pageNum,
 			@RequestParam(value="type", required=false,  
 					defaultValue="null") String type,
 			@RequestParam(value="keyword", required=false,
 					defaultValue="null") String keyword) throws Exception {
+		
+		session.getAttribute("userId");
 		
 		// 검색인 경우
 		boolean searchOption = (type.equals("null") 

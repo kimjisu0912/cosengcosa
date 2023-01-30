@@ -10,6 +10,7 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -58,7 +59,7 @@ public class FreeBoardController {
 	}
 	
 	@RequestMapping("/freeBoardDetail")
-	public String FreeBoardDetail(Model model, 
+	public String FreeBoardDetail(Model model, HttpSession session,
 			@RequestParam(value="fno", required=false, 
 			defaultValue="1") int fno, 
 			@RequestParam(value="pageNum", required=false, 
@@ -67,6 +68,8 @@ public class FreeBoardController {
 					defaultValue="null") String type,
 			@RequestParam(value="keyword", required=false,
 					defaultValue="null") String keyword) throws Exception {
+		
+		session.getAttribute("userId");
 		
 		boolean searchOption = (type.equals("null") 
 				|| keyword.equals("null")) ? false : true; 		
