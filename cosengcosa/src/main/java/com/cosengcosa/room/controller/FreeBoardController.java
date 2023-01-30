@@ -143,8 +143,6 @@ public class FreeBoardController {
 			
 			FreeBoard freeBoard = freeBoardService.getFreeBoard(fno, false);
 			
-			System.out.println(freeBoard.getfContent());
-			
 			model.addAttribute("freeBoard", freeBoard);
 			model.addAttribute("pageNum", pageNum);
 			model.addAttribute("searchOption", searchOption);

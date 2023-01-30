@@ -56,7 +56,6 @@ public class StudyAnswerController {
 		studyAnswer.setSaNo(saNo);
 		
 		
-		System.out.println("asdasdsa");
 		// 새로운 댓글을 등록한다.
 		studyService.updateReply(studyAnswer);
 		

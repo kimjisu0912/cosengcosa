@@ -16,7 +16,7 @@ $(document).ready(function() {
 
 			dataType: "json",
 			success: function(data) {
-				
+				location.reload();
 			},
 			error: function(xhr, status, error) {
 				alert("error : " + xhr.statusText + ", " + status + ", " + error);
@@ -73,7 +73,7 @@ $(document).ready(function() {
 			data: {"saNum" : saNum, "saAnswerid" : saAnswerid, "saAnswer" : saAnswer},
 			dataType: "json",
 			success: function(resultData, status, xhr) {
-			
+				location.reload();
 				$("#replyTable").empty();
 				console.log(resultData);
 				$.each(resultData, function(index, value) {					
@@ -185,7 +185,7 @@ $(document).ready(function() {
 			data: {"saNum": saNum, "saAnswer" : saAnswer, "saNo" : saNo},
 			dataType: "json",
 			success: function(resultData, status, xhr) {								
-	
+				location.reload();
 				$updateForm = $("#replyForm");
 				
 				console.log("update - before empty() : " + $updateForm.length);
@@ -263,7 +263,7 @@ $(document).ready(function() {
 				data: params,
 				dataType: "json",
 				success: function(resultData, status, xhr) {			
-					
+					location.reload();
 					$("#replyForm").find("form")
 						.attr("id", "replyWriteForm").removeAttr("data-no")
 						.end().css("display", "none").appendTo("article")

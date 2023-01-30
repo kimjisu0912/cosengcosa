@@ -16,7 +16,7 @@ $(document).ready(function() {
 
 			dataType: "json",
 			success: function(data) {
-				
+				location.reload();
 			},
 			error: function(xhr, status, error) {
 				alert("error : " + xhr.statusText + ", " + status + ", " + error);
@@ -74,9 +74,8 @@ $(document).ready(function() {
 			data: {"fcNum" : fcNum, "fcWriter" : fcWriter, "fcContent" : fcContent},
 			dataType: "json",
 			success: function(resultData, status, xhr) {
-			
+			location.reload();
 				$("#replyTable").empty();
-				console.log(resultData);
 				$.each(resultData, function(index, value) {					
 					// 날짜 데이터를 출력 포맷에 맞게 수정
 					var date = new Date(value.fcCdate);
@@ -168,7 +167,6 @@ $(document).ready(function() {
 		
 		var params = "fcNum=" + fcNum  + "&fcContent=" + fcContent + "&fcNo=" + fcNo;
 		
-		alert(params);
 		var updateForm;
 		
 		$.ajax({
@@ -177,7 +175,7 @@ $(document).ready(function() {
 			data: {"fcNum": fcNum, "fcContent" : fcContent, "fcNo" : fcNo},
 			dataType: "json",
 			success: function(resultData, status, xhr) {								
-	
+				location.reload();
 				$updateForm = $("#replyForm");
 				
 				console.log("update - before empty() : " + $updateForm.length);
@@ -247,7 +245,7 @@ $(document).ready(function() {
 				data: params,
 				dataType: "json",
 				success: function(resultData, status, xhr) {			
-					
+					location.reload();
 					$("#replyForm").find("form")
 						.attr("id", "replyWriteForm").removeAttr("data-no")
 						.end().css("display", "none").appendTo("article")
