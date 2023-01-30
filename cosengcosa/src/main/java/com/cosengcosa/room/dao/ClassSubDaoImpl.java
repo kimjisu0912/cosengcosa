@@ -51,6 +51,26 @@ public class ClassSubDaoImpl implements ClassSubDao {
 	public void insertClassSub(ClassSub classSub) {
 		sqlSession.insert(NAME_SPACE + ".insertClassSub", classSub);
 	}
+	
+	/*
+	 * 메인강의가 처음 등록인 지 확인을 위한 호출되는 메소드
+	 */
+	@Override
+	public String selectClassMainChk(String cmCode) {
+		return sqlSession.selectOne(NAME_SPACE + ".selectClassMainChk", cmCode);
+	}
+
+	/*
+	 * 메인강의 비디오값 수정 호출되는 메소드
+	 */
+	@Override
+	public void updateClassMainVideo(String cmCode, String voide) {
+		// 받는 파라미터가 같은 String이여서 Object 사용않함
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("cmCode", cmCode);
+		params.put("voide", voide);
+		sqlSession.update(NAME_SPACE + ".updateClassMainVideo", params);
+	}
 
 	/*
 	 * 서브강의 수정페이지 요청 시 호출되는 메소드
@@ -75,5 +95,7 @@ public class ClassSubDaoImpl implements ClassSubDao {
 	public void deleteClassSub(ClassSub classSub) {
 		sqlSession.update(NAME_SPACE + ".deleteClassSub", classSub);
 	}
+
+	
 	
 }

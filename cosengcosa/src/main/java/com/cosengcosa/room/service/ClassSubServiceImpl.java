@@ -61,6 +61,14 @@ public class ClassSubServiceImpl implements ClassSubService {
 	@Override
 	public void insertClassSub(ClassSub classSub) {
 		classSubDao.insertClassSub(classSub);
+		String voide = classSub.getCsVideo();
+		String cmCode = classSub.getCsGroup();
+		// 처음 영상이면 
+		String mianCk = classSubDao.selectClassMainChk(cmCode);
+		if(mianCk.equals("v")) {
+			classSubDao.updateClassMainVideo(cmCode, voide);
+		}
+		
 	}
 
 	/*

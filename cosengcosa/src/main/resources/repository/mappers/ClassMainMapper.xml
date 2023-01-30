@@ -26,35 +26,32 @@
 	<select id="classMainList" resultType="ClassMain" parameterType="hashmap">
 	SELECT
 	     num, cmNo, cmCode, cmTitle, cmName, cmContent, cmPeriod, cmPrice, cmCount,
-       cmRecommend, cmStar, video, cmYn, csVideo
+       cmRecommend, cmStar, video, cmYn
 	FROM    
 	    (SELECT
 	        ROWNUM num, cmNo, cmCode, cmTitle, cmName, cmContent, cmPeriod, cmPrice, cmCount,
-           cmRecommend, cmStar, video, cmYn, csVideo
+           cmRecommend, cmStar, video, cmYn
 	    FROM 
 	        (SELECT
-	               a.cm_no AS cmNo,
-                   a.cm_code AS cmCode,
-                   a.cm_title AS cmTitle,
-                   a.cm_name AS cmName,
-                   a.cm_content AS cmContent,
-                   a.cm_period AS cmPeriod,
-                   a.cm_price AS cmPrice,
-                   a.cm_count AS cmCount,
-                   a.cm_recommend AS cmRecommend,
-                   a.cm_star AS cmStar,   
-                   a.video AS video,           
-                   a.cm_yn AS cmYn,
-                   b.cs_video As csVideo
+	               cm_no AS cmNo,
+                   cm_code AS cmCode,
+                   cm_title AS cmTitle,
+                   cm_name AS cmName,
+                   cm_content AS cmContent,
+                   cm_period AS cmPeriod,
+                   cm_price AS cmPrice,
+                   cm_count AS cmCount,
+                   cm_recommend AS cmRecommend,
+                   cm_star AS cmStar,   
+                   video AS video,           
+                   cm_yn AS cmYn
 	        FROM
-            classmain a, classsub b
+            classmain
        <where>
 			cm_yn = 'Y'
 	 		<if test="type=='cmname'">
-	 			AND a.cm_title LIKE '%' || #{keyword} || '%'
+	 			AND cm_title LIKE '%' || #{keyword} || '%'
 	 		</if>
-	 		AND a.cm_code = b.cs_group
-            AND b.cs_code = (SELECT MIN(cs_code) FROM classsub WHERE cs_group = a.cm_code )
 	 	</where>
 		 	ORDER BY cm_no DESC
         ) classmain 
@@ -206,8 +203,8 @@
 	
 	<!-- 메인강의 등록 코드 체크 ajax  -->
 	<insert id="classMainInsert"  parameterType="classMain" useGeneratedKeys="true" keyProperty="no">
-		INSERT INTO classmain(cm_no, cm_code, cm_title, cm_name, cm_content, cm_period, cm_price, cm_yn)		
-		VALUES(classmain_seq.NEXTVAL, #{cmCode}, #{cmTitle}, #{cmName},#{cmContent}, #{cmPeriod}, #{cmPrice}, #{cmYn})
+		INSERT INTO classmain(cm_no, cm_code, cm_title, cm_name, cm_content, cm_period, cm_price, video, cm_yn)		
+		VALUES(classmain_seq.NEXTVAL, #{cmCode}, #{cmTitle}, #{cmName},#{cmContent}, #{cmPeriod}, #{cmPrice}, 'v', #{cmYn})
 	</insert>
 	 
 	 <!-- update -->

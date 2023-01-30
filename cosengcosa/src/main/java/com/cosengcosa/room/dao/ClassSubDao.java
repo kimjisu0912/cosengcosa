@@ -20,6 +20,10 @@ public interface ClassSubDao {
 	
 	// 서브강의 입력 요청 시 호출되는 메소드
 	public abstract void insertClassSub(ClassSub classSub);
+	// 메인강의가 처음 등록인 지 확인을 위한 호출되는 메소드
+	public abstract String selectClassMainChk(String cmCode);
+	// 메인강의 비디오값 수정 호출되는 메소드
+	public abstract void updateClassMainVideo(String cmCode, String voide);
 	
 	// 서브강의 수정페이지 요청 시 호출되는 메소드
 	public abstract ClassSub getClassSub(String cscode);

@@ -69,7 +69,7 @@
 						<div class="card shadow-sm m-2">
 							<div class="card-body" style="weight:150px; height:450px;">
 								<div class="row">
-									<img src="http://img.youtube.com/vi/${c.csVideo }/mqdefault.jpg"></img>
+									<img src="http://img.youtube.com/vi/${c.video }/mqdefault.jpg"></img>
 								</div>
 								<div class="my-3">
 									<a href="classMainDetail?cmNo=${c.cmNo }&cmCode=${c.cmCode }&pageNum=${currentPage}&type=${type}&keyword=${keyword}">${c.cmTitle }</a>
@@ -91,7 +91,7 @@
 							<a href="classMainDetail?cmNo=${c.cmNo }&cmCode=${c.cmCode }&pageNum=${currentPage}">
 								<div class="card-body" style="weight:150px; height:320px;">
 									<div class="row">
-										<img src="http://img.youtube.com/vi/${c.csVideo }/mqdefault.jpg"></img>
+										<img src="http://img.youtube.com/vi/${c.video }/mqdefault.jpg"></img>
 									</div>
 									<div class="my-3">
 				 						<div>${c.cmTitle }</div>
