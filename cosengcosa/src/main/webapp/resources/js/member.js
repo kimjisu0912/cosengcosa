@@ -299,6 +299,7 @@ $(function() {
 	
 	// 로그인 아이디 입력될때 한글 입력하면 지우기
 	$("#userId").on("keyup", loginCharReplace);
+	
 	// 회원 로그인 폼이 submit 될 때 폼 유효성 검사를 위한 이벤트 처리
 	$("#loginForm").submit(function() {
 		var id = $("#userId").val();
@@ -354,6 +355,7 @@ function findZipcode(){
     }).open();
 }
 
+// 로그인 
 function loginCharReplace(){
 	var regExp = /[^A-Za-z0-9]/gi; //// 키보드 키가 눌릴 떄 - 영문 대소문자, 숫자만 입력되도록 체크
 	if(regExp.test($(this).val())) {

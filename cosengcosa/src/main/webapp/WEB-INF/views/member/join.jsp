@@ -35,8 +35,8 @@
 						<div class="col-8 offset-2">
 							<div class="input-group mb-3">
 								<span class="input-group-text">* 아이디</span>
-							  	<input type="text" class="form-control" name="id" id="id">
-							  	<input type="button" class="btn btn-dark" id="btnOverlapId" value="중복확인" maxlength="18">
+							  	<input type="text" class="form-control" name="id" id="id" maxlength="18">
+							  	<input type="button" class="btn btn-dark" id="btnOverlapId" value="중복확인" >
 							</div>	
 						</div>
 					</div>
@@ -86,8 +86,8 @@
 						<div class="col-8 offset-2">
 							<div class="input-group mb-3">
 								<span class="input-group-text">* 닉네임</span>
-							  	<input type="text" class="form-control" name="nickname" id="nickname">
-							  	<input type="button" class="btn btn-dark" id="btnOverlapNickName" value="중복확인" maxlength="12">
+							  	<input type="text" class="form-control" name="nickname" id="nickname" maxlength="9">
+							  	<input type="button" class="btn btn-dark" id="btnOverlapNickName" value="중복확인" >
 							</div>					
 						</div>				
 					</div>

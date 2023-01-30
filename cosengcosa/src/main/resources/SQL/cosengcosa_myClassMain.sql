@@ -36,75 +36,58 @@ CREATE TABLE myclassmain(
         CONSTRAINT MYM_YN_NN NOT NULL            -- 삭제유무
 );  
 
--- test01 수강강의
-INSERT INTO myclassmain (mym_no, mym_mid, mym_code, mym_title, mym_name, mym_period, mym_price, mym_sdate, mym_edate, mym_done, mym_yn) 
-VALUES (myclassmain_seq.NEXTVAL, 'test01', 'JA01', '자바 기초 프로그래밍 강좌','동빈나', 3, 200000, sysdate, ADD_MONTHS(sysdate, 3), 'N', 'Y');
+INSERT INTO myclassmain (mym_no, mym_mid, mym_code, mym_title, mym_name, mym_period, mym_price, mym_sdate, mym_edate, mym_done, mym_yn)  
+VALUES (myclassmain_seq.NEXTVAL, 'cosengcosa', 'JA01', '자바 기초 프로그래밍 강좌', '동빈나', 4, 200000, '2023-01-01', ADD_MONTHS('2023-01-01', 4), 'Y', 'Y');
 
-INSERT INTO myclassmain (mym_no, mym_mid, mym_code, mym_title, mym_name, mym_period, mym_price, mym_sdate, mym_edate, mym_done, mym_yn) 
-VALUES (myclassmain_seq.NEXTVAL, 'test01','JA02', '자바의 정석 기초편(2020최신)','남궁성의 정석코딩', 3, 250000, sysdate, ADD_MONTHS(sysdate, 3), 'N', 'Y');
+INSERT INTO myclassmain (mym_no, mym_mid, mym_code, mym_title, mym_name, mym_period, mym_price, mym_sdate, mym_edate, mym_done, mym_yn)  
+VALUES (myclassmain_seq.NEXTVAL, 'cosengcosa', 'JA02', '자바의 정석 기초편(2020최신)','남궁성의 정석코딩', 5, 250000, '2023-01-08', ADD_MONTHS('2023-01-08', 5), 'Y', 'Y');
 
-INSERT INTO myclassmain (mym_no, mym_mid, mym_code, mym_title, mym_name, mym_period, mym_price, mym_sdate, mym_edate, mym_done, mym_yn) 
-VALUES (myclassmain_seq.NEXTVAL, 'test01', 'JA03', '자바(JAVA)강의','홍드로이드' ,3, 180000, sysdate, ADD_MONTHS(sysdate, 3), 'N', 'Y');
+INSERT INTO myclassmain (mym_no, mym_mid, mym_code, mym_title, mym_name, mym_period, mym_price, mym_sdate, mym_edate, mym_done, mym_yn)  
+VALUES (myclassmain_seq.NEXTVAL, 'cosengcosa', 'JA03', '자바(JAVA)강의','홍드로이드', 6, 180000, '2023-01-10', ADD_MONTHS('2023-01-10', 6), 'N', 'Y');
 
-INSERT INTO myclassmain (mym_no, mym_mid, mym_code, mym_title, mym_name, mym_period, mym_price, mym_sdate, mym_edate, mym_done, mym_yn) 
-VALUES (myclassmain_seq.NEXTVAL, 'test01', 'DB01', '오라클(Oracle) SQL 강의 강좌','뉴렉처', 3, 150000, sysdate, ADD_MONTHS(sysdate, 3), 'N', 'Y');
+INSERT INTO myclassmain (mym_no, mym_mid, mym_code, mym_title, mym_name, mym_period, mym_price, mym_sdate, mym_edate, mym_done, mym_yn)  
+VALUES (myclassmain_seq.NEXTVAL, 'cosengcosa', 'DB01', '오라클(Oracle) SQL 강의 강좌','뉴렉처', 3, 150000, '2023-01-04', ADD_MONTHS('2023-01-04', 3), 'Y', 'Y');
 
-INSERT INTO myclassmain (mym_no, mym_mid, mym_code, mym_title, mym_name, mym_period, mym_price, mym_sdate, mym_edate, mym_done, mym_yn) 
-VALUES (classmain_seq.NEXTVAL, 'test01', 'DB02', '[SQL 기초강의] 혼자 공부하는 SQL(MySQL 8.0)','한빛미디어', 3, 250000, sysdate, ADD_MONTHS(sysdate, 3), 'N', 'Y');
+INSERT INTO myclassmain (mym_no, mym_mid, mym_code, mym_title, mym_name, mym_period, mym_price, mym_sdate, mym_edate, mym_done, mym_yn)  
+VALUES (myclassmain_seq.NEXTVAL, 'cosengcosa', 'DB02', '[SQL 기초강의] 혼자 공부하는 SQL(MySQL 8.0)','한빛미디어', 4, 240000, '2023-01-05', ADD_MONTHS('2023-01-05', 4), 'Y', 'Y');
 
-INSERT INTO myclassmain (mym_no, mym_mid, mym_code, mym_title, mym_name, mym_period, mym_price, mym_sdate, mym_edate, mym_done, mym_yn) 
-VALUES (myclassmain_seq.NEXTVAL, 'test01', 'JS01', '자바스크립트 기초 강좌 : 100분 완성 / 중급강좌 : 140분 완성','코딩앙마', 3, 260000, sysdate, ADD_MONTHS(sysdate, 3), 'N', 'Y');
+INSERT INTO myclassmain (mym_no, mym_mid, mym_code, mym_title, mym_name, mym_period, mym_price, mym_sdate, mym_edate, mym_done, mym_yn)  
+VALUES (myclassmain_seq.NEXTVAL, 'cosengcosa', 'JS01', '자바스크립트 기초 강좌 : 100분 완성 / 중급강좌 : 140분 완성','코딩앙마', 4, 260000, '2023-01-07',ADD_MONTHS('2023-01-07', 4), 'Y', 'Y');
 
-INSERT INTO myclassmain (mym_no, mym_mid, mym_code, mym_title, mym_name, mym_period, mym_price, mym_sdate, mym_edate, mym_done, mym_yn) 
-VALUES (myclassmain_seq.NEXTVAL, 'test01', 'SP01', '스프링부트(Spring Boot) 강의','어라운드 허브 스튜디오', 3, 200000, sysdate, ADD_MONTHS(sysdate, 3), 'N', 'Y');
+INSERT INTO myclassmain (mym_no, mym_mid, mym_code, mym_title, mym_name, mym_period, mym_price, mym_sdate, mym_edate, mym_done, mym_yn)  
+VALUES (myclassmain_seq.NEXTVAL, 'cosengcosa', 'JS02', 'JavaScript 입문수업', '생활코딩', 3, 150000,'2023-01-08',ADD_MONTHS('2023-01-08', 3), 'N', 'Y');
 
-INSERT INTO myclassmain (mym_no, mym_mid, mym_code, mym_title, mym_name, mym_period, mym_price, mym_sdate, mym_edate, mym_done, mym_yn) 
-VALUES (myclassmain_seq.NEXTVAL, 'test01', 'BS01', '부트스트랩 실전강좌(Bootstrap tutoial)','온코딩빠찌', 3, 100000, sysdate, ADD_MONTHS(sysdate, 3), 'N', 'Y');
+INSERT INTO myclassmain (mym_no, mym_mid, mym_code, mym_title, mym_name, mym_period, mym_price, mym_sdate, mym_edate, mym_done, mym_yn)  
+VALUES (myclassmain_seq.NEXTVAL, 'cosengcosa', 'SP02', 'Springboot 강좌 - 개념정리','메타코딩', 10, 220000, '2023-01-15',ADD_MONTHS('2023-01-15', 10), 'Y', 'Y');
 
-INSERT INTO myclassmain (mym_no, mym_mid, mym_code, mym_title, mym_name, mym_period, mym_price, mym_sdate, mym_edate, mym_done, mym_yn) 
-VALUES (myclassmain_seq.NEXTVAL, 'test01', 'KT01', '디모의 Kotlin 강좌','테크과학!DiMo', 3, 120000, sysdate, ADD_MONTHS(sysdate, 3), 'N', 'Y');
+INSERT INTO myclassmain (mym_no, mym_mid, mym_code, mym_title, mym_name, mym_period, mym_price, mym_sdate, mym_edate, mym_done, mym_yn)  
+VALUES (myclassmain_seq.NEXTVAL, 'cosengcosa', 'SP03', '스프링 부트 게시판 무작정 따라하기', '한코딩', 6, 110000, '2023-01-17', ADD_MONTHS('2023-01-17', 6), 'Y', 'Y');
 
--- test02 수강강의
-INSERT INTO myclassmain (mym_no, mym_mid, mym_code, mym_title, mym_name, mym_period, mym_price, mym_sdate, mym_edate, mym_done, mym_yn) 
-VALUES (myclassmain_seq.NEXTVAL, 'test02', 'JA01', '자바 기초 프로그래밍 강좌','동빈나', 3, 200000, sysdate, ADD_MONTHS(sysdate, 3), 'N', 'Y');
+INSERT INTO myclassmain (mym_no, mym_mid, mym_code, mym_title, mym_name, mym_period, mym_price, mym_sdate, mym_edate, mym_done, mym_yn)  
+VALUES (myclassmain_seq.NEXTVAL, 'cosengcosa', 'BS01', '부트스트랩 실전강좌(Bootstrap tutoial)','온코딩빠찌', 2, 100000, '2023-01-18', ADD_MONTHS('2023-01-18', 2), 'N', 'Y');
 
-INSERT INTO myclassmain (mym_no, mym_mid, mym_code, mym_title, mym_name, mym_period, mym_price, mym_sdate, mym_edate, mym_done, mym_yn) 
-VALUES (myclassmain_seq.NEXTVAL, 'test02','JA02', '자바의 정석 기초편(2020최신)','남궁성의 정석코딩', 3, 250000, sysdate, ADD_MONTHS(sysdate, 3), 'N', 'Y');
+INSERT INTO myclassmain (mym_no, mym_mid, mym_code, mym_title, mym_name, mym_period, mym_price, mym_sdate, mym_edate, mym_done, mym_yn)  
+VALUES (myclassmain_seq.NEXTVAL, 'cosengcosa', 'BS02', 'bootstrap','생활코딩', 8, 220000, '2023-01-18', ADD_MONTHS('2023-01-18', 8), 'N', 'Y');
 
-INSERT INTO myclassmain (mym_no, mym_mid, mym_code, mym_title, mym_name, mym_period, mym_price, mym_sdate, mym_edate, mym_done, mym_yn) 
-VALUES (myclassmain_seq.NEXTVAL, 'test02', 'JA03', '자바(JAVA)강의','홍드로이드' ,3, 180000, sysdate, ADD_MONTHS(sysdate, 3), 'N', 'Y');
+INSERT INTO myclassmain (mym_no, mym_mid, mym_code, mym_title, mym_name, mym_period, mym_price, mym_sdate, mym_edate, mym_done, mym_yn)  
+VALUES (myclassmain_seq.NEXTVAL, 'cosengcosa', 'KT02', '안드로이드(Android Kotlin)','홍드로이드', 5, 250000,'2023-01-19', ADD_MONTHS('2023-01-19', 5), 'N', 'Y');
 
-INSERT INTO myclassmain (mym_no, mym_mid, mym_code, mym_title, mym_name, mym_period, mym_price, mym_sdate, mym_edate, mym_done, mym_yn) 
-VALUES (myclassmain_seq.NEXTVAL, 'test02', 'DB01', '오라클(Oracle) SQL 강의 강좌','뉴렉처', 3, 150000, sysdate, ADD_MONTHS(sysdate, 3), 'N', 'Y');
+INSERT INTO myclassmain (mym_no, mym_mid, mym_code, mym_title, mym_name, mym_period, mym_price, mym_sdate, mym_edate, mym_done, mym_yn)  
+VALUES (myclassmain_seq.NEXTVAL, 'cosengcosa', 'KT03', '[Do it! 깡샘의 안드로이드 앱 프로그래밍 with 코틀린] 동영상 강의','깡샘', 6, 120000, '2023-01-20', ADD_MONTHS('2023-01-20', 6), 'N', 'Y');
 
-INSERT INTO myclassmain (mym_no, mym_mid, mym_code, mym_title, mym_name, mym_period, mym_price, mym_sdate, mym_edate, mym_done, mym_yn) 
-VALUES (classmain_seq.NEXTVAL, 'test02', 'DB02', '[SQL 기초강의] 혼자 공부하는 SQL(MySQL 8.0)','한빛미디어', 3, 250000, sysdate, ADD_MONTHS(sysdate, 3), 'N', 'Y');
+INSERT INTO myclassmain (mym_no, mym_mid, mym_code, mym_title, mym_name, mym_period, mym_price, mym_sdate, mym_edate, mym_done, mym_yn)  
+VALUES (myclassmain_seq.NEXTVAL, 'cosengcosa', 'HL01', '입문자를 위한 HTML 기초강의','유노코딩', 2, 100000, '2023-01-21', ADD_MONTHS('2023-01-21', 2), 'N', 'Y');
 
-INSERT INTO myclassmain (mym_no, mym_mid, mym_code, mym_title, mym_name, mym_period, mym_price, mym_sdate, mym_edate, mym_done, mym_yn) 
-VALUES (myclassmain_seq.NEXTVAL, 'test02', 'JS01', '자바스크립트 기초 강좌 : 100분 완성 / 중급강좌 : 140분 완성','코딩앙마', 3, 260000, sysdate, ADD_MONTHS(sysdate, 3), 'N', 'Y');
+INSERT INTO myclassmain (mym_no, mym_mid, mym_code, mym_title, mym_name, mym_period, mym_price, mym_sdate, mym_edate, mym_done, mym_yn)   
+VALUES (myclassmain_seq.NEXTVAL, 'cosengcosa', 'HL03', 'HTML/CSS강의','짐코딩의 CODING GYM', 3, 120000, '2023-01-25', ADD_MONTHS('2023-01-25', 3), 'N', 'Y');
 
-INSERT INTO myclassmain (mym_no, mym_mid, mym_code, mym_title, mym_name, mym_period, mym_price, mym_sdate, mym_edate, mym_done, mym_yn) 
-VALUES (myclassmain_seq.NEXTVAL, 'test02', 'SP01', '스프링부트(Spring Boot) 강의','어라운드 허브 스튜디오', 3, 200000, sysdate, ADD_MONTHS(sysdate, 3), 'N', 'Y');
+INSERT INTO myclassmain (mym_no, mym_mid, mym_code, mym_title, mym_name, mym_period, mym_price, mym_sdate, mym_edate, mym_done, mym_yn)  
+VALUES (myclassmain_seq.NEXTVAL, 'cosengcosa', 'JQ03', '예제로 배우는 jQuery강의','소스놀이터', 10, 100000, '2023-01-28', ADD_MONTHS('2023-01-28', 10), 'N', 'Y');
 
-INSERT INTO myclassmain (mym_no, mym_mid, mym_code, mym_title, mym_name, mym_period, mym_price, mym_sdate, mym_edate, mym_done, mym_yn) 
-VALUES (myclassmain_seq.NEXTVAL, 'test02', 'BS01', '부트스트랩 실전강좌(Bootstrap tutoial)','온코딩빠찌', 3, 100000, sysdate, ADD_MONTHS(sysdate, 3), 'N', 'Y');
-
-INSERT INTO myclassmain (mym_no, mym_mid, mym_code, mym_title, mym_name, mym_period, mym_price, mym_sdate, mym_edate, mym_done, mym_yn) 
-VALUES (myclassmain_seq.NEXTVAL, 'test02', 'KT01', '디모의 Kotlin 강좌','테크과학!DiMo', 3, 120000, sysdate, ADD_MONTHS(sysdate, 3), 'N', 'Y');
-
-INSERT INTO myclassmain (mym_no, mym_mid, mym_code, mym_title, mym_name, mym_period, mym_price, mym_sdate, mym_edate, mym_done, mym_yn) 
-VALUES (myclassmain_seq.NEXTVAL, 'test02', 'DB03', '오라클(Oracle) 데이터 베이스(DataBase) 11g tutorials ','소프트캠퍼스', 3, 120000,sysdate, ADD_MONTHS(sysdate, 3), 'N', 'Y');
-
-INSERT INTO myclassmain (mym_no, mym_mid, mym_code, mym_title, mym_name, mym_period, mym_price, mym_sdate, mym_edate, mym_done, mym_yn) 
-VALUES (myclassmain_seq.NEXTVAL, 'test02', 'DB04', '오라클 기초 강좌','최용진', 3, 120000,sysdate, ADD_MONTHS(sysdate, 3), 'N', 'Y');
-
-INSERT INTO myclassmain (mym_no, mym_mid, mym_code, mym_title, mym_name, mym_period, mym_price, mym_sdate, mym_edate, mym_done, mym_yn) 
-VALUES (myclassmain_seq.NEXTVAL, 'test02', 'DB05', '오라클 PL/SQL','오라클 자바 커뮤니티', 3, 150000, sysdate, ADD_MONTHS(sysdate, 3), 'N', 'Y');
+INSERT INTO myclassmain (mym_no, mym_mid, mym_code, mym_title, mym_name, mym_period, mym_price, mym_sdate, mym_edate, mym_done, mym_yn)  
+VALUES (myclassmain_seq.NEXTVAL, 'cosengcosa', 'AJ02', 'AJAX 다뤄보기', '코딩레시피', 6, 240000,'2023-01-30', ADD_MONTHS('2023-01-30', 6), 'N', 'Y');
 
 commit;
-
-
-
 
 
 SELECT mym_no, mym_mid, mym_code, mym_title, mym_name, mym_sdate, mym_edate, mym_done, mym_yn, video image
