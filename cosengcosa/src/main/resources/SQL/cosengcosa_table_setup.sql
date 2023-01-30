@@ -19,8 +19,10 @@
 -- 회원(cosengcosa_member)
 -- 강의 메인(cosengcosa_classMain)
 -- 강의 서브(cosengcosa_classSub)
--- 내강의 메인(cosengcosa_myClassMain)
+-- 강의 서브 데이터(cosengcosa_classSubData)
+-- 내강의 메인(cosengcosa_myClassMain) >> 데이터 입력은 특정아이디 있어야함
 -- 내강의 서브(cosengcosa_myClassSub)
+-- 내강의 서브 데이터(cosengcosa_myClassSubData) >> 특정아이디 있어야함
 -- 지식공유 메인(cosengcosa_study)
 -- 지식공유 응답(cosengcosa_study)
 -- 요청사항(cosengcosa_requestBoard)
@@ -29,4 +31,3 @@
 -- 자유게시판답변(cosengcosa_freeBoardcmt)
 -- 결재(cosengcosa_pay)
 -- 장바구니(cosengcosa_basket)
-
