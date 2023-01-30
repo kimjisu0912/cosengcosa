@@ -1,7 +1,3 @@
-drop table ;
-
-
-
 -- 메인강의 테이블 생성
 DROP SEQUENCE classmain_seq;
 
@@ -59,7 +55,7 @@ VALUES (classmain_seq.NEXTVAL, 'DB02', '[SQL 기초강의] 혼자 공부하는 S
 INSERT INTO classmain (cm_no, cm_code,cm_title, cm_name,cm_content, cm_period, cm_price, cm_count, cm_recommend, cm_star,  video, cm_yn) 
 VALUES (classmain_seq.NEXTVAL, 'DB03', '오라클(Oracle) 데이터 베이스(DataBase) 11g tutorials ','소프트캠퍼스','본 과정은 오라클 데이터베이스의 기본적인 부분을 다루고 있습니다. 보다 더 공부에 도움이 될수 있도록 직접 실습하면서 학습하고, 본 과정을 마치게 된다면 기초적인 부분부터 중급정도의 실력을 쌓아 나가실수 있을것이라 생각됩니다.  ', 2, 120000, 0, 112, 5, 'uEevQEsxjrs', 'Y');
 INSERT INTO classmain (cm_no, cm_code,cm_title, cm_name,cm_content, cm_period, cm_price, cm_count, cm_recommend, cm_star, video, cm_yn) 
-VALUES (classmain_seq.NEXTVAL, 'DB04', '오라클 기초 강좌','최용진','Oracle데이터 베이스를 이용해 SQL을 처음부터 시작하는 강좌입니다. SQL의 기초적인 문법부터 시작해서 SQL * plus에서만 활용할수 있는 문법 등 이론과 실습을 통해 기초능력을 강화할수 있도록 준비했습니다.  ', 6, 120000, 0, 75, 4, CRIcqz77H_w, 'Y');
+VALUES (classmain_seq.NEXTVAL, 'DB04', '오라클 기초 강좌','최용진','Oracle데이터 베이스를 이용해 SQL을 처음부터 시작하는 강좌입니다. SQL의 기초적인 문법부터 시작해서 SQL * plus에서만 활용할수 있는 문법 등 이론과 실습을 통해 기초능력을 강화할수 있도록 준비했습니다.  ', 6, 120000, 0, 75, 4, 'CRIcqz77H_w', 'Y');
 INSERT INTO classmain (cm_no, cm_code,cm_title, cm_name,cm_content, cm_period, cm_price, cm_count, cm_recommend, cm_star,  video, cm_yn) 
 VALUES (classmain_seq.NEXTVAL, 'DB05', '오라클 PL/SQL','오라클 자바 커뮤니티','이 코스는 데이터베이스를 조작하는 언어 SQL을 비즈니스에서 활용할수 있는 데이터 분석에 도움이 되는 스킬로써 공부합니다. 많은 데이터 베이스 중 인기가 아주 많은 오픈소스 데이터베이스 MySQL을 이용하고, 데이터베이스 서버를 컴퓨터에 인스톨 하는 방법을 배우며, SQL의 기본부터 시작해서 복잡한 SQL쿼리를 데이터베이스에 읽고 쓰기방식 까지 배울 수 있습니다. 이 강좌는 듣기만 하는 강좌가 아닌 실제로 SQL에 쓰이는 문장을 실제로 작성해보는 학습형태를 갖추고 있습니다.거기에 더해 강의의 내용 이해를 더 깊이 이해할수 있도록 중간 테스트도 준비되어 있습니다. 단, 이 코스는 SQL을 처음 접하는 분들이 중급자가 될수 있도록 준비된 강좌이니, 평소 SQL을 접하신 분들에게는 수강을 추천드리지 않습니다.', 5, 150000, 0, 49, 2, 'e9lZ0oZNZDo', 'Y');
 INSERT INTO classmain (cm_no, cm_code,cm_title, cm_name,cm_content, cm_period, cm_price, cm_count, cm_recommend, cm_star, video, cm_yn) 
@@ -67,7 +63,7 @@ VALUES (classmain_seq.NEXTVAL, 'JS01', '자바스크립트 기초 강좌 : 100�
 INSERT INTO classmain (cm_no, cm_code,cm_title, cm_name,cm_content, cm_period, cm_price, cm_count, cm_recommend, cm_star,  video, cm_yn) 
 VALUES (classmain_seq.NEXTVAL, 'JS02', 'JavaScript 입문수업', '생활코딩', 'html/css와 더불어 이벤트를 주는데에 꼭 필요한 JavaScript강좌입니다. 프론트엔드와 백엔드 어느곳에도 잘 사용하는 언어로 여러분들이 필수적으로 들어야 할 언어라 생각합니다. 이번 강좌에서는 기초적인 용어설명과 문법, 그리고 다양한 이벤트를 주는 방법등등 실습을 통해 능력을 길러 최종적으로는 HTML로 만든 web사이트에 다양한 이벤트를 줄수 있는것이 이번 목표과제입니다.  ', 3, 150000, 0, 16, 1, 'PZIPsKgWJiw', 'Y');
 INSERT INTO classmain (cm_no,  cm_code, cm_title, cm_name,cm_content, cm_period, cm_price, cm_count, cm_recommend, cm_star,  video, cm_yn) 
-VALUES (classmain_seq.NEXTVAL, 'JS03', '혼자공부하는 자바스크립트','윤인성', '혼자 공부하고 싶어하시는 분들을 위한 자바스크립트 강좌입니다. 본 강의는 서적을 통한 기초적인 이론과 문법, 그리고 실습을 통해 다양한 이벤트를 주어 HTML에 적용하는것을 목표로 하고 있습니다. ', 5, 150000, 0, 84, 5, pwR0y76Od_U, 'Y');
+VALUES (classmain_seq.NEXTVAL, 'JS03', '혼자공부하는 자바스크립트','윤인성', '혼자 공부하고 싶어하시는 분들을 위한 자바스크립트 강좌입니다. 본 강의는 서적을 통한 기초적인 이론과 문법, 그리고 실습을 통해 다양한 이벤트를 주어 HTML에 적용하는것을 목표로 하고 있습니다. ', 5, 150000, 0, 84, 5, 'pwR0y76Od_U', 'Y');
 INSERT INTO classmain (cm_no,  cm_code,cm_title, cm_name,cm_content, cm_period, cm_price, cm_count, cm_recommend, cm_star,  video, cm_yn) 
 VALUES (classmain_seq.NEXTVAL, 'SP01', '스프링부트(Spring Boot) 강의','어라운드 허브 스튜디오','springboot 강좌입니다. 본 강좌는 기본적인 프로잭트의 생성과 구조에 대해 알고, MVC패턴이란 무엇인지, REST API는 무엇인지 전체적으로 이론에 비중을 두고 있습니다. 중간중간 실습을 해보기도 하지만, spring의 전반적인 이해를 위한 이론의 비중이 커 spring에대해 기초가 부족하신 분들, 혹은 spring을 배웠지만 복습과 더불어 깊이 공부해 보고 싶으신 분들을 대상으로 구성하고 있습니다. ', 4, 200000, 0, 123, 5,  'rHJgMRimJ4Y', 'Y');
 INSERT INTO classmain (cm_no,  cm_code,cm_title, cm_name,cm_content,cm_period, cm_price, cm_count, cm_recommend, cm_star,video, cm_yn) 
@@ -97,7 +93,7 @@ VALUES (classmain_seq.NEXTVAL, 'HL04', 'HTML + CSS + JS 미니 프로젝트 실�
 INSERT INTO classmain (cm_no , cm_code,cm_title, cm_name,cm_content, cm_period, cm_price, cm_count, cm_recommend, cm_star, video, cm_yn)  
 VALUES (classmain_seq.NEXTVAL, 'JQ01', 'jQuery','Rocks Easyweb','Jquery강좌를 통해 JavaScript와 어떤 점이 다르고 어떤이점이 있는지 이론적 공부와, 실제로 작성해 보면서 Jquery란 무엇인지 알아보도록 합시다. 다소 어려울 수 있는 강좌이므로 우선적으로 JavaScript를 공부하고 들었으면 합니다. ', 4, 200000, 0, 101, 5, 'uwn3Y4xzOcw', 'Y');
 INSERT INTO classmain (cm_no , cm_code,cm_title, cm_name,cm_content, cm_period, cm_price, cm_count, cm_recommend, cm_star, video, cm_yn)  
-VALUES (classmain_seq.NEXTVAL, 'JQ02', 'jQuery Plugin','리베하얀','이번 강좌는 간단하게 제이쿼리에 대해 알아보겠습니다. 기초적인 이론과 더불어 실제 실무에서도 사용하는 기술들을 실습을 통해 배워보도록 하겠습니다. ', 10, 200000, 0, 132, 5, ootTFnRQT8E, 'Y');
+VALUES (classmain_seq.NEXTVAL, 'JQ02', 'jQuery Plugin','리베하얀','이번 강좌는 간단하게 제이쿼리에 대해 알아보겠습니다. 기초적인 이론과 더불어 실제 실무에서도 사용하는 기술들을 실습을 통해 배워보도록 하겠습니다. ', 10, 200000, 0, 132, 5, 'ootTFnRQT8E', 'Y');
 INSERT INTO classmain (cm_no , cm_code,cm_title, cm_name,cm_content, cm_period, cm_price, cm_count, cm_recommend, cm_star, video, cm_yn) 
 VALUES (classmain_seq.NEXTVAL, 'JQ03', '예제로 배우는 jQuery강의','소스놀이터','이번 강좌는 jQuery를 배우기 위해 알기 쉽게 예시를 들어 강의를 진행하려고 합니다. 또한 이번 강좌는 기초부터 설명하고 있어 강의를 수강하신다면 jQuery를 이용하여 페이지에 다양한 이벤트를 주거나, 깔끔한 기능을 줄수있는 능력을 기를수 있습니다.', 10, 100000, 0, 50, 3, 'jNwV6cF3ELA', 'Y');
 INSERT INTO classmain (cm_no , cm_code,cm_title, cm_name,cm_content, cm_period, cm_price, cm_count, cm_recommend, cm_star, video, cm_yn) 
@@ -247,3 +243,37 @@ SELECT COUNT(b.cs_video) as cmVideo FROM
 
 SELECT cm_no, cm_code, cm_title, cm_period FROM classmain
 ORDER BY cm_no;
+
+
+
+---------------------------------------------------------------------------------
+-- 드롭테이블 모음
+DROP SEQUENCE classmain_seq;
+DROP SEQUENCE classsub_seq;
+DROP SEQUENCE basket_seq;
+DROP SEQUENCE pay_seq;
+DROP SEQUENCE freeboard_seq;
+DROP SEQUENCE freeboardcmt_seq;
+DROP SEQUENCE myclassmain_seq;
+DROP SEQUENCE myclasssub_seq;
+DROP SEQUENCE recommend_seq;
+DROP SEQUENCE requestboard_seq;
+DROP SEQUENCE studyAnswer_seq;
+DROP SEQUENCE study_seq;
+
+
+DROP TABLE classmain;
+DROP TABLE classsub;
+DROP TABLE member;
+DROP TABLE basket;
+DROP TABLE pay;
+DROP TABLE freeboard;
+DROP TABLE freeboardcmt;
+DROP TABLE myclassmain;
+DROP TABLE myclasssub;
+DROP TABLE recommend;
+DROP TABLE requestboard;
+DROP TABLE studyAnswer;
+DROP TABLE study;
+
+-- 테이블 삭제시 역순으로 제거 
