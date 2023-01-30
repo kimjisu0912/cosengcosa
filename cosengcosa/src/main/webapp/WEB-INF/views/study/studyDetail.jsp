@@ -129,7 +129,7 @@
 							<span class="reply_date">
 								<fmt:formatDate value="${ answer.saCdate}" 
 									pattern="yyyy-MM-dd HH:mm:ss" /></span>
-							<c:if test='${ member.grant == "T" || member.grant == "A" }'>
+							<c:if test='${ (member.id == answer.saAnswerid && member.grant == "T") || member.grant == "A" }'>
 								<a href="#" class="modifyReply" data-no="${ answer.saNo }">
 									<img src="resources/images/reply_btn_modify.gif" alt="댓글 수정하기"/></a>
 								<a href="#" class=deleteReply data-no="${ answer.saNo }">

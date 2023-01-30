@@ -150,7 +150,7 @@
 							<span class="reply_date">
 								<fmt:formatDate value="${ freeCmt.fcCdate}" 
 									pattern="yyyy-MM-dd HH:mm:ss" /></span>
-							<c:if test='${ member.grant == "T" || member.grant == "A" }'>
+							<c:if test='${ member.id == freeCmt.fcWriter || member.grant == "A" }'>
 								<a href="#" class="modifyReply" data-no="${ freeCmt.fcNo  }">
 									<img src="resources/images/reply_btn_modify.gif" alt="댓글 수정하기"/></a>
 								<a href="#" class=deleteReply data-no="${ freeCmt.fcNo }">
