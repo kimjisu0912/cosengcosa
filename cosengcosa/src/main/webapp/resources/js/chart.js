@@ -74,17 +74,17 @@ function drawHeatChart () {
     	},
 	  },
 	  tooltip: {
-	  size: 5},
+	  size: 10},
 	  visualMap: {
-	    min: 0,
-	    max: 20,
+	    min: 1,
+	    max: 11,
 	    type: 'piecewise',
 	    splitNumber: 10,
 	    orient: 'horizontal',
 	    left: 'center',
 	    top: 65,
 	    inRange: {
-	     color: ['#ffffff', '#330066']
+	     color: ['#f9e6ff','#330066']
 	    },
 	  },
 	  calendar: {
@@ -104,6 +104,5 @@ function drawHeatChart () {
 	    data: heatData
 	  }
 	};
-        // 위에서 설정한 속성을 차트에 반영합니다.
         heatChart.setOption(option);  
 };

@@ -24,7 +24,7 @@
 	</div>
 	<div class="col-10">
 		<div class="row text-center my-3"> <!-- 헤더 -->
-			<h3>${userName}님의 정보</h3>
+			<h3>${userName} 님의 정보</h3>
 		</div>
 		<!-- 회원정보 -->
 		<div class="row border my-3"> 

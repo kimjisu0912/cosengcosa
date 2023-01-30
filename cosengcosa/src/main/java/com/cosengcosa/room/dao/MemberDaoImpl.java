@@ -1,6 +1,8 @@
 package com.cosengcosa.room.dao;
 
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -65,8 +67,8 @@ public class MemberDaoImpl implements MemberDao {
 	
 	// 아이디 찾기 
 	@Override
-	public Member findMemberId(String name) {		
-		return sqlSession.selectOne(NAME_SPACE + ".findId", name);
+	public List<Member> findMemberId(String name) {		
+		return sqlSession.selectList(NAME_SPACE + ".findId", name);
 	}
 	
 	// 비밀번호 찾기 

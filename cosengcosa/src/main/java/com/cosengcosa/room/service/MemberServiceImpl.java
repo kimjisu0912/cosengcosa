@@ -1,6 +1,7 @@
 package com.cosengcosa.room.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -122,27 +123,37 @@ public class MemberServiceImpl implements MemberService {
 	
 	// 아이디 찾기
 	@Override
-	public int findMemberIdChk(String name, String email) {		
-		
-		Member member = memberDao.findMemberId(name);
+	public Map<String, Object> findMemberIdChk(String name, String email) {		
+		// 이름이 같은 사람이 있을 수 있기 때문에 List로..
+		List<Member> mList = memberDao.findMemberId(name);
 		int result = -1;
+		String id = "";
 		
-		if(member == null) {
-			return result;
+		if(mList == null) {
+			result = -1;
 		}
 		
-		if(member.getEmail().equals(email)) {
-			result = 1;
-		} else {
-			result = 0;
+		for(int i = 0 ; i < mList.size() ; i++){
+			
+			if(mList.get(i).getEmail().equals(email)) {
+				result = 1;
+				id = mList.get(i).getId();
+			} else {
+				result = 0;
+			}
 		}
 		
-		return result;
+		// 회원조회 결과(result)와 아이디(id)를 반환해준다
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		modelMap.put("result", result);
+		modelMap.put("id", id);
+		
+		return modelMap;
 	}
 	
 	// 이름으로 회원정보 조회 
 	@Override
-	public Member findMemberId(String name) {
+	public List<Member> findMemberId(String name) {
 		
 		return memberDao.findMemberId(name);
 	}
@@ -174,11 +185,9 @@ public class MemberServiceImpl implements MemberService {
 			memberDao.updatePass(member);
 			
 			result = 1;
-			
 		} else { // 이메일이 회원정보와 일치하지 않을때
 			result = 0;
 		}
-		
 		// 회원조회 결과값(result)와 임시비밀번호(pass)를 반환해준다
 		Map<String, Object> modelMap = new HashMap<String, Object>();
 		modelMap.put("result", result);

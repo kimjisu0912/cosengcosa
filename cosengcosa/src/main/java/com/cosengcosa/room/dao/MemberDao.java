@@ -1,5 +1,7 @@
 package com.cosengcosa.room.dao;
 
+import java.util.List;
+
 import com.cosengcosa.room.domain.Member;
 
 public interface MemberDao {
@@ -32,7 +34,7 @@ public interface MemberDao {
 	public void deleteMember(String id);
 	
 	// 아이디 찾기 
-	public Member findMemberId(String name);
+	public List<Member> findMemberId(String name);
 	
 	// 비밀번호 찾기 
 	public Member findMemberPass(Member member);

@@ -11,13 +11,13 @@
 					</div>
 					<c:if test="${sessionScope.isLogin }">
 					<div class="col">
-						<div class= "row">
+						<div class= "row mainCol">
 							<div class="col-10"></div>
 							<div class="col-1">
-								<a href="myClass"><i class="bi bi-caret-right-square-fill fs-3" style="position:relative; top:82px; right:10px;"></i></a>
+								<a href="myClass"><i class="bi bi-caret-right-square-fill fs-3" style="position:relative; top:80px; right:20px;"></i></a>
 							</div>
 							<div class="col-1">
-				 				<a href="myCart"><i class="bi bi-cart-fill fs-3" style="position:relative; top:82px; right:15px;"></i></a>
+				 				<a href="myCart"><i class="bi bi-cart-fill fs-3" style="position:relative; top:80px; right:20px;"></i></a>
 							</div>
 						</div>
 					</div>

@@ -1,5 +1,6 @@
 package com.cosengcosa.room.service;
 
+import java.util.List;
 import java.util.Map;
 
 import com.cosengcosa.room.domain.Member;
@@ -40,10 +41,10 @@ public interface MemberService {
 	public void deleteMember(String id);
 	
 	// 아이디 찾기
-	public int findMemberIdChk(String name, String email);
+	public Map<String, Object> findMemberIdChk(String name, String email);
 	
 	// 이름으로 아이디 조회
-	public Member findMemberId(String name);
+	public List<Member> findMemberId(String name);
 	
 	// 비밀번호 찾기 
 	public Map<String, Object> findMemberPass(String id, String email);

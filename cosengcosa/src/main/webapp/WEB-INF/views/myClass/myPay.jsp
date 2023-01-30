@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <div class="row my-3 py-2 subBk">
-	<h3 class="ms-5 fw-bold">신청내역</h3>
+	<h3 class="ms-5 fw-bold">결제내역</h3>
 </div>
 <div class="row">
 	<div class="col-2 ps-0 pe-3">

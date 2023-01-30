@@ -239,7 +239,6 @@ public class MemberController {
 	
 	// 아이디 찾기
 	@RequestMapping("/findIdResult")
-	@ResponseBody
 	public void findId(HttpServletResponse response, 
 			Member member, String name, String emailId, String emailDomain) throws ServletException, IOException {
 		
@@ -247,15 +246,14 @@ public class MemberController {
 		PrintWriter out = response.getWriter();
 		
 		String email = emailId + "@" + emailDomain;
-		System.out.println(name);
-		System.out.println(email);
-		int result = memberService.findMemberIdChk(name, email);
-		System.out.println(result);
+		
+		Map<String, Object> modelMap = memberService.findMemberIdChk(name, email);
+		int result = (int) modelMap.get("result");
+		String id = (String) modelMap.get("id");
 		
 		if(result == 1) {
-			member = memberService.findMemberId(name);
 			out.println("<script>");
-			out.println("	alert('회원님의 아이디는 " + member.getId() + " 입니다.');");
+			out.println("	alert('회원님의 아이디는 " + id + " 입니다.');");
 			out.println("	history.back();");
 			out.println("</script>");
 		} else if(result == 0) {

@@ -21,6 +21,7 @@
 	  - http://www.mybatis.org/mybatis-3/ko/index.html
 -->
 <mapper namespace="com.cosengcosa.room.mapper.MyClassMapper" >	
+
 <!-- 결제된 메인강의 추가 맵핑 구문 -->
 <insert id="insertMyClassMain"  parameterType="hashmap">
 	INSERT INTO myclassmain (mym_no, mym_mid, mym_code, mym_title, mym_name, mym_period, 
@@ -35,6 +36,7 @@
 	VALUES (myclasssub_seq.NEXTVAL, #{id}, #{csCode}, #{csGroup}, #{csTitle}, #{csContent}, #{csVideo}, 
 			#{csRuntime}, '0', sysdate, ADD_MONTHS(sysdate, #{period}), null,'N', 'Y')
 </insert>
+
 <!-- 수강중인 메인강의 조회 맵핑 구문-->
 <select id="getMyClassMain" resultType="MyClassMain" resultMap="MyClassMainResultMap" parameterType="hashmap">
 	SELECT mym_no, mym_mid, mym_code, mym_title, mym_name, mym_sdate, mym_edate, mym_done, mym_yn, video
@@ -137,13 +139,14 @@
 </select>
 <!-- 결제 리스트 -->
 <select id="getPayList" resultType="Pay" resultMap="MyClassPayResultMap" parameterType="hashmap">
-	SELECT * FROM
-		(SELECT ROWNUM num, p_cmcode, p_cname, p_price, p_cdate 
-		FROM pay
-		WHERE p_mid = #{id}
-		ORDER BY p_cdate DESC)
+	SELECT num,  p_cmcode, p_cname, p_price, p_cdate    
+	FROM (SELECT ROWNUM num, p_cmcode, p_cname, p_price, p_cdate 
+			FROM (SELECT p_cmcode, p_cname, p_price, p_cdate 
+   		 			FROM pay
+    	 			WHERE p_mid = #{id}
+    	 			ORDER BY p_cdate DESC))
 	WHERE num  BETWEEN #{startRow} AND #{endRow}
-	ORDER BY num
+	ORDER BY num  
 </select>
 
 <!-- 장바구니 리스트 총 개수 -->
