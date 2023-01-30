@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cosengcosa.room.dao.RequestBoardDao;
+import com.cosengcosa.room.domain.Member;
 import com.cosengcosa.room.domain.RequestBoard;
 
 @Service
@@ -89,6 +90,10 @@ public class RequestBoardServicelmpl implements RequestBoardService {
 	public RequestBoard getBoard(int no, boolean isCount) {
 		return requestBoardDao.getBoard(no, isCount);
 	}
+	@Override
+	public Member getRequestMember(String userid) {
+		return requestBoardDao.getRequestMember(userid);
+	}
 
 	@Override
 	public void insertBoard(RequestBoard board) {
@@ -111,6 +116,9 @@ public class RequestBoardServicelmpl implements RequestBoardService {
 	public void updateAnswer(RequestBoard board) {
 		requestBoardDao.updateAnswer(board);
 	}
+
+
+	
 
 
 

@@ -70,6 +70,13 @@
 		WHERE r_no = #{no}
 	</select>
 	
+	<select id="getRequestMember" resultType="Member">
+		SELECT m_id as "id", m_grant as "grant"
+		FROM member
+		WHERE
+		    m_id = #{userid}
+	</select>
+	
 	<!-- sAskimg -->
 	<insert id="insertBoard" parameterType="RequestBoard"
 		useGeneratedKeys="false" keyProperty="no">
@@ -109,7 +116,8 @@
 		
 	<update id="updateAnswer" parameterType="hashmap">
 		UPDATE requestBoard
-			SET r_answer = #{answer}
+			SET r_answer = #{answer},
+			r_open = #{open}
 		WHERE
 			r_no = #{no}
 	</update>

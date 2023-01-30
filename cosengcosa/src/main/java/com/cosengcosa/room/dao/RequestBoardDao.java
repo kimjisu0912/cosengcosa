@@ -2,6 +2,7 @@ package com.cosengcosa.room.dao;
 
 import java.util.List;
 
+import com.cosengcosa.room.domain.Member;
 import com.cosengcosa.room.domain.RequestBoard;
 
 public interface RequestBoardDao {
@@ -11,6 +12,7 @@ public interface RequestBoardDao {
 	int getBoardCount(String type, String keyword);
 	
 	public abstract RequestBoard getBoard(int no, boolean isCount);
+	public abstract Member getRequestMember(String userid);
 	
 	public abstract void insertBoard(RequestBoard board);
 	

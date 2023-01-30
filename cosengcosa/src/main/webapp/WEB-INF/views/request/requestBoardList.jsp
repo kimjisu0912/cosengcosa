@@ -108,10 +108,10 @@
 								class="text-decoration-none link-secondary">${ b.title }</a></td>
 							<td>${ b.writer }</td>
 							<td><fmt:formatDate value="${ b.cdate }" pattern="yyyy-MM-dd"/></td>
-							<c:if test='${ b.yn == "Y"}'>
+							<c:if test='${ b.open == "Y"}'>
 								<td>해결</td>
 							</c:if>
-							<c:if test='${ b.yn == "N"}'>
+							<c:if test='${ b.open == "N"}'>
 								<td>미해결</td>
 							</c:if>
 						</tr>

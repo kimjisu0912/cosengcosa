@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.cosengcosa.room.domain.Member;
 import com.cosengcosa.room.domain.RequestBoard;
 
 @Repository
@@ -57,6 +58,10 @@ public class RequestBoardDaolmpl implements RequestBoardDao {
 		// getBoard 맵핑 구문을 호출하면서 게시 글 번호인 no를 파라미터로 지정했다.		 
 		return sqlSession.selectOne(NAME_SPACE + ".getBoard", no);
 	}
+	@Override
+	public Member getRequestMember(String userid) {
+		return sqlSession.selectOne(NAME_SPACE + ".getRequestMember", userid);
+	}
 
 	@Override
 	public void insertBoard(RequestBoard board) {
@@ -85,5 +90,8 @@ public class RequestBoardDaolmpl implements RequestBoardDao {
 		
 		sqlSession.update(NAME_SPACE + ".updateAnswer", board);
 	}
+
+
+	
 
 }

@@ -68,8 +68,7 @@ public class RequestBoardController {
 		
 		String userid = (String) session.getAttribute("userId");
 		
-		Member member = new Member();
-		member.setId(userid);
+		Member member = requestBoardService.getRequestMember(userid);
 		
 		RequestBoard board = requestBoardService.getBoard(no, true);
 		
@@ -193,6 +192,7 @@ public class RequestBoardController {
 		
 			board.setAnswer(answer);
 			board.setNo(no);
+			board.setOpen("Y");
 			
 			requestBoardService.updateAnswer(board);
 		return "redirect:requestBoardDetail?no="+no;

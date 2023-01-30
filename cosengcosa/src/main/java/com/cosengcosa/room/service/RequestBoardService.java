@@ -2,6 +2,7 @@ package com.cosengcosa.room.service;
 
 import java.util.Map;
 
+import com.cosengcosa.room.domain.Member;
 import com.cosengcosa.room.domain.RequestBoard;
 
 public interface RequestBoardService {
@@ -18,6 +19,7 @@ public interface RequestBoardService {
  	 * isCount == true 면 게시 상세보기, false 면 게시 글 수정 폼 요청임 
 	 **/
 	public abstract RequestBoard getBoard(int no, boolean isCount);
+	public abstract Member getRequestMember(String userid);
 	
 	// 게시 글 번호에 해당하는 댓글 리스트를 반환하는 메서드
 	
