@@ -74,7 +74,7 @@
 		SELECT m_id as "id", m_grant as "grant"
 		FROM member
 		WHERE
-		    m_id = #{userid}
+		    m_id = #{userid, jdbcType=VARCHAR}
 	</select>
 	
 	<!-- sAskimg -->
