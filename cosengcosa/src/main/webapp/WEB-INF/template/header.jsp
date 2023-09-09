@@ -43,6 +43,9 @@
 					<li class="nav-item">
 						<a class="nav-link fwh fs-5" href="requestBoardList">요청사항</a>
 					</li>
+					<li class="nav-item">
+						<a class="nav-link fwh fs-5" href="dmtbList">동적테이블연습</a>
+					</li>
 				</ul>
 			</div>
 			<!-- nav 오른쪽 -->
