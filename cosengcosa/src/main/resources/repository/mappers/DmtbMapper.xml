@@ -13,8 +13,18 @@
 			dmtb_code
         FROM
            dmtb
-        ORDER BY dmtb_no DESC
+        ORDER BY dmtb_no ASC
 	</select>
+	
+	<!-- 비우기 -->
+	<delete id="dmtbDel">
+		DELETE FROM dmtb
+	</delete>
+	<!-- 채우기 -->
+	<insert id="dmtbAdd">
+	INSERT INTO dmtb (dmtb_no, dmtb_name, dmtb_code) 
+	VALUES (#{dmtbNo, jdbcType=INTEGER}, #{dmtbName}, #{dmtbCode})
+	</insert>
 	
 	<!--
 		Board 클래스의 프로퍼티와 테이블의 컬럼을 맵핑하는 ResultMap

@@ -13,8 +13,11 @@ import com.cosengcosa.room.domain.Dmtb;
 public interface DmtbService {
 
 	/*
-	 * 리스트를 BasketDao에 호출 메소드
+	 * 리스트를 호출 메소드
 	 */
 	public abstract List<Dmtb> dmtbList(String userId, String userName);
 	
+	public abstract void dmtbDel();
+	
+	public abstract void dmtbAdd(String[] dmtbNameArr, String[] dmtbCodeArr);
 }

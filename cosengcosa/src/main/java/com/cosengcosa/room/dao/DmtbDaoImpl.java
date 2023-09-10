@@ -39,6 +39,21 @@ public class DmtbDaoImpl implements DmtbDao {
 		params.put("userName", userName);
 		return sqlSession.selectList(NAME_SPACE + ".dmtbList", params);
 	}
+
+	@Override
+	public void dmtbDel() {
+		sqlSession.delete(NAME_SPACE + ".dmtbDel");
+	}
+
+	@Override
+	public void dmtbAdd(String dmtbNo, String dmtbName, String dmtbCode) {
+		System.out.println("dmtbNo=>"+dmtbNo+"\n dmtbName=>"+dmtbName+"\n dmtbCode=>"+dmtbCode);
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("dmtbNo", dmtbNo);
+		params.put("dmtbName", dmtbName);
+		params.put("dmtbCode", dmtbCode);
+		sqlSession.insert(NAME_SPACE + ".dmtbAdd", params);
+	}
 	
 	
 }

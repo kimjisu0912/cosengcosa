@@ -32,5 +32,23 @@ public class DmtbServiceImpl implements DmtbService {
 		return dmtbDao.dmtbList(userId, userName);
 	}
 
+	@Override
+	public void dmtbDel() {
+		dmtbDao.dmtbDel();
+	}
+
+	@Override
+	public void dmtbAdd(String[] dmtbNameArr, String[] dmtbCodeArr) {
+		int arrLength = dmtbNameArr.length;
+		for(int i=0; i<arrLength; i++) {
+			int dmtbNumber = i+1;
+			String dmtbNo = String.valueOf(dmtbNumber);
+			String dmtbName = dmtbNameArr[i];
+			String dmtbCode = dmtbCodeArr[i];
+			dmtbDao.dmtbAdd(dmtbNo, dmtbName, dmtbCode);
+		}
+		
+	}
+
 	
 }

@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!-- content -->
+<form method="post" id="frmdmtb">
 <div class="row my-5" id="global-content">
 	<div class="col"></div>
 	<div class="col-8">
@@ -13,7 +14,7 @@
 		</div>  		
 		<div class="d-grid gap-2 d-md-block text-end">
 			<button type="button" class="btn btn-primary" onclick="add();">추가</button>
-			<button type="button" class="btn btn-success" onclick="apply();">적용</button>
+			<button type="submit" class="btn btn-success" onclick="apply();">적용</button>
 			<button type="button" class="btn btn-secondary" onclick="cancel();">취소</button>
 		</div>
 		<div class="row my-3">
@@ -32,6 +33,7 @@
 					<thead>
 						<tr class="table-dark">
 							<th>NO</th>
+							<th></th>
 							<th>이름</th>
 							<th>코드</th>
 							<th></th>
@@ -44,9 +46,9 @@
 					<tbody class="text-secondary">
 					<c:forEach var="d" items="${dmList}" varStatus="status">
 						<tr>
-							<td><span><c:out value="${ d.dmtbNo }"/></span></td>
-							<td><input value="${ d.dmtbName }"/></td>
-							<td><input value="${ d.dmtbCode }"/></td>
+							<td><span class="id_row_num" id="id_row_num"><c:out value="${ d.dmtbNo }"/></span></td>
+							<td><input name="dmtbName[]" value="${ d.dmtbName }"/></td>
+							<td><input name="dmtbCode[]" value="${ d.dmtbCode }"/></td>
 							<td><button type="button" onclick="moveUp(this);" style="border: 0px;"><img src="resources/images/chevron-up.svg"></button></td>
 							<td><button type="button" onclick="moveDown(this);" style="border: 0px;"><img src="resources/images/chevron-down.svg"></button></td>
 							<td><button type="button" onclick="moveTop(this);" style="border: 0px;"><img src="resources/images/chevron-double-up.svg"></button></td>
@@ -63,6 +65,7 @@
 	<div class="col"></div>
 	<input type="hidden" value="0" id="tb_cnt">
 </div>
+</form>
 <script type="text/javascript">
 /*
 function numbering(){
@@ -76,8 +79,9 @@ function numbering(){
 function fnSetRowNo(){
     var span = $("#mytable tbody tr td span");  
     var span_cnt = span.length; // tbody안의 tr안에 td안에 span 태그들의 갯수
+    console.log(span_cnt);
     if(span_cnt == 1){ // span이 한개일경우 순번 붙이기
-        $("span.#id_row_num").text("1")
+        $("#id_row_num").text("1")
     }else{ // span이 여러개일경우 순번 붙이기
         $.each(span,function(i){
             $(this).text(i+1);
@@ -93,9 +97,9 @@ function add(){
 		cnt++;
 		var str = "";
 		str += '<tr id="tr'+cnt+'">';
-		str += '<td><span><c:out value="${ d.dmtbNo }"/></span></td>';
-		str += '<td><input value="${ d.dmtbName }"/></td>';
-		str += '<td><input id="dcode'+cnt+'" value="${ d.dmtbCode }"/></td>';
+		str += '<td><span class="id_row_num" id="id_row_num"><c:out value="${ d.dmtbNo }"/></span></td>';
+		str += '<td><input name="dmtbName[]" value="${ d.dmtbName }"/></td>';
+		str += '<td><input id="dcode'+cnt+'" name="dmtbCode[]" value="${ d.dmtbCode }"/></td>';
 		str += '<td><button type="button" onclick="moveUp(this)" style="border: 0px;"><img src="resources/images/chevron-up.svg"></button></td>';
 		str += '<td><button type="button" onclick="moveDown(this)" style="border: 0px;"><img src="resources/images/chevron-down.svg"></button></td>';
 		str += '<td><button type="button" onclick="moveTop(this)" style="border: 0px;"><img src="resources/images/chevron-double-up.svg"></button></td>';
@@ -107,6 +111,7 @@ function add(){
 		$("#tb_cnt").val(cnt);
 		const rand = Math.random();
 		$("#dcode"+cnt).val(rand);
+		$("#hdmtbNo"+cnt).val(++trlength);
 		fnSetRowNo();
 	}else{
 		alert("최대 10개까지만 가능합니다.");
@@ -148,7 +153,9 @@ function trash(el){
 	fnSetRowNo();
 }
 
-
+function apply(){
+	$("#frmdmtb").attr("action", "applyDmtb").submit();
+}
 
 function cancel(){
 	location.reload();
